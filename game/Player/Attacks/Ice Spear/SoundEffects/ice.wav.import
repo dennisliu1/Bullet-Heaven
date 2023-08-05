@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://h4aig1fx57hc"
-path="res://.godot/imported/ice.wav-338b37a5defb9ab6771dd3dfdace10f6.sample"
+path="res://.godot/imported/ice.wav-8157ae39605bdc8df91455f437e7f29d.sample"
 
 [deps]
 
-source_file="res://Audio/SoundEffect/ice.wav"
-dest_files=["res://.godot/imported/ice.wav-338b37a5defb9ab6771dd3dfdace10f6.sample"]
+source_file="res://Player/Attacks/Ice Spear/SoundEffects/ice.wav"
+dest_files=["res://.godot/imported/ice.wav-8157ae39605bdc8df91455f437e7f29d.sample"]
 
 [params]
 

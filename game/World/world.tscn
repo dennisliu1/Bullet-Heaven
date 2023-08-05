@@ -1,7 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://btacp1wsuqe5h"]
+[gd_scene load_steps=7 format=3 uid="uid://btacp1wsuqe5h"]
 
 [ext_resource type="Texture2D" uid="uid://b3f2e5314moyj" path="res://World/textures/dirt_full_new.png" id="1_tryyk"]
 [ext_resource type="PackedScene" uid="uid://bufkhdjbxweeb" path="res://Player/Wizard/player_wizard.tscn" id="2_1iqjs"]
+[ext_resource type="PackedScene" uid="uid://d3raqsj8wo72u" path="res://Utility/enemy_spawner.tscn" id="3_oliu4"]
+[ext_resource type="PackedScene" uid="uid://b8nqwq0tyly70" path="res://Enemy/EnemyKoboldWeak/enemy_kobold_weak.tscn" id="4_avijo"]
+[ext_resource type="Script" path="res://Utility/spawn_info.gd" id="5_n6r4v"]
+
+[sub_resource type="Resource" id="Resource_m0kui"]
+script = ExtResource("5_n6r4v")
+time_start = 0
+time_end = 30
+enemy = ExtResource("4_avijo")
+enemy_num = 1
+enemy_spawn_delay = 1
 
 [node name="World" type="Node2D"]
 
@@ -12,3 +23,8 @@ region_enabled = true
 region_rect = Rect2(-4000, -4000, 4000, 4000)
 
 [node name="PlayerWizard" parent="." instance=ExtResource("2_1iqjs")]
+
+[node name="EnemySpawner" parent="." instance=ExtResource("3_oliu4")]
+spawns = Array[ExtResource("5_n6r4v")]([SubResource("Resource_m0kui")])
+
+[node name="Loot" type="Node" parent="." groups=["loot"]]

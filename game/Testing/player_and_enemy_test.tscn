@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dd6a45iu3o1p3"]
+
+[ext_resource type="Texture2D" uid="uid://b3f2e5314moyj" path="res://World/textures/dirt_full_new.png" id="1_vuxbt"]
+[ext_resource type="PackedScene" uid="uid://bufkhdjbxweeb" path="res://Player/Wizard/player_wizard.tscn" id="2_pvxcw"]
+[ext_resource type="PackedScene" uid="uid://b8nqwq0tyly70" path="res://Enemy/EnemyKoboldWeak/enemy_kobold_weak.tscn" id="3_3kdls"]
+
+[node name="World" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("1_vuxbt")
+region_enabled = true
+region_rect = Rect2(-4000, -4000, 4000, 4000)
+
+[node name="PlayerWizard" parent="." instance=ExtResource("2_pvxcw")]
+
+[node name="EnemySpawner" type="Node2D" parent="."]
+
+[node name="EnemyKoboldWeak" parent="EnemySpawner" instance=ExtResource("3_3kdls")]
+position = Vector2(116, 38)
