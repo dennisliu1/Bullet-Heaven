@@ -1,0 +1,38 @@
+{
+	"armor_leather": {
+		"name": "Leather Armor",
+		"icon": "armor_01a.png",
+		"type": "armor",
+		"slots": 6,
+	},
+	"boots_leather": {
+		"name": "Leather Boots",
+		"icon": "boots_01a.png",
+		"type": "boots",
+		"slots": 4,
+	},
+	"gloves_leather": {
+		"name": "Leather Gloves",
+		"icon": "gloves_01a.png",
+		"type": "gloves",
+		"slots": 4,
+	},
+	"hat_leather": {
+		"name": "Leather Hat",
+		"icon": "hat_01a.png",
+		"type": "hat",
+		"slots": 2,
+	},
+	"helmet_leather": {
+		"name": "Leather Helmet",
+		"icon": "helmet_01a.png",
+		"type": "helmet",
+		"slots": 4,
+	},
+	"necklace_string": {
+		"name": "String Necklace",
+		"icon": "necklace_01a.png",
+		"type": "necklace",
+		"slots": 3,
+	},
+}

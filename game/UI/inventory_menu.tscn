@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwvyc2fw45qpq"]
+
+[ext_resource type="Script" path="res://UI/inventory_menu.gd" id="1_sfjj3"]
+[ext_resource type="PackedScene" uid="uid://duom5cnplrerl" path="res://UI/item_slot.tscn" id="2_xvki0"]
+
+[node name="InventoryMenu" type="GridContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_sfjj3")
+ModifierSlot = ExtResource("2_xvki0")

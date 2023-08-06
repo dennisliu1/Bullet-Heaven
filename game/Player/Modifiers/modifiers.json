@@ -1,0 +1,38 @@
+{
+	"lance": {
+		"name": "Lance",
+		"icon": "lance.png",
+		"type": "projectile",
+		"sub_type": "magical",
+	},
+	"divide_2": {
+		"name": "Divide By 2",
+		"icon": "divide_2.png",
+		"type": "projectile_modifier",
+		"sub_type": "on_fire",
+	},
+	"burst_3": {
+		"name": "Multicast 3",
+		"icon": "burst_3.png",
+		"type": "multicast",
+		"sub_type": "",
+	},
+	"heavy_shot": {
+		"name": "Heavy Shot",
+		"icon": "heavy_shot.png",
+		"type": "projectile_modifier",
+		"sub_type": "properties",
+	},
+	"homing": {
+		"name": "Homing",
+		"icon": "homing.png",
+		"type": "projectile_modifier",
+		"sub_type": "behaviour",
+	},
+	"octagonal_bolt_bundle": {
+		"name": "Octagonal Bolt Bundle",
+		"icon": "rocket_octagon.png",
+		"type": "projectile_modifier",
+		"sub_type": "on_hit",
+	},
+}

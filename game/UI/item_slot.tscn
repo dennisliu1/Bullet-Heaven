@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://duom5cnplrerl"]
+
+[ext_resource type="Texture2D" uid="uid://b2d55d41n72ia" path="res://Textures/Items/Upgrades/chunk.png" id="1_j2loq"]
+[ext_resource type="Script" path="res://UI/item_slot.gd" id="1_k0c8a"]
+[ext_resource type="FontFile" uid="uid://b8lbbxydut36n" path="res://Utility/fonts/PressStart2P.ttf" id="2_hcxg5"]
+
+[node name="ItemSlot" type="ColorRect" groups=["item_slot"]]
+custom_minimum_size = Vector2(18, 18)
+offset_right = 18.0
+offset_bottom = 18.0
+color = Color(0.2, 0.2, 0.2, 1)
+script = ExtResource("1_k0c8a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(9, 9)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_j2loq")
+
+[node name="LabelQuantity" type="Label" parent="."]
+layout_mode = 0
+offset_right = 18.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource("2_hcxg5")
+theme_override_font_sizes/font_size = 4
+text = "1"
+horizontal_alignment = 2
+vertical_alignment = 2

@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cahq3xv6kp8vs"]
+
+[ext_resource type="Script" path="res://UI/drag_preview/drag_preview.gd" id="1_8fn8g"]
+[ext_resource type="FontFile" uid="uid://d4ago6bg6n2ho" path="res://Utility/fonts/custom_font.tres" id="1_uuwou"]
+
+[node name="DragPreview" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 18.0
+offset_bottom = 18.0
+mouse_filter = 1
+script = ExtResource("1_8fn8g")
+
+[node name="ItemIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+mouse_filter = 2
+
+[node name="ItemQuantity" type="Label" parent="."]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("1_uuwou")
+theme_override_font_sizes/font_size = 4
+horizontal_alignment = 2
+vertical_alignment = 2
