@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://Utility/inventory_data.gd" id="1_gb2dw"]
 
-[node name="InventoryData" type="Node"]
+[node name="InventoryData" type="Node" groups=["inventory_data"]]
 script = ExtResource("1_gb2dw")

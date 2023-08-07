@@ -6,6 +6,8 @@ var modifiers
 
 const ICON_PATH = "res://Player/Modifiers/Textures/noita spells/%s"
 
+var icon_data = preload("res://Utility/item_data.gd")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	modifiers = read_from_JSON("res://Player/Modifiers/modifiers.json")
@@ -38,7 +40,40 @@ func get_object_by_key(data_path: String, key: String):
 
 func get_data(data_path: String):
 	if not data_array.has(data_path):
-		data_array[data_path] = read_from_JSON(data_path)
-		for key in data_array[data_path].keys():
-			data_array[data_path][key]["key"] = key
+		var json_data = read_from_JSON(data_path)
+		data_array[data_path] = {}
+		
+		for key in json_data.keys():
+			data_array[data_path][key] = create_item_data_type(json_data[key].type)
+			insert_json_data(data_path, key, json_data[key])
+			if data_array[data_path][key] is EquipmentData:
+				populate_equipment_data(data_path, key, json_data)
+			elif data_array[data_path][key] is SpellCardData:
+				populate_spellcard_data(data_path, key, json_data)
 	return data_array[data_path]
+
+func insert_json_data(data_path, key, json_data):
+	data_array[data_path][key].name = json_data.name
+	data_array[data_path][key].texture = load(json_data.path + json_data.icon)
+	data_array[data_path][key].type = ItemData.get_type(json_data.type)
+	# need to move this out?
+	data_array[data_path][key].sub_type = ItemData.get_sub_type(json_data.data.sub_type)
+	data_array[data_path][key].key = key
+
+func create_item_data_type(type_str):
+	var type = ItemData.get_type(type_str)
+	var result = ItemData.EMPTY_ITEM_DATA
+	match type:
+		ItemData.ITEM_TYPE.EQUIPMENT:
+			return EquipmentData.new()
+		ItemData.ITEM_TYPE.SPELLCARD:
+			return SpellCardData.new()
+	return result
+
+func populate_equipment_data(data_path, key, json_data):
+	data_array[data_path][key].num_slots = json_data[key].data.slots # not sure about this...
+	for i in range(json_data[key].data.slots):
+		data_array[data_path][key].spell_slots.append(ItemData.EMPTY_ITEM_DATA)
+
+func populate_spellcard_data(_data_path, _key, _json_data):
+	pass

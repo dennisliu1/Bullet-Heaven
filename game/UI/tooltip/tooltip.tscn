@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://UI/tooltip/tooltip.gd" id="1_orcwc"]
 [ext_resource type="FontFile" uid="uid://d4ago6bg6n2ho" path="res://Utility/fonts/custom_font.tres" id="2_11lrx"]
 
-[node name="Tooltip" type="ColorRect"]
+[node name="Tooltip" type="ColorRect" groups=["tooltip"]]
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2

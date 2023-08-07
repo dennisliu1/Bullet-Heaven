@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq0y23kqohblq"]
+
+[ext_resource type="PackedScene" uid="uid://bwhfdhlm2ypc5" path="res://Utility/inventory_data.tscn" id="1_2jlm4"]
+[ext_resource type="Script" path="res://UI/equipment_container.gd" id="1_11jyk"]
+[ext_resource type="PackedScene" uid="uid://bwvyc2fw45qpq" path="res://UI/inventory_menu.tscn" id="2_v4jpi"]
+[ext_resource type="PackedScene" uid="uid://duom5cnplrerl" path="res://UI/item_slot.tscn" id="3_cm25a"]
+
+[node name="EquipmentContainer" type="Control" groups=["equipment_container"]]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -340.0
+offset_bottom = -310.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_11jyk")
+
+[node name="EquipmentInventoryData" parent="." instance=ExtResource("1_2jlm4")]
+cols = 1
+rows = 1
+
+[node name="SpellcardInventoryData" parent="." instance=ExtResource("1_2jlm4")]
+rows = 1
+
+[node name="EquipmentSlot" parent="." node_paths=PackedStringArray("inventory_data") instance=ExtResource("2_v4jpi")]
+layout_mode = 0
+inventory_data = NodePath("../EquipmentInventoryData")
+ItemSlot = ExtResource("3_cm25a")
+
+[node name="SpellcardSockets" parent="." node_paths=PackedStringArray("inventory_data") instance=ExtResource("2_v4jpi")]
+layout_mode = 0
+offset_top = 30.0
+offset_bottom = 70.0
+inventory_data = NodePath("../SpellcardInventoryData")
+ItemSlot = ExtResource("3_cm25a")
+
+[node name="EquipmentName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 23.0
+offset_right = 63.0
+offset_bottom = 23.0
+
+[node name="BackgroundRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

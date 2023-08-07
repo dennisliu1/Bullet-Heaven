@@ -3,42 +3,54 @@
 		"name": "Lance",
 		"icon": "lance.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
-		"type": "projectile",
-		"sub_type": "magical",
+		"type": "SPELLCARD",
+		"data": {
+			"sub_type": "projectile",
+		}
 	},
 	"divide_2": {
 		"name": "Divide By 2",
 		"icon": "divide_2.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
-		"type": "projectile_modifier",
-		"sub_type": "on_fire",
+		"type": "SPELLCARD",
+		"data": {
+			"sub_type": "on_fire_projectile_modifier",
+		}
 	},
 	"burst_3": {
 		"name": "Multicast 3",
 		"icon": "burst_3.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
-		"type": "multicast",
-		"sub_type": "",
+		"type": "SPELLCARD",
+		"data": {
+			"sub_type": "multicast",
+		}
 	},
 	"heavy_shot": {
 		"name": "Heavy Shot",
 		"icon": "heavy_shot.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
-		"type": "projectile_modifier",
-		"sub_type": "properties",
+		"type": "SPELLCARD",
+		"data": {
+			"sub_type": "properties_projectile_modifier",
+		}
 	},
 	"homing": {
 		"name": "Homing",
 		"icon": "homing.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
-		"type": "projectile_modifier",
-		"sub_type": "behaviour",
+		"type": "SPELLCARD",
+		"data": {
+			"sub_type": "behaviour_projectile_modifier",
+		}
 	},
 	"octagonal_bolt_bundle": {
 		"name": "Octagonal Bolt Bundle",
 		"icon": "rocket_octagon.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
-		"type": "projectile_modifier",
-		"sub_type": "on_hit",
+		"type": "SPELLCARD",
+		"data": {
+			"sub_type": "on_hit_projectile_modifier",
+		}
 	},
 }

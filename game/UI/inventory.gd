@@ -12,6 +12,7 @@ var equip_slots = 9
 var equipped = []
 var equipment_slots = []
 
+# OLD CODE, DELETE ME
 func _ready():
 	for i in range(slots):
 		modifiers.append({})

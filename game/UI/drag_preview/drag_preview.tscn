@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://UI/drag_preview/drag_preview.gd" id="1_8fn8g"]
 [ext_resource type="FontFile" uid="uid://d4ago6bg6n2ho" path="res://Utility/fonts/custom_font.tres" id="1_uuwou"]
 
-[node name="DragPreview" type="Control"]
+[node name="DragPreview" type="Control" groups=["drag_preview"]]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 18.0
