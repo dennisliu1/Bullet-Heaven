@@ -1,5 +1,7 @@
 extends Node
 
+var data_array = {}
+
 var modifiers
 
 const ICON_PATH = "res://Player/Modifiers/Textures/noita spells/%s"
@@ -28,3 +30,15 @@ func read_from_JSON(path):
 func get_modifier_by_key(key):
 	if modifiers and modifiers.has(key):
 		return modifiers[key].duplicate(true)
+
+func get_object_by_key(data_path: String, key: String):
+	var data_object = get_data(data_path)
+	if data_object and data_object.has(key):
+		return data_array[data_path][key].duplicate(true)
+
+func get_data(data_path: String):
+	if not data_array.has(data_path):
+		data_array[data_path] = read_from_JSON(data_path)
+		for key in data_array[data_path].keys():
+			data_array[data_path][key]["key"] = key
+	return data_array[data_path]

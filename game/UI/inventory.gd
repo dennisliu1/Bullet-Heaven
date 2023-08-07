@@ -4,7 +4,7 @@ signal modifiers_changed(indexes)
 signal equipped_changed(indexes)
 
 var cols = 9
-var rows = 3
+var rows = 1
 var slots = cols * rows
 var modifiers = []
 
@@ -15,11 +15,6 @@ var equipment_slots = []
 func _ready():
 	for i in range(slots):
 		modifiers.append({})
-	
-	for i in range(equip_slots):
-		equipped.append({})
-	
-	
 	
 	modifiers[0] = Global.get_modifier_by_key("lance")
 	modifiers[1] = Global.get_modifier_by_key("divide_2")
@@ -46,22 +41,4 @@ func set_modifier_quantity(index, amount):
 	else:
 		emit_signal("modifiers_changed", [index])
 
-# --- equipment ---
-
-func set_equipped(index, modifier):
-	var previous_modifier = equipped[index]
-	equipped[index] = modifier
-	emit_signal("equipped_changed", [index])
-	return previous_modifier
-
-func remove_equipped(index):
-	var previous_modifier = equipped[index].duplicate()
-	equipped[index].clear()
-	emit_signal("equipped_changed", [index])
-	return previous_modifier
-
-# --- equipment slots ---
-
-func set_equipment_slots():
-	pass
 

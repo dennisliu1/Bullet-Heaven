@@ -1,13 +1,15 @@
 extends ColorRect
 
-@onready var modifier_icon = $Sprite2D
+var inventory_data : InventoryData
+
+@onready var item_icon = $Sprite2D
 @onready var label_quantity = $LabelQuantity
 
-func display_modifier(modifier):
-	if modifier:
-		modifier_icon.texture = load(Global.ICON_PATH % modifier.icon)
-		label_quantity.text = "" # str(modifier.quantity) if modifier.stackable else ""
+func display_item(item):
+	if item:
+		item_icon.texture = load(item.path + item.icon)
+		label_quantity.text = "" # str(item.quantity) if item.stackable else ""
 	else:
-		modifier_icon.texture = null
+		item_icon.texture = null
 		label_quantity.text = ""
 

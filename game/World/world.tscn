@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://btacp1wsuqe5h"]
+[gd_scene load_steps=13 format=3 uid="uid://btacp1wsuqe5h"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_nd10l"]
 [ext_resource type="Texture2D" uid="uid://b3f2e5314moyj" path="res://World/textures/dirt_full_new.png" id="1_tryyk"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" path="res://Utility/spawn_info.gd" id="5_n6r4v"]
 [ext_resource type="PackedScene" uid="uid://bwvyc2fw45qpq" path="res://UI/inventory_menu.tscn" id="7_5okx2"]
 [ext_resource type="PackedScene" uid="uid://cahq3xv6kp8vs" path="res://UI/drag_preview/drag_preview.tscn" id="8_m1mmg"]
+[ext_resource type="PackedScene" uid="uid://duom5cnplrerl" path="res://UI/item_slot.tscn" id="8_wml3y"]
+[ext_resource type="PackedScene" uid="uid://bwhfdhlm2ypc5" path="res://Utility/inventory_data.tscn" id="9_r8gd6"]
+[ext_resource type="PackedScene" uid="uid://dwcyj7eevxr4a" path="res://UI/tooltip/tooltip.tscn" id="11_hpyle"]
 
 [sub_resource type="Resource" id="Resource_m0kui"]
 script = ExtResource("5_n6r4v")
@@ -33,10 +36,34 @@ spawns = Array[ExtResource("5_n6r4v")]([SubResource("Resource_m0kui")])
 
 [node name="Loot" type="Node" parent="." groups=["loot"]]
 
+[node name="EquipmentInventoryData" parent="." instance=ExtResource("9_r8gd6")]
+prefilled_equipment = Array[Array]([["res://Player/Equipment/equipment.json", "armor_leather"], ["res://Player/Equipment/equipment.json", "boots_leather"]])
+
+[node name="SpellCardInventoryData" parent="." instance=ExtResource("9_r8gd6")]
+prefilled_equipment = Array[Array]([["res://Player/Modifiers/modifiers.json", "lance"], ["res://Player/Modifiers/modifiers.json", "divide_2"], ["res://Player/Modifiers/modifiers.json", "burst_3"], ["res://Player/Modifiers/modifiers.json", "heavy_shot"], ["res://Player/Modifiers/modifiers.json", "homing"], ["res://Player/Modifiers/modifiers.json", "octagonal_bolt_bundle"]])
+
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="InventoryMenu" parent="UI" instance=ExtResource("7_5okx2")]
-cols = 9
-rows = 3
+[node name="EquipmentInventoryMenu" parent="UI" node_paths=PackedStringArray("inventory_data") instance=ExtResource("7_5okx2")]
+offset_left = 223.0
+offset_top = 160.0
+offset_right = 263.0
+offset_bottom = 200.0
+inventory_data = NodePath("../../EquipmentInventoryData")
+ItemSlot = ExtResource("8_wml3y")
 
-[node name="DragPreview" parent="UI" instance=ExtResource("8_m1mmg")]
+[node name="SpellCardInventoryMenu" parent="UI" node_paths=PackedStringArray("inventory_data") instance=ExtResource("7_5okx2")]
+offset_left = 223.0
+offset_top = 217.0
+offset_right = 263.0
+offset_bottom = 257.0
+inventory_data = NodePath("../../SpellCardInventoryData")
+ItemSlot = ExtResource("8_wml3y")
+
+[node name="DragPreview" parent="UI" node_paths=PackedStringArray("inventory_menu_array", "inventory_array", "tooltip") instance=ExtResource("8_m1mmg")]
+inventory_menu_array = [NodePath("../EquipmentInventoryMenu"), NodePath("../SpellCardInventoryMenu")]
+inventory_array = [NodePath("../../EquipmentInventoryData"), NodePath("../../SpellCardInventoryData")]
+tooltip = NodePath("../Tooltip")
+
+[node name="Tooltip" parent="UI" instance=ExtResource("11_hpyle")]
+visible = false
