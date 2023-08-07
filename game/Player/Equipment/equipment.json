@@ -6,7 +6,15 @@
 		"type": "EQUIPMENT",
 		"data": {
 			"sub_type": "CLOTHING",
+			"energy": 100,
+			"action_delay": 1,
+			"recharge_speed_type": "RECHARGE",
+			"recharge_speed": 100,
+			"reload_time": 1.5,
 			"slots": 6,
+			"spread": 0,
+			"velocity": 1,
+			"protection": 10
 		}
 	},
 	"boots_leather": {
@@ -16,7 +24,15 @@
 		"type": "EQUIPMENT",
 		"data": {
 			"sub_type": "BOOTS",
+			"energy": 100,
+			"attack_rate": 1.5,
+			"recharge_speed_type": "RECHARGE",
+			"recharge_speed": 100,
+			"reload_time": 1.5,
 			"slots": 4,
+			"spread": 0,
+			"velocity": 1,
+			"protection": 10
 		}
 	},
 	"gloves_leather": {
@@ -26,7 +42,15 @@
 		"type": "EQUIPMENT",
 		"data": {
 			"sub_type": "GLOVES",
+			"energy": 100,
+			"attack_rate": 1.5,
+			"recharge_speed_type": "RECHARGE",
+			"recharge_speed": 100,
+			"reload_time": 1.5,
 			"slots": 4,
+			"spread": 0,
+			"velocity": 1,
+			"protection": 10
 		}
 	},
 	"hat_leather": {
@@ -36,7 +60,15 @@
 		"type": "EQUIPMENT",
 		"data": {
 			"sub_type": "HAT",
+			"energy": 100,
+			"attack_rate": 1.5,
+			"recharge_speed_type": "RECHARGE",
+			"recharge_speed": 100,
+			"reload_time": 1.5,
 			"slots": 2,
+			"spread": 0,
+			"velocity": 1,
+			"protection": 10
 		}
 	},
 	"helmet_leather": {
@@ -46,7 +78,15 @@
 		"type": "EQUIPMENT",
 		"data": {
 			"sub_type": "HAT",
+			"energy": 100,
+			"attack_rate": 1.5,
+			"recharge_speed_type": "RECHARGE",
+			"recharge_speed": 100,
+			"reload_time": 1.5,
 			"slots": 4,
+			"spread": 0,
+			"velocity": 1,
+			"protection": 10
 		}
 	},
 	"necklace_string": {
@@ -56,7 +96,15 @@
 		"type": "EQUIPMENT",
 		"data": {
 			"sub_type": "MISC",
+			"energy": 100,
+			"attack_rate": 1.5,
+			"recharge_speed_type": "RECHARGE",
+			"recharge_speed": 100,
+			"reload_time": 1.5,
 			"slots": 3,
+			"spread": 0,
+			"velocity": 1,
+			"protection": 10
 		}
 	},
 }

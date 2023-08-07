@@ -5,7 +5,19 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"data": {
-			"sub_type": "projectile",
+			"sub_type": "PROJECTILE",
+			"energy_drain": 10,
+			"damage": 5,
+			"action_delay": 1,
+			"num_attacks": 1,
+			"spread": 0,
+			"velocity": 1,
+			"lifetime": 10,
+			"radius": 0,
+			"knockback": 0,
+			"pierce": 0,
+			"bounce": 0,
+			"attack_type": "ice_spear"
 		}
 	},
 	"divide_2": {
@@ -14,7 +26,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"data": {
-			"sub_type": "on_fire_projectile_modifier",
+			"sub_type": "ON_FIRE_PROJECTILE_MODIFIER",
 		}
 	},
 	"burst_3": {
@@ -23,7 +35,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"data": {
-			"sub_type": "multicast",
+			"sub_type": "MULTICAST",
 		}
 	},
 	"heavy_shot": {
@@ -32,7 +44,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"data": {
-			"sub_type": "properties_projectile_modifier",
+			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 		}
 	},
 	"homing": {
@@ -41,7 +53,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"data": {
-			"sub_type": "behaviour_projectile_modifier",
+			"sub_type": "BEHAVIOR_PROJECTILE_MODIFIER",
 		}
 	},
 	"octagonal_bolt_bundle": {
@@ -50,7 +62,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"data": {
-			"sub_type": "on_hit_projectile_modifier",
+			"sub_type": "ON_HIT_PROJECTILE_MODIFIER",
 		}
 	},
 }

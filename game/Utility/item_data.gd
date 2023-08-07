@@ -26,33 +26,33 @@ static func get_type(s : String) -> ITEM_TYPE:
 	else:
 		return ITEM_TYPE.OTHER
 
-
+## might be overridden?
 static func get_sub_type(s) -> ITEM_SUB_TYPE:
-	if s.nocasecmp_to("ONE_HANDED"):
+	if s == "ONE_HANDED":
 		return ITEM_SUB_TYPE.ONE_HANDED
-	elif s.nocasecmp_to("TWO_HANDED"):
+	elif s == "TWO_HANDED":
 		return ITEM_SUB_TYPE.TWO_HANDED
-	elif s.nocasecmp_to("HAT"):
+	elif s == "HAT":
 		return ITEM_SUB_TYPE.HAT
-	elif s.nocasecmp_to("CLOTHING"):
+	elif s == "CLOTHING":
 		return ITEM_SUB_TYPE.CLOTHING
-	elif s.nocasecmp_to("GLOVES"):
+	elif s == "GLOVES":
 		return ITEM_SUB_TYPE.GLOVES
-	elif s.nocasecmp_to("SHOES"):
+	elif s == "SHOES":
 		return ITEM_SUB_TYPE.SHOES
-	elif s.nocasecmp_to("PROJECTILE"):
+	elif s == "PROJECTILE":
 		return ITEM_SUB_TYPE.PROJECTILE
-	elif s.nocasecmp_to("ATTACK_MODIFIER"):
+	elif s == "ATTACK_MODIFIER":
 		return ITEM_SUB_TYPE.ATTACK_MODIFIER
-	elif s.nocasecmp_to("MULTICAST"):
+	elif s == "MULTICAST":
 		return ITEM_SUB_TYPE.MULTICAST
-	elif s.nocasecmp_to("ON_FIRE_PROJECTILE_MODIFIER"):
+	elif s == "ON_FIRE_PROJECTILE_MODIFIER":
 		return ITEM_SUB_TYPE.ON_FIRE_PROJECTILE_MODIFIER
-	elif s.nocasecmp_to("ON_HIT_PROJECTILE_MODIFIER"):
+	elif s == "ON_HIT_PROJECTILE_MODIFIER":
 		return ITEM_SUB_TYPE.ON_HIT_PROJECTILE_MODIFIER
-	elif s.nocasecmp_to("PROPERTIES_PROJECTILE_MODIFIER"):
+	elif s == "PROPERTIES_PROJECTILE_MODIFIER":
 		return ITEM_SUB_TYPE.PROPERTIES_PROJECTILE_MODIFIER
-	elif s.nocasecmp_to("BEHAVIOR_PROJECTILE_MODIFIER"):
+	elif s == "BEHAVIOR_PROJECTILE_MODIFIER":
 		return ITEM_SUB_TYPE.BEHAVIOR_PROJECTILE_MODIFIER
 	else:
 		return ITEM_SUB_TYPE.MISC

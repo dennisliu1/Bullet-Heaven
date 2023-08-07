@@ -74,6 +74,46 @@ func populate_equipment_data(data_path, key, json_data):
 	data_array[data_path][key].num_slots = json_data[key].data.slots # not sure about this...
 	for i in range(json_data[key].data.slots):
 		data_array[data_path][key].spell_slots.append(ItemData.EMPTY_ITEM_DATA)
+	
+	if json_data[key].data.has("energy"):
+		data_array[data_path][key].energy = json_data[key].data.energy
+	if json_data[key].data.has("action_delay"):
+		data_array[data_path][key].action_delay = json_data[key].data.action_delay
+	if json_data[key].data.has("recharge_speed"):
+		data_array[data_path][key].recharge_speed = json_data[key].data.recharge_speed
+	if json_data[key].data.has("recharge_speed_type"):
+		data_array[data_path][key].recharge_speed_type = EquipmentData.get_energy_recharge_type(json_data[key].data.recharge_speed_type)
+	if json_data[key].data.has("reload_time"):
+		data_array[data_path][key].reload_time = json_data[key].data.reload_time
+	if json_data[key].data.has("spread"):
+		data_array[data_path][key].spread = json_data[key].data.spread
+	if json_data[key].data.has("velocity"):
+		data_array[data_path][key].velocity = json_data[key].data.velocity
+	if json_data[key].data.has("protection"):
+		data_array[data_path][key].protection = json_data[key].data.protection
 
-func populate_spellcard_data(_data_path, _key, _json_data):
-	pass
+func populate_spellcard_data(data_path, key, json_data):
+	if json_data[key].data.has("energy_drain"):
+		data_array[data_path][key].energy_drain = json_data[key].data.energy_drain
+	if json_data[key].data.has("damage"): # TODO should handle multiple damages
+		data_array[data_path][key].damage = json_data[key].data.damage
+	if json_data[key].data.has("action_delay"):
+		data_array[data_path][key].action_delay = json_data[key].data.action_delay
+	if json_data[key].data.has("num_attacks"):
+		data_array[data_path][key].num_attacks = json_data[key].data.num_attacks
+	if json_data[key].data.has("spread"):
+		data_array[data_path][key].spread = json_data[key].data.spread
+	if json_data[key].data.has("velocity"):
+		data_array[data_path][key].velocity = json_data[key].data.velocity
+	if json_data[key].data.has("lifetime"):
+		data_array[data_path][key].lifetime = json_data[key].data.lifetime
+	if json_data[key].data.has("radius"):
+		data_array[data_path][key].radius = json_data[key].data.radius
+	if json_data[key].data.has("knockback"):
+		data_array[data_path][key].knockback = json_data[key].data.knockback
+	if json_data[key].data.has("pierce"):
+		data_array[data_path][key].pierce = json_data[key].data.pierce
+	if json_data[key].data.has("bounce"):
+		data_array[data_path][key].bounce = json_data[key].data.bounce
+	if json_data[key].data.has("attack_type"):
+		data_array[data_path][key].attack_type = json_data[key].data.attack_type

@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bufkhdjbxweeb"]
+[gd_scene load_steps=11 format=3 uid="uid://bufkhdjbxweeb"]
 
 [ext_resource type="Script" path="res://Player/Wizard/player_wizard.gd" id="1_12bdb"]
 [ext_resource type="Texture2D" uid="uid://dn3e5udhpj48c" path="res://Player/Wizard/Textures/player_sprite.png" id="1_n7y1a"]
 [ext_resource type="PackedScene" uid="uid://b3atgfee1ucsy" path="res://Utility/hurt_box.tscn" id="3_hllnf"]
+[ext_resource type="PackedScene" uid="uid://dlkpeoaxhwse2" path="res://Player/Equipment/equipped_item.tscn" id="4_s3xrf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r0l2q"]
 size = Vector2(7, 12)
@@ -82,9 +83,7 @@ shape = SubResource("RectangleShape2D_xbyym")
 
 [node name="Attack" type="Node2D" parent="."]
 
-[node name="IceSpearTimer" type="Timer" parent="Attack"]
-
-[node name="IceSpearAttackTimer" type="Timer" parent="Attack/IceSpearTimer"]
+[node name="EquippedItem" parent="Attack" instance=ExtResource("4_s3xrf")]
 
 [node name="EnemyDetectArea" type="Area2D" parent="."]
 collision_layer = 4
@@ -95,8 +94,6 @@ monitorable = false
 shape = SubResource("CircleShape2D_k18dc")
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
-[connection signal="timeout" from="Attack/IceSpearTimer" to="." method="_on_ice_spear_timer_timeout"]
-[connection signal="timeout" from="Attack/IceSpearTimer/IceSpearAttackTimer" to="." method="_on_ice_spear_attack_timer_timeout"]
 [connection signal="body_entered" from="EnemyDetectArea" to="." method="_on_enemy_detect_area_body_entered"]
 [connection signal="body_exited" from="EnemyDetectArea" to="." method="_on_enemy_detect_area_body_exited"]
 

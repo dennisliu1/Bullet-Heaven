@@ -3,6 +3,8 @@ extends Node
 class_name InventoryData
 
 signal items_changed(indexes)
+signal items_set(items)
+signal items_removed(items)
 signal equipped_changed(indexes)
 
 @export var cols : int
@@ -24,12 +26,15 @@ func set_item(index, modifier):
 	var previous_modifier = items[index]
 	items[index] = modifier
 	emit_signal("items_changed", [index])
+	emit_signal("items_set", [modifier])
+	emit_signal("items_removed", [previous_modifier])
 	return previous_modifier
 
 func remove_item(index):
 	var previous_modifier = items[index]
 	items[index] = ItemData.EMPTY_ITEM_DATA
 	emit_signal("items_changed", [index])
+	emit_signal("items_removed", [previous_modifier])
 	return previous_modifier
 
 func set_item_quantity(index, amount):

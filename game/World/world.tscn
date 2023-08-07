@@ -65,11 +65,18 @@ offset_bottom = 140.0
 inventory_data = NodePath("../../SpellCardInventoryData")
 ItemSlot = ExtResource("8_wml3y")
 
-[node name="EquipmentContainer" parent="UI" instance=ExtResource("10_xg13i")]
+[node name="EquippedContainer" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="EquipmentContainer" parent="UI/EquippedContainer" instance=ExtResource("10_xg13i")]
+layout_mode = 1
 offset_left = 250.0
 offset_top = 30.0
-offset_right = -90.0
-offset_bottom = -280.0
+offset_right = 210.0
+offset_bottom = -10.0
 
 [node name="DragPreview" parent="UI" node_paths=PackedStringArray("inventory_menu_array", "inventory_array", "tooltip") instance=ExtResource("8_m1mmg")]
 inventory_menu_array = [NodePath("../EquipmentInventoryMenu"), NodePath("../SpellCardInventoryMenu")]
