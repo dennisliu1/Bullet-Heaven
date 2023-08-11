@@ -1,42 +1,95 @@
 extends Node2D
 
-@export var spellcard_data: SpellCardData
-var ice_spear = preload("res://Player/Attacks/Ice Spear/ice_spear.tscn")
+var hit_object = preload("res://Player/Attacks/Ice Spear/ice_spear.tscn")
 
-## attack stats
-var icespear_baseammo = 1
-var icespear_attackspeed = 1.5
-var icespear_level = 1
-@onready var icespear_timer = $IceSpearTimer
-@onready var icespear_attack_timer = $IceSpearTimer/IceSpearAttackTimer
+#@export var spellcard_data: SpellCardData
+@export var entity_attack : EntityAttack
+@export var enemy_detect_area : Area2D
 
-## runtime variables
-var icespear_ammo = 1
-
-func equip_attack():
-	icespear_baseammo = spellcard_data
-
-func attack():
-	if icespear_level > 0:
-		icespear_timer.wait_time = icespear_attackspeed
-		if icespear_timer.is_stopped():
-			icespear_timer.start()
-
-func _on_ice_spear_timer_timeout():
-	icespear_ammo += icespear_baseammo
-	icespear_attack_timer.start()
+@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 
 
-func _on_ice_spear_attack_timer_timeout():
-	if icespear_ammo > 0:
-		var icespear_attack = ice_spear.instantiate()
-		icespear_attack.position = position
-#		icespear_attack.target = _get_random_target()
-#		icespear_attack.level = icespear_level
-		add_child(icespear_attack)
-		icespear_ammo -= 1
-		if icespear_ammo > 0:
-			icespear_attack_timer.start()
-		else:
-			icespear_attack_timer.stop()
+#@onready var action_delay_timer = $ActionDelayTimer
+#var action_delay: float
+
+func spawn_bullet():
+	var hit_instance = hit_object.instantiate()
+	
+	# set hit instance properties
+	hit_instance.position = position
+#	hit_instance.enemy_detect_area = enemy_detect_area
+	hit_instance.target = player.get_random_target() # TODO pass target detector properly
+
+	# Set Hit combat properties
+	
+
+	# add the hit instance as a child, put into world
+	add_child(hit_instance)
+
+func do_attack():
+	spawn_bullet()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#var ice_spear = preload("res://Player/Attacks/Ice Spear/ice_spear.tscn")
+#
+### attack stats
+#var icespear_baseammo = 1
+#var icespear_attackspeed = 1.5
+#var icespear_level = 1
+#
+#
+#
+#@onready var icespear_timer = $IceSpearTimer
+#@onready var icespear_attack_timer = $IceSpearTimer/IceSpearAttackTimer
+#
+### runtime variables
+#var icespear_ammo = 1
+#
+#func equip_attack():
+#	icespear_baseammo = spellcard_data
+#
+#func attack():
+#	if icespear_level > 0:
+#		icespear_timer.wait_time = icespear_attackspeed
+#		if icespear_timer.is_stopped():
+#			icespear_timer.start()
+#
+#func _on_ice_spear_timer_timeout():
+#	icespear_ammo += icespear_baseammo
+#	icespear_attack_timer.start()
+#
+#
+#func _on_ice_spear_attack_timer_timeout():
+#	if icespear_ammo > 0:
+#		pass
 

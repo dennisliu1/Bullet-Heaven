@@ -11,7 +11,7 @@
 			"action_delay": 1,
 			"num_attacks": 1,
 			"spread": 0,
-			"velocity": 1,
+			"velocity": 100,
 			"lifetime": 10,
 			"radius": 0,
 			"knockback": 0,
@@ -45,6 +45,8 @@
 		"type": "SPELLCARD",
 		"data": {
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+			"damage": 43.75,
+			"velocity": 0.3
 		}
 	},
 	"homing": {

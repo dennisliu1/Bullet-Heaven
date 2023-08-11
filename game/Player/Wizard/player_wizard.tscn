@@ -83,7 +83,8 @@ shape = SubResource("RectangleShape2D_xbyym")
 
 [node name="Attack" type="Node2D" parent="."]
 
-[node name="EquippedItem" parent="Attack" instance=ExtResource("4_s3xrf")]
+[node name="EquippedItem" parent="Attack" node_paths=PackedStringArray("enemy_detect_area") instance=ExtResource("4_s3xrf")]
+enemy_detect_area = NodePath("../../EnemyDetectArea")
 
 [node name="EnemyDetectArea" type="Area2D" parent="."]
 collision_layer = 4
@@ -98,3 +99,4 @@ shape = SubResource("CircleShape2D_k18dc")
 [connection signal="body_exited" from="EnemyDetectArea" to="." method="_on_enemy_detect_area_body_exited"]
 
 [editable path="HurtBox"]
+[editable path="Attack/EquippedItem"]

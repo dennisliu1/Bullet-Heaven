@@ -1,12 +1,19 @@
 extends Area2D
 
+@onready var player = get_tree().get_first_node_in_group("player")
+
+@export var enemy_detect_area : Area2D
+
+var entity_hit: EntityHit # stores the hit properties
 @export var attack_hp = 1
+
+
 @export var speed = 100
 @export var damage = 5
 @export var knockback_amount = 100
-@export var attack_size = 1.0
 
-@onready var player = get_tree().get_first_node_in_group("player")
+
+@export var attack_size = 1.0
 
 var target = Vector2.ZERO
 var angle = Vector2.ZERO
@@ -15,8 +22,12 @@ signal remove_from_array(object)
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
-	angle = global_position.direction_to(target)
+#	speed = entity_hit.hit_properties.velocity
+#	damage = entity_hit.hit_properties.damage
+#	knockback_amount = entity_hit.hit_properties.knockback
 	
+	angle = global_position.direction_to(target)
+
 	# the ice spear is current 45 degrees, so we compensate by adding 135 degrees
 	# this way, the ice spear is equal to Vector(1, 0)
 	# and faces right

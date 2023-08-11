@@ -106,7 +106,7 @@ func _on_hurt_box_hurt(damage, _angle, _knockback):
 #	if icespear_ammo > 0:
 #		var icespear_attack = ice_spear.instantiate()
 #		icespear_attack.position = position
-#		icespear_attack.target = _get_random_target()
+#		icespear_attack.target = get_random_target()
 ##		icespear_attack.level = icespear_level
 #		add_child(icespear_attack)
 #		icespear_ammo -= 1
@@ -115,12 +115,11 @@ func _on_hurt_box_hurt(damage, _angle, _knockback):
 #		else:
 #			icespear_attack_timer.stop()
 
-func _get_random_target():
+func get_random_target():
 	if enemy_close.size() > 0:
 		return enemy_close.pick_random().global_position
 	else:
 		return Vector2.UP # TODO shoot at the last target vector
-
 
 func _on_enemy_detect_area_body_entered(body):
 	if not enemy_close.has(body):

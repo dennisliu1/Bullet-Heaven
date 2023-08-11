@@ -4,10 +4,3 @@
 
 [node name="IceSpearAttack" type="Node2D"]
 script = ExtResource("1_mrk61")
-
-[node name="IceSpearTimer" type="Timer" parent="."]
-
-[node name="IceSpearAttackTimer" type="Timer" parent="IceSpearTimer"]
-
-[connection signal="timeout" from="IceSpearTimer" to="." method="_on_ice_spear_timer_timeout"]
-[connection signal="timeout" from="IceSpearTimer/IceSpearAttackTimer" to="." method="_on_ice_spear_attack_timer_timeout"]
