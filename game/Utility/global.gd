@@ -4,10 +4,6 @@ var data_array = {}
 
 var modifiers
 
-const ICON_PATH = "res://Player/Modifiers/Textures/noita spells/%s"
-
-var icon_data = preload("res://Utility/item_data.gd")
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	modifiers = read_from_JSON("res://Player/Modifiers/modifiers.json")
