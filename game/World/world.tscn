@@ -83,6 +83,5 @@ inventory_menu_array = [NodePath("../EquipmentInventoryMenu"), NodePath("../Spel
 inventory_array = [NodePath("../../EquipmentInventoryData"), NodePath("../../SpellCardInventoryData")]
 tooltip = NodePath("../Tooltip")
 
-[node name="Tooltip" parent="UI" node_paths=PackedStringArray("drag_preview") instance=ExtResource("11_hpyle")]
+[node name="Tooltip" parent="UI" instance=ExtResource("11_hpyle")]
 visible = false
-drag_preview = NodePath("../DragPreview")

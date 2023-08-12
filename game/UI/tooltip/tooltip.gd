@@ -1,7 +1,6 @@
 extends ColorRect
 class_name Tooltip
 
-@export var drag_preview : Control
 @onready var margin_container = $MarginContainer
 @onready var item_name = $MarginContainer/ItemName
 
@@ -32,7 +31,8 @@ func show_tooltip(inventory_data, index):
 		return
 
 	var inventory_item = inventory_data.items[index]
-	if inventory_item and drag_preview.dragged_item == ItemData.EMPTY_ITEM_DATA:
+	if inventory_item:
+#	if inventory_item and drag_preview.dragged_item == ItemData.EMPTY_ITEM_DATA:
 		display_info(inventory_item)
 		show()
 	else:
