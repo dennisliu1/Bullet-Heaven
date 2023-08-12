@@ -74,6 +74,7 @@ func _on_spellcard_removed(spellcards):
 	for i in range(spellcards.size()):
 		if spellcards[i] is SpellCardData:
 			spellcards[i].equipment = ItemData.EMPTY_ITEM_DATA
+			player.remove_spellcard(spellcards[i], get_index())
 #			attack_instances[spellcards[i].key].queue_free()
 
 func display_equipment():

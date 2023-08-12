@@ -15,7 +15,7 @@ func setup_attack(spellcard_data : SpellCardData, attack_obj : Node):
 	attack_properties = spellcard_data.duplicate()
 	pass
 
-func setup_modifier(spellcard_data : SpellCardData):
+func setup_modifier(_spellcard_data : SpellCardData):
 	
 	pass
 

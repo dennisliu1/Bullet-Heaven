@@ -27,6 +27,10 @@ func _ready():
 
 
 func set_equipped_item(equipped_data):
+	if not equipped_data is EquipmentData:
+		reset_attack_sequence()
+		return
+	
 	equipment_data = equipped_data
 	var new_action_data = EntityAction.new()
 	new_action_data.action_delay = equipment_data.action_delay
@@ -36,18 +40,30 @@ func set_equipped_item(equipped_data):
 	var spell_slots = equipment_data.spell_slots
 	for i in range(spell_slots.size()):
 		if spell_slots[i] != ItemData.EMPTY_ITEM_DATA:
-			var attack_instance = _add_spellcard(spell_slots[i])
+			_add_spellcard(spell_slots[i])
+	reset_attack_sequence()
+
+func remove_equipped_item():
+	# don't need to save spellcards to equipped_item, taken cared of
+	# by equipment_container
+	var spell_slots = equipment_data.spell_slots
+	for i in range(spell_slots.size()):
+		if spell_slots[i] != ItemData.EMPTY_ITEM_DATA:
+			remove_spellcard(spell_slots[i])
+	
+	action_data.queue_free()
+	equipment_data = null
 	reset_attack_sequence()
 
 func add_spellcard(spellcard):
 	_add_spellcard(spellcard)
 	reset_attack_sequence()
 
-func remove_equipped_item():
-	equipment_data = null
-
 func remove_spellcard(spellcard):
-	pass
+	var attack_instance = attack_instances[spellcard.key]
+	attacks_group.remove_child(attack_instance)
+	attack_queue.remove_at(attack_queue.find(attack_instance))
+	attack_instance.queue_free()
 
 
 func _add_spellcard(spellcard):
@@ -58,7 +74,6 @@ func _add_spellcard(spellcard):
 		var entity_attack = EntityAttack.new()
 		entity_attack.attack_properties = spellcard
 		attack_instance.entity_attack = entity_attack
-#		action_data.attack_arr.append(entity_attack)
 		
 		attack_instances[spellcard.key] = attack_instance
 		attacks_group.add_child(attack_instance)
