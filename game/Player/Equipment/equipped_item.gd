@@ -20,7 +20,7 @@ var current_attack = 0
 var attack_queue = []
 
 func _ready():
-	_setup_test_attack()
+#	_setup_test_attack()
 	
 	# Test start sequence
 	start_attack_sequence()
@@ -37,11 +37,17 @@ func set_equipped_item(equipped_data):
 	for i in range(spell_slots.size()):
 		if spell_slots[i] != ItemData.EMPTY_ITEM_DATA:
 			var attack_instance = _add_spellcard(spell_slots[i])
-			if attack_instance:
-				attack_queue.append(attack_instance)
+	reset_attack_sequence()
+
+func add_spellcard(spellcard):
+	_add_spellcard(spellcard)
+	reset_attack_sequence()
 
 func remove_equipped_item():
 	equipment_data = null
+
+func remove_spellcard(spellcard):
+	pass
 
 
 func _add_spellcard(spellcard):
@@ -52,30 +58,13 @@ func _add_spellcard(spellcard):
 		var entity_attack = EntityAttack.new()
 		entity_attack.attack_properties = spellcard
 		attack_instance.entity_attack = entity_attack
-		action_data.attack_arr.append(entity_attack)
+#		action_data.attack_arr.append(entity_attack)
 		
 		attack_instances[spellcard.key] = attack_instance
 		attacks_group.add_child(attack_instance)
+		attack_queue.append(attack_instance)
 		return attack_instance
 	return null
-
-func create_attacks():
-	var spell_slots = equipment_data.spell_slots
-
-	var stack = []
-	
-	for i in range(spell_slots.size()):
-		var spellcard = spell_slots[i]
-		# turn card into a stack entry
-		var stack_entry = convert_spellcard_to_stack_entry(spellcard)
-
-func convert_spellcard_to_stack_entry(spellcard: SpellCardData):
-	if spellcard.sub_type == ItemData.ITEM_SUB_TYPE.PROJECTILE:
-		return convert_projectile_spellcard_to_stack_entry(spellcard, attack_instances[spellcard.key])
-	
-
-func convert_projectile_spellcard_to_stack_entry(spellcard: SpellCardData, attack_instance):
-	pass
 
 # --- do attacks ---
 
@@ -88,6 +77,9 @@ func _on_action_delay_timer_timeout():
 	do_attack()
 
 func do_attack():
+	if attack_queue.size() <= current_attack:
+		return
+	
 	attack_queue[current_attack].do_attack() # TODO
 	current_attack += 1
 	
@@ -107,6 +99,10 @@ func stop_attack_sequence():
 	action_reload_timer.stop()
 	current_attack = 0
 
+func reset_attack_sequence():
+	stop_attack_sequence()
+	start_attack_sequence()
+
 func _setup_test_attack():
 	## Get spellcard data
 	var spellcard_attack = SpellCardData.new()
@@ -117,11 +113,11 @@ func _setup_test_attack():
 	spellcard_attack.sub_type = ItemData.ITEM_SUB_TYPE.PROJECTILE
 
 	## Get EntityAction, stored in this class
-	var equipment_data = EquipmentData.new()
-	equipment_data.action_delay = 1
-	equipment_data.reload_time = 2
-	equipment_data.spell_slots.append(spellcard_attack)
-	set_equipped_item(equipment_data)
+	var equip_data = EquipmentData.new()
+	equip_data.action_delay = 1
+	equip_data.reload_time = 2
+	equip_data.spell_slots.append(spellcard_attack)
+	set_equipped_item(equip_data)
 
 
 

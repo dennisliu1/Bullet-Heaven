@@ -62,10 +62,11 @@ func _on_spellcard_set(spellcards):
 
 func add_action(spellcard):
 	if spellcard.sub_type == ItemData.ITEM_SUB_TYPE.PROJECTILE:
-		var attack_object = load(SpellCardData.get_attack_type(spellcard.attack_type))
-		var attack_instance = attack_object.instantiate()
-		attack_instances[spellcard.key] = attack_instance
-		player.add_attack(attack_instance, get_index())
+		player.add_attack_by_spellcard(spellcard, get_index())
+#		var attack_object = load(SpellCardData.get_attack_type(spellcard.attack_type))
+#		var attack_instance = attack_object.instantiate()
+#		attack_instances[spellcard.key] = attack_instance
+#		player.add_attack(attack_instance, get_index())
 
 ## Clear the associated equipment, we only want to set this if
 ## the spellcard is actually socketed into an equipment
@@ -73,7 +74,7 @@ func _on_spellcard_removed(spellcards):
 	for i in range(spellcards.size()):
 		if spellcards[i] is SpellCardData:
 			spellcards[i].equipment = ItemData.EMPTY_ITEM_DATA
-			attack_instances[spellcards[i].key].queue_free()
+#			attack_instances[spellcards[i].key].queue_free()
 
 func display_equipment():
 	equipment_slot.display_item(equipment_data)

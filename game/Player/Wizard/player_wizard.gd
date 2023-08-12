@@ -130,13 +130,17 @@ func _on_enemy_detect_area_body_exited(body):
 		enemy_close.erase(body)
 
 func set_equipped_item(equipment_data, index):
-	attack_container.get_child(index).equipment_data = equipment_data
+	var equipped_item = attack_container.get_child(index)
+	equipped_item.set_equipped_item(equipment_data)
 
+## deprecated, not used
 func add_attack(attack_instance, index):
 	var equipped_item = attack_container.get_child(index)
 	equipped_item.add_child(attack_instance)
 
-
+func add_attack_by_spellcard(spellcard, index):
+	var equipped_item = attack_container.get_child(index)
+	equipped_item.add_spellcard(spellcard)
 
 
 

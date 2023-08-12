@@ -15,10 +15,11 @@ var hit_object = preload("res://Player/Attacks/Ice Spear/ice_spear.tscn")
 func spawn_bullet():
 	var hit_instance = hit_object.instantiate()
 	
+	# TODO replace these player references
 	# set hit instance properties
-	hit_instance.position = position
+	hit_instance.position = player.position
 #	hit_instance.enemy_detect_area = enemy_detect_area
-	hit_instance.target = player.get_random_target() # TODO pass target detector properly
+	hit_instance.target = player.get_random_target()
 
 	# Set Hit combat properties
 	
