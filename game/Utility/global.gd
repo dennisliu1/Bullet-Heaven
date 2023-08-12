@@ -117,3 +117,5 @@ func populate_spellcard_data(data_path, key, json_data):
 		data_array[data_path][key].bounce = json_data[key].data.bounce
 	if json_data[key].data.has("attack_type"):
 		data_array[data_path][key].attack_type = json_data[key].data.attack_type
+	if json_data[key].data.has("hit_type"):
+		data_array[data_path][key].hit_type = json_data[key].data.hit_type

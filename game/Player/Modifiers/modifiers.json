@@ -18,7 +18,8 @@
 			"knockback": 0,
 			"pierce": 0,
 			"bounce": 0,
-			"attack_type": "tornado"
+			"attack_type": "tornado",
+			"hit_type": "ice_spear"
 		}
 	},
 	"javelin": {
@@ -40,7 +41,8 @@
 			"knockback": 0,
 			"pierce": 0,
 			"bounce": 0,
-			"attack_type": "ice_spear"
+			"attack_type": "ice_spear",
+			"hit_type": "ice_spear"
 		}
 	},
 	"lance": {
@@ -62,7 +64,8 @@
 			"knockback": 0,
 			"pierce": 0,
 			"bounce": 0,
-			"attack_type": "ice_spear"
+			"attack_type": "ice_spear",
+			"hit_type": "ice_spear"
 		}
 	},
 	"arrow": {
@@ -84,7 +87,8 @@
 			"knockback": 0,
 			"pierce": 0,
 			"bounce": 0,
-			"attack_type": "ice_spear"
+			"attack_type": "ice_spear",
+			"hit_type": "ice_spear"
 		}
 	},
 	"energy_sphere": {
@@ -106,7 +110,8 @@
 			"knockback": 0,
 			"pierce": 0,
 			"bounce": 0,
-			"attack_type": "ice_spear"
+			"attack_type": "ice_spear",
+			"hit_type": "ice_spear"
 		}
 	},
 	"fireball": {
@@ -128,7 +133,8 @@
 			"knockback": 0,
 			"pierce": 0,
 			"bounce": 0,
-			"attack_type": "ice_spear"
+			"attack_type": "ice_spear",
+			"hit_type": "ice_spear"
 		}
 	},
 	"divide_2": {

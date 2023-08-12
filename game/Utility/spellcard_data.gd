@@ -14,6 +14,7 @@ class_name SpellCardData
 @export var pierce: float
 @export var bounce: float
 @export var attack_type: String
+@export var hit_type : String
 
 static func get_sub_type(s) -> ITEM_SUB_TYPE:
 	if s == "PROJECTILE":
@@ -39,5 +40,9 @@ static func get_attack_type(attack_name):
 	else:
 		return null
 
-
+static func get_hit_type(hit_name):
+	if hit_name == "ice_spear":
+		return "res://Player/Attacks/Ice Spear/ice_spear.tscn"
+	else:
+		return null
 

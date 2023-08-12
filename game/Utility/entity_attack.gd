@@ -7,7 +7,8 @@ class_name EntityAttack
 @export var entity_attack : EntityAttack
 @export var enemy_detect_area : Area2D
 
-var hit_object = preload("res://Player/Attacks/Ice Spear/ice_spear.tscn")
+#var hit_object = preload("res://Player/Attacks/Ice Spear/ice_spear.tscn")
+var hit_object
 
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 
@@ -19,8 +20,8 @@ var attack_properties : SpellCardData # stores the Attack and Hit properties
 
 static var EMPTY_ENTITY_ATTACK = EntityAttack.new()
 
-func setup_attack(spellcard_data : SpellCardData, attack_obj : Node):
-	var attack_obj_path = SpellCardData.get_attack_type(spellcard_data.attack_type)
+func setup_attack(spellcard_data : SpellCardData):
+	var attack_obj_path = SpellCardData.get_hit_type(spellcard_data.hit_type)
 	hit_object = load(attack_obj_path)
 #	attack_instance = attack_obj
 #	attack_properties = spellcard_data.duplicate()

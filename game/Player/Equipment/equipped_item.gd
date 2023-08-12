@@ -70,6 +70,7 @@ func _add_spellcard(spellcard):
 	if spellcard.sub_type == ItemData.ITEM_SUB_TYPE.PROJECTILE:
 		var attack_object = load(SpellCardData.get_attack_type(spellcard.attack_type))
 		var attack_instance = attack_object.instantiate()
+		attack_instance.setup_attack(spellcard)
 		
 		var entity_attack = EntityAttack.new()
 		entity_attack.attack_properties = spellcard
