@@ -1,7 +1,118 @@
 {
+	"tornado": {
+		"name": "Tornado",
+		"description": "",
+		"icon": "tentacle_portal.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"data": {
+			"sub_type": "PROJECTILE",
+			"energy_drain": 10,
+			"damage": 5,
+			"action_delay": 1,
+			"num_attacks": 1,
+			"spread": 0,
+			"velocity": 100,
+			"lifetime": 10,
+			"radius": 0,
+			"knockback": 0,
+			"pierce": 0,
+			"bounce": 0,
+			"attack_type": "tornado"
+		}
+	},
+	"javelin": {
+		"name": "Javelin",
+		"description": "",
+		"icon": "edit_wands_everywhere.png",
+		"path": "res://Player/Modifiers/Textures/noita perks/",
+		"type": "SPELLCARD",
+		"data": {
+			"sub_type": "PROJECTILE",
+			"energy_drain": 10,
+			"damage": 5,
+			"action_delay": 1,
+			"num_attacks": 1,
+			"spread": 0,
+			"velocity": 100,
+			"lifetime": 10,
+			"radius": 0,
+			"knockback": 0,
+			"pierce": 0,
+			"bounce": 0,
+			"attack_type": "ice_spear"
+		}
+	},
 	"lance": {
 		"name": "Lance",
+		"description": "",
 		"icon": "lance.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"data": {
+			"sub_type": "PROJECTILE",
+			"energy_drain": 10,
+			"damage": 5,
+			"action_delay": 1,
+			"num_attacks": 1,
+			"spread": 0,
+			"velocity": 100,
+			"lifetime": 10,
+			"radius": 0,
+			"knockback": 0,
+			"pierce": 0,
+			"bounce": 0,
+			"attack_type": "ice_spear"
+		}
+	},
+	"arrow": {
+		"name": "Arrow",
+		"description": "",
+		"icon": "arrow.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"data": {
+			"sub_type": "PROJECTILE",
+			"energy_drain": 10,
+			"damage": 5,
+			"action_delay": 1,
+			"num_attacks": 1,
+			"spread": 0,
+			"velocity": 100,
+			"lifetime": 10,
+			"radius": 0,
+			"knockback": 0,
+			"pierce": 0,
+			"bounce": 0,
+			"attack_type": "ice_spear"
+		}
+	},
+	"energy_sphere": {
+		"name": "Energy Sphere",
+		"description": "",
+		"icon": "bouncy_orb.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"data": {
+			"sub_type": "PROJECTILE",
+			"energy_drain": 10,
+			"damage": 5,
+			"action_delay": 1,
+			"num_attacks": 1,
+			"spread": 0,
+			"velocity": 100,
+			"lifetime": 10,
+			"radius": 0,
+			"knockback": 0,
+			"pierce": 0,
+			"bounce": 0,
+			"attack_type": "ice_spear"
+		}
+	},
+	"fireball": {
+		"name": "Fireball",
+		"description": "",
+		"icon": "fireball.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"data": {
@@ -22,6 +133,7 @@
 	},
 	"divide_2": {
 		"name": "Divide By 2",
+		"description": "",
 		"icon": "divide_2.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
@@ -31,6 +143,7 @@
 	},
 	"burst_3": {
 		"name": "Multicast 3",
+		"description": "",
 		"icon": "burst_3.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
@@ -40,6 +153,7 @@
 	},
 	"heavy_shot": {
 		"name": "Heavy Shot",
+		"description": "",
 		"icon": "heavy_shot.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
@@ -51,6 +165,7 @@
 	},
 	"homing": {
 		"name": "Homing",
+		"description": "",
 		"icon": "homing.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
@@ -60,6 +175,7 @@
 	},
 	"octagonal_bolt_bundle": {
 		"name": "Octagonal Bolt Bundle",
+		"description": "",
 		"icon": "rocket_octagon.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",

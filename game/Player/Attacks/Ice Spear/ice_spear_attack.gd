@@ -1,36 +1,4 @@
-extends Node2D
-
-var hit_object = preload("res://Player/Attacks/Ice Spear/ice_spear.tscn")
-
-#@export var spellcard_data: SpellCardData
-@export var entity_attack : EntityAttack
-@export var enemy_detect_area : Area2D
-
-@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
-
-
-#@onready var action_delay_timer = $ActionDelayTimer
-#var action_delay: float
-
-func spawn_bullet():
-	var hit_instance = hit_object.instantiate()
-	
-	# TODO replace these player references
-	# set hit instance properties
-	hit_instance.position = player.position
-#	hit_instance.enemy_detect_area = enemy_detect_area
-	hit_instance.target = player.get_random_target()
-
-	# Set Hit combat properties
-	
-
-	# add the hit instance as a child, put into world
-	add_child(hit_instance)
-
-func do_attack():
-	spawn_bullet()
-
-
+extends EntityAttack
 
 
 
