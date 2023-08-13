@@ -14,6 +14,7 @@ class_name SpellCardData
 @export var pierce: float
 @export var bounce: float
 @export var hit_hp: int
+@export var hit_size : float
 @export var attack_type: String
 @export var hit_type : String
 
@@ -44,6 +45,8 @@ static func get_attack_type(attack_name):
 		return "res://Player/Attacks/Tornado/tornado_attack.tscn"
 	elif attack_name == "javelin":
 		return "res://Player/Attacks/Javelin/javelin_attack.tscn"
+	elif attack_name == "arrow":
+		return "res://Player/Attacks/Arrow/arrow_attack.tscn"
 	else:
 		return null
 
@@ -54,6 +57,8 @@ static func get_hit_type(hit_name):
 		return "res://Player/Attacks/Tornado/tornado.tscn"
 	elif hit_name == "javelin":
 		return "res://Player/Attacks/Javelin/javelin.tscn"
+	elif hit_name == "arrow":
+		return "res://Player/Attacks/Arrow/arrow.tscn"
 	else:
 		return null
 

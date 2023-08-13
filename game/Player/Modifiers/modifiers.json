@@ -19,6 +19,7 @@
 			"pierce": 0,
 			"bounce": 0,
 			"hit_hp": 9999,
+			"hit_size": 1.0,
 			"attack_type": "tornado",
 			"hit_type": "tornado"
 		}
@@ -43,6 +44,7 @@
 			"pierce": 0,
 			"bounce": 0,
 			"hit_hp": 9999,
+			"hit_size": 1.0,
 			"attack_type": "javelin",
 			"hit_type": "javelin"
 		}
@@ -66,6 +68,8 @@
 			"knockback": 0,
 			"pierce": 0,
 			"bounce": 0,
+			"hit_hp": 1,
+			"hit_size": 1.0,
 			"attack_type": "ice_spear",
 			"hit_type": "ice_spear"
 		}
@@ -80,15 +84,17 @@
 			"sub_type": "PROJECTILE",
 			"energy_drain": 10,
 			"damage": 5,
-			"action_delay": 1,
+			"action_delay": 0.1,
 			"num_attacks": 1,
 			"spread": 0,
-			"velocity": 100,
-			"lifetime": 10,
+			"velocity": 200,
+			"lifetime": 5,
 			"radius": 0,
-			"knockback": 0,
+			"knockback": 50,
 			"pierce": 0,
 			"bounce": 0,
+			"hit_hp": 1,
+			"hit_size": 0.5,
 			"attack_type": "arrow",
 			"hit_type": "arrow"
 		}
@@ -112,6 +118,7 @@
 			"knockback": 0,
 			"pierce": 0,
 			"bounce": 0,
+			"hit_size": 1.0,
 			"attack_type": "energy_sphere",
 			"hit_type": "energy_sphere"
 		}

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cks7idhfj2vam"]
+
+[ext_resource type="PackedScene" uid="uid://d1mttqnv2dg4c" path="res://Utility/entity_attack.tscn" id="1_6bsje"]
+
+[node name="EntityAttack" instance=ExtResource("1_6bsje")]

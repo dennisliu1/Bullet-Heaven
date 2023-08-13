@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmgtef5iydkg8"]
+
+[ext_resource type="PackedScene" uid="uid://c6hyolq84ehxa" path="res://Utility/entity_hit.tscn" id="1_4jook"]
+[ext_resource type="Texture2D" uid="uid://j2omuu35bs1o" path="res://Player/Attacks/Arrow/Textures/arrow_01a.png" id="2_0ly1i"]
+[ext_resource type="AudioStream" uid="uid://nnsg05baof2l" path="res://Player/Attacks/Arrow/SoundEffects/woosh.wav" id="3_kbirs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_reigg"]
+size = Vector2(12, 40)
+
+[node name="EntityHit" instance=ExtResource("1_4jook")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_0ly1i")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-1, -1)
+rotation = -0.785398
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_reigg")
+
+[node name="AudioStreamPlayer" parent="." index="3"]
+stream = ExtResource("3_kbirs")

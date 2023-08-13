@@ -61,7 +61,11 @@ func add_spellcard(spellcard):
 func remove_spellcard(spellcard):
 	var attack_instance = attack_instances[spellcard.key]
 	attacks_group.remove_child(attack_instance)
-	attack_queue.remove_at(attack_queue.find(attack_instance))
+
+	var remove_index = attack_queue.find(attack_instance)
+	if remove_index >= 0 and remove_index < attack_queue.size():
+		attack_queue.remove_at(remove_index)
+
 	attack_instance.queue_free()
 
 

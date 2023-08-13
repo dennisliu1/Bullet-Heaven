@@ -58,10 +58,12 @@ func _load_properties_into_hit(hit_instance):
 	hit_instance.lifetime = attack_properties.lifetime
 #	hit_instance.radius = attack_properties.radius
 	hit_instance.knockback_amount = attack_properties.knockback
+	hit_instance.attack_hp = attack_properties.hit_hp
+	hit_instance.attack_size = attack_properties.hit_size
 #	hit_instance.pierce = attack_properties.pierce
 #	hit_instance.bounce = attack_properties.bounce
 	return hit_instance
-	
+
 
 
 
