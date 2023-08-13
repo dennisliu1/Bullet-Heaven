@@ -43,9 +43,9 @@ func get_data(data_path: String):
 			data_array[data_path][key] = create_item_data_type(json_data[key].type)
 			insert_json_data(data_path, key, json_data[key])
 			if data_array[data_path][key] is EquipmentData:
-				populate_equipment_data(data_path, key, json_data)
+				populate_equipment_data(data_array[data_path][key], json_data[key])
 			elif data_array[data_path][key] is SpellCardData:
-				populate_spellcard_data(data_path, key, json_data)
+				populate_spellcard_data(data_array[data_path][key], json_data[key])
 	return data_array[data_path]
 
 func insert_json_data(data_path, key, json_data):
@@ -66,56 +66,71 @@ func create_item_data_type(type_str):
 			return SpellCardData.new()
 	return result
 
-func populate_equipment_data(data_path, key, json_data):
-	data_array[data_path][key].num_slots = json_data[key].data.slots # not sure about this...
-	for i in range(json_data[key].data.slots):
-		data_array[data_path][key].spell_slots.append(ItemData.EMPTY_ITEM_DATA)
+func populate_equipment_data(target_data, json_spellcard):
+	target_data.num_slots = json_spellcard.data.slots # not sure about this...
+	for i in range(json_spellcard.data.slots):
+		target_data.spell_slots.append(ItemData.EMPTY_ITEM_DATA)
 	
-	if json_data[key].data.has("energy"):
-		data_array[data_path][key].energy = json_data[key].data.energy
-	if json_data[key].data.has("action_delay"):
-		data_array[data_path][key].action_delay = json_data[key].data.action_delay
-	if json_data[key].data.has("recharge_speed"):
-		data_array[data_path][key].recharge_speed = json_data[key].data.recharge_speed
-	if json_data[key].data.has("recharge_speed_type"):
-		data_array[data_path][key].recharge_speed_type = EquipmentData.get_energy_recharge_type(json_data[key].data.recharge_speed_type)
-	if json_data[key].data.has("reload_time"):
-		data_array[data_path][key].reload_time = json_data[key].data.reload_time
-	if json_data[key].data.has("spread"):
-		data_array[data_path][key].spread = json_data[key].data.spread
-	if json_data[key].data.has("velocity"):
-		data_array[data_path][key].velocity = json_data[key].data.velocity
-	if json_data[key].data.has("protection"):
-		data_array[data_path][key].protection = json_data[key].data.protection
+	if json_spellcard.data.has("energy"):
+		target_data.energy = json_spellcard.data.energy
+	if json_spellcard.data.has("action_delay"):
+		target_data.action_delay = json_spellcard.data.action_delay
+	if json_spellcard.data.has("recharge_speed"):
+		target_data.recharge_speed = json_spellcard.data.recharge_speed
+	if json_spellcard.data.has("recharge_speed_type"):
+		target_data.recharge_speed_type = EquipmentData.get_energy_recharge_type(json_spellcard.data.recharge_speed_type)
+	if json_spellcard.data.has("reload_time"):
+		target_data.reload_time = json_spellcard.data.reload_time
+	if json_spellcard.data.has("spread"):
+		target_data.spread = json_spellcard.data.spread
+	if json_spellcard.data.has("velocity"):
+		target_data.velocity = json_spellcard.data.velocity
+	if json_spellcard.data.has("protection"):
+		target_data.protection = json_spellcard.data.protection
 
-func populate_spellcard_data(data_path, key, json_data):
-	if json_data[key].data.has("energy_drain"):
-		data_array[data_path][key].energy_drain = json_data[key].data.energy_drain
-	if json_data[key].data.has("damage"): # TODO should handle multiple damages
-		data_array[data_path][key].damage = json_data[key].data.damage
-	if json_data[key].data.has("action_delay"):
-		data_array[data_path][key].action_delay = json_data[key].data.action_delay
-	if json_data[key].data.has("num_attacks"):
-		data_array[data_path][key].num_attacks = json_data[key].data.num_attacks
-	if json_data[key].data.has("spread"):
-		data_array[data_path][key].spread = json_data[key].data.spread
-	if json_data[key].data.has("velocity"):
-		data_array[data_path][key].velocity = json_data[key].data.velocity
-	if json_data[key].data.has("lifetime"):
-		data_array[data_path][key].lifetime = json_data[key].data.lifetime
-	if json_data[key].data.has("radius"):
-		data_array[data_path][key].radius = json_data[key].data.radius
-	if json_data[key].data.has("knockback"):
-		data_array[data_path][key].knockback = json_data[key].data.knockback
-	if json_data[key].data.has("pierce"):
-		data_array[data_path][key].pierce = json_data[key].data.pierce
-	if json_data[key].data.has("bounce"):
-		data_array[data_path][key].bounce = json_data[key].data.bounce
-	if json_data[key].data.has("hit_hp"):
-		data_array[data_path][key].hit_hp = json_data[key].data.hit_hp
-	if json_data[key].data.has("hit_size"):
-		data_array[data_path][key].hit_size = json_data[key].data.hit_size
-	if json_data[key].data.has("attack_type"):
-		data_array[data_path][key].attack_type = json_data[key].data.attack_type
-	if json_data[key].data.has("hit_type"):
-		data_array[data_path][key].hit_type = json_data[key].data.hit_type
+func populate_spellcard_data(target_data, json_spellcard):
+	if json_spellcard.data.has("energy_drain"):
+		target_data.energy_drain = json_spellcard.data.energy_drain
+	if json_spellcard.data.has("damage"): # TODO should handle multiple damages
+		target_data.damage = json_spellcard.data.damage
+	if json_spellcard.data.has("damage_shock"):
+		target_data.damage_shock = json_spellcard.data.damage_shock
+	if json_spellcard.data.has("damage_fire"):
+		target_data.damage_fire = json_spellcard.data.damage_fire
+	if json_spellcard.data.has("damage_ice"):
+		target_data.damage_ice = json_spellcard.data.damage_ice
+	if json_spellcard.data.has("damage_poison"):
+		target_data.damage_poison = json_spellcard.data.damage_poison
+	if json_spellcard.data.has("damage_soul"):
+		target_data.damage_soul = json_spellcard.data.damage_soul
+	if json_spellcard.data.has("action_delay"):
+		target_data.action_delay = json_spellcard.data.action_delay
+	if json_spellcard.data.has("num_attacks"):
+		target_data.num_attacks = json_spellcard.data.num_attacks
+	if json_spellcard.data.has("spread"):
+		target_data.spread = json_spellcard.data.spread
+	if json_spellcard.data.has("velocity"):
+		target_data.velocity = json_spellcard.data.velocity
+	if json_spellcard.data.has("lifetime"):
+		target_data.lifetime = json_spellcard.data.lifetime
+	if json_spellcard.data.has("radius"):
+		target_data.radius = json_spellcard.data.radius
+	if json_spellcard.data.has("knockback"):
+		target_data.knockback = json_spellcard.data.knockback
+	if json_spellcard.data.has("pierce"):
+		target_data.pierce = json_spellcard.data.pierce
+	if json_spellcard.data.has("bounce"):
+		target_data.bounce = json_spellcard.data.bounce
+	if json_spellcard.data.has("hit_hp"):
+		target_data.hit_hp = json_spellcard.data.hit_hp
+	if json_spellcard.data.has("hit_size"):
+		target_data.hit_size = json_spellcard.data.hit_size
+	if json_spellcard.data.has("attack_type"):
+		target_data.attack_type = json_spellcard.data.attack_type
+	if json_spellcard.data.has("hit_type"):
+		target_data.hit_type = json_spellcard.data.hit_type
+	
+	if json_spellcard.data.has("on_fire_effect"):
+		for on_fire_spellcard_data in json_spellcard.data.on_fire_effect:
+			var spellcard_effect = populate_spellcard_data(SpellCardData.new(), on_fire_spellcard_data)
+			target_data.on_fire_effect.append(spellcard_effect)

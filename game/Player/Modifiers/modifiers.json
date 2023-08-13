@@ -174,7 +174,7 @@
 		"type": "SPELLCARD",
 		"data": {
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
-			"damage": 43.75,
+			"damage": 4,
 			"velocity": 0.3
 		}
 	},
@@ -198,4 +198,39 @@
 			"sub_type": "ON_HIT_PROJECTILE_MODIFIER",
 		}
 	},
+	"fireball_thrower": {
+		"name": "Fireball Thrower",
+		"description": "",
+		"icon": "fireball_ray.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"data": {
+			"sub_type": "ON_HIT_PROJECTILE_MODIFIER",
+			"on_fire_effect": [
+				{
+					"name": "Fireball",
+					"description": "",
+					"icon": "fireball.png",
+					"path": "res://Player/Modifiers/Textures/noita spells/",
+					"type": "SPELLCARD",
+					"data": {
+						"sub_type": "PROJECTILE",
+						"energy_drain": 10,
+						"damage": 5,
+						"action_delay": 1,
+						"num_attacks": 1,
+						"spread": 0,
+						"velocity": 100,
+						"lifetime": 10,
+						"radius": 0,
+						"knockback": 0,
+						"pierce": 0,
+						"bounce": 0,
+						"attack_type": "fireball",
+						"hit_type": "fireball"
+					}
+				}
+			]
+		}
+	}
 }

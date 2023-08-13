@@ -4,6 +4,11 @@ class_name SpellCardData
 @export var equipment: ItemData
 @export var energy_drain: float
 @export var damage: float
+@export var damage_shock: float
+@export var damage_fire: float
+@export var damage_ice: float
+@export var damage_poison: float
+@export var damage_soul: float
 @export var action_delay: float
 @export var num_attacks: float # number of projectiles coming out per attack
 @export var spread: float
@@ -17,6 +22,11 @@ class_name SpellCardData
 @export var hit_size : float
 @export var attack_type: String
 @export var hit_type : String
+
+@export var on_fire_effect: Array[SpellCardData]
+@export var on_travel_effect: Array[SpellCardData]
+@export var on_hit_effect: Array[SpellCardData]
+
 
 static func get_sub_type(s) -> ITEM_SUB_TYPE:
 	if s == "PROJECTILE":

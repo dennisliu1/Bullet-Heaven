@@ -38,7 +38,7 @@ func copy_spellcard_data_to_inventory():
 		
 
 func _on_equipment_changed(_indexes):
-	save_spellcard_data()
+	_save_spellcard_data()
 	equipment_data = equipment_inventory_data.items[0]
 	if equipment_data != ItemData.EMPTY_ITEM_DATA:
 		copy_spellcard_data_to_inventory()
@@ -58,15 +58,11 @@ func _on_spellcard_set(spellcards):
 	for i in range(spellcards.size()):
 		if spellcards[i] is SpellCardData:
 			spellcards[i].equipment = equipment_data
-			add_action(spellcards[i])
+			_add_action(spellcards[i])
 
-func add_action(spellcard):
+func _add_action(spellcard):
 	if spellcard.sub_type == ItemData.ITEM_SUB_TYPE.PROJECTILE:
 		player.add_attack_by_spellcard(spellcard, get_index())
-#		var attack_object = load(SpellCardData.get_attack_type(spellcard.attack_type))
-#		var attack_instance = attack_object.instantiate()
-#		attack_instances[spellcard.key] = attack_instance
-#		player.add_attack(attack_instance, get_index())
 	elif spellcard.sub_type == ItemData.ITEM_SUB_TYPE.SUMMON:
 		player.add_attack_by_spellcard(spellcard, get_index())
 
@@ -90,7 +86,82 @@ func _on_visibility_changed():
 	equipment_slot.visible = true
 	spellcard_sockets.visible = true
 
-func save_spellcard_data():
+func _save_spellcard_data():
 	if equipment_data != ItemData.EMPTY_ITEM_DATA:
 		for i in range(spellcard_inventory_data.slots):
 			equipment_data.spell_slots[i] = spellcard_inventory_data.items[i]
+
+
+# ---
+
+func evaluate_spellcards(spellcards: Array[SpellCardData]):
+	var stack = []
+	for spellcard in spellcards:
+		var new_spellcard = spellcard.duplicate()
+
+		## the conditions are based on the top card and the spellcard.
+		var is_looping = true
+		while is_looping:
+			## if the stack is empty, add the spellcard directly
+			if stack.size() <= 0:
+				stack.append(new_spellcard)
+				continue
+			
+			var top_card : SpellCardData = stack[stack.size()-1]
+			var top_card_sub_type = top_card.sub_type
+			if new_spellcard.sub_type == ItemData.ITEM_SUB_TYPE.PROJECTILE:
+				if top_card_sub_type == ItemData.ITEM_SUB_TYPE.PROJECTILE:
+					## top = projectile + spellcard = projectile
+					## cannot combine, append the projectile
+					stack.append(new_spellcard)
+					is_looping = false
+				elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.PROPERTIES_PROJECTILE_MODIFIER:
+					## top = modifier + spellcard = projectile
+					## add modifier to spellcard
+					apply_modifier_to_spellcard(new_spellcard, top_card)
+					stack.pop_back()
+				elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.ON_FIRE_PROJECTILE_MODIFIER:
+					
+					stack.pop_back()
+		pass
+	pass
+
+func apply_modifier_to_spellcard(spellcard: SpellCardData, modifier_card: SpellCardData):
+	if modifier_card.has("damage"):
+		spellcard.damage *= modifier_card.damage
+	if modifier_card.has("damage_shock"):
+		spellcard.damage_shock *= modifier_card.damage_shock
+	if modifier_card.has("damage_fire"):
+		spellcard.damage_fire *= modifier_card.damage_fire
+	if modifier_card.has("damage_ice"):
+		spellcard.damage_ice *= modifier_card.damage_ice
+	if modifier_card.has("damage_poison"):
+		spellcard.damage_poison *= modifier_card.damage_poison
+	if modifier_card.has("damage_soul"):
+		spellcard.damage_soul *= modifier_card.damage_soul
+	if modifier_card.has("action_delay"):
+		spellcard.action_delay *= modifier_card.action_delay
+	if modifier_card.has("num_attacks"):
+		spellcard.num_attacks += modifier_card.num_attacks
+	if modifier_card.has("spread"):
+		spellcard.spread *= modifier_card.spread
+	if modifier_card.has("velocity"):
+		spellcard.velocity *= modifier_card.velocity
+	if modifier_card.has("lifetime"):
+		spellcard.lifetime *= modifier_card.lifetime
+	if modifier_card.has("radius"):
+		spellcard.radius *= modifier_card.radius
+	if modifier_card.has("knockback"):
+		spellcard.knockback *= modifier_card.knockback
+	if modifier_card.has("pierce"):
+		spellcard.pierce *= modifier_card.pierce
+	if modifier_card.has("bounce"):
+		spellcard.bounce *= modifier_card.bounce
+	if modifier_card.has("hit_hp"):
+		spellcard.hit_hp *= modifier_card.hit_hp
+	if modifier_card.has("hit_size"):
+		spellcard.hit_size *= modifier_card.hit_size
+	if modifier_card.has("on_fire_effect"):
+		spellcard.on_fire_effect = []
+		for spellcard_effect in modifier_card.on_fire_effect:
+			spellcard.on_fire_effect.append(spellcard_effect.duplicate())
