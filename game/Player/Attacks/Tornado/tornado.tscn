@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://cua62ndlvgymv"]
+
+[ext_resource type="PackedScene" uid="uid://c6hyolq84ehxa" path="res://Utility/entity_hit.tscn" id="1_7lydf"]
+[ext_resource type="Script" path="res://Player/Attacks/Tornado/tornado.gd" id="2_6gyol"]
+[ext_resource type="Texture2D" uid="uid://drssn30m5x2n2" path="res://Player/Attacks/Tornado/Textures/tornado.png" id="3_ewcr7"]
+[ext_resource type="AudioStream" uid="uid://b1t05n2fo32ya" path="res://Player/Attacks/Tornado/SoundEffects/tornado.ogg" id="4_o2bih"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3t3to"]
+size = Vector2(20, 30)
+
+[node name="Tornado" instance=ExtResource("1_7lydf")]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("2_6gyol")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_ewcr7")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_3t3to")
+
+[node name="LifeTimeTimer" parent="." index="2"]
+wait_time = 20.0
+autostart = true
+
+[node name="AudioStreamPlayer" parent="." index="3"]
+stream = ExtResource("4_o2bih")

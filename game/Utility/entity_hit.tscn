@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6hyolq84ehxa"]
+
+[ext_resource type="Script" path="res://Utility/entity_hit.gd" id="1_okol0"]
+
+[node name="EntityHit" type="Area2D" groups=["attack"]]
+top_level = true
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_okol0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="LifeTimeTimer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+autoplay = true
+
+[connection signal="timeout" from="LifeTimeTimer" to="." method="_on_life_time_timer_timeout"]

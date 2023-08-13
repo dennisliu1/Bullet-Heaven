@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1mttqnv2dg4c"]
+
+[ext_resource type="Script" path="res://Utility/entity_attack.gd" id="1_yrkke"]
+
+[node name="EntityAttack" type="Node"]
+script = ExtResource("1_yrkke")

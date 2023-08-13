@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bao4kb27qu85u"]
+[gd_scene load_steps=3 format=3 uid="uid://cit2turk1fvfl"]
 
+[ext_resource type="PackedScene" uid="uid://d1mttqnv2dg4c" path="res://Utility/entity_attack.tscn" id="1_7aec7"]
 [ext_resource type="Script" path="res://Player/Attacks/Ice Spear/ice_spear_attack.gd" id="1_mrk61"]
 
-[node name="IceSpearAttack" type="Node2D"]
+[node name="IceSpear" instance=ExtResource("1_7aec7")]
 script = ExtResource("1_mrk61")

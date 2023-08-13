@@ -15,7 +15,7 @@ var entity_hit: EntityHit # stores the hit properties
 
 
 # Hit properties
-@export var speed = 100
+@export var speed : float = 100.0
 @export var damage = 5
 @export var knockback_amount = 100
 @export var attack_size = 1.0

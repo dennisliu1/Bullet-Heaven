@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf6ao6vs2dk40"]
+
+[ext_resource type="PackedScene" uid="uid://d1mttqnv2dg4c" path="res://Utility/entity_attack.tscn" id="1_kdw53"]
+[ext_resource type="Script" path="res://Player/Attacks/Tornado/tornado_attack.gd" id="2_cs7lb"]
+
+[node name="EntityAttack" instance=ExtResource("1_kdw53")]
+script = ExtResource("2_cs7lb")

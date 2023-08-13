@@ -7,7 +7,7 @@ var movement_speed = 80.0 # 80 pixels per second moved
 @export var hp = 80
 
 # tracking variables
-var last_movement = Vector2.ZERO
+var last_movement = Vector2.UP
 
 # references
 @onready var sprite = $Sprite2D

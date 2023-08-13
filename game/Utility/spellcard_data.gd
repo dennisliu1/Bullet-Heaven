@@ -37,12 +37,16 @@ static func get_sub_type(s) -> ITEM_SUB_TYPE:
 static func get_attack_type(attack_name):
 	if attack_name == "ice_spear":
 		return "res://Player/Attacks/Ice Spear/ice_spear_attack.tscn"
+	if attack_name == "tornado":
+		return "res://Player/Attacks/Tornado/tornado_attack.tscn"
 	else:
 		return null
 
 static func get_hit_type(hit_name):
 	if hit_name == "ice_spear":
 		return "res://Player/Attacks/Ice Spear/ice_spear.tscn"
+	if hit_name == "tornado":
+		return "res://Player/Attacks/Tornado/tornado.tscn"
 	else:
 		return null
 
