@@ -56,6 +56,7 @@ func remove_equipped_item():
 	reset_attack_sequence()
 
 func add_spellcard(spellcard):
+	reset_attack_sequence()
 	_add_spellcard(spellcard)
 	reset_attack_sequence()
 
@@ -102,8 +103,9 @@ func do_attack():
 	## Start the next attack.
 	## If we reached the end of the attacks, restart the loop
 	if current_attack < attack_queue.size():
-		action_delay_timer.timeout = attack_queue[current_attack].attack_properties.action_delay + action_data.action_delay
+		action_delay_timer.wait_time = attack_queue[current_attack].attack_properties.action_delay + action_data.action_delay
 		action_delay_timer.start()
+		action_reload_timer.stop()
 	else:
 		action_reload_timer.start()
 
