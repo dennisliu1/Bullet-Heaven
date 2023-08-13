@@ -20,6 +20,8 @@ class_name SpellCardData
 static func get_sub_type(s) -> ITEM_SUB_TYPE:
 	if s == "PROJECTILE":
 		return ItemData.ITEM_SUB_TYPE.PROJECTILE
+	elif s == "SUMMON":
+		return ItemData.ITEM_SUB_TYPE.SUMMON
 	elif s == "ATTACK_MODIFIER":
 		return ItemData.ITEM_SUB_TYPE.ATTACK_MODIFIER
 	elif s == "MULTICAST":
@@ -38,16 +40,20 @@ static func get_sub_type(s) -> ITEM_SUB_TYPE:
 static func get_attack_type(attack_name):
 	if attack_name == "ice_spear":
 		return "res://Player/Attacks/Ice Spear/ice_spear_attack.tscn"
-	if attack_name == "tornado":
+	elif attack_name == "tornado":
 		return "res://Player/Attacks/Tornado/tornado_attack.tscn"
+	elif attack_name == "javelin":
+		return "res://Player/Attacks/Javelin/javelin_attack.tscn"
 	else:
 		return null
 
 static func get_hit_type(hit_name):
 	if hit_name == "ice_spear":
 		return "res://Player/Attacks/Ice Spear/ice_spear.tscn"
-	if hit_name == "tornado":
+	elif hit_name == "tornado":
 		return "res://Player/Attacks/Tornado/tornado.tscn"
+	elif hit_name == "javelin":
+		return "res://Player/Attacks/Javelin/javelin.tscn"
 	else:
 		return null
 

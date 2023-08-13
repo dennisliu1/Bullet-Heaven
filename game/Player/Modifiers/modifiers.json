@@ -30,18 +30,19 @@
 		"path": "res://Player/Modifiers/Textures/noita perks/",
 		"type": "SPELLCARD",
 		"data": {
-			"sub_type": "PROJECTILE",
+			"sub_type": "SUMMON",
 			"energy_drain": 10,
-			"damage": 5,
+			"damage": 10,
 			"action_delay": 1,
 			"num_attacks": 1,
 			"spread": 0,
-			"velocity": 100,
+			"velocity": 200,
 			"lifetime": 10,
 			"radius": 0,
-			"knockback": 0,
+			"knockback": 100,
 			"pierce": 0,
 			"bounce": 0,
+			"hit_hp": 9999,
 			"attack_type": "javelin",
 			"hit_type": "javelin"
 		}

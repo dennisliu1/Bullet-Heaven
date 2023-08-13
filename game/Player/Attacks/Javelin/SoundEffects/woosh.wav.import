@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://c68ep0ocvcs2u"
-path="res://.godot/imported/woosh.wav-ab061df73379afad44a9e04e929634d6.sample"
+path="res://.godot/imported/woosh.wav-3803322729ae7fcb9757e19df16cc8e6.sample"
 
 [deps]
 
-source_file="res://Audio/SoundEffect/woosh.wav"
-dest_files=["res://.godot/imported/woosh.wav-ab061df73379afad44a9e04e929634d6.sample"]
+source_file="res://Player/Attacks/Javelin/SoundEffects/woosh.wav"
+dest_files=["res://.godot/imported/woosh.wav-3803322729ae7fcb9757e19df16cc8e6.sample"]
 
 [params]
 

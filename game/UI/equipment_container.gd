@@ -67,6 +67,8 @@ func add_action(spellcard):
 #		var attack_instance = attack_object.instantiate()
 #		attack_instances[spellcard.key] = attack_instance
 #		player.add_attack(attack_instance, get_index())
+	elif spellcard.sub_type == ItemData.ITEM_SUB_TYPE.SUMMON:
+		player.add_attack_by_spellcard(spellcard, get_index())
 
 ## Clear the associated equipment, we only want to set this if
 ## the spellcard is actually socketed into an equipment

@@ -21,8 +21,6 @@ var attack_queue = []
 
 func _ready():
 #	_setup_test_attack()
-	
-	# Test start sequence
 	start_attack_sequence()
 
 
@@ -80,6 +78,20 @@ func _add_spellcard(spellcard):
 		attack_instances[spellcard.key] = attack_instance
 		attacks_group.add_child(attack_instance)
 		attack_queue.append(attack_instance)
+		return attack_instance
+	elif spellcard.sub_type == ItemData.ITEM_SUB_TYPE.SUMMON:
+		var attack_object = load(SpellCardData.get_attack_type(spellcard.attack_type))
+		var attack_instance = attack_object.instantiate()
+		attack_instance.setup_attack(spellcard)
+		
+		var entity_attack = EntityAttack.new()
+		entity_attack.attack_properties = spellcard
+		attack_instance.entity_attack = entity_attack
+		
+		attack_instances[spellcard.key] = attack_instance
+		attacks_group.add_child(attack_instance)
+		attack_instance.do_attack() # do one manual attack to spawn the object in
+#		attack_queue.append(attack_instance)
 		return attack_instance
 	return null
 
