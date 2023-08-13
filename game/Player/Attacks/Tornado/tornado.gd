@@ -6,7 +6,7 @@ var angle_less = Vector2.ZERO
 var angle_more = Vector2.ZERO
 
 func _ready():
-	attack_hp = 9999
+	life_time_timer.wait_time = lifetime
 	last_movement = player.last_movement
 	
 	var move_to_less = Vector2.ZERO
@@ -53,8 +53,8 @@ func _ready():
 		tween.tween_property(self, "angle", angle_more, 2)
 	tween.play()
 
-func _physics_process(delta):
-	position += angle * speed * delta
+#func _physics_process(delta):
+#	position += angle * speed * delta
 
 func _on_life_time_timer_timeout():
 	emit_signal("remove_from_array", self)

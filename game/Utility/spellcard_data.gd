@@ -13,6 +13,7 @@ class_name SpellCardData
 @export var knockback: float
 @export var pierce: float
 @export var bounce: float
+@export var hit_hp: int
 @export var attack_type: String
 @export var hit_type : String
 

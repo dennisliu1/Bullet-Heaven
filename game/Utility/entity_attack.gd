@@ -24,7 +24,7 @@ func setup_attack(spellcard_data : SpellCardData):
 	var attack_obj_path = SpellCardData.get_hit_type(spellcard_data.hit_type)
 	hit_object = load(attack_obj_path)
 #	attack_instance = attack_obj
-#	attack_properties = spellcard_data.duplicate()
+	attack_properties = spellcard_data.duplicate()
 	pass
 #
 #func setup_modifier(_spellcard_data : SpellCardData):
@@ -38,6 +38,7 @@ func spawn_bullet():
 	hit_instance.position = player.position
 #	hit_instance.enemy_detect_area = enemy_detect_area
 	hit_instance.target = player.get_random_target()
+	_load_properties_into_hit(hit_instance)
 
 	# Set Hit combat properties
 
@@ -47,7 +48,20 @@ func spawn_bullet():
 func do_attack():
 	spawn_bullet()
 
-
+func _load_properties_into_hit(hit_instance):
+#	hit_instance.energy_drain = attack_properties.energy_drain
+	hit_instance.damage = attack_properties.damage
+#	hit_instance.action_delay = attack_properties.action_delay
+#	hit_instance.num_attacks = attack_properties.num_attacks
+#	hit_instance.spread = attack_properties.spread
+	hit_instance.speed = attack_properties.velocity
+	hit_instance.lifetime = attack_properties.lifetime
+#	hit_instance.radius = attack_properties.radius
+	hit_instance.knockback_amount = attack_properties.knockback
+#	hit_instance.pierce = attack_properties.pierce
+#	hit_instance.bounce = attack_properties.bounce
+	return hit_instance
+	
 
 
 

@@ -8,6 +8,7 @@ class_name EntityHit
 #static var EMPTY_ENTITY_HIT = EntityHit.new()
 
 @onready var player = get_tree().get_first_node_in_group("player")
+@onready var life_time_timer = $LifeTimeTimer
 
 @export var enemy_detect_area : Area2D
 
@@ -20,6 +21,7 @@ var entity_hit: EntityHit # stores the hit properties
 @export var knockback_amount = 100
 @export var attack_size = 1.0
 @export var attack_hp = 1
+@export var lifetime : int
 
 ## Hit internal properties
 var target = Vector2.ZERO
@@ -29,6 +31,7 @@ signal remove_from_array(object)
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
+	life_time_timer.wait_time = lifetime
 	angle = global_position.direction_to(target)
 
 	# the ice spear is current 45 degrees, so we compensate by adding 135 degrees

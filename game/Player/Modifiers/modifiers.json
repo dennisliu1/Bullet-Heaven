@@ -13,11 +13,12 @@
 			"num_attacks": 1,
 			"spread": 0,
 			"velocity": 100,
-			"lifetime": 10,
+			"lifetime": 20,
 			"radius": 0,
 			"knockback": 0,
 			"pierce": 0,
 			"bounce": 0,
+			"hit_hp": 9999,
 			"attack_type": "tornado",
 			"hit_type": "tornado"
 		}
