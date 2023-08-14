@@ -60,7 +60,8 @@
 			"energy_drain": 10,
 			"damage": 5,
 			"action_delay": 1,
-			"num_attacks": 1,
+			"num_attacks": 6,
+			"attack_angle": 90,
 			"spread": 0,
 			"velocity": 100,
 			"lifetime": 10,
@@ -70,6 +71,8 @@
 			"bounce": 0,
 			"hit_hp": 1,
 			"hit_size": 1.0,
+			"hit_spawn_type": "SPREAD",
+			"hit_behavior_type": "STRAIGHT_LINE",
 			"attack_type": "ice_spear",
 			"hit_type": "ice_spear"
 		}
@@ -228,7 +231,7 @@
 						"bounce": 0,
 						"hit_hp": 1,
 						"hit_size": 1.0,
-						"hit_spawn_type": "RANDOM_TARGET",
+						"hit_spawn_type": "CIRCULAR",
 						"hit_behavior_type": "STRAIGHT_LINE",
 						"attack_type": "ice_spear",
 						"hit_type": "ice_spear"

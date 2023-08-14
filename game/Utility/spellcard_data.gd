@@ -1,9 +1,9 @@
 extends ItemData
 class_name SpellCardData
 
-enum HIT_SPAWN_TYPE {RANDOM_TARGET, PLAYER_DIRECTION}
-enum HIT_BEHAVIOR_TYPE {STRAIGHT_LINE, WAVE_PATTERN}
-#enum SUMMON_BEHAVIOR_TYPE {}
+enum HIT_SPAWN_TYPE {RANDOM_TARGET, PLAYER_DIRECTION, SPREAD}
+enum HIT_BEHAVIOR_TYPE {STRAIGHT_LINE, WAVE_PATTERN, HOMING}
+#enum SUMMON_BEHAVIOR_TYPE {FOLLOW_PLAYER, SPIN_AROUND}
 
 @export var equipment: ItemData
 @export var energy_drain: float
@@ -15,6 +15,11 @@ enum HIT_BEHAVIOR_TYPE {STRAIGHT_LINE, WAVE_PATTERN}
 @export var damage_soul: float
 @export var action_delay: float
 @export var num_attacks: float # number of projectiles coming out per attack
+
+## The angle which the hits come out as, if num_attacks is more than one.
+## This is different from spread, which adds deviation from the ideal direction.
+@export var attack_angle: float
+## Deviation from the ideal direction vector.
 @export var spread: float
 @export var velocity: float
 @export var lifetime: float
@@ -78,7 +83,23 @@ static func get_hit_type(hit_name):
 	else:
 		return null
 
+static func get_hit_spawn_type(hit_spawn_type_name):
+	if hit_spawn_type_name == "RANDOM_TARGET":
+		return HIT_SPAWN_TYPE.RANDOM_TARGET
+	elif hit_spawn_type_name == "PLAYER_DIRECTION":
+		return HIT_SPAWN_TYPE.PLAYER_DIRECTION
+	elif hit_spawn_type_name == "SPREAD":
+		return HIT_SPAWN_TYPE.SPREAD
+	else:
+		return HIT_SPAWN_TYPE.RANDOM_TARGET
 
-
-
+static func get_hit_behavior_type(hit_spawn_behavior_type):
+	if hit_spawn_behavior_type == "STRAIGHT_LINE":
+		return HIT_BEHAVIOR_TYPE.STRAIGHT_LINE
+	elif hit_spawn_behavior_type == "WAVE_PATTERN":
+		return HIT_BEHAVIOR_TYPE.WAVE_PATTERN
+	elif hit_spawn_behavior_type == "HOMING":
+		return HIT_BEHAVIOR_TYPE.HOMING
+	else:
+		return HIT_BEHAVIOR_TYPE.STRAIGHT_LINE
 

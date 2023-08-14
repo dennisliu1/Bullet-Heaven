@@ -22,6 +22,7 @@ var entity_hit: EntityHit # stores the hit properties
 @export var attack_size = 1.0
 @export var attack_hp = 1
 @export var lifetime : int
+@export var hit_behaviour_type: SpellCardData.HIT_SPAWN_TYPE
 
 ## Hit internal properties
 var target = Vector2.ZERO

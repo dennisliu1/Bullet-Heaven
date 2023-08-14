@@ -107,6 +107,8 @@ func populate_spellcard_data(target_data, json_spellcard):
 		target_data.action_delay = json_spellcard.data.action_delay
 	if json_spellcard.data.has("num_attacks"):
 		target_data.num_attacks = json_spellcard.data.num_attacks
+	if json_spellcard.data.has("attack_angle"):
+		target_data.attack_angle = json_spellcard.data.attack_angle
 	if json_spellcard.data.has("spread"):
 		target_data.spread = json_spellcard.data.spread
 	if json_spellcard.data.has("velocity"):
@@ -129,7 +131,10 @@ func populate_spellcard_data(target_data, json_spellcard):
 		target_data.attack_type = json_spellcard.data.attack_type
 	if json_spellcard.data.has("hit_type"):
 		target_data.hit_type = json_spellcard.data.hit_type
-	
+	if json_spellcard.data.has("hit_spawn_type"):
+		target_data.hit_spawn_type = SpellCardData.get_hit_spawn_type(json_spellcard.data.hit_spawn_type)
+	if json_spellcard.data.has("hit_behavior_type"):
+		target_data.hit_behavior_type = SpellCardData.get_hit_behavior_type(json_spellcard.data.hit_behavior_type)
 	if json_spellcard.data.has("on_fire_effect"):
 		for on_fire_spellcard_data in json_spellcard.data.on_fire_effect:
 			var spellcard_effect = populate_spellcard_data(SpellCardData.new(), on_fire_spellcard_data)
