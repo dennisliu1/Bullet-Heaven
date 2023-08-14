@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcwloryp1f4cj"
-path="res://.godot/imported/Burn.png-d3431794e9275f8121e0bb05adafcf07.ctex"
+path="res://.godot/imported/Burn.png-d817d7378ce9bc92a411f5514886fcc4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Projectiles/Textures/Animation Pack/Fire/Burn.png"
-dest_files=["res://.godot/imported/Burn.png-d3431794e9275f8121e0bb05adafcf07.ctex"]
+source_file="res://Player/Attacks/Fireball/Textures/Burn.png"
+dest_files=["res://.godot/imported/Burn.png-d817d7378ce9bc92a411f5514886fcc4.ctex"]
 
 [params]
 

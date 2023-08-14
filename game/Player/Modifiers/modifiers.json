@@ -208,9 +208,9 @@
 			"sub_type": "ON_HIT_PROJECTILE_MODIFIER",
 			"on_fire_effect": [
 				{
-					"name": "Fireball",
+					"name": "Lance",
 					"description": "",
-					"icon": "fireball.png",
+					"icon": "lance.png",
 					"path": "res://Player/Modifiers/Textures/noita spells/",
 					"type": "SPELLCARD",
 					"data": {
@@ -218,7 +218,7 @@
 						"energy_drain": 10,
 						"damage": 5,
 						"action_delay": 1,
-						"num_attacks": 1,
+						"num_attacks": 6,
 						"spread": 0,
 						"velocity": 100,
 						"lifetime": 10,
@@ -226,8 +226,12 @@
 						"knockback": 0,
 						"pierce": 0,
 						"bounce": 0,
-						"attack_type": "fireball",
-						"hit_type": "fireball"
+						"hit_hp": 1,
+						"hit_size": 1.0,
+						"hit_spawn_type": "RANDOM_TARGET",
+						"hit_behavior_type": "STRAIGHT_LINE",
+						"attack_type": "ice_spear",
+						"hit_type": "ice_spear"
 					}
 				}
 			]

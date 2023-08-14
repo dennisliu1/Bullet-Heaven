@@ -1,6 +1,10 @@
 extends ItemData
 class_name SpellCardData
 
+enum HIT_SPAWN_TYPE {RANDOM_TARGET, PLAYER_DIRECTION}
+enum HIT_BEHAVIOR_TYPE {STRAIGHT_LINE, WAVE_PATTERN}
+#enum SUMMON_BEHAVIOR_TYPE {}
+
 @export var equipment: ItemData
 @export var energy_drain: float
 @export var damage: float
@@ -20,6 +24,8 @@ class_name SpellCardData
 @export var bounce: float
 @export var hit_hp: int
 @export var hit_size : float
+@export var hit_spawn_type: HIT_SPAWN_TYPE
+@export var hit_behavior_type: HIT_BEHAVIOR_TYPE
 @export var attack_type: String
 @export var hit_type : String
 
@@ -71,4 +77,8 @@ static func get_hit_type(hit_name):
 		return "res://Player/Attacks/Arrow/arrow.tscn"
 	else:
 		return null
+
+
+
+
 

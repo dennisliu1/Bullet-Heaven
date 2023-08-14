@@ -144,11 +144,12 @@ func evaluate_spellcards(spellcards: Array):
 					stack.append(new_spellcard)
 					is_looping = false
 				elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.PROPERTIES_PROJECTILE_MODIFIER:
-					## top = modifier + spellcard = projectile
+					## top = stats modifier + spellcard = projectile
 					## add modifier to spellcard
 					apply_modifier_to_spellcard(new_spellcard, top_card)
 					stack.pop_back()
 				elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.ON_FIRE_PROJECTILE_MODIFIER:
+					## top = on fire effect modifier + spellcard = projectile
 					apply_modifier_to_spellcard(new_spellcard, top_card)
 					stack.pop_back()
 	return stack
