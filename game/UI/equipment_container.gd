@@ -152,6 +152,11 @@ func evaluate_spellcards(spellcards: Array):
 					## top = on fire effect modifier + spellcard = projectile
 					apply_modifier_to_spellcard(new_spellcard, top_card)
 					stack.pop_back()
+				elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.ON_HIT_PROJECTILE_MODIFIER:
+					apply_modifier_to_spellcard(new_spellcard, top_card)
+					stack.pop_back()
+				else:
+					pass
 	return stack
 
 func apply_modifier_to_spellcard(spellcard: SpellCardData, modifier_card: SpellCardData):
@@ -193,3 +198,7 @@ func apply_modifier_to_spellcard(spellcard: SpellCardData, modifier_card: SpellC
 		spellcard.on_fire_effect = []
 		for spellcard_effect in modifier_card.on_fire_effect:
 			spellcard.on_fire_effect.append(spellcard_effect.duplicate())
+	if modifier_card.get("on_hit_effect"):
+		spellcard.on_hit_effect = []
+		for spellcard_effect in modifier_card.on_hit_effect:
+			spellcard.on_hit_effect.append(spellcard_effect.duplicate())

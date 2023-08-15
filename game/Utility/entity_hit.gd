@@ -9,6 +9,8 @@ class_name EntityHit
 
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var life_time_timer = $LifeTimeTimer
+@onready var on_hit_attacks = $OnHitAttacks
+var on_hit_attack_sequence: Array
 
 @export var enemy_detect_area : Area2D
 
@@ -23,6 +25,8 @@ var entity_hit: EntityHit # stores the hit properties
 @export var attack_hp = 1
 @export var lifetime : int
 @export var hit_behaviour_type: SpellCardData.HIT_SPAWN_TYPE
+@export var on_hit_spellcards : Array
+
 
 ## Hit internal properties
 var target = Vector2.ZERO
@@ -34,6 +38,11 @@ signal remove_from_array(object)
 func _ready():
 	life_time_timer.wait_time = lifetime
 	angle = global_position.direction_to(target)
+	for spellcard in on_hit_spellcards:
+		if spellcard is SpellCardData:
+			_add_attack(spellcard)
+			pass
+	
 
 	# the ice spear is current 45 degrees, so we compensate by adding 135 degrees
 	# this way, the ice spear is equal to Vector(1, 0)
@@ -56,6 +65,8 @@ func _process(delta):
 ## When the ice spear hits the enemy, remove this projectile.
 func enemy_hit(charge = 1):
 	attack_hp -= charge
+	_on_hit_attacks()
+
 	if attack_hp <= 0:
 		_delete_self()
 
@@ -66,13 +77,30 @@ func _delete_self():
 func _on_life_time_timer_timeout():
 	_delete_self()
 
+func _add_attack(spellcard):
+	var attack_object = load(SpellCardData.get_attack_type(spellcard.attack_type))
+	var attack_instance = attack_object.instantiate()
+	attack_instance.setup_attack(spellcard, Callable(self, "get_start_position"), Callable(self, "get_direction"))
+	
+	var entity_attack = EntityAttack.new()
+	entity_attack.attack_properties = spellcard
+	attack_instance.entity_attack = entity_attack
+	
+#	attack_instances[spellcard.key] = attack_instance
+	on_hit_attacks.add_child(attack_instance)
+	on_hit_attack_sequence.append(attack_instance)
+	return attack_instance
 
+func _on_hit_attacks():
+	for attack in on_hit_attack_sequence:
+		attack.do_attack()
+	pass
 
+func get_start_position():
+	return global_position
 
-
-
-
-
+func get_direction():
+	return angle
 
 
 

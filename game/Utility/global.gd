@@ -139,3 +139,8 @@ func populate_spellcard_data(target_data, json_spellcard):
 		for on_fire_spellcard_data in json_spellcard.data.on_fire_effect:
 			var spellcard_effect = populate_spellcard_data(SpellCardData.new(), on_fire_spellcard_data)
 			target_data.on_fire_effect.append(spellcard_effect)
+	if json_spellcard.data.has("on_hit_effect"):
+		for on_hit_spellcard_data in json_spellcard.data.on_hit_effect:
+			var spellcard_effect = populate_spellcard_data(SpellCardData.new(), on_hit_spellcard_data)
+			target_data.on_hit_effect.append(spellcard_effect)
+	return target_data

@@ -16,9 +16,9 @@
 [sub_resource type="Resource" id="Resource_m0kui"]
 script = ExtResource("5_n6r4v")
 time_start = 0
-time_end = 30
+time_end = 300
 enemy = ExtResource("4_avijo")
-enemy_num = 1
+enemy_num = 10
 enemy_spawn_delay = 1
 
 [node name="World" type="Node2D"]
@@ -45,7 +45,7 @@ prefilled_equipment = Array[Array]([["res://Player/Equipment/equipment.json", "a
 [node name="SpellCardInventoryData" parent="." instance=ExtResource("9_r8gd6")]
 cols = 9
 rows = 4
-prefilled_equipment = Array[Array]([["res://Player/Modifiers/modifiers.json", "lance"], ["res://Player/Modifiers/modifiers.json", "divide_2"], ["res://Player/Modifiers/modifiers.json", "burst_3"], ["res://Player/Modifiers/modifiers.json", "heavy_shot"], ["res://Player/Modifiers/modifiers.json", "homing"], ["res://Player/Modifiers/modifiers.json", "octagonal_bolt_bundle"], ["res://Player/Modifiers/modifiers.json", "tornado"], ["res://Player/Modifiers/modifiers.json", "javelin"], ["res://Player/Modifiers/modifiers.json", "arrow"], ["res://Player/Modifiers/modifiers.json", "energy_sphere"], ["res://Player/Modifiers/modifiers.json", "fireball"]])
+prefilled_equipment = Array[Array]([["res://Player/Modifiers/modifiers.json", "lance"], ["res://Player/Modifiers/modifiers.json", "divide_2"], ["res://Player/Modifiers/modifiers.json", "burst_3"], ["res://Player/Modifiers/modifiers.json", "heavy_shot"], ["res://Player/Modifiers/modifiers.json", "homing"], ["res://Player/Modifiers/modifiers.json", "octagonal_bolt_bundle"], ["res://Player/Modifiers/modifiers.json", "tornado"], ["res://Player/Modifiers/modifiers.json", "javelin"], ["res://Player/Modifiers/modifiers.json", "arrow"], ["res://Player/Modifiers/modifiers.json", "energy_sphere"], ["res://Player/Modifiers/modifiers.json", "fireball"], ["res://Player/Modifiers/modifiers.json", "fireball_thrower"]])
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -85,3 +85,5 @@ tooltip = NodePath("../Tooltip")
 
 [node name="Tooltip" parent="UI" instance=ExtResource("11_hpyle")]
 visible = false
+
+[node name="Hits" type="Node" parent="." groups=["hit_root"]]

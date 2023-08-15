@@ -10,6 +10,7 @@ extends Node2D
 @export var enemy_detect_area : Area2D
 
 #@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
+@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 
 
 var attack_instances = {}
@@ -73,7 +74,7 @@ func _add_spellcard(spellcard):
 	if spellcard.sub_type == ItemData.ITEM_SUB_TYPE.PROJECTILE:
 		var attack_object = load(SpellCardData.get_attack_type(spellcard.attack_type))
 		var attack_instance = attack_object.instantiate()
-		attack_instance.setup_attack(spellcard)
+		attack_instance.setup_attack(spellcard, Callable(self, "get_start_position"), Callable(self, "get_direction"))
 		
 		var entity_attack = EntityAttack.new()
 		entity_attack.attack_properties = spellcard
@@ -86,7 +87,7 @@ func _add_spellcard(spellcard):
 	elif spellcard.sub_type == ItemData.ITEM_SUB_TYPE.SUMMON:
 		var attack_object = load(SpellCardData.get_attack_type(spellcard.attack_type))
 		var attack_instance = attack_object.instantiate()
-		attack_instance.setup_attack(spellcard)
+		attack_instance.setup_attack(spellcard, Callable(self, "get_start_position"), Callable(self, "get_direction"))
 		
 		var entity_attack = EntityAttack.new()
 		entity_attack.attack_properties = spellcard
@@ -98,6 +99,12 @@ func _add_spellcard(spellcard):
 #		attack_queue.append(attack_instance)
 		return attack_instance
 	return null
+
+func get_start_position():
+	return player.position
+
+func get_direction():
+	return player.last_movement
 
 # --- do attacks ---
 

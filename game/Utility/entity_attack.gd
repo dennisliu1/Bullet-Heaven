@@ -11,7 +11,11 @@ class_name EntityAttack
 var hit_object
 
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
+@onready var hit_root = get_tree().get_first_node_in_group("hit_root")
 
+
+var get_start_position: Callable
+var get_direction: Callable
 
 #var attack_instance : Node # points to the Attack Node
 var attack_properties : SpellCardData # stores the Attack and Hit properties
@@ -20,11 +24,14 @@ var attack_properties : SpellCardData # stores the Attack and Hit properties
 
 static var EMPTY_ENTITY_ATTACK = EntityAttack.new()
 
-func setup_attack(spellcard_data : SpellCardData):
+func setup_attack(spellcard_data : SpellCardData, get_start_position_arg, get_direction_arg):
 	var attack_obj_path = SpellCardData.get_hit_type(spellcard_data.hit_type)
 	hit_object = load(attack_obj_path)
 #	attack_instance = attack_obj
 	attack_properties = spellcard_data
+	
+	self.get_start_position = get_start_position_arg
+	self.get_direction = get_direction_arg
 	pass
 #
 #func setup_modifier(_spellcard_data : SpellCardData):
@@ -39,14 +46,15 @@ func spawn_bullet(target_vector):
 	
 	# TODO replace these player references
 	# set hit instance properties
-	hit_instance.position = player.position
+	hit_instance.position = get_start_position.call()
 	hit_instance.target = target_vector
 	
 	# Set Hit combat properties
 	_load_properties_into_hit(hit_instance)
 
 	# add the hit instance as a child, put into world
-	add_child(hit_instance)
+	hit_root.call_deferred("add_child", hit_instance)
+#	hit_root.add_child()
 
 func _load_properties_into_hit(hit_instance):
 #	hit_instance.energy_drain = attack_properties.energy_drain
@@ -63,6 +71,9 @@ func _load_properties_into_hit(hit_instance):
 #	hit_instance.pierce = attack_properties.pierce
 #	hit_instance.bounce = attack_properties.bounce
 
+	for spellcard in attack_properties.on_hit_effect:
+		hit_instance.on_hit_spellcards.append(spellcard)
+
 #	hit_instance.hit_behaviour_type = attack_properties.hit_behaviour_type
 	return hit_instance
 
@@ -71,15 +82,15 @@ func _spawn_hits(spellcard):
 	if spellcard.hit_spawn_type == SpellCardData.HIT_SPAWN_TYPE.SPREAD and spellcard.num_attacks > 1:
 		var attack_angle = spellcard.attack_angle
 		var direction_shifted = deg_to_rad(attack_angle) / (spellcard.num_attacks-1)
-		var left_direction = player.last_movement.rotated(deg_to_rad(-attack_angle/2))
-		var right_direction = player.last_movement.rotated(deg_to_rad(attack_angle/2))
+		var left_direction = get_direction.call().rotated(deg_to_rad(-attack_angle/2))
+		var right_direction = get_direction.call().rotated(deg_to_rad(attack_angle/2))
 
 		for i in range(spellcard.num_attacks):
 			if i % 2 == 0:
-				spawn_bullet(player.position + left_direction)
+				spawn_bullet(get_start_position.call() + left_direction)
 				left_direction = left_direction.rotated(direction_shifted)
 			else:
-				spawn_bullet(player.position + right_direction)
+				spawn_bullet(get_start_position.call() + right_direction)
 				right_direction = right_direction.rotated(-direction_shifted)
 	else:
 		spawn_bullet(_get_hit_spawn_type(spellcard))
@@ -88,7 +99,7 @@ func _get_hit_spawn_type(spellcard):
 	if spellcard.hit_spawn_type == SpellCardData.HIT_SPAWN_TYPE.RANDOM_TARGET:
 		return player.get_random_target()
 	elif spellcard.hit_spawn_type == SpellCardData.HIT_SPAWN_TYPE.PLAYER_DIRECTION:
-		return player.position + player.last_movement
+		return get_start_position.call() + get_direction.call()
 
 
 
