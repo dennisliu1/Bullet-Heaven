@@ -150,13 +150,41 @@ func evaluate_spellcards(spellcards: Array):
 					stack.pop_back()
 				elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.ON_FIRE_PROJECTILE_MODIFIER:
 					## top = on fire effect modifier + spellcard = projectile
+					## add modifier to spellcard
 					apply_modifier_to_spellcard(new_spellcard, top_card)
 					stack.pop_back()
 				elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.ON_HIT_PROJECTILE_MODIFIER:
+					## top = on hit effect modifier + spellcard = projectile
+					## add modifier to spellcard
 					apply_modifier_to_spellcard(new_spellcard, top_card)
 					stack.pop_back()
 				else:
-					pass
+					is_looping = false
+			elif new_spellcard.sub_type == ItemData.ITEM_SUB_TYPE.PROPERTIES_PROJECTILE_MODIFIER:
+				if top_card_sub_type == ItemData.ITEM_SUB_TYPE.PROJECTILE:
+					## top = projectile + spellcard = stats modifier
+					## cannot combine, append the stats modifier
+					stack.append(new_spellcard)
+					is_looping = false
+				elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.PROPERTIES_PROJECTILE_MODIFIER:
+					## top = stats modifier + spellcard = stats modifier
+					## combine modifiers
+					apply_modifier_to_spellcard(new_spellcard, top_card)
+					stack.pop_back()
+				elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.ON_FIRE_PROJECTILE_MODIFIER:
+					## top = on fire effect modifier + spellcard = stats modifier
+					## combine modifiers
+					apply_modifier_to_spellcard(new_spellcard, top_card)
+					stack.pop_back()
+				elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.ON_HIT_PROJECTILE_MODIFIER:
+					## top = on hit effect modifier + spellcard = stats modifier
+					## combine modifiers
+					apply_modifier_to_spellcard(new_spellcard, top_card)
+					stack.pop_back()
+				else:
+					is_looping = false
+			else:
+				is_looping = false
 	return stack
 
 func apply_modifier_to_spellcard(spellcard: SpellCardData, modifier_card: SpellCardData):
