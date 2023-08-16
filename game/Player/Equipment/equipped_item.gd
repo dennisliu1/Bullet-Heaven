@@ -39,7 +39,7 @@ func set_equipped_item(equipped_data):
 	var spell_slots = equipment_data.spell_slots
 	for i in range(spell_slots.size()):
 		if spell_slots[i] != ItemData.EMPTY_ITEM_DATA:
-			_add_spellcard(spell_slots[i])
+			_add_spellcard_effect(spell_slots[i])
 	reset_attack_sequence()
 
 func remove_equipped_item():
@@ -48,18 +48,18 @@ func remove_equipped_item():
 	var spell_slots = equipment_data.spell_slots
 	for i in range(spell_slots.size()):
 		if spell_slots[i] != ItemData.EMPTY_ITEM_DATA:
-			remove_spellcard(spell_slots[i])
+			remove_spellcard_effect(spell_slots[i])
 	
 	action_data.queue_free()
 	equipment_data = null
 	reset_attack_sequence()
 
-func add_spellcard(spellcard):
+func add_spellcard_effect(spellcard_effect):
 	reset_attack_sequence()
-	_add_spellcard(spellcard)
+	_add_spellcard_effect(spellcard_effect)
 	reset_attack_sequence()
 
-func remove_spellcard(spellcard):
+func remove_spellcard_effect(spellcard):
 	var attack_instance = attack_instances[spellcard.key]
 	attacks_group.remove_child(attack_instance)
 
@@ -70,30 +70,30 @@ func remove_spellcard(spellcard):
 	attack_instance.queue_free()
 
 
-func _add_spellcard(spellcard):
-	if spellcard.sub_type == ItemData.ITEM_SUB_TYPE.PROJECTILE:
-		var attack_object = load(SpellCardData.get_attack_type(spellcard.attack_type))
+func _add_spellcard_effect(spellcard_effect):
+	if spellcard_effect.sub_type == ItemData.ITEM_SUB_TYPE.PROJECTILE:
+		var attack_object = load(SpellCardEffect.get_attack_type(spellcard_effect.attack_type))
 		var attack_instance = attack_object.instantiate()
-		attack_instance.setup_attack(spellcard, Callable(self, "get_start_position"), Callable(self, "get_direction"))
+		attack_instance.setup_attack(spellcard_effect, Callable(self, "get_start_position"), Callable(self, "get_direction"))
 		
 		var entity_attack = EntityAttack.new()
-		entity_attack.attack_properties = spellcard
+		entity_attack.attack_properties = spellcard_effect
 		attack_instance.entity_attack = entity_attack
 		
-		attack_instances[spellcard.key] = attack_instance
+		attack_instances[spellcard_effect.key] = attack_instance
 		attacks_group.add_child(attack_instance)
 		attack_queue.append(attack_instance)
 		return attack_instance
-	elif spellcard.sub_type == ItemData.ITEM_SUB_TYPE.SUMMON:
-		var attack_object = load(SpellCardData.get_attack_type(spellcard.attack_type))
+	elif spellcard_effect.sub_type == ItemData.ITEM_SUB_TYPE.SUMMON:
+		var attack_object = load(SpellCardEffect.get_attack_type(spellcard_effect.attack_type))
 		var attack_instance = attack_object.instantiate()
-		attack_instance.setup_attack(spellcard, Callable(self, "get_start_position"), Callable(self, "get_direction"))
+		attack_instance.setup_attack(spellcard_effect, Callable(self, "get_start_position"), Callable(self, "get_direction"))
 		
 		var entity_attack = EntityAttack.new()
-		entity_attack.attack_properties = spellcard
+		entity_attack.attack_properties = spellcard_effect
 		attack_instance.entity_attack = entity_attack
 		
-		attack_instances[spellcard.key] = attack_instance
+		attack_instances[spellcard_effect.key] = attack_instance
 		attacks_group.add_child(attack_instance)
 		attack_instance.do_attack() # do one manual attack to spawn the object in
 #		attack_queue.append(attack_instance)
@@ -146,7 +146,7 @@ func reset_attack_sequence():
 
 func _setup_test_attack():
 	## Get spellcard data
-	var spellcard_attack = SpellCardData.new()
+	var spellcard_attack = SpellCardEffect.new()
 	spellcard_attack.damage = 5
 	spellcard_attack.action_delay = 0.5
 	spellcard_attack.attack_type = "ice_spear"

@@ -2,7 +2,7 @@ extends Area2D
 class_name EntityHit
 
 #var hit_object : Node
-#var hit_properties: SpellCardData
+#var hit_properties: SpellCardEffect
 #var hit_behavior : String
 #
 #static var EMPTY_ENTITY_HIT = EntityHit.new()
@@ -24,7 +24,7 @@ var entity_hit: EntityHit # stores the hit properties
 @export var attack_size = 1.0
 @export var attack_hp = 1
 @export var lifetime : int
-@export var hit_behaviour_type: SpellCardData.HIT_SPAWN_TYPE
+@export var hit_behaviour_type: SpellCardEffect.HIT_SPAWN_TYPE
 @export var on_hit_spellcards : Array
 
 
@@ -39,7 +39,7 @@ func _ready():
 	life_time_timer.wait_time = lifetime
 	angle = global_position.direction_to(target)
 	for spellcard in on_hit_spellcards:
-		if spellcard is SpellCardData:
+		if spellcard is SpellCardEffect:
 			_add_attack(spellcard)
 			pass
 	
@@ -77,16 +77,15 @@ func _delete_self():
 func _on_life_time_timer_timeout():
 	_delete_self()
 
-func _add_attack(spellcard):
-	var attack_object = load(SpellCardData.get_attack_type(spellcard.attack_type))
+func _add_attack(spellcard_effect):
+	var attack_object = load(SpellCardEffect.get_attack_type(spellcard_effect.attack_type))
 	var attack_instance = attack_object.instantiate()
-	attack_instance.setup_attack(spellcard, Callable(self, "get_start_position"), Callable(self, "get_direction"))
+	attack_instance.setup_attack(spellcard_effect, Callable(self, "get_start_position"), Callable(self, "get_direction"))
 	
 	var entity_attack = EntityAttack.new()
-	entity_attack.attack_properties = spellcard
+	entity_attack.attack_properties = spellcard_effect
 	attack_instance.entity_attack = entity_attack
 	
-#	attack_instances[spellcard.key] = attack_instance
 	on_hit_attacks.add_child(attack_instance)
 	on_hit_attack_sequence.append(attack_instance)
 	return attack_instance

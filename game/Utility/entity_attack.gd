@@ -3,7 +3,7 @@
 extends Node
 class_name EntityAttack
 
-#@export var spellcard_data: SpellCardData
+#@export var spellcard_data: SpellCardEffect
 @export var entity_attack : EntityAttack
 @export var enemy_detect_area : Area2D
 
@@ -18,14 +18,14 @@ var get_start_position: Callable
 var get_direction: Callable
 
 #var attack_instance : Node # points to the Attack Node
-var attack_properties : SpellCardData # stores the Attack and Hit properties
+var attack_properties : SpellCardEffect # stores the Attack and Hit properties
 #var on_spawn_hit_attacks : Array[EntityAttack] # Attacks to be called when firing a Hit
 #var on_hit_attacks : Array[EntityAttack] # Attacks to be called on hit
 
 static var EMPTY_ENTITY_ATTACK = EntityAttack.new()
 
-func setup_attack(spellcard_data : SpellCardData, get_start_position_arg, get_direction_arg):
-	var attack_obj_path = SpellCardData.get_hit_type(spellcard_data.hit_type)
+func setup_attack(spellcard_data : SpellCardEffect, get_start_position_arg, get_direction_arg):
+	var attack_obj_path = SpellCardEffect.get_hit_type(spellcard_data.hit_type)
 	hit_object = load(attack_obj_path)
 #	attack_instance = attack_obj
 	attack_properties = spellcard_data
@@ -34,7 +34,7 @@ func setup_attack(spellcard_data : SpellCardData, get_start_position_arg, get_di
 	self.get_direction = get_direction_arg
 	pass
 #
-#func setup_modifier(_spellcard_data : SpellCardData):
+#func setup_modifier(_spellcard_data : SpellCardEffect):
 #	pass
 
 ## Call outside to spawn the hits
@@ -79,7 +79,7 @@ func _load_properties_into_hit(hit_instance):
 
 
 func _spawn_hits(spellcard):
-	if spellcard.hit_spawn_type == SpellCardData.HIT_SPAWN_TYPE.SPREAD and spellcard.num_attacks > 1:
+	if spellcard.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.SPREAD and spellcard.num_attacks > 1:
 		var attack_angle = spellcard.attack_angle
 		var direction_shifted = deg_to_rad(attack_angle) / (spellcard.num_attacks-1)
 		var left_direction = get_direction.call().rotated(deg_to_rad(-attack_angle/2))
@@ -96,9 +96,9 @@ func _spawn_hits(spellcard):
 		spawn_bullet(_get_hit_spawn_type(spellcard))
 
 func _get_hit_spawn_type(spellcard):
-	if spellcard.hit_spawn_type == SpellCardData.HIT_SPAWN_TYPE.RANDOM_TARGET:
+	if spellcard.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.RANDOM_TARGET:
 		return player.get_random_target()
-	elif spellcard.hit_spawn_type == SpellCardData.HIT_SPAWN_TYPE.PLAYER_DIRECTION:
+	elif spellcard.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.PLAYER_DIRECTION:
 		return get_start_position.call() + get_direction.call()
 
 

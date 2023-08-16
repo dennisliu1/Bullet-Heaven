@@ -5,7 +5,7 @@
 		"icon": "tentacle_portal.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
-		"data": {
+		"data": [{
 			"sub_type": "PROJECTILE",
 			"energy_drain": 10,
 			"damage": 5,
@@ -22,7 +22,7 @@
 			"hit_size": 1.0,
 			"attack_type": "tornado",
 			"hit_type": "tornado"
-		}
+		}]
 	},
 	"javelin": {
 		"name": "Javelin",
@@ -30,7 +30,7 @@
 		"icon": "edit_wands_everywhere.png",
 		"path": "res://Player/Modifiers/Textures/noita perks/",
 		"type": "SPELLCARD",
-		"data": {
+		"data": [{
 			"sub_type": "SUMMON",
 			"energy_drain": 10,
 			"damage": 10,
@@ -47,7 +47,7 @@
 			"hit_size": 1.0,
 			"attack_type": "javelin",
 			"hit_type": "javelin"
-		}
+		}]
 	},
 	"lance": {
 		"name": "Lance",
@@ -55,7 +55,7 @@
 		"icon": "lance.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
-		"data": {
+		"data": [{
 			"sub_type": "PROJECTILE",
 			"energy_drain": 10,
 			"damage": 5,
@@ -75,7 +75,7 @@
 			"hit_behavior_type": "STRAIGHT_LINE",
 			"attack_type": "ice_spear",
 			"hit_type": "ice_spear"
-		}
+		}]
 	},
 	"arrow": {
 		"name": "Arrow",
@@ -83,7 +83,7 @@
 		"icon": "arrow.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
-		"data": {
+		"data": [{
 			"sub_type": "PROJECTILE",
 			"energy_drain": 10,
 			"damage": 5,
@@ -100,7 +100,7 @@
 			"hit_size": 0.5,
 			"attack_type": "arrow",
 			"hit_type": "arrow"
-		}
+		}]
 	},
 	"energy_sphere": {
 		"name": "Energy Sphere",
@@ -108,7 +108,7 @@
 		"icon": "bouncy_orb.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
-		"data": {
+		"data": [{
 			"sub_type": "PROJECTILE",
 			"energy_drain": 10,
 			"damage": 5,
@@ -124,7 +124,7 @@
 			"hit_size": 1.0,
 			"attack_type": "energy_sphere",
 			"hit_type": "energy_sphere"
-		}
+		}]
 	},
 	"fireball": {
 		"name": "Fireball",
@@ -132,7 +132,7 @@
 		"icon": "fireball.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
-		"data": {
+		"data": [{
 			"sub_type": "PROJECTILE",
 			"energy_drain": 10,
 			"damage": 5,
@@ -147,17 +147,62 @@
 			"bounce": 0,
 			"attack_type": "fireball",
 			"hit_type": "fireball"
-		}
+		}]
 	},
-	"divide_2": {
+	"divide_fan_2": {
 		"name": "Divide By 2",
 		"description": "",
 		"icon": "divide_2.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
-		"data": {
-			"sub_type": "ON_FIRE_PROJECTILE_MODIFIER",
-		}
+		"data": [{
+			"sub_type": "SPLIT_PROJECTILE_MODIFIER",
+			"damage": 0.5,
+			"num_attacks": 2,
+			"attack_angle": 90,
+			"hit_spawn_type": "SPREAD",
+		}]
+	},
+	"divide_fan_3": {
+		"name": "Divide By 3",
+		"description": "",
+		"icon": "divide_3.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"data": [{
+			"sub_type": "SPLIT_PROJECTILE_MODIFIER",
+			"damage": 0.33,
+			"num_attacks": 3,
+			"attack_angle": 90,
+			"hit_spawn_type": "SPREAD",
+		}]
+	},
+	"divide_fan_4": {
+		"name": "Divide By 4",
+		"description": "",
+		"icon": "divide_4.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"data": [{
+			"sub_type": "SPLIT_PROJECTILE_MODIFIER",
+			"damage": 0.25,
+			"num_attacks": 4,
+			"attack_angle": 90,
+			"hit_spawn_type": "SPREAD",
+		}]
+	},
+	"divide_fan_10": {
+		"name": "Divide By 10",
+		"description": "",
+		"icon": "divide_10.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"data": [{
+			"sub_type": "SPLIT_PROJECTILE",
+			"num_attacks": 10,
+			"attack_angle": 270,
+			"hit_spawn_type": "SPREAD",
+		}]
 	},
 	"burst_3": {
 		"name": "Multicast 3",
@@ -165,9 +210,9 @@
 		"icon": "burst_3.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
-		"data": {
+		"data": [{
 			"sub_type": "MULTICAST",
-		}
+		}]
 	},
 	"heavy_shot": {
 		"name": "Heavy Shot",
@@ -175,11 +220,11 @@
 		"icon": "heavy_shot.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
-		"data": {
+		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"damage": 4,
-			"velocity": 0.3
-		}
+			"velocity": 0.7,
+		}]
 	},
 	"homing": {
 		"name": "Homing",
@@ -187,9 +232,9 @@
 		"icon": "homing.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
-		"data": {
+		"data": [{
 			"sub_type": "BEHAVIOR_PROJECTILE_MODIFIER",
-		}
+		}]
 	},
 	"octagonal_bolt_bundle": {
 		"name": "Octagonal Bolt Bundle",
@@ -197,9 +242,9 @@
 		"icon": "rocket_octagon.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
-		"data": {
+		"data": [{
 			"sub_type": "ON_HIT_PROJECTILE_MODIFIER",
-		}
+		}]
 	},
 	"fireball_thrower": {
 		"name": "Fireball Thrower",
@@ -207,38 +252,31 @@
 		"icon": "fireball_ray.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
-		"data": {
+		"data": [{
 			"sub_type": "ON_HIT_PROJECTILE_MODIFIER",
 			"on_hit_effect": [
 				{
-					"name": "Lance",
-					"description": "",
-					"icon": "arrow.png",
-					"path": "res://Player/Modifiers/Textures/noita spells/",
-					"type": "SPELLCARD",
-					"data": {
-						"sub_type": "PROJECTILE",
-						"energy_drain": 10,
-						"damage": 5,
-						"action_delay": 1,
-						"num_attacks": 8,
-						"attack_angle": 360,
-						"spread": 0,
-						"velocity": 100,
-						"lifetime": 10,
-						"radius": 0,
-						"knockback": 0,
-						"pierce": 0,
-						"bounce": 0,
-						"hit_hp": 1,
-						"hit_size": 1.0,
-						"hit_spawn_type": "SPREAD",
-						"hit_behavior_type": "STRAIGHT_LINE",
-						"attack_type": "arrow",
-						"hit_type": "arrow"
-					}
+					"sub_type": "PROJECTILE",
+					"energy_drain": 10,
+					"damage": 5,
+					"action_delay": 1,
+					"num_attacks": 8,
+					"attack_angle": 360,
+					"spread": 0,
+					"velocity": 100,
+					"lifetime": 10,
+					"radius": 0,
+					"knockback": 0,
+					"pierce": 0,
+					"bounce": 0,
+					"hit_hp": 1,
+					"hit_size": 1.0,
+					"hit_spawn_type": "SPREAD",
+					"hit_behavior_type": "STRAIGHT_LINE",
+					"attack_type": "arrow",
+					"hit_type": "arrow"
 				}
 			]
-		}
+		}]
 	}
 }
