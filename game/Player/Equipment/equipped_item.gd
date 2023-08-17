@@ -126,8 +126,8 @@ func _add_spellcard_effect(spellcard_effect):
 		var attack_instance = attack_object.instantiate()
 		attack_instance.setup_attack(spellcard_effect, Callable(self, "get_start_position"), Callable(self, "get_direction"))
 		
-		var entity_attack = EntityAttack.new()
-		entity_attack.attack_properties = spellcard_effect
+#		var entity_attack = EntityAttack.new()
+#		entity_attack.attack_properties = spellcard_effect
 #		attack_instance.entity_attack = entity_attack
 		
 		attack_instances[spellcard_effect.key] = attack_instance
@@ -137,10 +137,7 @@ func _add_spellcard_effect(spellcard_effect):
 	if spellcard_effect.sub_type == ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER:
 		var attack_object = load("res://Utility/entity_mod_attack.tscn")
 		var attack_instance = attack_object.instantiate()
-#		attack_instance.setup_attack(spellcard_effect, Callable(self, "get_start_position"), Callable(self, "get_direction"))
-		
-		var entity_attack = EntityAttack.new()
-		entity_attack.attack_properties = spellcard_effect
+		attack_instance.setup_attack(spellcard_effect, Callable(self, "get_start_position"), Callable(self, "get_direction"))
 		
 		attack_instances[spellcard_effect.key] = attack_instance
 		attacks_group.add_child(attack_instance)

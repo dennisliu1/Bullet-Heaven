@@ -40,10 +40,10 @@ func setup_attack(spellcard_data : SpellCardEffect, get_start_position_arg, get_
 ## Call outside to spawn the hits
 func do_attack():
 	for i in range(on_fire_hit_objects.size()):
-		_spawn_hits(on_fire_effects[i], on_fire_hit_objects[i])
-	_spawn_hits(attack_properties, hit_object)
+		_spawn_hits(on_fire_effects[i], on_fire_effects[i], on_fire_hit_objects[i])
+	_spawn_hits(attack_properties, attack_properties, hit_object)
 
-func spawn_bullet(target_vector, hit_obj):
+func spawn_bullet(spellcard_effect, target_vector, hit_obj):
 	var hit_instance = hit_obj.instantiate()
 	
 	# TODO replace these player references
@@ -52,7 +52,7 @@ func spawn_bullet(target_vector, hit_obj):
 	hit_instance.target = target_vector
 	
 	# Set Hit combat properties
-	_load_properties_into_hit(hit_instance, attack_properties)
+	_load_properties_into_hit(hit_instance, spellcard_effect)
 
 	# add the hit instance as a child, put into world
 	hit_root.call_deferred("add_child", hit_instance)
@@ -78,22 +78,22 @@ func _load_properties_into_hit(hit_instance, spell_effect):
 
 	return hit_instance
 
-func _spawn_hits(spellcard_effect, bullet_obj):
-	if spellcard_effect.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.SPREAD and spellcard_effect.num_attacks > 1:
-		var attack_angle = spellcard_effect.attack_angle
-		var direction_shifted = deg_to_rad(attack_angle) / (spellcard_effect.num_attacks-1)
+func _spawn_hits(spawn_effect, spellcard_effect, bullet_obj):
+	if spawn_effect.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.SPREAD and spawn_effect.num_attacks > 1:
+		var attack_angle = spawn_effect.attack_angle
+		var direction_shifted = deg_to_rad(attack_angle) / (spawn_effect.num_attacks-1)
 		var left_direction = get_direction.call().rotated(deg_to_rad(-attack_angle/2))
 		var right_direction = get_direction.call().rotated(deg_to_rad(attack_angle/2))
 
-		for i in range(spellcard_effect.num_attacks):
+		for i in range(spawn_effect.num_attacks):
 			if i % 2 == 0:
-				spawn_bullet(get_start_position.call() + left_direction, bullet_obj)
+				spawn_bullet(spellcard_effect, get_start_position.call() + left_direction, bullet_obj)
 				left_direction = left_direction.rotated(direction_shifted)
 			else:
-				spawn_bullet(get_start_position.call() + right_direction, bullet_obj)
+				spawn_bullet(spellcard_effect, get_start_position.call() + right_direction, bullet_obj)
 				right_direction = right_direction.rotated(-direction_shifted)
 	else:
-		spawn_bullet(_get_hit_spawn_type(spellcard_effect), bullet_obj)
+		spawn_bullet(spellcard_effect, _get_hit_spawn_type(spawn_effect), bullet_obj)
 
 func _get_hit_spawn_type(spellcard):
 	if spellcard.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.RANDOM_TARGET:
