@@ -13,8 +13,11 @@ var attack_enabled = true
 @onready var hit_root = get_tree().get_first_node_in_group("hit_root")
 
 
-var get_start_position: Callable
-var get_direction: Callable
+var get_start_position_callable: Callable
+var get_direction_callable: Callable
+var start_position
+var direction_vector
+
 var attack_properties : SpellCardEffect # stores the Attack and Hit properties
 
 static var EMPTY_ENTITY_ATTACK = EntityAttack.new()
@@ -33,8 +36,9 @@ func setup_attack(spellcard_data : SpellCardEffect, get_start_position_arg, get_
 		on_fire_effects.append(spell_effect)
 	
 	
-	self.get_start_position = get_start_position_arg
-	self.get_direction = get_direction_arg
+	self.get_start_position_callable = get_start_position_arg
+	self.get_direction_callable = get_direction_arg
+	
 	pass
 
 ## Call outside to spawn the hits
@@ -51,7 +55,7 @@ func spawn_bullet(spellcard_effect, target_vector, hit_obj):
 	
 	# TODO replace these player references
 	# set hit instance properties
-	hit_instance.position = get_start_position.call()
+	hit_instance.position = get_start_position()
 	hit_instance.target = target_vector
 	
 	# Set Hit combat properties
@@ -85,15 +89,15 @@ func _spawn_hits(spawn_effect, spellcard_effect, bullet_obj):
 	if spawn_effect.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.SPREAD and spawn_effect.num_attacks > 1:
 		var attack_angle = spawn_effect.attack_angle
 		var direction_shifted = deg_to_rad(attack_angle) / (spawn_effect.num_attacks-1)
-		var left_direction = get_direction.call().rotated(deg_to_rad(-attack_angle/2))
-		var right_direction = get_direction.call().rotated(deg_to_rad(attack_angle/2))
+		var left_direction = get_direction().rotated(deg_to_rad(-attack_angle/2))
+		var right_direction = get_direction().rotated(deg_to_rad(attack_angle/2))
 
 		for i in range(spawn_effect.num_attacks):
 			if i % 2 == 0:
-				spawn_bullet(spellcard_effect, get_start_position.call() + left_direction, bullet_obj)
+				spawn_bullet(spellcard_effect, get_start_position() + left_direction, bullet_obj)
 				left_direction = left_direction.rotated(direction_shifted)
 			else:
-				spawn_bullet(spellcard_effect, get_start_position.call() + right_direction, bullet_obj)
+				spawn_bullet(spellcard_effect, get_start_position() + right_direction, bullet_obj)
 				right_direction = right_direction.rotated(-direction_shifted)
 	else:
 		spawn_bullet(spellcard_effect, _get_hit_spawn_type(spawn_effect), bullet_obj)
@@ -102,7 +106,19 @@ func _get_hit_spawn_type(spellcard):
 	if spellcard.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.RANDOM_TARGET:
 		return player.get_random_target()
 	elif spellcard.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.PLAYER_DIRECTION:
-		return get_start_position.call() + get_direction.call()
+		return get_start_position() + get_direction()
+
+func get_direction():
+	if direction_vector:
+		return direction_vector
+	else:
+		return get_direction_callable.call()
+	
+func get_start_position():
+	if start_position:
+		return start_position
+	else:
+		return get_start_position_callable.call()
 
 ## matches entity_hit
 

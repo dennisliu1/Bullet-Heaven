@@ -69,7 +69,7 @@
 			"pierce": 0,
 			"bounce": 0,
 			"hit_hp": 1,
-			"hit_size": 1.0,
+			"hit_size": 0.5,
 			"hit_spawn_type": "RANDOM_TARGET",
 			"hit_behavior_type": "STRAIGHT_LINE",
 			"attack_type": "ice_spear",
@@ -189,7 +189,7 @@
 				"sub_type": "MOD_PROJECTILE_MODIFIER",
 				"required_effects": 1,
 				"num_attacks": 4,
-				"attack_angle": 90,
+				"attack_angle": 135,
 				"hit_spawn_type": "SPREAD",
 			}
 		]

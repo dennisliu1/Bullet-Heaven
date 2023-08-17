@@ -69,17 +69,28 @@ func sync_bulk_spellcard_effects(instance_stack):
 				"attack": _add_spellcard_effect(instance_effect),
 				"index": effect_queue.size(),
 			}
-			effect_queue.append(instance_effect.key)
-	for i in range(effect_queue.size()):
-		var effect_key = effect_queue[i]
-		if effect_dict[effect_key].delete:
-			remove_spellcard_effect(effect_dict[effect_key].effect)
-		else:
-			# reset the flag ahead of time, no need to do another pass
-			effect_dict[effect_key].delete = true
-			
-			# reset (re-enable) all attacks, will disable them
-			effect_dict[effect_key].attack.attack_enabled = true
+#			effect_queue.append(instance_effect.key)
+	var x = 0
+	while x < effect_queue.size():
+		var effect_key = effect_queue[x]
+		if effect_key in effect_dict: # TODO strange error...
+			if effect_dict[effect_key].delete:
+				remove_spellcard_effect(effect_dict[effect_key].effect)
+			else:
+				# reset the flag ahead of time, no need to do another pass
+				effect_dict[effect_key].delete = true
+				
+				# reset (re-enable) all attacks, will disable them
+				effect_dict[effect_key].attack.attack_enabled = true
+		x += 1
+	
+	# Reorder attacK_queue to match instance_stack
+	attack_queue.clear()
+	effect_queue.clear()
+	for instance_effect in instance_stack:
+		var effect_key = instance_effect.key
+		attack_queue.append(effect_dict[effect_key].attack)
+		effect_queue.append(effect_key)
 
 	# Do multi-cast and mod_projectile_modifiers
 	for i in range(effect_queue.size()):
@@ -132,7 +143,7 @@ func _add_spellcard_effect(spellcard_effect):
 		
 		attack_instances[spellcard_effect.key] = attack_instance
 		attacks_group.add_child(attack_instance)
-		attack_queue.append(attack_instance)
+#		attack_queue.append(attack_instance)
 		return attack_instance
 	if spellcard_effect.sub_type == ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER:
 		var attack_object = load("res://Utility/entity_mod_attack.tscn")
@@ -141,7 +152,7 @@ func _add_spellcard_effect(spellcard_effect):
 		
 		attack_instances[spellcard_effect.key] = attack_instance
 		attacks_group.add_child(attack_instance)
-		attack_queue.append(attack_instance)
+#		attack_queue.append(attack_instance)
 		return attack_instance
 	elif spellcard_effect.sub_type == ItemData.ITEM_SUB_TYPE.SUMMON:
 		var attack_object = load(SpellCardEffect.get_attack_type(spellcard_effect.attack_type))
