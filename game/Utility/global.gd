@@ -96,6 +96,7 @@ func populate_spellcard_data(spellcard_data, json_spellcard):
 	return spellcard_data
 
 func populate_spellcard_effect(spellcard_effect, spellcard_data_effect):
+	spellcard_effect.key = spellcard_effect.name
 	if spellcard_data_effect.has("sub_type"):
 		# defined in ItemData, but set it here cuz we used inheritance
 		spellcard_effect.sub_type = SpellCardEffect.get_sub_type(spellcard_data_effect.sub_type)
@@ -145,12 +146,12 @@ func populate_spellcard_effect(spellcard_effect, spellcard_data_effect):
 		spellcard_effect.hit_spawn_type = SpellCardEffect.get_hit_spawn_type(spellcard_data_effect.hit_spawn_type)
 	if spellcard_data_effect.has("hit_behavior_type"):
 		spellcard_effect.hit_behavior_type = SpellCardEffect.get_hit_behavior_type(spellcard_data_effect.hit_behavior_type)
-	if spellcard_data_effect.has("on_fire_effect"):
-		for on_fire_spellcard_effect_data in spellcard_data_effect.on_fire_effect:
+	if spellcard_data_effect.has("on_fire_effects"):
+		for on_fire_spellcard_effect_data in spellcard_data_effect.on_fire_effects:
 			var new_data = populate_spellcard_effect(SpellCardEffect.new(), on_fire_spellcard_effect_data)
-			spellcard_effect.on_fire_effect.append(new_data)
-	if spellcard_data_effect.has("on_hit_effect"):
-		for on_hit_spellcard_effect_data in spellcard_data_effect.on_hit_effect:
+			spellcard_effect.on_fire_effects.append(new_data)
+	if spellcard_data_effect.has("on_hit_effects"):
+		for on_hit_spellcard_effect_data in spellcard_data_effect.on_hit_effects:
 			var new_data = populate_spellcard_effect(SpellCardEffect.new(), on_hit_spellcard_effect_data)
-			spellcard_effect.on_hit_effect.append(new_data)
+			spellcard_effect.on_hit_effects.append(new_data)
 	return spellcard_effect

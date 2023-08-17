@@ -84,7 +84,7 @@ func _add_attack(spellcard_effect):
 	
 	var entity_attack = EntityAttack.new()
 	entity_attack.attack_properties = spellcard_effect
-	attack_instance.entity_attack = entity_attack
+#	attack_instance.entity_attack = entity_attack
 	
 	on_hit_attacks.add_child(attack_instance)
 	on_hit_attack_sequence.append(attack_instance)

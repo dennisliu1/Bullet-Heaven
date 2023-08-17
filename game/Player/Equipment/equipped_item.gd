@@ -55,7 +55,6 @@ func remove_equipped_item():
 	reset_attack_sequence()
 
 func add_spellcard_effect(spellcard_effect):
-	reset_attack_sequence()
 	_add_spellcard_effect(spellcard_effect)
 	reset_attack_sequence()
 
@@ -71,14 +70,14 @@ func remove_spellcard_effect(spellcard):
 
 
 func _add_spellcard_effect(spellcard_effect):
-	if spellcard_effect.sub_type == ItemData.ITEM_SUB_TYPE.PROJECTILE:
+	if spellcard_effect.sub_type == ItemData.ITEM_SUB_TYPE.PROJECTILE or spellcard_effect.sub_type == ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER:
 		var attack_object = load(SpellCardEffect.get_attack_type(spellcard_effect.attack_type))
 		var attack_instance = attack_object.instantiate()
 		attack_instance.setup_attack(spellcard_effect, Callable(self, "get_start_position"), Callable(self, "get_direction"))
 		
 		var entity_attack = EntityAttack.new()
 		entity_attack.attack_properties = spellcard_effect
-		attack_instance.entity_attack = entity_attack
+#		attack_instance.entity_attack = entity_attack
 		
 		attack_instances[spellcard_effect.key] = attack_instance
 		attacks_group.add_child(attack_instance)
@@ -91,7 +90,7 @@ func _add_spellcard_effect(spellcard_effect):
 		
 		var entity_attack = EntityAttack.new()
 		entity_attack.attack_properties = spellcard_effect
-		attack_instance.entity_attack = entity_attack
+#		attack_instance.entity_attack = entity_attack
 		
 		attack_instances[spellcard_effect.key] = attack_instance
 		attacks_group.add_child(attack_instance)
@@ -107,6 +106,9 @@ func get_direction():
 	return player.last_movement
 
 # --- do attacks ---
+
+func reset_attacks():
+	reset_attack_sequence()
 
 func start_attack_sequence():
 	current_attack = 0

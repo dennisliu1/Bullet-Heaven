@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgk4vv2dq14l"]
+
+[ext_resource type="PackedScene" uid="uid://d1mttqnv2dg4c" path="res://Utility/entity_attack.tscn" id="1_xyvrb"]
+[ext_resource type="Script" path="res://Utility/entity_mod_attack.gd" id="2_ww0w4"]
+
+[node name="EntityModAttack" instance=ExtResource("1_xyvrb")]
+script = ExtResource("2_ww0w4")

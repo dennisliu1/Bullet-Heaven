@@ -60,8 +60,7 @@
 			"energy_drain": 10,
 			"damage": 5,
 			"action_delay": 1,
-			"num_attacks": 2,
-			"attack_angle": 45,
+			"num_attacks": 1,
 			"spread": 0,
 			"velocity": 100,
 			"lifetime": 10,
@@ -71,7 +70,7 @@
 			"bounce": 0,
 			"hit_hp": 1,
 			"hit_size": 1.0,
-			"hit_spawn_type": "SPREAD",
+			"hit_spawn_type": "RANDOM_TARGET",
 			"hit_behavior_type": "STRAIGHT_LINE",
 			"attack_type": "ice_spear",
 			"hit_type": "ice_spear"
@@ -197,12 +196,14 @@
 		"icon": "divide_10.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
-		"data": [{
-			"sub_type": "SPLIT_PROJECTILE",
-			"num_attacks": 10,
-			"attack_angle": 270,
-			"hit_spawn_type": "SPREAD",
-		}]
+		"data": [
+			{
+				"sub_type": "MOD_PROJECTILE_MODIFIER",
+				"num_attacks": 10,
+				"attack_angle": 270,
+				"hit_spawn_type": "SPREAD",
+			}
+		]
 	},
 	"burst_3": {
 		"name": "Multicast 3",
@@ -254,7 +255,7 @@
 		"type": "SPELLCARD",
 		"data": [{
 			"sub_type": "ON_HIT_PROJECTILE_MODIFIER",
-			"on_hit_effect": [
+			"on_hit_effects": [
 				{
 					"sub_type": "PROJECTILE",
 					"energy_drain": 10,

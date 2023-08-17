@@ -33,9 +33,11 @@ enum HIT_BEHAVIOR_TYPE {STRAIGHT_LINE, WAVE_PATTERN, HOMING}
 @export var attack_type: String
 @export var hit_type : String
 
-@export var on_fire_effect: Array[SpellCardEffect]
-@export var on_travel_effect: Array[SpellCardEffect]
-@export var on_hit_effect: Array[SpellCardEffect]
+@export var on_fire_effects: Array[SpellCardEffect]
+@export var on_travel_effects: Array[SpellCardEffect] # TODO
+@export var on_hit_effects: Array[SpellCardEffect]
+
+
 
 static func get_sub_type(s) -> ITEM_SUB_TYPE:
 	if s == "PROJECTILE":
@@ -44,6 +46,8 @@ static func get_sub_type(s) -> ITEM_SUB_TYPE:
 		return ItemData.ITEM_SUB_TYPE.SUMMON
 	elif s == "ATTACK_MODIFIER":
 		return ItemData.ITEM_SUB_TYPE.ATTACK_MODIFIER
+	elif s == "MOD_PROJECTILE_MODIFIER":
+		return ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER
 	elif s == "MULTICAST":
 		return ItemData.ITEM_SUB_TYPE.MULTICAST
 	elif s == "ON_FIRE_PROJECTILE_MODIFIER":
@@ -52,6 +56,8 @@ static func get_sub_type(s) -> ITEM_SUB_TYPE:
 		return ItemData.ITEM_SUB_TYPE.ON_HIT_PROJECTILE_MODIFIER
 	elif s == "PROPERTIES_PROJECTILE_MODIFIER":
 		return ItemData.ITEM_SUB_TYPE.PROPERTIES_PROJECTILE_MODIFIER
+	elif s == "ADDITIVE_PROPERTIES_PROJECTILE_MODIFIER":
+		return ItemData.ITEM_SUB_TYPE.ADDITIVE_PROPERTIES_PROJECTILE_MODIFIER
 	elif s == "BEHAVIOR_PROJECTILE_MODIFIER":
 		return ItemData.ITEM_SUB_TYPE.BEHAVIOR_PROJECTILE_MODIFIER
 	else:

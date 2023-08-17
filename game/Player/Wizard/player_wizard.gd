@@ -132,13 +132,13 @@ func _on_enemy_detect_area_body_exited(body):
 func set_equipped_item(equipment_data, index):
 	if equipment_data is EquipmentData:
 		var equipped_item = attack_container.get_child(index)
-		equipped_item.set_equipped_item(equipment_data)
+		return equipped_item.set_equipped_item(equipment_data)
 	else:
-		remove_equipped_item(index)
+		return remove_equipped_item(index)
 
 func remove_equipped_item(index):
 	var equipped_item = attack_container.get_child(index)
-	equipped_item.remove_equipped_item()
+	return equipped_item.remove_equipped_item()
 
 ## deprecated, not used
 #func add_attack(attack_instance, index):
@@ -147,13 +147,17 @@ func remove_equipped_item(index):
 
 func add_attack_by_spellcard_effect(spellcard_effect, index):
 	var equipped_item = attack_container.get_child(index)
-	equipped_item.add_spellcard_effect(spellcard_effect)
+	return equipped_item.add_spellcard_effect(spellcard_effect)
 
 func remove_spellcard_effect(spellcard_effect, index):
 	var equipped_item = attack_container.get_child(index)
-	equipped_item.remove_spellcard_effect(spellcard_effect)
+	return equipped_item.remove_spellcard_effect(spellcard_effect)
 
-
+## unused
+func reset_attacks(_index):
+#	var equipped_item = attack_container.get_child(index)
+#	equipped_item.reset_attacks()
+	pass
 
 
 
