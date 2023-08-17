@@ -221,7 +221,28 @@ func evaluate_spellcard_effect(spellcard_effect, stack):
 				## combine modifiers
 				apply_modifier_to_spellcard(spellcard_effect, top_effect)
 				stack.pop_back()
+			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER:
+				## top = on hit effect modifier + spellcard = mod projectile modifier
+				## cannot combine, append
+				stack.append(spellcard_effect)
+				is_looping = false
 			else:
+				is_looping = false
+		elif spellcard_effect.sub_type == ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER:
+			if top_card_sub_type == ItemData.ITEM_SUB_TYPE.PROJECTILE:
+				stack.append(spellcard_effect)
+				is_looping = false
+			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.PROPERTIES_PROJECTILE_MODIFIER:
+				apply_modifier_to_spellcard(spellcard_effect, top_effect)
+				stack.pop_back()
+			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.ON_FIRE_PROJECTILE_MODIFIER:
+				apply_modifier_to_spellcard(spellcard_effect, top_effect)
+				stack.pop_back()
+			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.ON_HIT_PROJECTILE_MODIFIER:
+				apply_modifier_to_spellcard(spellcard_effect, top_effect)
+				stack.pop_back()
+			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER:
+				stack.append(spellcard_effect)
 				is_looping = false
 		else:
 			is_looping = false

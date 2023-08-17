@@ -184,14 +184,15 @@
 		"icon": "divide_4.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
-		"data": [{
-			"sub_type": "MOD_PROJECTILE_MODIFIER",
-			"required_effects": 1,
-			"damage": 0.25,
-			"num_attacks": 4,
-			"attack_angle": 90,
-			"hit_spawn_type": "SPREAD",
-		}]
+		"data": [
+			{
+				"sub_type": "MOD_PROJECTILE_MODIFIER",
+				"required_effects": 1,
+				"num_attacks": 4,
+				"attack_angle": 90,
+				"hit_spawn_type": "SPREAD",
+			}
+		]
 	},
 	"divide_fan_10": {
 		"name": "Divide By 10",

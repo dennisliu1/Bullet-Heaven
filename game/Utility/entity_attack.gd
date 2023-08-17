@@ -44,6 +44,9 @@ func do_attack():
 	_spawn_hits(attack_properties, attack_properties, hit_object)
 
 func spawn_bullet(spellcard_effect, target_vector, hit_obj):
+	if not hit_obj is Resource:
+		return
+	
 	var hit_instance = hit_obj.instantiate()
 	
 	# TODO replace these player references
