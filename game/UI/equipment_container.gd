@@ -61,8 +61,7 @@ func _on_spellcard_set(new_spellcards):
 		if new_spellcards[i] is SpellCardData:
 			new_spellcards[i].equipment = equipment_data
 	
-	evaluated_spellcard_effects = evaluate_spellcards(spellcard_inventory_data.items)
-	_add_evaluated_spell_attacks()
+	refresh_equipped_item_data()
 
 ## Clear the associated equipment, we only want to set this if
 ## the spellcard is actually socketed into an equipment
@@ -71,10 +70,7 @@ func _on_spellcard_removed(spellcards):
 		if spellcards[i] is SpellCardData:
 			spellcards[i].equipment = ItemData.EMPTY_ITEM_DATA
 	
-	_remove_evaluated_spell_attacks()
-#	_save_spellcard_data()
-	evaluated_spellcard_effects = evaluate_spellcards(spellcard_inventory_data.items)
-	_add_evaluated_spell_attacks()
+	refresh_equipped_item_data()
 
 func display_equipment():
 	equipment_slot.display_item(equipment_data)
@@ -116,7 +112,28 @@ func _add_action(spellcard_effect):
 func reset_attacks():
 	player.reset_attacks(get_index())
 
+func refresh_equipped_item_data():
+	var instance_stack = refresh_evaluated_spellcard_effects()
+	player.sync_bulk_spellcard_effects(instance_stack, get_index())
+
 # ---
+
+func refresh_evaluated_spellcard_effects():
+	evaluated_spellcard_effects = evaluate_spellcards(spellcard_inventory_data.items)
+	
+	return add_unique_keys(evaluated_spellcard_effects)
+
+func add_unique_keys(stack):
+	var keys_count = {}
+	
+	for spellcard_effect in stack:
+		if spellcard_effect.name in keys_count:
+			keys_count[spellcard_effect.name] += 1
+		else:
+			keys_count[spellcard_effect.name] = 0
+		spellcard_effect.key = "%s_%02d" % [spellcard_effect.name, keys_count[spellcard_effect.name]]
+		
+	return stack
 
 func evaluate_spellcards(spellcards: Array):
 	var stack = []
@@ -131,7 +148,11 @@ func evaluate_spellcards(spellcards: Array):
 				continue
 			else:
 				evaluate_spellcard_effect(new_spellcard_effect, stack)
-	return stack
+	var result = []
+	for effect in stack:
+		if effect.sub_type == ItemData.ITEM_SUB_TYPE.PROJECTILE:
+			result.append(effect)
+	return result
 
 
 func evaluate_spellcard_effect(spellcard_effect, stack):
@@ -204,9 +225,9 @@ func evaluate_spellcard_effect(spellcard_effect, stack):
 	return stack
 
 func apply_modifier_to_spellcard(spellcard_effect: SpellCardEffect, modifier_card: SpellCardEffect):
-	if spellcard_effect.sub_type == ItemData.ITEM_SUB_TYPE.PROPERTIES_PROJECTILE_MODIFIER:
+	if modifier_card.sub_type == ItemData.ITEM_SUB_TYPE.PROPERTIES_PROJECTILE_MODIFIER:
 		apply_multiplied_modifier_to_spellcard_effect(spellcard_effect, modifier_card)
-	elif spellcard_effect.sub_type == ItemData.ITEM_SUB_TYPE.ADDITIVE_PROPERTIES_PROJECTILE_MODIFIER:
+	elif modifier_card.sub_type == ItemData.ITEM_SUB_TYPE.ADDITIVE_PROPERTIES_PROJECTILE_MODIFIER:
 		apply_additive_modifier_to_spellcard_effect(spellcard_effect, modifier_card)
 	
 	if modifier_card.get("on_fire_effects"):

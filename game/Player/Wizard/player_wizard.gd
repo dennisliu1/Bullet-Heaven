@@ -140,10 +140,10 @@ func remove_equipped_item(index):
 	var equipped_item = attack_container.get_child(index)
 	return equipped_item.remove_equipped_item()
 
-## deprecated, not used
-#func add_attack(attack_instance, index):
-#	var equipped_item = attack_container.get_child(index)
-#	equipped_item.add_child(attack_instance)
+# deprecated, not used
+func add_attack(attack_instance, index):
+	var equipped_item = attack_container.get_child(index)
+	equipped_item.add_child(attack_instance)
 
 func add_attack_by_spellcard_effect(spellcard_effect, index):
 	var equipped_item = attack_container.get_child(index)
@@ -153,12 +153,9 @@ func remove_spellcard_effect(spellcard_effect, index):
 	var equipped_item = attack_container.get_child(index)
 	return equipped_item.remove_spellcard_effect(spellcard_effect)
 
-## unused
-func reset_attacks(_index):
-#	var equipped_item = attack_container.get_child(index)
-#	equipped_item.reset_attacks()
-	pass
-
+func sync_bulk_spellcard_effects(instance_stack, index):
+	var equipped_item = attack_container.get_child(index)
+	return equipped_item.sync_bulk_spellcard_effects(instance_stack)
 
 
 

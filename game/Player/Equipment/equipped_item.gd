@@ -12,6 +12,9 @@ extends Node2D
 #@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 
+var effect_queue = []
+var effect_dict = {}
+
 
 var attack_instances = {}
 #var compiled_attack = []
@@ -36,6 +39,7 @@ func set_equipped_item(equipped_data):
 	new_action_data.reload_time = equipment_data.reload_time
 	action_data = new_action_data
 	
+	# TODO need to update this, this is wrong
 	var spell_slots = equipment_data.spell_slots
 	for i in range(spell_slots.size()):
 		if spell_slots[i] != ItemData.EMPTY_ITEM_DATA:
@@ -54,17 +58,42 @@ func remove_equipped_item():
 	equipment_data = null
 	reset_attack_sequence()
 
+func sync_bulk_spellcard_effects(instance_stack):
+	for instance_effect in instance_stack:
+		if instance_effect.key in effect_dict:
+			effect_dict[instance_effect.key].delete = false
+			update_effect(instance_effect.key, instance_effect)
+		else:
+			effect_dict[instance_effect.key] = {
+				"delete": false,
+				"effect": instance_effect,
+				"attack": _add_spellcard_effect(instance_effect),
+				"index": effect_queue.size(),
+			}
+			effect_queue.append(instance_effect.key)
+	for effect_key in effect_queue:
+		if effect_dict[effect_key].delete:
+			remove_spellcard_effect(effect_dict[effect_key].effect)
+		else:
+			# reset the flag ahead of time, no need to do another pass
+			effect_dict[effect_key].delete = true
+	# TODO setup mod_projectile_modifier
+	reset_attack_sequence()
+
 func add_spellcard_effect(spellcard_effect):
 	_add_spellcard_effect(spellcard_effect)
 	reset_attack_sequence()
 
-func remove_spellcard_effect(spellcard):
-	var attack_instance = attack_instances[spellcard.key]
+func remove_spellcard_effect(spellcard_effect):
+	var attack_instance = attack_instances[spellcard_effect.key]
 	attacks_group.remove_child(attack_instance)
 
 	var remove_index = attack_queue.find(attack_instance)
 	if remove_index >= 0 and remove_index < attack_queue.size():
 		attack_queue.remove_at(remove_index)
+	
+	effect_queue.remove_at(effect_dict[spellcard_effect.key].index)
+	effect_dict.erase(spellcard_effect.key)
 
 	attack_instance.queue_free()
 
@@ -112,7 +141,7 @@ func reset_attacks():
 
 func start_attack_sequence():
 	current_attack = 0
-	do_attack()
+	action_delay_timer.start()
 	pass
 
 func _on_action_delay_timer_timeout():
@@ -162,7 +191,27 @@ func _setup_test_attack():
 	equip_data.spell_slots.append(spellcard_attack)
 	set_equipped_item(equip_data)
 
+# ---
 
+func update_effect(key, instance_effect):
+	effect_dict[key].effect.energy_drain = instance_effect.energy_drain
+	effect_dict[key].effect.damage = instance_effect.damage
+	effect_dict[key].effect.action_delay = instance_effect.action_delay
+	effect_dict[key].effect.num_attacks = instance_effect.num_attacks
+	effect_dict[key].effect.attack_angle = instance_effect.attack_angle
+	effect_dict[key].effect.spread = instance_effect.spread
+	effect_dict[key].effect.velocity = instance_effect.velocity
+	effect_dict[key].effect.lifetime = instance_effect.lifetime
+	effect_dict[key].effect.radius = instance_effect.radius
+	effect_dict[key].effect.knockback = instance_effect.knockback
+	effect_dict[key].effect.pierce = instance_effect.pierce
+	effect_dict[key].effect.bounce = instance_effect.bounce
+	effect_dict[key].effect.hit_hp = instance_effect.hit_hp
+	effect_dict[key].effect.hit_size = instance_effect.hit_size
+	
+	effect_dict[key].effect.on_hit_effects.clear()
+	for on_hit_effect in instance_effect.on_hit_effects:
+		effect_dict[key].effect.on_hit_effects.append(on_hit_effect)
 
 
 

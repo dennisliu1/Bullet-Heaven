@@ -91,12 +91,14 @@ func populate_equipment_data(target_data, json_spellcard):
 func populate_spellcard_data(spellcard_data, json_spellcard):
 	for spellcard_data_effect in json_spellcard.data:
 		var spellcard_effect = SpellCardEffect.new()
+		spellcard_effect.name = json_spellcard.name
 		populate_spellcard_effect(spellcard_effect, spellcard_data_effect)
 		spellcard_data.effects.append(spellcard_effect)
 	return spellcard_data
 
 func populate_spellcard_effect(spellcard_effect, spellcard_data_effect):
-	spellcard_effect.key = spellcard_effect.name
+	
+	
 	if spellcard_data_effect.has("sub_type"):
 		# defined in ItemData, but set it here cuz we used inheritance
 		spellcard_effect.sub_type = SpellCardEffect.get_sub_type(spellcard_data_effect.sub_type)
