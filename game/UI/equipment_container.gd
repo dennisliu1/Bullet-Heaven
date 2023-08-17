@@ -46,6 +46,7 @@ func _on_equipment_changed(_indexes):
 		spellcard_inventory_data.set_bulk([], 0)
 		spellcard_sockets.clear_children()
 	player.set_equipped_item(equipment_data, get_index())
+	refresh_equipped_item_data()
 
 func _on_spellcard_changed(changed_spellcards):
 	for i in range(changed_spellcards.size()):
