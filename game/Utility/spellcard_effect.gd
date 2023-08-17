@@ -5,6 +5,9 @@ enum HIT_SPAWN_TYPE {RANDOM_TARGET, PLAYER_DIRECTION, SPREAD}
 enum HIT_BEHAVIOR_TYPE {STRAIGHT_LINE, WAVE_PATTERN, HOMING}
 #enum SUMMON_BEHAVIOR_TYPE {FOLLOW_PLAYER, SPIN_AROUND}
 
+# if the effect is a mod_projectile_modifier,
+# we need to know how many effects it is connected to.
+@export var required_effects: int
 @export var energy_drain: float
 @export var damage: float
 @export var damage_shock: float

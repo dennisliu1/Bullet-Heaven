@@ -7,6 +7,8 @@ var hit_object
 var on_fire_hit_objects: Array
 var on_fire_effects: Array
 
+var attack_enabled = true
+
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 @onready var hit_root = get_tree().get_first_node_in_group("hit_root")
 

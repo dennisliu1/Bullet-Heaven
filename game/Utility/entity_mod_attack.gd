@@ -1,6 +1,7 @@
 extends EntityAttack
 
-@export var entity_attack : EntityAttack
+@export var entity_attacks : Array[EntityAttack]
 
 func do_attack():
-	entity_attack.do_attack()
+	for i in range(entity_attacks.size()):
+		entity_attacks[i].do_attack()

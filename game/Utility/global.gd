@@ -97,11 +97,11 @@ func populate_spellcard_data(spellcard_data, json_spellcard):
 	return spellcard_data
 
 func populate_spellcard_effect(spellcard_effect, spellcard_data_effect):
-	
-	
 	if spellcard_data_effect.has("sub_type"):
 		# defined in ItemData, but set it here cuz we used inheritance
 		spellcard_effect.sub_type = SpellCardEffect.get_sub_type(spellcard_data_effect.sub_type)
+	if spellcard_data_effect.has("required_effects"):
+		spellcard_effect.required_effects = spellcard_data_effect.required_effects
 	if spellcard_data_effect.has("energy_drain"):
 		spellcard_effect.energy_drain = spellcard_data_effect.energy_drain
 	if spellcard_data_effect.has("damage"): # TODO should handle multiple damages

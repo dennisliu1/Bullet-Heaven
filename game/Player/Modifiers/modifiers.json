@@ -155,7 +155,8 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"data": [{
-			"sub_type": "SPLIT_PROJECTILE_MODIFIER",
+			"sub_type": "MOD_PROJECTILE_MODIFIER",
+			"required_effects": 1,
 			"damage": 0.5,
 			"num_attacks": 2,
 			"attack_angle": 90,
@@ -169,7 +170,8 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"data": [{
-			"sub_type": "SPLIT_PROJECTILE_MODIFIER",
+			"sub_type": "MOD_PROJECTILE_MODIFIER",
+			"required_effects": 1,
 			"damage": 0.33,
 			"num_attacks": 3,
 			"attack_angle": 90,
@@ -183,7 +185,8 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"data": [{
-			"sub_type": "SPLIT_PROJECTILE_MODIFIER",
+			"sub_type": "MOD_PROJECTILE_MODIFIER",
+			"required_effects": 1,
 			"damage": 0.25,
 			"num_attacks": 4,
 			"attack_angle": 90,
@@ -199,6 +202,7 @@
 		"data": [
 			{
 				"sub_type": "MOD_PROJECTILE_MODIFIER",
+				"required_effects": 1,
 				"num_attacks": 10,
 				"attack_angle": 270,
 				"hit_spawn_type": "SPREAD",

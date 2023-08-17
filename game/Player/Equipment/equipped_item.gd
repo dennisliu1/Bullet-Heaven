@@ -17,7 +17,6 @@ var effect_dict = {}
 
 
 var attack_instances = {}
-#var compiled_attack = []
 
 @onready var attacks_group = $Attacks
 var current_attack = 0
@@ -71,13 +70,36 @@ func sync_bulk_spellcard_effects(instance_stack):
 				"index": effect_queue.size(),
 			}
 			effect_queue.append(instance_effect.key)
-	for effect_key in effect_queue:
+	for i in range(effect_queue.size()):
+		var effect_key = effect_queue[i]
 		if effect_dict[effect_key].delete:
 			remove_spellcard_effect(effect_dict[effect_key].effect)
 		else:
 			# reset the flag ahead of time, no need to do another pass
 			effect_dict[effect_key].delete = true
-	# TODO setup mod_projectile_modifier
+			
+			# reset (re-enable) all attacks, will disable them
+			effect_dict[effect_key].attack.attack_enabled = true
+
+	# Do multi-cast and mod_projectile_modifiers
+	for i in range(effect_queue.size()):
+		var effect_key = effect_queue[i]
+		var spellcard_effect = effect_dict[effect_key].effect
+		if spellcard_effect.sub_type == ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER:
+			# Clear existing multi-cast and mod_projectile_modifier connections 
+			effect_dict[effect_key].attack.entity_attacks.clear()
+
+			# Add new connections
+			for j in range(spellcard_effect.required_effects):
+				var other_index = i+1+j
+				if other_index < effect_queue.size():
+					var other_key = effect_queue[other_index]
+					var other_entry = effect_dict[other_key]
+					effect_dict[effect_key].attack.entity_attacks.append(other_entry.attack)
+					
+					# disable the other attack
+					other_entry.attack.attack_enabled = false
+
 	reset_attack_sequence()
 
 func add_spellcard_effect(spellcard_effect):
@@ -99,7 +121,7 @@ func remove_spellcard_effect(spellcard_effect):
 
 
 func _add_spellcard_effect(spellcard_effect):
-	if spellcard_effect.sub_type == ItemData.ITEM_SUB_TYPE.PROJECTILE or spellcard_effect.sub_type == ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER:
+	if spellcard_effect.sub_type == ItemData.ITEM_SUB_TYPE.PROJECTILE:
 		var attack_object = load(SpellCardEffect.get_attack_type(spellcard_effect.attack_type))
 		var attack_instance = attack_object.instantiate()
 		attack_instance.setup_attack(spellcard_effect, Callable(self, "get_start_position"), Callable(self, "get_direction"))
@@ -107,6 +129,18 @@ func _add_spellcard_effect(spellcard_effect):
 		var entity_attack = EntityAttack.new()
 		entity_attack.attack_properties = spellcard_effect
 #		attack_instance.entity_attack = entity_attack
+		
+		attack_instances[spellcard_effect.key] = attack_instance
+		attacks_group.add_child(attack_instance)
+		attack_queue.append(attack_instance)
+		return attack_instance
+	if spellcard_effect.sub_type == ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER:
+		var attack_object = load("res://Utility/entity_mod_attack.tscn")
+		var attack_instance = attack_object.instantiate()
+#		attack_instance.setup_attack(spellcard_effect, Callable(self, "get_start_position"), Callable(self, "get_direction"))
+		
+		var entity_attack = EntityAttack.new()
+		entity_attack.attack_properties = spellcard_effect
 		
 		attack_instances[spellcard_effect.key] = attack_instance
 		attacks_group.add_child(attack_instance)
@@ -151,7 +185,8 @@ func do_attack():
 	if attack_queue.size() <= current_attack:
 		return
 	
-	attack_queue[current_attack].do_attack() # TODO
+	if attack_queue[current_attack].attack_enabled:
+		attack_queue[current_attack].do_attack()
 	current_attack += 1
 	
 	## Start the next attack.
@@ -164,7 +199,9 @@ func do_attack():
 		action_reload_timer.start()
 
 func _on_action_reload_timer_timeout():
-	start_attack_sequence()
+	current_attack = 0
+	do_attack()
+	action_reload_timer.stop()
 
 func stop_attack_sequence():
 	action_delay_timer.stop()
@@ -194,6 +231,7 @@ func _setup_test_attack():
 # ---
 
 func update_effect(key, instance_effect):
+	effect_dict[key].effect.required_effects = instance_effect.required_effects
 	effect_dict[key].effect.energy_drain = instance_effect.energy_drain
 	effect_dict[key].effect.damage = instance_effect.damage
 	effect_dict[key].effect.action_delay = instance_effect.action_delay

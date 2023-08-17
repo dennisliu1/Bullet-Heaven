@@ -152,6 +152,8 @@ func evaluate_spellcards(spellcards: Array):
 	for effect in stack:
 		if effect.sub_type == ItemData.ITEM_SUB_TYPE.PROJECTILE:
 			result.append(effect)
+		elif effect.sub_type == ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER:
+			result.append(effect)
 	return result
 
 
@@ -194,6 +196,7 @@ func evaluate_spellcard_effect(spellcard_effect, stack):
 				## Note that we don't add the spellcard_effect.
 				## Apply top_effect into spellcard_effect
 #				top_effect.on_fire_effects.append(spellcard_effect)
+				stack.append(spellcard_effect)
 				is_looping = false
 			else:
 				is_looping = false
