@@ -22,15 +22,8 @@ var evaluated_spellcard_effects
 ## Called when the node enters the scene tree for the first time.
 func _ready():
 	equipment_data = equipment_inventory_data.items[0]
-
-#	var item_slot = equipment_slot.get_node("item_slot")
 	equipment_inventory_data.items_changed.connect(_on_equipment_changed)
-	spellcard_inventory_data.items_set.connect(_on_spellcard_set)
-	spellcard_inventory_data.items_removed.connect(_on_spellcard_removed)
-	
-#	equipment_slot.display_modifier_slots()
-#	spellcard_sockets.display_modifier_slots()
-#	copy_spellcard_data_to_inventory()
+	spellcard_inventory_data.items_changed.connect(_on_spellcard_changed)
 
 ## copy equipment's spellcard slot data over into the spellcard_sockets
 ## if equipment_data is empty, don't try populating spellcards
@@ -54,22 +47,10 @@ func _on_equipment_changed(_indexes):
 		spellcard_sockets.clear_children()
 	player.set_equipped_item(equipment_data, get_index())
 
-## associate all newly added spellcards with the equipment.
-## They are socketed to the equipment now.
-func _on_spellcard_set(new_spellcards):
-	for i in range(new_spellcards.size()):
-		if new_spellcards[i] is SpellCardData:
-			new_spellcards[i].equipment = equipment_data
-	
-	refresh_equipped_item_data()
-
-## Clear the associated equipment, we only want to set this if
-## the spellcard is actually socketed into an equipment
-func _on_spellcard_removed(spellcards):
-	for i in range(spellcards.size()):
-		if spellcards[i] is SpellCardData:
-			spellcards[i].equipment = ItemData.EMPTY_ITEM_DATA
-	
+func _on_spellcard_changed(changed_spellcards):
+	for i in range(changed_spellcards.size()):
+		if changed_spellcards[i] is SpellCardData:
+			changed_spellcards[i].equipment = equipment_data
 	refresh_equipped_item_data()
 
 func display_equipment():
