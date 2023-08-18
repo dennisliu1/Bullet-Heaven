@@ -47,7 +47,8 @@ func _unhandled_input(event):
 		for i in range(equipment_containers.size()):
 			equipment_containers[i].visible = !equipment_containers[i].visible
 		inventory_visible = !inventory_visible
-#		get_tree().paused = !get_tree().paused
+		
+#		get_parent().paused = !get_parent().paused
 #		hide_tooltip()
 
 func _on_ItemSlot_gui_input(event, inventory_data, index):

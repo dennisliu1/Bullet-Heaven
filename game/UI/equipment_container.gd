@@ -22,7 +22,9 @@ var evaluated_spellcard_effects
 ## Called when the node enters the scene tree for the first time.
 func _ready():
 	equipment_data = equipment_inventory_data.items[0]
+	equipment_inventory_data.inventory_type = InventoryData.INVENTORY_TYPE.EQUIPMENT_ONLY
 	equipment_inventory_data.items_changed.connect(_on_equipment_changed)
+	spellcard_inventory_data.inventory_type = InventoryData.INVENTORY_TYPE.SPELLS_ONLY
 	spellcard_inventory_data.items_changed.connect(_on_spellcard_changed)
 
 ## copy equipment's spellcard slot data over into the spellcard_sockets
@@ -30,7 +32,6 @@ func _ready():
 func copy_spellcard_data_to_inventory():
 	if equipment_data is EquipmentData:
 		spellcard_inventory_data.set_bulk(equipment_data.spell_slots, equipment_data.num_slots)
-		
 
 func _on_equipment_changed(_indexes):
 	_save_spellcard_data()
