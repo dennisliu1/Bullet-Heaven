@@ -65,7 +65,8 @@ func spawn_bullet(spellcard_effect, target_vector, hit_obj):
 	hit_root.call_deferred("add_child", hit_instance)
 #	hit_root.add_child()
 
-func _load_properties_into_hit(hit_instance, spell_effect):
+func _load_properties_into_hit(hit_instance, spell_effect: SpellCardEffect):
+	hit_instance.attack_properties = spell_effect
 #	hit_instance.energy_drain = spell_effect.energy_drain
 	hit_instance.damage = spell_effect.damage
 #	hit_instance.action_delay = spell_effect.action_delay
@@ -79,6 +80,7 @@ func _load_properties_into_hit(hit_instance, spell_effect):
 	hit_instance.attack_size = spell_effect.hit_size
 #	hit_instance.pierce = spell_effect.pierce
 #	hit_instance.bounce = spell_effect.bounce
+	hit_instance.hit_behaviour_type = spell_effect.hit_behavior_type
 
 	for spellcard in spell_effect.on_hit_effects:
 		hit_instance.on_hit_spellcards.append(spellcard)

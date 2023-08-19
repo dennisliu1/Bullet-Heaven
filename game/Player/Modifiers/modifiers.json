@@ -21,6 +21,8 @@
 			"bounce": 0,
 			"hit_hp": 9999,
 			"hit_size": 1.0,
+			"hit_spawn_type": "PLAYER_DIRECTION",
+			"hit_behavior_type": "WAVE_PATTERN",
 			"attack_type": "tornado",
 			"hit_type": "tornado"
 		}]
