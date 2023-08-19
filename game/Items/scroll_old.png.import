@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bal8ltvii2nb6"
-path="res://.godot/imported/helmet_1.png-783865ce112100f55acf5ce298edba94.ctex"
+uid="uid://qbu7osadm011"
+path="res://.godot/imported/scroll_old.png-7b318a8f25161499aece52c347f683d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Items/Upgrades/helmet_1.png"
-dest_files=["res://.godot/imported/helmet_1.png-783865ce112100f55acf5ce298edba94.ctex"]
+source_file="res://Items/scroll_old.png"
+dest_files=["res://.godot/imported/scroll_old.png-7b318a8f25161499aece52c347f683d3.ctex"]
 
 [params]
 

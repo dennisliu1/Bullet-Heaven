@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpi8lj1y2v0d6"
-path="res://.godot/imported/urand_mage.png-3be7ccf42026b29d2f0736885e9b6f3c.ctex"
+uid="uid://bsngdpelnrdu"
+path="res://.godot/imported/boots_4_green.png-7d005c6fd53fcd26a99db9907a6e95a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Items/Upgrades/urand_mage.png"
-dest_files=["res://.godot/imported/urand_mage.png-3be7ccf42026b29d2f0736885e9b6f3c.ctex"]
+source_file="res://Items/boots_4_green.png"
+dest_files=["res://.godot/imported/boots_4_green.png-7d005c6fd53fcd26a99db9907a6e95a9.ctex"]
 
 [params]
 

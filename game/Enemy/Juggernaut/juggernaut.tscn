@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbcb60vyc4b2t"]
+
+[ext_resource type="PackedScene" uid="uid://b8nqwq0tyly70" path="res://Enemy/enemy_generic.tscn" id="1_uvju4"]
+[ext_resource type="Texture2D" uid="uid://c4dwcu3jj1y6v" path="res://Enemy/Juggernaut/Textures/juggernaut.png" id="2_uy8lb"]
+
+[node name="Juggernaut" instance=ExtResource("1_uvju4")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_uy8lb")
+hframes = 2
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(-0.5, 0)
+
+[node name="HitBox" parent="." index="4"]
+visible = false
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(0, 0)
+
+[editable path="HurtBox"]
+[editable path="HitBox"]

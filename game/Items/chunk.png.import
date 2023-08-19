@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4dwcu3jj1y6v"
-path="res://.godot/imported/juggernaut.png-d5a89c18e9dab51b476eb18ab8258fc7.ctex"
+uid="uid://b2d55d41n72ia"
+path="res://.godot/imported/chunk.png-81d0f861d6270774e30722cc0e7a1acc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Enemy/juggernaut.png"
-dest_files=["res://.godot/imported/juggernaut.png-d5a89c18e9dab51b476eb18ab8258fc7.ctex"]
+source_file="res://Items/chunk.png"
+dest_files=["res://.godot/imported/chunk.png-81d0f861d6270774e30722cc0e7a1acc.ctex"]
 
 [params]
 

@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2lfix078uvmv"]
+
+[ext_resource type="PackedScene" uid="uid://b8nqwq0tyly70" path="res://Enemy/enemy_generic.tscn" id="1_x12tb"]
+[ext_resource type="Texture2D" uid="uid://c2dts15lthhln" path="res://Enemy/Cyclops/Textures/cyclops.png" id="2_fep52"]
+
+[node name="Cyclops" instance=ExtResource("1_x12tb")]
+movement_speed = 16.0
+hp = 100
+knockback_recovery_time = 10.0
+experience = 5
+damage = 5
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_fep52")
+hframes = 2
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0.5, -1)
+
+[node name="HitBox" parent="." index="4"]
+visible = false
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(0, 0)
+
+[editable path="HurtBox"]
+[editable path="HitBox"]

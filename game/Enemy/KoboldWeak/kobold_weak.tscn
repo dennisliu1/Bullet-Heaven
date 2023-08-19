@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgki6vh8bsqra"]
+
+[ext_resource type="PackedScene" uid="uid://b8nqwq0tyly70" path="res://Enemy/enemy_generic.tscn" id="1_fpn26"]
+[ext_resource type="Texture2D" uid="uid://btjgum6mu3bx0" path="res://Enemy/KoboldWeak/Textures/kolbold_weak.png" id="2_br2fh"]
+
+[node name="EnemyKoboldWeak" instance=ExtResource("1_fpn26")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_br2fh")
+hframes = 2
+
+[editable path="HurtBox"]
+[editable path="HitBox"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckys11kttwj5u"
-path="res://.godot/imported/low_boots.png-6a4b8ca01e8181cfbea43f6d1549417d.ctex"
+uid="uid://c81idt2s350dv"
+path="res://.godot/imported/giant_amoeba_new.png-be03814232a0778f8775c6fbaa8c5f73.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Items/Upgrades/low_boots.png"
-dest_files=["res://.godot/imported/low_boots.png-6a4b8ca01e8181cfbea43f6d1549417d.ctex"]
+source_file="res://Enemy/GiantAmoeba/Textures/giant_amoeba_new.png"
+dest_files=["res://.godot/imported/giant_amoeba_new.png-be03814232a0778f8775c6fbaa8c5f73.ctex"]
 
 [params]
 

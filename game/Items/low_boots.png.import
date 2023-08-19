@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2d55d41n72ia"
-path="res://.godot/imported/chunk.png-5248afc3883d67d786f037de3306e0d7.ctex"
+uid="uid://ckys11kttwj5u"
+path="res://.godot/imported/low_boots.png-b0b777d0ef74e2fce4ee863b5e1205a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Items/Upgrades/chunk.png"
-dest_files=["res://.godot/imported/chunk.png-5248afc3883d67d786f037de3306e0d7.ctex"]
+source_file="res://Items/low_boots.png"
+dest_files=["res://.godot/imported/low_boots.png-b0b777d0ef74e2fce4ee863b5e1205a5.ctex"]
 
 [params]
 

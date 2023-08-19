@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btjgum6mu3bx0"
-path="res://.godot/imported/kolbold_weak.png-99a1935f47c51f8ec7c579688f962084.ctex"
+uid="uid://og7qmqxosjdb"
+path="res://.godot/imported/thick_new.png-3462cad671a3f29f5b499b45899d0c65.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemy/EnemyKoboldWeak/Textures/kolbold_weak.png"
-dest_files=["res://.godot/imported/kolbold_weak.png-99a1935f47c51f8ec7c579688f962084.ctex"]
+source_file="res://Items/thick_new.png"
+dest_files=["res://.godot/imported/thick_new.png-3462cad671a3f29f5b499b45899d0c65.ctex"]
 
 [params]
 

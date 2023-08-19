@@ -109,7 +109,11 @@ func remove_spellcard_effect(spellcard_effect):
 	if remove_index >= 0 and remove_index < attack_queue.size():
 		attack_queue.remove_at(remove_index)
 	
-	effect_queue.remove_at(effect_dict[spellcard_effect.key].index)
+	var index = effect_dict[spellcard_effect.key].index
+	if index <= effect_queue.size():
+		effect_queue.remove_at(index)
+	else:
+		pass
 	effect_dict.erase(spellcard_effect.key)
 
 	attack_instance.queue_free()

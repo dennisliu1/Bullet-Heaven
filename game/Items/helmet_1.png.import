@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2dts15lthhln"
-path="res://.godot/imported/cyclops.png-6c61b06375102a501fb6b3b927b74dca.ctex"
+uid="uid://bal8ltvii2nb6"
+path="res://.godot/imported/helmet_1.png-4788d51bb8b200a184b59ab46ea2fca5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Enemy/cyclops.png"
-dest_files=["res://.godot/imported/cyclops.png-6c61b06375102a501fb6b3b927b74dca.ctex"]
+source_file="res://Items/helmet_1.png"
+dest_files=["res://.godot/imported/helmet_1.png-4788d51bb8b200a184b59ab46ea2fca5.ctex"]
 
 [params]
 

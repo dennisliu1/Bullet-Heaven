@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://egaxhs2as13a"]
+
+[ext_resource type="PackedScene" uid="uid://b8nqwq0tyly70" path="res://Enemy/enemy_generic.tscn" id="1_8txni"]
+[ext_resource type="Texture2D" uid="uid://c81idt2s350dv" path="res://Enemy/GiantAmoeba/Textures/giant_amoeba_new.png" id="2_wl034"]
+
+[node name="GiantAmoeba" instance=ExtResource("1_8txni")]
+movement_speed = 150.0
+hp = 90000
+knockback_recovery_time = 9999.0
+experience = 100
+damage = 20
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_wl034")
+
+[editable path="HurtBox"]
+[editable path="HitBox"]
