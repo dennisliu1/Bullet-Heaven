@@ -25,6 +25,24 @@ func _ready():
 	for i in range(min(prefilled_equipment.size(), items.size())):
 		items[i] = Global.get_object_by_key(prefilled_equipment[i][0], prefilled_equipment[i][1])
 
+func add_item(item):
+	if not valid_item_type(item):
+		return item
+	
+	var previous_item = null
+	var index = 0
+	for i in range(items.size()):
+		if items[i] == ItemData.EMPTY_ITEM_DATA:
+			previous_item = items[i]
+			items[i] = item
+			index = i
+			break
+	emit_signal("items_changed", [index])
+	emit_signal("items_set", [item])
+	emit_signal("items_removed", [previous_item])
+	return item
+	
+
 func set_item(index, item):
 	if not valid_item_type(item):
 		return item

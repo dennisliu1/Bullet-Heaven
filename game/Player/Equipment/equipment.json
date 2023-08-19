@@ -1,6 +1,7 @@
 {
 	"armor_leather": {
 		"name": "Leather Armor",
+		"description": "",
 		"icon": "armor_01a.png",
 		"path": "res://Player/Equipment/Armor/Textures/",
 		"type": "EQUIPMENT",
@@ -19,6 +20,7 @@
 	},
 	"boots_leather": {
 		"name": "Leather Boots",
+		"description": "",
 		"icon": "boots_01a.png",
 		"path": "res://Player/Equipment/Armor/Textures/",
 		"type": "EQUIPMENT",
@@ -37,6 +39,7 @@
 	},
 	"gloves_leather": {
 		"name": "Leather Gloves",
+		"description": "",
 		"icon": "gloves_01a.png",
 		"path": "res://Player/Equipment/Armor/Textures/",
 		"type": "EQUIPMENT",
@@ -55,6 +58,7 @@
 	},
 	"hat_leather": {
 		"name": "Leather Hat",
+		"description": "",
 		"icon": "hat_01a.png",
 		"path": "res://Player/Equipment/Armor/Textures/",
 		"type": "EQUIPMENT",
@@ -73,6 +77,7 @@
 	},
 	"helmet_leather": {
 		"name": "Leather Helmet",
+		"description": "",
 		"icon": "helmet_01a.png",
 		"path": "res://Player/Equipment/Armor/Textures/",
 		"type": "EQUIPMENT",
@@ -91,6 +96,7 @@
 	},
 	"necklace_string": {
 		"name": "String Necklace",
+		"description": "",
 		"icon": "necklace_01a.png",
 		"path": "res://Player/Equipment/Armor/Textures/",
 		"type": "EQUIPMENT",

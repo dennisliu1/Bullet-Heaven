@@ -1,10 +1,11 @@
 {
 	"tornado": {
 		"name": "Tornado",
-		"description": "",
+		"description": "A tornado is created and random heads somewhere in the player's direction",
 		"icon": "tentacle_portal.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
+		"tier": [0],
 		"data": [{
 			"sub_type": "PROJECTILE",
 			"energy_drain": 10,
@@ -26,10 +27,11 @@
 	},
 	"javelin": {
 		"name": "Javelin",
-		"description": "",
+		"description": "A magical javelin will follow you attacking enemies in a straight line",
 		"icon": "edit_wands_everywhere.png",
 		"path": "res://Player/Modifiers/Textures/noita perks/",
 		"type": "SPELLCARD",
+		"tier": [0],
 		"data": [{
 			"sub_type": "SUMMON",
 			"energy_drain": 10,
@@ -51,10 +53,11 @@
 	},
 	"lance": {
 		"name": "Lance",
-		"description": "",
+		"description": "A spear of ice is thrown at a random enemy",
 		"icon": "lance.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
+		"tier": [0],
 		"data": [{
 			"sub_type": "PROJECTILE",
 			"energy_drain": 10,
@@ -78,10 +81,11 @@
 	},
 	"arrow": {
 		"name": "Arrow",
-		"description": "",
+		"description": "Summons an arrow",
 		"icon": "arrow.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
+		"tier": [0],
 		"data": [{
 			"sub_type": "PROJECTILE",
 			"energy_drain": 10,
@@ -101,89 +105,47 @@
 			"hit_type": "arrow"
 		}]
 	},
-	"energy_sphere": {
-		"name": "Energy Sphere",
-		"description": "",
-		"icon": "bouncy_orb.png",
-		"path": "res://Player/Modifiers/Textures/noita spells/",
-		"type": "SPELLCARD",
-		"data": [{
-			"sub_type": "PROJECTILE",
-			"energy_drain": 10,
-			"damage": 5,
-			"action_delay": 1,
-			"num_attacks": 1,
-			"spread": 0,
-			"velocity": 100,
-			"lifetime": 10,
-			"radius": 0,
-			"knockback": 0,
-			"pierce": 0,
-			"bounce": 0,
-			"hit_size": 1.0,
-			"attack_type": "energy_sphere",
-			"hit_type": "energy_sphere"
-		}]
-	},
-	"fireball": {
-		"name": "Fireball",
-		"description": "",
-		"icon": "fireball.png",
-		"path": "res://Player/Modifiers/Textures/noita spells/",
-		"type": "SPELLCARD",
-		"data": [{
-			"sub_type": "PROJECTILE",
-			"energy_drain": 10,
-			"damage": 5,
-			"action_delay": 1,
-			"num_attacks": 1,
-			"spread": 0,
-			"velocity": 100,
-			"lifetime": 10,
-			"radius": 0,
-			"knockback": 0,
-			"pierce": 0,
-			"bounce": 0,
-			"attack_type": "fireball",
-			"hit_type": "fireball"
-		}]
-	},
 	"divide_fan_2": {
 		"name": "Divide By 2",
-		"description": "",
+		"description": "The projectile is divided in two pieces with lower damage",
 		"icon": "divide_2.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
-		"data": [{
-			"sub_type": "MOD_PROJECTILE_MODIFIER",
-			"required_effects": 1,
-			"damage": 0.5,
-			"num_attacks": 2,
-			"attack_angle": 90,
-			"hit_spawn_type": "SPREAD",
-		}]
+		"tier": [3,5,6],
+		"data": [
+			{
+				"sub_type": "MOD_PROJECTILE_MODIFIER",
+				"required_effects": 1,
+				"num_attacks": 2,
+				"attack_angle": 90,
+				"hit_spawn_type": "SPREAD",
+			}
+		]
 	},
 	"divide_fan_3": {
 		"name": "Divide By 3",
-		"description": "",
+		"description": "The projectile is divided in three pieces with lower damage",
 		"icon": "divide_3.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
-		"data": [{
-			"sub_type": "MOD_PROJECTILE_MODIFIER",
-			"required_effects": 1,
-			"damage": 0.33,
-			"num_attacks": 3,
-			"attack_angle": 90,
-			"hit_spawn_type": "SPREAD",
-		}]
+		"tier": [4,5,6],
+		"data": [
+			{
+				"sub_type": "MOD_PROJECTILE_MODIFIER",
+				"required_effects": 1,
+				"num_attacks": 3,
+				"attack_angle": 90,
+				"hit_spawn_type": "SPREAD",
+			}
+		]
 	},
 	"divide_fan_4": {
 		"name": "Divide By 4",
-		"description": "",
+		"description": "The projectile is divided in four pieces with lower damage",
 		"icon": "divide_4.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
+		"tier": [5,6],
 		"data": [
 			{
 				"sub_type": "MOD_PROJECTILE_MODIFIER",
@@ -196,10 +158,11 @@
 	},
 	"divide_fan_10": {
 		"name": "Divide By 10",
-		"description": "",
+		"description": "The projectile is divided in ten pieces with lower damage",
 		"icon": "divide_10.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
+		"tier": [6],
 		"data": [
 			{
 				"sub_type": "MOD_PROJECTILE_MODIFIER",
@@ -210,54 +173,26 @@
 			}
 		]
 	},
-	"burst_3": {
-		"name": "Multicast 3",
-		"description": "",
-		"icon": "burst_3.png",
-		"path": "res://Player/Modifiers/Textures/noita spells/",
-		"type": "SPELLCARD",
-		"data": [{
-			"sub_type": "MULTICAST",
-		}]
-	},
 	"heavy_shot": {
 		"name": "Heavy Shot",
-		"description": "",
+		"description": "Greatly increases the damage done by a projectile, at the cost of its speed",
 		"icon": "heavy_shot.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
+		"tier": [2,3,4],
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"damage": 4,
 			"velocity": 0.7,
 		}]
 	},
-	"homing": {
-		"name": "Homing",
-		"description": "",
-		"icon": "homing.png",
-		"path": "res://Player/Modifiers/Textures/noita spells/",
-		"type": "SPELLCARD",
-		"data": [{
-			"sub_type": "BEHAVIOR_PROJECTILE_MODIFIER",
-		}]
-	},
-	"octagonal_bolt_bundle": {
-		"name": "Octagonal Bolt Bundle",
-		"description": "",
-		"icon": "rocket_octagon.png",
-		"path": "res://Player/Modifiers/Textures/noita spells/",
-		"type": "SPELLCARD",
-		"data": [{
-			"sub_type": "ON_HIT_PROJECTILE_MODIFIER",
-		}]
-	},
 	"fireball_thrower": {
 		"name": "Fireball Thrower",
-		"description": "",
+		"description": "Makes a projectile cast eight (8) fireballs in cardinal directions",
 		"icon": "fireball_ray.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
+		"tier": [1,2,4,5],
 		"data": [{
 			"sub_type": "ON_HIT_PROJECTILE_MODIFIER",
 			"on_hit_effects": [

@@ -1,5 +1,8 @@
 extends Node
 
+const spellcard_data_path = "res://Player/Modifiers/modifiers.json"
+const equipment_data_path = "res://Utility/equipment_data.gd"
+
 var data_array = {}
 
 var modifiers
@@ -9,8 +12,13 @@ func _ready():
 	modifiers = read_from_JSON("res://Player/Modifiers/modifiers.json")
 	
 	# Store the key as a key field as well, so we can do lookups?
+	# .. is this still being used?
 	for key in modifiers.keys():
 		modifiers[key]["key"] = key
+	
+	# Prefill data into data_array
+	get_spellcards_data()
+	get_equipment_data()
 
 func read_from_JSON(path):
 	var json_string = FileAccess.get_file_as_string(path)
@@ -34,6 +42,15 @@ func get_object_by_key(data_path: String, key: String):
 	if data_object and data_object.has(key):
 		return data_array[data_path][key].duplicate(true)
 
+func get_spellcards_data():
+	return get_data(spellcard_data_path)
+
+func get_equipment_data():
+	return get_data(equipment_data_path)
+
+
+
+
 func get_data(data_path: String):
 	if not data_array.has(data_path):
 		var json_data = read_from_JSON(data_path)
@@ -45,16 +62,8 @@ func get_data(data_path: String):
 			if data_array[data_path][key] is EquipmentData:
 				populate_equipment_data(data_array[data_path][key], json_data[key])
 			elif data_array[data_path][key] is SpellCardData:
-				
 				populate_spellcard_data(data_array[data_path][key], json_data[key])
 	return data_array[data_path]
-
-func insert_json_data(data_path, key, json_data):
-	data_array[data_path][key].name = json_data.name
-	data_array[data_path][key].texture = load(json_data.path + json_data.icon)
-	data_array[data_path][key].type = ItemData.get_type(json_data.type)
-	# need to move this out?
-	data_array[data_path][key].key = key
 
 func create_item_data_type(type_str):
 	var type = ItemData.get_type(type_str)
@@ -65,6 +74,14 @@ func create_item_data_type(type_str):
 		ItemData.ITEM_TYPE.SPELLCARD:
 			return SpellCardData.new()
 	return result
+
+func insert_json_data(data_path, key, json_data):
+	data_array[data_path][key].name = json_data.name
+	data_array[data_path][key].description = json_data.description
+	data_array[data_path][key].texture = load(json_data.path + json_data.icon)
+	data_array[data_path][key].type = ItemData.get_type(json_data.type)
+	# need to move this out?
+	data_array[data_path][key].dict_key = key
 
 func populate_equipment_data(target_data, json_spellcard):
 	target_data.num_slots = json_spellcard.data.slots # not sure about this...

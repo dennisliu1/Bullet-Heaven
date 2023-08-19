@@ -4,9 +4,12 @@ extends CharacterBody2D
 var movement_speed = 80.0 # 80 pixels per second moved
 
 # player base properties
+var experience_level = 1
 @export var hp = 80
 
 # tracking variables
+var current_experience = 0
+var collected_experience = 0
 var last_movement = Vector2.UP
 
 # references
@@ -26,14 +29,26 @@ var last_movement = Vector2.UP
 
 var ice_spear = preload("res://Player/Attacks/Ice Spear/ice_spear.tscn")
 
+# GUI
+@onready var exp_bar = $CanvasLayer/Control/ExperienceBar
+@onready var label_level = $CanvasLayer/Control/ExperienceBar/LabelLevel
+## level panel
+var available_upgrade_options = [] # what is on offer
+@onready var item_options = preload("res://UI/GUI/ItemOption/item_option.tscn")
+@onready var level_panel = $CanvasLayer/LevelPanel
+@onready var level_result = $CanvasLayer/LevelPanel/LabelLevelUp
+@onready var level_up_options: VBoxContainer  = $CanvasLayer/LevelPanel/LevelUpOptions
+
 # enemy related
 var enemy_close = []
 
-
+@onready var equipment_inventory : InventoryData = get_tree().get_first_node_in_group("equipment_inventory")
+@onready var spellcard_inventory : InventoryData = get_tree().get_first_node_in_group("spellcard_inventory")
 
 
 func _ready():
 	attack()
+	set_expbar(current_experience, calculate_experience_cap())
 
 func attack():
 #	if icespear_level > 0:
@@ -159,4 +174,94 @@ func sync_bulk_spellcard_effects(instance_stack, index):
 
 
 
+
+
+## The Grab Area is the area where items are attracted to the player.
+func _on_grab_area_area_entered(area):
+	if area.is_in_group("loot"):
+		area.target = self
+
+## The Collect Area is the area on the player which picks up the item.
+func _on_collect_area_area_entered(area):
+	if area.is_in_group("loot"):
+		var gem_exp = area.collect()
+		calculate_experience(gem_exp)
+
+func calculate_experience(gem_exp):
+	var exp_required = calculate_experience_cap()
+	collected_experience += gem_exp
+	if current_experience + collected_experience >= exp_required: # level up
+		collected_experience -= exp_required - current_experience
+		experience_level += 1
+#		label_level.text = str("Level:", experience_level)
+		current_experience = 0
+		exp_required = calculate_experience_cap()
+		level_up()
+#		calculate_experience(0) # multi-levelup; TODO remove the recursion
+	else:
+		current_experience += collected_experience
+		collected_experience = 0
+	set_expbar(current_experience, exp_required)
+
+func set_expbar(set_value = 1, set_max_value = 100):
+	exp_bar.value = set_value
+	exp_bar.max_value = set_max_value
+
+## TODO move this into a json file to set
+func calculate_experience_cap():
+	var exp_cap = experience_level
+	if experience_level < 20:
+		exp_cap = experience_level * 5
+	elif experience_level < 40:
+		exp_cap = 95 * (experience_level-19) * 8
+	else:
+		exp_cap = 255 + (experience_level-39) * 12
+	return exp_cap
+
+func level_up():
+	label_level.text = str("Level:", experience_level)
+	_show_level_up_panel()
+	get_tree().paused = true # pauses the game!
+
+## TODO Fully random spells for now, do tiered options in the future
+func get_random_item():
+	var random_item = Global.get_spellcards_data().values().pick_random()
+	available_upgrade_options.append(random_item)
+	return random_item
+
+## item_option connection: When user clicks on the option, it calls this method.
+func upgrade_character(upgrade):
+	## Add selected spell to spell inventory
+	spellcard_inventory.add_item(upgrade)
+	_reset_level_up_panel()
+	get_tree().paused = false
+
+## move panel into focus
+func _show_level_up_panel():
+	var tween = level_panel.create_tween()
+	tween.tween_property(level_panel, "position", Vector2(220, 50), 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
+	tween.play()
+	level_panel.visible = true
+	
+	# add level up options
+	var options = 0
+	var options_max = 3
+	while options < options_max:
+		var option_choice = item_options.instantiate()
+		option_choice.item = get_random_item()
+		level_up_options.add_child(option_choice)
+		options += 1
+
+## Reset Level Up Panel position
+func _reset_level_up_panel():
+	level_panel.visible = false
+	level_panel.position = Vector2(800, 20)
+	
+	## Remove the upgrade options
+	var option_children = level_up_options.get_children()
+	for i in option_children:
+		i.queue_free()
+	
+	## clear the upgrade options array
+	available_upgrade_options.clear()
 

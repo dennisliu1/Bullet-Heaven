@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgfkedbx8qnfr"]
+
+[ext_resource type="Texture2D" uid="uid://b4v801r7kyulc" path="res://Player/Equipment/Weapons/Textures/sword.png" id="1_g6g03"]
+[ext_resource type="Script" path="res://UI/GUI/ItemOption/item_option.gd" id="1_shg8n"]
+[ext_resource type="FontFile" uid="uid://b1v5rrvoxovby" path="res://Font/tenderness.otf" id="2_q4ucn"]
+
+[node name="ItemOption" type="ColorRect"]
+custom_minimum_size = Vector2(180, 50)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -460.0
+offset_bottom = -310.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.54902, 0.54902, 0.54902, 1)
+script = ExtResource("1_shg8n")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 26.0
+offset_bottom = 26.0
+color = Color(0, 0, 0, 1)
+
+[node name="ItemIcon" type="TextureRect" parent="ColorRect"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_g6g03")
+
+[node name="LabelName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 39.0
+offset_right = 86.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("2_q4ucn")
+text = "Name"
+
+[node name="LabelDescription" type="Label" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 27.0
+offset_right = 176.0
+offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("2_q4ucn")
+theme_override_font_sizes/font_size = 8
+text = "Description of Item"
+
+[node name="LabelLevel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 3.0
+offset_right = 172.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("2_q4ucn")
+theme_override_font_sizes/font_size = 12
+text = "Level: 1"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

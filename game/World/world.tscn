@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://btacp1wsuqe5h"]
+[gd_scene load_steps=14 format=3 uid="uid://btacp1wsuqe5h"]
 
 [ext_resource type="Texture2D" uid="uid://b3f2e5314moyj" path="res://World/textures/dirt_full_new.png" id="1_tryyk"]
 [ext_resource type="PackedScene" uid="uid://bufkhdjbxweeb" path="res://Player/Wizard/player_wizard.tscn" id="2_1iqjs"]
 [ext_resource type="PackedScene" uid="uid://d3raqsj8wo72u" path="res://Utility/enemy_spawner.tscn" id="3_oliu4"]
 [ext_resource type="PackedScene" uid="uid://b8nqwq0tyly70" path="res://Enemy/EnemyKoboldWeak/enemy_kobold_weak.tscn" id="4_avijo"]
 [ext_resource type="Script" path="res://Utility/spawn_info.gd" id="5_n6r4v"]
+[ext_resource type="PackedScene" uid="uid://du6ijgjbwxogr" path="res://Items/ExperienceGem/experience_gem.tscn" id="6_4icf8"]
 [ext_resource type="PackedScene" uid="uid://bwvyc2fw45qpq" path="res://UI/inventory_menu.tscn" id="7_5okx2"]
 [ext_resource type="PackedScene" uid="uid://cahq3xv6kp8vs" path="res://UI/drag_preview/drag_preview.tscn" id="8_m1mmg"]
 [ext_resource type="PackedScene" uid="uid://duom5cnplrerl" path="res://UI/item_slot.tscn" id="8_wml3y"]
@@ -35,15 +36,19 @@ spawns = Array[ExtResource("5_n6r4v")]([SubResource("Resource_m0kui")])
 
 [node name="Loot" type="Node" parent="." groups=["loot"]]
 
-[node name="EquipmentInventoryData" parent="." instance=ExtResource("9_r8gd6")]
+[node name="experience_gem" parent="Loot" instance=ExtResource("6_4icf8")]
+position = Vector2(70, 70)
+experience = 100
+
+[node name="EquipmentInventoryData" parent="." groups=["equipment_inventory"] instance=ExtResource("9_r8gd6")]
 cols = 9
 rows = 2
 prefilled_equipment = Array[Array]([["res://Player/Equipment/equipment.json", "armor_leather"], ["res://Player/Equipment/equipment.json", "boots_leather"]])
 
-[node name="SpellCardInventoryData" parent="." instance=ExtResource("9_r8gd6")]
+[node name="SpellCardInventoryData" parent="." groups=["spellcard_inventory"] instance=ExtResource("9_r8gd6")]
 cols = 9
 rows = 4
-prefilled_equipment = Array[Array]([["res://Player/Modifiers/modifiers.json", "lance"], ["res://Player/Modifiers/modifiers.json", "divide_fan_10"], ["res://Player/Modifiers/modifiers.json", "burst_3"], ["res://Player/Modifiers/modifiers.json", "heavy_shot"], ["res://Player/Modifiers/modifiers.json", "homing"], ["res://Player/Modifiers/modifiers.json", "octagonal_bolt_bundle"], ["res://Player/Modifiers/modifiers.json", "tornado"], ["res://Player/Modifiers/modifiers.json", "javelin"], ["res://Player/Modifiers/modifiers.json", "arrow"], ["res://Player/Modifiers/modifiers.json", "energy_sphere"], ["res://Player/Modifiers/modifiers.json", "fireball"], ["res://Player/Modifiers/modifiers.json", "fireball_thrower"], ["res://Player/Modifiers/modifiers.json", "divide_fan_4"]])
+prefilled_equipment = Array[Array]([["res://Player/Modifiers/modifiers.json", "lance"], ["res://Player/Modifiers/modifiers.json", "divide_fan_10"], ["res://Player/Modifiers/modifiers.json", "heavy_shot"], ["res://Player/Modifiers/modifiers.json", "tornado"], ["res://Player/Modifiers/modifiers.json", "javelin"], ["res://Player/Modifiers/modifiers.json", "arrow"], ["res://Player/Modifiers/modifiers.json", "fireball_thrower"]])
 
 [node name="UI" type="CanvasLayer" parent="."]
 

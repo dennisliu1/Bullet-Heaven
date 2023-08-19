@@ -12,10 +12,12 @@ enum ITEM_SUB_TYPE {
 static var EMPTY_ITEM_DATA = ItemData.new()
 
 @export var name: String = ""
+@export var description: String = ""
 @export var texture: Texture
 @export var type: ITEM_TYPE
 @export var sub_type: ITEM_SUB_TYPE
 @export var key : String
+@export var dict_key: String
 
 static func get_type(s : String) -> ITEM_TYPE:
 	if s == "EQUIPMENT":
