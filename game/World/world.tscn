@@ -84,3 +84,4 @@ visible = false
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_sqsmm")
 volume_db = -15.0
+autoplay = true

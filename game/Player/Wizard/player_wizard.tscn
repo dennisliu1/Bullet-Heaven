@@ -147,6 +147,7 @@ vertical_alignment = 2
 
 [node name="LevelPanel" type="Panel" parent="CanvasLayer"]
 process_mode = 2
+visible = false
 offset_left = 800.0
 offset_top = 50.0
 offset_right = 1000.0
@@ -172,6 +173,7 @@ offset_bottom = 100.0
 
 [node name="PanelDeath" type="Panel" parent="CanvasLayer"]
 process_mode = 2
+visible = false
 offset_left = 800.0
 offset_top = 50.0
 offset_right = 1000.0
@@ -191,6 +193,39 @@ vertical_alignment = 1
 [node name="AudioDefeat" type="AudioStreamPlayer" parent="CanvasLayer/PanelDeath"]
 
 [node name="ButtonMenu" parent="CanvasLayer/PanelDeath" instance=ExtResource("8_6tsfu")]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 200.0
+offset_right = 140.0
+offset_bottom = 230.0
+text = "Menu"
+
+[node name="PanelPause" type="Panel" parent="CanvasLayer"]
+process_mode = 2
+visible = false
+offset_left = 800.0
+offset_top = 50.0
+offset_right = 1000.0
+offset_bottom = 300.0
+
+[node name="LabelPauseMenu" type="Label" parent="CanvasLayer/PanelPause"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("5_qsjk3")
+text = "Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonReturnToGame" parent="CanvasLayer/PanelPause" instance=ExtResource("8_6tsfu")]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 152.0
+offset_right = 163.0
+offset_bottom = 182.0
+text = "Return to game"
+
+[node name="ButtonMenu" parent="CanvasLayer/PanelPause" instance=ExtResource("8_6tsfu")]
 layout_mode = 0
 offset_left = 60.0
 offset_top = 200.0
@@ -224,6 +259,8 @@ vertical_alignment = 1
 [connection signal="area_entered" from="GrabArea" to="." method="_on_grab_area_area_entered"]
 [connection signal="area_entered" from="CollectArea" to="." method="_on_collect_area_area_entered"]
 [connection signal="click_end" from="CanvasLayer/PanelDeath/ButtonMenu" to="." method="_on_button_menu_click_end"]
+[connection signal="click_end" from="CanvasLayer/PanelPause/ButtonReturnToGame" to="." method="_on_button_return_to_game_click_end"]
+[connection signal="click_end" from="CanvasLayer/PanelPause/ButtonMenu" to="." method="_on_button_menu_click_end"]
 
 [editable path="HurtBox"]
 [editable path="Attack/EquippedItem"]

@@ -45,6 +45,10 @@ var available_upgrade_options = [] # what is on offer
 @onready var audio_victory = $CanvasLayer/PanelDeath/AudioVictory
 @onready var audio_defeat = $CanvasLayer/PanelDeath/AudioDefeat
 @onready var death_button_menu = $CanvasLayer/PanelDeath/ButtonMenu
+## Pause Menu
+@onready var pause_panel = $CanvasLayer/PanelPause
+@onready var pause_button_back_to_game = $CanvasLayer/PanelPause/ButtonReturnToGame
+@onready var pause_button_menu = $CanvasLayer/PanelPause/ButtonMenu
 
 # enemy related
 var enemy_close = []
@@ -58,6 +62,17 @@ func _ready():
 	set_expbar(current_experience, calculate_experience_cap())
 	# initialize health bar
 	_on_hurt_box_hurt(0, 0, 0)
+	
+	set_process_unhandled_input(true)
+
+func _unhandled_input(event):
+	if event.is_action_pressed("show_pause_menu"):
+		if pause_panel.visible:
+			_reset_pause_panel()
+		else:
+			_show_pause_panel()
+		
+		
 
 func _physics_process(_delta): # 60 FPS
 	movement()
@@ -281,3 +296,22 @@ func change_time(argtime = 0):
 	if get_seconds < 10:
 		get_seconds = str(0, get_seconds)
 	label_time.text = str(get_minutes, ":", get_seconds)
+
+# --- Pause Menu ---
+
+func _on_button_return_to_game_click_end():
+	_reset_pause_panel()
+
+## move panel into focus
+func _show_pause_panel():
+	var tween = pause_panel.create_tween()
+	tween.tween_property(pause_panel, "position", Vector2(220, 50), 0.1).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
+	tween.play()
+	pause_panel.visible = true
+	get_tree().paused = true
+
+## Reset Pause Panel position
+func _reset_pause_panel():
+	pause_panel.visible = false
+	pause_panel.position = Vector2(800, 20)
+	get_tree().paused = false
