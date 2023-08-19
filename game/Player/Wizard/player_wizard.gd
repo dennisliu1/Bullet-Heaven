@@ -22,12 +22,6 @@ var last_movement = Vector2.UP
 
 ## ice spear
 @onready var attack_container = $Attack
-#var icespear_ammo = 1
-#var icespear_baseammo = 1
-#var icespear_attackspeed = 1.5
-#var icespear_level = 1
-#@onready var icespear_timer = $Attack/IceSpearTimer
-#@onready var icespear_attack_timer = $Attack/IceSpearTimer/IceSpearAttackTimer
 
 var ice_spear = preload("res://Player/Attacks/Ice Spear/ice_spear.tscn")
 
@@ -61,18 +55,9 @@ var enemy_close = []
 signal player_death()
 
 func _ready():
-	attack()
 	set_expbar(current_experience, calculate_experience_cap())
 	# initialize health bar
 	_on_hurt_box_hurt(0, 0, 0)
-	
-
-func attack():
-#	if icespear_level > 0:
-#		icespear_timer.wait_time = icespear_attackspeed
-#		if icespear_timer.is_stopped():
-#			icespear_timer.start()
-	pass
 
 func _physics_process(_delta): # 60 FPS
 	movement()
@@ -255,6 +240,7 @@ func upgrade_character(upgrade):
 	spellcard_inventory.add_item(upgrade)
 	_reset_level_up_panel()
 	get_tree().paused = false
+	calculate_experience(0)
 
 ## move panel into focus
 func _show_level_up_panel():

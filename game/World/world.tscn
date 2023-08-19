@@ -28,7 +28,7 @@ region_rect = Rect2(-4000, -4000, 4000, 4000)
 
 [node name="experience_gem" parent="Loot" instance=ExtResource("6_4icf8")]
 position = Vector2(70, 70)
-experience = 100
+experience = 500
 
 [node name="EquipmentInventoryData" parent="." groups=["equipment_inventory"] instance=ExtResource("9_r8gd6")]
 cols = 9
@@ -84,4 +84,3 @@ visible = false
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_sqsmm")
 volume_db = -15.0
-autoplay = true
