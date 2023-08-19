@@ -1,7 +1,7 @@
 extends Node
 
 const spellcard_data_path = "res://Player/Modifiers/modifiers.json"
-const equipment_data_path = "res://Utility/equipment_data.gd"
+const equipment_data_path = "res://Player/Equipment/equipment.json"
 
 var data_array = {}
 
@@ -174,3 +174,25 @@ func populate_spellcard_effect(spellcard_effect, spellcard_data_effect):
 			var new_data = populate_spellcard_effect(SpellCardEffect.new(), on_hit_spellcard_effect_data)
 			spellcard_effect.on_hit_effects.append(new_data)
 	return spellcard_effect
+
+func get_enemy_spawn_data() -> Array[Spawn_info]:
+	var result : Array[Spawn_info] = []
+	var enemy_spawn_json = read_from_JSON("res://Utility/EnemySpawnData/forest_enemy_spawns.json")
+	for i in range(enemy_spawn_json.size()):
+		var spawn_info_json = enemy_spawn_json[i]
+		var spawn_info = Spawn_info.new()
+		if spawn_info_json.has("time_start"):
+			spawn_info.time_start = spawn_info_json.time_start
+		if spawn_info_json.has("time_end"):
+			spawn_info.time_end = spawn_info_json.time_end
+		if spawn_info_json.has("enemy_scene"):
+			spawn_info.enemy = load(spawn_info_json.enemy_scene)
+		if spawn_info_json.has("enemy_num"):
+			spawn_info.enemy_num = spawn_info_json.enemy_num
+		if spawn_info_json.has("enemy_spawn_delay"):
+			spawn_info.enemy_spawn_delay = spawn_info_json.enemy_spawn_delay
+		result.append(spawn_info)
+	return result
+
+
+

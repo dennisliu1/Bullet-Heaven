@@ -1,0 +1,9 @@
+[
+	{
+		"time_start": 0,
+		"time_end": 300,
+		"enemy_scene": "res://Enemy/EnemyKoboldWeak/enemy_kobold_weak.tscn",
+		"enemy_num": 10,
+		"enemy_spawn_delay": 1,
+	}
+]

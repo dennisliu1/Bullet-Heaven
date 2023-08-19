@@ -16,13 +16,16 @@ signal changetime(time)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Notify the player the time is updated.
-#	connect("changetime", Callable(player, "change_time"))
+	connect("changetime", Callable(player, "change_time"))
+	
+	# load data from json instead
+	var loaded_data : Array[Spawn_info] = Global.get_enemy_spawn_data()
+	spawns.append_array(loaded_data)
 	pass
 
 func _on_timer_timeout():
 	time += 1
-
-	var enemy_spawns = spawns # TODO: Is this needed?
+	var enemy_spawns = spawns
 	for enemy_spawn in enemy_spawns:
 		if enemy_spawn.time_start <= time and time <= enemy_spawn.time_end and _delay_spawn(enemy_spawn):
 			_spawn_enemies(enemy_spawn)

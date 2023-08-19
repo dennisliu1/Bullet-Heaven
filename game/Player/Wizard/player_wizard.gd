@@ -2,9 +2,11 @@ extends CharacterBody2D
 
 # player game variables
 var movement_speed = 80.0 # 80 pixels per second moved
+var armor = 0
 
 # player base properties
 var experience_level = 1
+var maxhp = 80
 @export var hp = 80
 
 # tracking variables
@@ -30,14 +32,25 @@ var last_movement = Vector2.UP
 var ice_spear = preload("res://Player/Attacks/Ice Spear/ice_spear.tscn")
 
 # GUI
+## timer
+var time = 0
+@onready var label_time = $CanvasLayer/LabelTime
+## experience
 @onready var exp_bar = $CanvasLayer/Control/ExperienceBar
 @onready var label_level = $CanvasLayer/Control/ExperienceBar/LabelLevel
+@onready var health_bar = $CanvasLayer/HealthBar
 ## level panel
 var available_upgrade_options = [] # what is on offer
 @onready var item_options = preload("res://UI/GUI/ItemOption/item_option.tscn")
 @onready var level_panel = $CanvasLayer/LevelPanel
 @onready var level_result = $CanvasLayer/LevelPanel/LabelLevelUp
 @onready var level_up_options: VBoxContainer  = $CanvasLayer/LevelPanel/LevelUpOptions
+## Death Menu
+@onready var death_panel = $CanvasLayer/PanelDeath
+@onready var label_result = $CanvasLayer/PanelDeath/LabelResult
+@onready var audio_victory = $CanvasLayer/PanelDeath/AudioVictory
+@onready var audio_defeat = $CanvasLayer/PanelDeath/AudioDefeat
+@onready var death_button_menu = $CanvasLayer/PanelDeath/ButtonMenu
 
 # enemy related
 var enemy_close = []
@@ -45,10 +58,14 @@ var enemy_close = []
 @onready var equipment_inventory : InventoryData = get_tree().get_first_node_in_group("equipment_inventory")
 @onready var spellcard_inventory : InventoryData = get_tree().get_first_node_in_group("spellcard_inventory")
 
+signal player_death()
 
 func _ready():
 	attack()
 	set_expbar(current_experience, calculate_experience_cap())
+	# initialize health bar
+	_on_hurt_box_hurt(0, 0, 0)
+	
 
 func attack():
 #	if icespear_level > 0:
@@ -103,32 +120,35 @@ func _change_sprite_direction(move_direction):
 
 func _on_hurt_box_hurt(damage, _angle, _knockback):
 	hp -= damage
-	print(hp)
+	hp -= clamp(damage - armor, 1.0, 999)
+	health_bar.max_value = maxhp
+	health_bar.value = hp
+	if hp <= 0:
+		death()
 
-#	hp -= clamp(damage - armor, 1.0, 999)
-#	health_bar.max_value = maxhp
-#	health_bar.value = hp
-#	if hp <= 0:
-#		death()
+func death():
+	death_panel.visible = true
+	emit_signal("player_death")
+	get_tree().paused = true
+	
+	## show death menu
+	var tween = death_panel.create_tween()
+	tween.tween_property(death_panel, "position", Vector2(220, 50), 3.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.play()
+	
+	## choose victory or defeat message
+	if time >= 300:
+		label_result.text = "You win!"
+		audio_victory.play()
+	else:
+		label_result.text = "You lose :("
+		audio_defeat.play()
 
+func _on_button_menu_click_end():
+	get_tree().paused = false
+	var _level = get_tree().change_scene_to_file("res://UI/Menus/title_screen.tscn")
 
-#func _on_ice_spear_timer_timeout():
-#	icespear_ammo += icespear_baseammo
-#	icespear_attack_timer.start()
-#
-#
-#func _on_ice_spear_attack_timer_timeout():
-#	if icespear_ammo > 0:
-#		var icespear_attack = ice_spear.instantiate()
-#		icespear_attack.position = position
-#		icespear_attack.target = get_random_target()
-##		icespear_attack.level = icespear_level
-#		add_child(icespear_attack)
-#		icespear_ammo -= 1
-#		if icespear_ammo > 0:
-#			icespear_attack_timer.start()
-#		else:
-#			icespear_attack_timer.stop()
+# ---
 
 func get_random_target():
 	if enemy_close.size() > 0:
@@ -172,7 +192,7 @@ func sync_bulk_spellcard_effects(instance_stack, index):
 	var equipped_item = attack_container.get_child(index)
 	return equipped_item.sync_bulk_spellcard_effects(instance_stack)
 
-
+# ---
 
 
 
@@ -265,3 +285,13 @@ func _reset_level_up_panel():
 	## clear the upgrade options array
 	available_upgrade_options.clear()
 
+## called by enemy_spawner to update the time
+func change_time(argtime = 0):
+	time = argtime
+	var get_minutes = int(time/60.0)
+	var get_seconds = time % 60
+	if get_minutes < 10:
+		get_minutes = str(0, get_minutes)
+	if get_seconds < 10:
+		get_seconds = str(0, get_seconds)
+	label_time.text = str(get_minutes, ":", get_seconds)
