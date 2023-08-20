@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cspg1i714suqd"]
+[gd_scene load_steps=7 format=3 uid="uid://cspg1i714suqd"]
 
 [ext_resource type="Script" path="res://UI/Menus/character_equipment_menu.gd" id="1_0l8hm"]
 [ext_resource type="PackedScene" uid="uid://bmrpavygc2kex" path="res://UI/Menus/basic_button.tscn" id="2_cyhpm"]
 [ext_resource type="PackedScene" uid="uid://bwvyc2fw45qpq" path="res://UI/inventory_menu.tscn" id="3_78pu5"]
 [ext_resource type="PackedScene" uid="uid://bwhfdhlm2ypc5" path="res://Utility/inventory_data.tscn" id="3_ekc4y"]
 [ext_resource type="PackedScene" uid="uid://duom5cnplrerl" path="res://UI/item_slot.tscn" id="5_lnh1u"]
+[ext_resource type="PackedScene" uid="uid://dwcyj7eevxr4a" path="res://UI/tooltip/tooltip.tscn" id="6_2hcyc"]
 
 [node name="CharacterEquipmentMenu" type="Control"]
 layout_mode = 3
@@ -16,7 +17,6 @@ grow_vertical = 2
 script = ExtResource("1_0l8hm")
 
 [node name="BackgroundRect" type="ColorRect" parent="."]
-visible = false
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
@@ -47,25 +47,62 @@ offset_right = 624.0
 offset_bottom = 344.0
 text = "Next"
 
-[node name="InventoryData" parent="." instance=ExtResource("3_ekc4y")]
-cols = 9
-rows = 5
-prefilled_equipment = Array[Array]([["res://Player/Modifiers/modifiers.json", "lance"]])
-
-[node name="SpellInventory" parent="." node_paths=PackedStringArray("inventory_data") instance=ExtResource("3_78pu5")]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 63.0
-offset_right = 61.0
-offset_bottom = 103.0
-columns = 9
-inventory_data = NodePath("../InventoryData")
-ItemSlot = ExtResource("5_lnh1u")
-
 [node name="SpellSelection" type="Control" parent="."]
 anchors_preset = 0
+offset_left = 350.0
+offset_top = 148.0
+offset_right = 390.0
+offset_bottom = 188.0
+
+[node name="Label" type="Label" parent="SpellSelection"]
+layout_mode = 0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 23.0
+text = "Starting Spell"
+
+[node name="SpellInventoryData" parent="SpellSelection" instance=ExtResource("3_ekc4y")]
+cols = 9
+rows = 5
+prefilled_equipment = Array[Array]([["res://Player/Modifiers/modifiers.json", "lance"], ["res://Player/Modifiers/modifiers.json", "tornado"]])
+inventory_type = 2
+
+[node name="SpellInventoryMenu" parent="SpellSelection" node_paths=PackedStringArray("inventory_data") instance=ExtResource("3_78pu5")]
+layout_mode = 0
+offset_top = 32.0
+offset_bottom = 72.0
+columns = 9
+inventory_data = NodePath("../SpellInventoryData")
+ItemSlot = ExtResource("5_lnh1u")
+
+[node name="EquipmentSelection" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 148.0
+offset_right = 56.0
+offset_bottom = 188.0
+
+[node name="Label" type="Label" parent="EquipmentSelection"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Starting Equipment"
+
+[node name="EquipmentInventoryData" parent="EquipmentSelection" instance=ExtResource("3_ekc4y")]
+cols = 9
+rows = 5
+prefilled_equipment = Array[Array]([["res://Player/Equipment/equipment.json", "armor_leather"], ["res://Player/Equipment/equipment.json", "boots_leather"]])
+inventory_type = 1
+
+[node name="EquipmentInventoryMenu" parent="EquipmentSelection" node_paths=PackedStringArray("inventory_data") instance=ExtResource("3_78pu5")]
+layout_mode = 0
+offset_top = 32.0
+offset_bottom = 72.0
+columns = 9
+inventory_data = NodePath("../EquipmentInventoryData")
+ItemSlot = ExtResource("5_lnh1u")
+
+[node name="Tooltip" parent="." instance=ExtResource("6_2hcyc")]
+layout_mode = 0
 
 [connection signal="click_end" from="BackButton" to="." method="_on_back_button_click_end"]
 [connection signal="click_end" from="NextButton" to="." method="_on_next_button_click_end"]

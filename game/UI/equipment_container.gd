@@ -27,6 +27,12 @@ func _ready():
 	spellcard_inventory_data.inventory_type = InventoryData.INVENTORY_TYPE.SPELLS_ONLY
 	spellcard_inventory_data.items_changed.connect(_on_spellcard_changed)
 
+func set_equipment(item, index=0):
+	equipment_inventory_data.set_item(index, item)
+
+func add_spellcard(item):
+	spellcard_inventory_data.add_item(item)
+
 ## copy equipment's spellcard slot data over into the spellcard_sockets
 ## if equipment_data is empty, don't try populating spellcards
 func copy_spellcard_data_to_inventory():

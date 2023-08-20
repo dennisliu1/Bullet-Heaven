@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://Utility/global.gd"
 Inventory="*res://UI/inventory.gd"
+StartingGameData="*res://Utility/starting_game_data.gd"
 
 [display]
 

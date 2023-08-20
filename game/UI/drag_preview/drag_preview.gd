@@ -21,6 +21,7 @@ func _ready():
 		item_slot.gui_input.connect(_on_ItemSlot_gui_input.bind(item_slot.inventory_data, index))
 #		item_slot.connect("gui_input", self, "_on_ItemSlot_gui_input", [index])
 	
+	# default hide the inventory menus
 	for i in range(inventory_menu_array.size()):
 		inventory_menu_array[i].visible = false
 	for i in range(equipment_containers.size()):

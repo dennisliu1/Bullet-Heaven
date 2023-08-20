@@ -1,7 +1,7 @@
 {
 	"armor_leather": {
 		"name": "Leather Armor",
-		"description": "",
+		"description": "Armor made out of common grade leather.",
 		"icon": "armor_01a.png",
 		"path": "res://Player/Equipment/Armor/Textures/",
 		"type": "EQUIPMENT",
@@ -20,7 +20,7 @@
 	},
 	"boots_leather": {
 		"name": "Leather Boots",
-		"description": "",
+		"description": "Boots made out of common grade leather.",
 		"icon": "boots_01a.png",
 		"path": "res://Player/Equipment/Armor/Textures/",
 		"type": "EQUIPMENT",
@@ -39,7 +39,7 @@
 	},
 	"gloves_leather": {
 		"name": "Leather Gloves",
-		"description": "",
+		"description": "Gloves made out of common grade leather.",
 		"icon": "gloves_01a.png",
 		"path": "res://Player/Equipment/Armor/Textures/",
 		"type": "EQUIPMENT",
@@ -58,7 +58,7 @@
 	},
 	"hat_leather": {
 		"name": "Leather Hat",
-		"description": "",
+		"description": "Hat made out of common grade leather.",
 		"icon": "hat_01a.png",
 		"path": "res://Player/Equipment/Armor/Textures/",
 		"type": "EQUIPMENT",
@@ -77,7 +77,7 @@
 	},
 	"helmet_leather": {
 		"name": "Leather Helmet",
-		"description": "",
+		"description": "Helmet made out of common grade leather.",
 		"icon": "helmet_01a.png",
 		"path": "res://Player/Equipment/Armor/Textures/",
 		"type": "EQUIPMENT",
@@ -96,7 +96,7 @@
 	},
 	"necklace_string": {
 		"name": "String Necklace",
-		"description": "",
+		"description": "A cheap necklace connected together by a piece of string.",
 		"icon": "necklace_01a.png",
 		"path": "res://Player/Equipment/Armor/Textures/",
 		"type": "EQUIPMENT",
