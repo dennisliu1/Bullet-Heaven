@@ -1,10 +1,10 @@
 extends Area2D
 
-@export var experience = 1
+@export var value = 1
 
-var sprite_green = preload("res://Items/ExperienceGem/Textures/Gem_green.png")
-var sprite_blue = preload("res://Items/ExperienceGem/Textures/Gem_blue.png")
-var sprite_red = preload("res://Items/ExperienceGem/Textures/Gem_red.png")
+var sprite_green = preload("res://Items/Gem/Textures/Gem_green.png")
+var sprite_blue = preload("res://Items/Gem/Textures/Gem_blue.png")
+var sprite_red = preload("res://Items/Gem/Textures/Gem_red.png")
 
 var target = null
 
@@ -17,13 +17,13 @@ var speed = SPEED_COLLECT_INITIAL_BOUNCE_BACK
 @onready var sound_collect = $SoundCollect
 
 func _ready():
-	_set_experience_gem_color(experience)
+	_set_gem_color(value)
 
-## Set the color of the gem based on how much experience points the player gets.
-func _set_experience_gem_color(exp_points):
-	if exp_points < 5:
+## Set the color of the gem based on how much  points the player gets.
+func _set_gem_color(value_points):
+	if value_points < 5:
 		return
-	elif exp_points < 25:
+	elif value_points < 25:
 		sprite.texture = sprite_blue
 	else:
 		sprite.texture = sprite_red
@@ -38,7 +38,7 @@ func _physics_process(delta):
 func collect():
 	sound_collect.play()
 	_hide_gem()
-	return experience
+	return 
 
 ## Hide the game, by making it not visible and disabling it.
 func _hide_gem():

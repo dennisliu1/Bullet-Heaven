@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bufkhdjbxweeb"]
+[gd_scene load_steps=20 format=3 uid="uid://bufkhdjbxweeb"]
 
 [ext_resource type="Script" path="res://Player/Wizard/player_wizard.gd" id="1_12bdb"]
 [ext_resource type="Texture2D" uid="uid://dn3e5udhpj48c" path="res://Player/Wizard/Textures/player_sprite.png" id="1_n7y1a"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bmrpavygc2kex" path="res://UI/Menus/basic_button.tscn" id="8_6tsfu"]
 [ext_resource type="Texture2D" uid="uid://bmtn28mis750p" path="res://UI/GUI/Textures/healthbar.png" id="8_blo8l"]
 [ext_resource type="Texture2D" uid="uid://cjurt4yv1v8kb" path="res://UI/GUI/Textures/health.png" id="9_qxpcv"]
+[ext_resource type="Texture2D" uid="uid://ce6wda6notm6c" path="res://Items/Gem/Textures/Gem_blue.png" id="11_m36et"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r0l2q"]
 size = Vector2(7, 12)
@@ -138,7 +139,7 @@ texture_progress = ExtResource("6_517ui")
 layout_mode = 0
 offset_left = 540.0
 offset_right = 640.0
-offset_bottom = 26.0
+offset_bottom = 20.0
 theme_override_fonts/font = ExtResource("5_qsjk3")
 theme_override_font_sizes/font_size = 16
 text = "Level: 1"
@@ -251,6 +252,29 @@ offset_bottom = 46.0
 theme_override_fonts/font = ExtResource("5_qsjk3")
 text = "00:00"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GemsContainer" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 21.0
+offset_right = 60.0
+offset_bottom = 49.0
+
+[node name="TextureRect" type="Sprite2D" parent="CanvasLayer/GemsContainer"]
+position = Vector2(9, 9)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_m36et")
+
+[node name="LabelGems" type="Label" parent="CanvasLayer/GemsContainer"]
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 0
+offset_left = 20.0
+offset_right = 60.0
+offset_bottom = 20.0
+theme_override_fonts/font = ExtResource("5_qsjk3")
+theme_override_font_sizes/font_size = 16
+text = "0"
 vertical_alignment = 1
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]

@@ -6,6 +6,7 @@ const animation_dead_zone = 0.1
 @export var hp = 10
 @export var knockback_recovery_time = 3.5 # seconds
 @export var experience = 1
+@export var gem_value = 1
 @export var damage = 1
 
 @onready var sprite = $Sprite2D
@@ -17,7 +18,7 @@ const animation_dead_zone = 0.1
 @onready var loot_base = get_tree().get_first_node_in_group("loot")
 @onready var player : CharacterBody2D = get_tree().get_first_node_in_group("player")
 var death_animation = preload("res://Enemy/Effects/explosion/explosion.tscn")
-var exp_gem = preload("res://Items/ExperienceGem/experience_gem.tscn")
+var gem = preload("res://Items/Gem/gem.tscn")
 
 
 signal remove_from_array(object)
@@ -58,6 +59,7 @@ func _on_hurt_box_hurt(damage_amount, angle, knockback_amount):
 		sound_hit.play()
 
 func death():
+	player.get_experience(experience)
 	emit_signal("remove_from_array", self)
 	_add_death_animation()
 	_drop_experience_gem()
@@ -74,9 +76,9 @@ func _add_death_animation():
 	get_parent().call_deferred("add_child", enemy_death) 
 
 func _drop_experience_gem():
-	var new_gem = exp_gem.instantiate()
+	var new_gem = gem.instantiate()
 	new_gem.global_position = global_position
-	new_gem.experience = experience
+	new_gem.value = gem_value
 	loot_base.call_deferred("add_child", new_gem) # same as enemy death
 
 

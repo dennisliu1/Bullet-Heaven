@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://du6ijgjbwxogr"]
 
-[ext_resource type="Script" path="res://Items/ExperienceGem/experience_gem.gd" id="1_6iehk"]
-[ext_resource type="Texture2D" uid="uid://by0gmbttjwm43" path="res://Items/ExperienceGem/Textures/Gem_green.png" id="1_mqh3u"]
-[ext_resource type="AudioStream" uid="uid://kvxh6wkswap0" path="res://Items/ExperienceGem/Audio/collectgem.mp3" id="2_u62hx"]
+[ext_resource type="Script" path="res://Items/Gem/gem.gd" id="1_6iehk"]
+[ext_resource type="Texture2D" uid="uid://by0gmbttjwm43" path="res://Items/Gem/Textures/Gem_green.png" id="1_mqh3u"]
+[ext_resource type="AudioStream" uid="uid://kvxh6wkswap0" path="res://Items/Gem/Audio/collectgem.mp3" id="2_u62hx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_by0ik"]
 size = Vector2(10, 12)

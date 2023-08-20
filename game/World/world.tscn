@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b3f2e5314moyj" path="res://World/textures/dirt_full_new.png" id="1_tryyk"]
 [ext_resource type="PackedScene" uid="uid://bufkhdjbxweeb" path="res://Player/Wizard/player_wizard.tscn" id="2_1iqjs"]
 [ext_resource type="PackedScene" uid="uid://d3raqsj8wo72u" path="res://Utility/enemy_spawner.tscn" id="3_oliu4"]
-[ext_resource type="PackedScene" uid="uid://du6ijgjbwxogr" path="res://Items/ExperienceGem/experience_gem.tscn" id="6_4icf8"]
+[ext_resource type="PackedScene" uid="uid://du6ijgjbwxogr" path="res://Items/Gem/gem.tscn" id="6_4icf8"]
 [ext_resource type="PackedScene" uid="uid://bwvyc2fw45qpq" path="res://UI/inventory_menu.tscn" id="7_5okx2"]
 [ext_resource type="PackedScene" uid="uid://cahq3xv6kp8vs" path="res://UI/drag_preview/drag_preview.tscn" id="8_m1mmg"]
 [ext_resource type="PackedScene" uid="uid://duom5cnplrerl" path="res://UI/item_slot.tscn" id="8_wml3y"]
@@ -30,7 +30,6 @@ region_rect = Rect2(-4000, -4000, 4000, 4000)
 
 [node name="experience_gem" parent="Loot" instance=ExtResource("6_4icf8")]
 position = Vector2(70, 70)
-experience = 500
 
 [node name="EquipmentInventoryData" parent="." groups=["equipment_inventory"] instance=ExtResource("9_r8gd6")]
 cols = 9

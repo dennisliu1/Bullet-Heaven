@@ -13,6 +13,7 @@ var maxhp = 80
 var current_experience = 0
 var collected_experience = 0
 var last_movement = Vector2.UP
+var collected_gems = 0
 
 # references
 @onready var sprite = $Sprite2D
@@ -29,6 +30,9 @@ var ice_spear = preload("res://Player/Attacks/Ice Spear/ice_spear.tscn")
 ## timer
 var time = 0
 @onready var label_time = $CanvasLayer/LabelTime
+## gems label
+@onready var gems_container = $CanvasLayer/GemsContainer
+@onready var gems_label_gems = $CanvasLayer/GemsContainer/LabelGems
 ## experience
 @onready var exp_bar = $CanvasLayer/Control/ExperienceBar
 @onready var label_level = $CanvasLayer/Control/ExperienceBar/LabelLevel
@@ -49,6 +53,9 @@ var available_upgrade_options = [] # what is on offer
 @onready var pause_panel = $CanvasLayer/PanelPause
 @onready var pause_button_back_to_game = $CanvasLayer/PanelPause/ButtonReturnToGame
 @onready var pause_button_menu = $CanvasLayer/PanelPause/ButtonMenu
+
+
+
 
 # enemy related
 var enemy_close = []
@@ -117,6 +124,7 @@ func _change_sprite_direction(move_direction):
 		sprite.flip_h = true
 	elif move_direction.x < 0:
 		sprite.flip_h = false
+
 
 
 func _on_hurt_box_hurt(damage, _angle, _knockback):
@@ -193,9 +201,7 @@ func sync_bulk_spellcard_effects(instance_stack, index):
 	var equipped_item = attack_container.get_child(index)
 	return equipped_item.sync_bulk_spellcard_effects(instance_stack)
 
-# ---
-
-
+# --- getting gems ---
 
 ## The Grab Area is the area where items are attracted to the player.
 func _on_grab_area_area_entered(area):
@@ -206,7 +212,14 @@ func _on_grab_area_area_entered(area):
 func _on_collect_area_area_entered(area):
 	if area.is_in_group("loot"):
 		var gem_exp = area.collect()
-		calculate_experience(gem_exp)
+		collected_gems += area.value
+		gems_label_gems.text = collected_gems
+
+
+# --- getting experience ---
+
+func get_experience(exp):
+	calculate_experience(exp)
 
 func calculate_experience(gem_exp):
 	var exp_required = calculate_experience_cap()
