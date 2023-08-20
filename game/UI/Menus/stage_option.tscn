@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://pups81nri6gm"]
+
+[ext_resource type="Script" path="res://UI/Menus/stage_option.gd" id="1_1uciw"]
+
+[node name="StageOption" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -280.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1uciw")
+
+[node name="BackgroundRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_right = 600.0
+offset_bottom = 80.0
+color = Color(0.227451, 0.227451, 0.227451, 1)
+
+[node name="StageName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 4.0
+offset_right = 91.0
+offset_bottom = 30.0
+text = "Stage Name"

@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://cspg1i714suqd"]
+
+[ext_resource type="Script" path="res://UI/Menus/character_equipment_menu.gd" id="1_0l8hm"]
+[ext_resource type="PackedScene" uid="uid://bmrpavygc2kex" path="res://UI/Menus/basic_button.tscn" id="2_cyhpm"]
+[ext_resource type="PackedScene" uid="uid://bwvyc2fw45qpq" path="res://UI/inventory_menu.tscn" id="3_78pu5"]
+[ext_resource type="PackedScene" uid="uid://bwhfdhlm2ypc5" path="res://Utility/inventory_data.tscn" id="3_ekc4y"]
+[ext_resource type="PackedScene" uid="uid://duom5cnplrerl" path="res://UI/item_slot.tscn" id="5_lnh1u"]
+
+[node name="CharacterEquipmentMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0l8hm")
+
+[node name="BackgroundRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.360784, 0.360784, 0.360784, 1)
+
+[node name="HeaderLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 129.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 20
+text = "Choose equipment"
+
+[node name="BackButton" parent="." instance=ExtResource("2_cyhpm")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 314.0
+offset_right = 96.0
+offset_bottom = 344.0
+text = "Back"
+
+[node name="NextButton" parent="." instance=ExtResource("2_cyhpm")]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 314.0
+offset_right = 624.0
+offset_bottom = 344.0
+text = "Next"
+
+[node name="InventoryData" parent="." instance=ExtResource("3_ekc4y")]
+cols = 9
+rows = 5
+prefilled_equipment = Array[Array]([["res://Player/Modifiers/modifiers.json", "lance"]])
+
+[node name="SpellInventory" parent="." node_paths=PackedStringArray("inventory_data") instance=ExtResource("3_78pu5")]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 63.0
+offset_right = 61.0
+offset_bottom = 103.0
+columns = 9
+inventory_data = NodePath("../InventoryData")
+ItemSlot = ExtResource("5_lnh1u")
+
+[node name="SpellSelection" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="click_end" from="BackButton" to="." method="_on_back_button_click_end"]
+[connection signal="click_end" from="NextButton" to="." method="_on_next_button_click_end"]

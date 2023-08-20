@@ -7,6 +7,4 @@ func _ready():
 	# Position the inventory
 #	position = (get_viewport_rect().size - get_rect().size) / 2
 
-	hide()
-
 

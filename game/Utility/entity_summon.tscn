@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bic1taua4dk1n"]
+
+[ext_resource type="PackedScene" uid="uid://c6hyolq84ehxa" path="res://Utility/entity_hit.tscn" id="1_e27br"]
+[ext_resource type="Script" path="res://entity_summon.gd" id="2_blea3"]
+
+[node name="EntitySummon" instance=ExtResource("1_e27br")]
+script = ExtResource("2_blea3")
+
+[node name="AttackTimer" type="Timer" parent="." index="5"]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="ChangeDirectionTimer" type="Timer" parent="." index="6"]
+
+[node name="ResetPositionTimer" type="Timer" parent="." index="7"]
+wait_time = 3.0
+autostart = true

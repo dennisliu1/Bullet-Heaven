@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://yjiwoxkn61gb"]
+
+[ext_resource type="Script" path="res://UI/Menus/stage_select_menu.gd" id="1_14tg1"]
+[ext_resource type="PackedScene" uid="uid://bmrpavygc2kex" path="res://UI/Menus/basic_button.tscn" id="1_cq2yv"]
+[ext_resource type="PackedScene" uid="uid://pups81nri6gm" path="res://UI/Menus/stage_option.tscn" id="2_pnk0l"]
+
+[node name="StageSelectMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_14tg1")
+
+[node name="BackgroundRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.203922, 0.203922, 0.203922, 1)
+
+[node name="HeaderLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 129.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 20
+text = "Level Select"
+
+[node name="BackButton" parent="." instance=ExtResource("1_cq2yv")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 314.0
+offset_right = 96.0
+offset_bottom = 344.0
+text = "Back"
+
+[node name="NextButton" parent="." instance=ExtResource("1_cq2yv")]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 314.0
+offset_right = 624.0
+offset_bottom = 344.0
+text = "Next"
+
+[node name="StageContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 60.0
+offset_right = 40.0
+offset_bottom = 100.0
+
+[node name="StageOption" parent="StageContainer" instance=ExtResource("2_pnk0l")]
+layout_mode = 2
+stage_name = "Forest"
+
+[connection signal="click_end" from="BackButton" to="." method="_on_back_button_click_end"]
+[connection signal="click_end" from="NextButton" to="." method="_on_next_button_click_end"]
