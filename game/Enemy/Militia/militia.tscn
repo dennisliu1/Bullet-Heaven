@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0jw3732hcmjy"]
+
+[ext_resource type="PackedScene" uid="uid://b8nqwq0tyly70" path="res://Enemy/enemy_generic.tscn" id="1_c1dag"]
+[ext_resource type="Texture2D" uid="uid://c01j7o2ndn3be" path="res://Enemy/Militia/0018_1.png" id="2_0jly6"]
+
+[node name="Militia" instance=ExtResource("1_c1dag")]
+single_frame_mode = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_0jly6")
+
+[node name="SingleFrameMoveTimer" parent="." index="6"]
+wait_time = 0.5
+
+[connection signal="timeout" from="SingleFrameMoveTimer" to="." method="_on_single_frame_move_timer_timeout"]
+
+[editable path="HurtBox"]
+[editable path="HitBox"]

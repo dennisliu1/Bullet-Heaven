@@ -213,7 +213,7 @@ func _on_collect_area_area_entered(area):
 	if area.is_in_group("loot"):
 		var gem_exp = area.collect()
 		collected_gems += area.value
-		gems_label_gems.text = collected_gems
+		gems_label_gems.text = str(collected_gems)
 
 
 # --- getting experience ---

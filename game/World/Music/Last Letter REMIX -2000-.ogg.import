@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bgopjpbc4k2ph"
+path="res://.godot/imported/Last Letter REMIX -2000-.ogg-724f5ece9c6eef899f947003ec2c01b1.oggvorbisstr"
+
+[deps]
+
+source_file="res://World/Music/Last Letter REMIX -2000-.ogg"
+dest_files=["res://.godot/imported/Last Letter REMIX -2000-.ogg-724f5ece9c6eef899f947003ec2c01b1.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

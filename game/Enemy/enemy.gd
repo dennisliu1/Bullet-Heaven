@@ -9,6 +9,12 @@ const animation_dead_zone = 0.1
 @export var gem_value = 1
 @export var damage = 1
 
+
+## If the sprite has only a single frame, do a custom animation to simulate movement.
+@export var single_frame_mode = false
+var single_frame_count = 0
+var sprite_walk_flip = false
+
 @onready var sprite = $Sprite2D
 @onready var animation_player = $AnimationPlayer
 @onready var hit_box = $HitBox
@@ -26,7 +32,10 @@ signal remove_from_array(object)
 var knockback = Vector2.ZERO
 
 func _ready():
-	animation_player.play("walk")
+	if single_frame_mode:
+		$SingleFrameMoveTimer.start()
+	else:
+		animation_player.play("walk")
 	hit_box.damage = damage
 
 func _physics_process(_delta):
@@ -45,10 +54,13 @@ func _physics_process(_delta):
 
 ## Change the direction the sprite faces, depending on the move direction.
 func _change_sprite_direction(move_direction):
-	if move_direction.x > 0:
-		sprite.flip_h = true
-	elif move_direction.x < 0:
-		sprite.flip_h = false
+	if single_frame_mode:
+		sprite.flip_h = sprite_walk_flip
+	else:
+		if move_direction.x > 0:
+			sprite.flip_h = true
+		elif move_direction.x < 0:
+			sprite.flip_h = false
 
 func _on_hurt_box_hurt(damage_amount, angle, knockback_amount):
 	hp -= damage_amount
@@ -81,6 +93,12 @@ func _drop_experience_gem():
 	new_gem.value = gem_value
 	loot_base.call_deferred("add_child", new_gem) # same as enemy death
 
+func _single_frame_movement():
+	if single_frame_count == 0:
+		sprite_walk_flip = false
+	elif single_frame_count == 1:
+		sprite_walk_flip = true
+	single_frame_count = (single_frame_count + 1) % 2
 
 
 
@@ -91,3 +109,7 @@ func _drop_experience_gem():
 
 
 
+
+
+func _on_single_frame_move_timer_timeout():
+	_single_frame_movement()

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dyyrhhjvyrmie"
+path="res://.godot/imported/Sorrowful Dance.ogg-dfa860d890feb6a24d31ef7feefd6b45.oggvorbisstr"
+
+[deps]
+
+source_file="res://World/Music/Sorrowful Dance.ogg"
+dest_files=["res://.godot/imported/Sorrowful Dance.ogg-dfa860d890feb6a24d31ef7feefd6b45.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

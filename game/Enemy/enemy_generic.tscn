@@ -87,6 +87,9 @@ shape = SubResource("RectangleShape2D_frs28")
 stream = ExtResource("5_o1y1b")
 volume_db = -20.0
 
+[node name="SingleFrameMoveTimer" type="Timer" parent="."]
+wait_time = 0.2
+
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 
 [editable path="HurtBox"]

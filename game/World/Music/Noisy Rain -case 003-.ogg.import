@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bxl71f8n87vep"
+path="res://.godot/imported/Noisy Rain -case 003-.ogg-928bcf828ae4033e51f5d588a9720a55.oggvorbisstr"
+
+[deps]
+
+source_file="res://World/Music/Noisy Rain -case 003-.ogg"
+dest_files=["res://.godot/imported/Noisy Rain -case 003-.ogg-928bcf828ae4033e51f5d588a9720a55.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
