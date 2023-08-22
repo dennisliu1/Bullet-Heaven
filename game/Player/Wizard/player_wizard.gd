@@ -53,7 +53,8 @@ var available_upgrade_options = [] # what is on offer
 @onready var pause_panel = $CanvasLayer/PanelPause
 @onready var pause_button_back_to_game = $CanvasLayer/PanelPause/ButtonReturnToGame
 @onready var pause_button_menu = $CanvasLayer/PanelPause/ButtonMenu
-
+## Shop menu
+@onready var transition_shop_menu = $CanvasLayer/TransitionShopMenu
 
 
 
@@ -329,3 +330,16 @@ func _reset_pause_panel():
 	pause_panel.visible = false
 	pause_panel.position = Vector2(800, 20)
 	get_tree().paused = false
+
+# --- transition shop menu ---
+
+func show_shop_menu():
+	transition_shop_menu.visible = true
+	get_tree().paused = true
+
+func hide_shop_menu():
+	transition_shop_menu.visible = false
+	get_tree().paused = false
+
+func _on_transition_shop_menu_next_button_click():
+	hide_shop_menu()

@@ -125,6 +125,10 @@ func end_stage():
 		# remove all the loot too
 		for loot in get_tree().get_nodes_in_group("loot"):
 			loot.queue_free()
+		# TODO remove projectiles
+		
+		# show the shop menu and pause
+		player.show_shop_menu()
 	pass
 
 

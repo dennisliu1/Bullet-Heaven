@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxeltrqnhfia"]
+
+[ext_resource type="Script" path="res://UI/Menus/transition_shop/transition_shop_menu.gd" id="1_iyg1i"]
+[ext_resource type="PackedScene" uid="uid://bmrpavygc2kex" path="res://UI/Menus/basic_button.tscn" id="2_pjt6v"]
+[ext_resource type="PackedScene" uid="uid://dwcyj7eevxr4a" path="res://UI/tooltip/tooltip.tscn" id="6_v50cc"]
+
+[node name="TransitionShopMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iyg1i")
+
+[node name="BackgroundRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.360784, 0.360784, 0.360784, 1)
+
+[node name="HeaderLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 129.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 20
+text = "Shop"
+
+[node name="NextButton" parent="." instance=ExtResource("2_pjt6v")]
+layout_mode = 0
+offset_left = 526.0
+offset_top = 314.0
+offset_right = 617.0
+offset_bottom = 344.0
+text = "Next Stage"
+
+[node name="Tooltip" parent="." instance=ExtResource("6_v50cc")]
+layout_mode = 0
+
+[connection signal="click_end" from="NextButton" to="." method="_on_next_button_click_end"]

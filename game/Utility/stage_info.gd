@@ -10,10 +10,10 @@ enum MUSIC_STATE {CONTINUE, END}
 @export var music_state: MUSIC_STATE
 @export var spawns: Array[Spawn_info]
 
-static func get_music_state(music_state: String):
-	if music_state == "CONTINUE":
+static func get_music_state(music_str: String):
+	if music_str == "CONTINUE":
 		return MUSIC_STATE.CONTINUE
-	elif music_state == "END":
+	elif music_str == "END":
 		return MUSIC_STATE.END
 	else:
 		return MUSIC_STATE.CONTINUE
