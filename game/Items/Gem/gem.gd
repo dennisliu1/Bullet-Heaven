@@ -38,7 +38,7 @@ func _physics_process(delta):
 func collect():
 	sound_collect.play()
 	_hide_gem()
-	return 
+	return
 
 ## Hide the game, by making it not visible and disabling it.
 func _hide_gem():

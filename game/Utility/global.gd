@@ -175,24 +175,31 @@ func populate_spellcard_effect(spellcard_effect, spellcard_data_effect):
 			spellcard_effect.on_hit_effects.append(new_data)
 	return spellcard_effect
 
-func get_enemy_spawn_data() -> Array[Spawn_info]:
-	var result : Array[Spawn_info] = []
+func get_enemy_spawn_data() -> Array[Stage_info]:
+	var result : Array[Stage_info] = []
 	var enemy_spawn_json = read_from_JSON("res://Utility/EnemySpawnData/forest_enemy_spawns.json")
 	for i in range(enemy_spawn_json.size()):
-		var spawn_info_json = enemy_spawn_json[i]
-		var spawn_info = Spawn_info.new()
-		if spawn_info_json.has("time_start"):
-			spawn_info.time_start = spawn_info_json.time_start
-		if spawn_info_json.has("time_end"):
-			spawn_info.time_end = spawn_info_json.time_end
-		if spawn_info_json.has("enemy_scene"):
-			spawn_info.enemy = load(spawn_info_json.enemy_scene)
-		if spawn_info_json.has("enemy_num"):
-			spawn_info.enemy_num = spawn_info_json.enemy_num
-		if spawn_info_json.has("enemy_spawn_delay"):
-			spawn_info.enemy_spawn_delay = spawn_info_json.enemy_spawn_delay
-		result.append(spawn_info)
+		var stage_json = enemy_spawn_json[i]
+		var stage_info = Stage_info.new()
+		stage_info.name = stage_json.name
+		stage_info.time_length = stage_json.time
+		stage_info.music = load(stage_json.music)
+		stage_info.music_state = Stage_info.get_music_state(stage_json.music_state)
+		
+		for spawn_info_json in stage_json.spawns:
+			var spawn_info = Spawn_info.new()
+			if spawn_info_json.has("time_start"):
+				spawn_info.time_start = spawn_info_json.time_start
+			if spawn_info_json.has("time_end"):
+				spawn_info.time_end = spawn_info_json.time_end
+			if spawn_info_json.has("enemy_scene"):
+				spawn_info.enemy = load(spawn_info_json.enemy_scene)
+			if spawn_info_json.has("enemy_num"):
+				spawn_info.enemy_num = spawn_info_json.enemy_num
+			if spawn_info_json.has("enemy_spawn_delay"):
+				spawn_info.enemy_spawn_delay = spawn_info_json.enemy_spawn_delay
+			stage_info.spawns.append(spawn_info)
+		result.append(stage_info)
 	return result
-
 
 

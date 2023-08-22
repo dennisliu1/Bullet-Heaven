@@ -21,7 +21,7 @@ var sprite_walk_flip = false
 @onready var sound_hit = $SoundHit
 
 # global reference
-@onready var loot_base = get_tree().get_first_node_in_group("loot")
+@onready var loot_base = get_tree().get_first_node_in_group("loot_root")
 @onready var player : CharacterBody2D = get_tree().get_first_node_in_group("player")
 var death_animation = preload("res://Enemy/Effects/explosion/explosion.tscn")
 var gem = preload("res://Items/Gem/gem.tscn")
@@ -70,11 +70,12 @@ func _on_hurt_box_hurt(damage_amount, angle, knockback_amount):
 	else:
 		sound_hit.play()
 
-func death():
-	player.get_experience(experience)
+func death(killed_by_player=true):
+	if killed_by_player:
+		player.get_experience(experience)
+		_drop_experience_gem()
 	emit_signal("remove_from_array", self)
 	_add_death_animation()
-	_drop_experience_gem()
 	queue_free() # destroy enemy
 
 func _add_death_animation():

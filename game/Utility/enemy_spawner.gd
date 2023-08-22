@@ -1,12 +1,14 @@
 extends Node2D
 
-@export var spawns: Array[Spawn_info] = []
+@export var stages: Array[Stage_info] = []
 # The current time from when the run started.
+@export var current_stage_index = 0
 @export var time = 0
 
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 
 @onready var timer = $Timer
+@onready var enemy_container = $EnemyContainer
 
 const SPAWN_WINDOW_BORDER_AREA_MIN = 1.1
 const SPAWN_WINDOW_BORDER_AREA_MAX = 1.4
@@ -19,19 +21,25 @@ func _ready():
 	connect("changetime", Callable(player, "change_time"))
 	
 	# load data from json instead
-	var loaded_data : Array[Spawn_info] = Global.get_enemy_spawn_data()
-	spawns.append_array(loaded_data)
+	var loaded_data : Array[Stage_info] = Global.get_enemy_spawn_data()
+	stages.clear()
+	stages.append_array(loaded_data)
+	current_stage_index = 0
 	pass
 
 func _on_timer_timeout():
 	time += 1
-	var enemy_spawns = spawns
+
+	var enemy_spawns = stages[current_stage_index].spawns
 	for enemy_spawn in enemy_spawns:
 		if enemy_spawn.time_start <= time and time <= enemy_spawn.time_end and _delay_spawn(enemy_spawn):
 			_spawn_enemies(enemy_spawn)
 
 	# Notify the UI the timer has been updated.
 	emit_signal("changetime", time)
+	
+	if time >= stages[current_stage_index].time_length:
+		end_stage()
 
 ## Delay the spawn based on the spawn-delay.
 ## Returns true once the delay is over.
@@ -55,7 +63,7 @@ func _spawn_enemies(enemy_spawn):
 func _spawn_enemy(new_enemy):
 	var enemy_instance = new_enemy.instantiate()
 	enemy_instance.global_position = get_random_position()
-	add_child(enemy_instance)
+	enemy_container.add_child(enemy_instance)
 
 ## Get a random position just outside the game viewport, so the enemy spawns
 ## outside the viewable area.
@@ -101,7 +109,23 @@ func get_random_position():
 
 # --- stage ---
 
-
+func end_stage():
+	if current_stage_index >= stages.size()-1:
+		# Last stage is done, end the game
+		player.death()
+		pass
+	else:
+		# Transition to the next stage
+		time = 0
+		current_stage_index += 1
+		for enemy in enemy_container.get_children():
+			# explosions get added in the same level
+			if enemy.has_method("death"):
+				enemy.death(false)
+		# remove all the loot too
+		for loot in get_tree().get_nodes_in_group("loot"):
+			loot.queue_free()
+	pass
 
 
 

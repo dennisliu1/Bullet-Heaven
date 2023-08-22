@@ -218,8 +218,8 @@ func _on_collect_area_area_entered(area):
 
 # --- getting experience ---
 
-func get_experience(exp):
-	calculate_experience(exp)
+func get_experience(experience):
+	calculate_experience(experience)
 
 func calculate_experience(gem_exp):
 	var exp_required = calculate_experience_cap()

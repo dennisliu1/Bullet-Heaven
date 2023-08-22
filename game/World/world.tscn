@@ -26,7 +26,7 @@ region_rect = Rect2(-4000, -4000, 4000, 4000)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_oliu4")]
 
-[node name="Loot" type="Node" parent="." groups=["loot"]]
+[node name="Loot" type="Node" parent="." groups=["loot_root"]]
 
 [node name="experience_gem" parent="Loot" instance=ExtResource("6_4icf8")]
 position = Vector2(70, 70)
