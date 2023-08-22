@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c01j7o2ndn3be"
-path="res://.godot/imported/0018_1.png-2edd75c11ac20dff66267500c11cf01c.ctex"
+uid="uid://d0eput1bqhnp1"
+path="res://.godot/imported/0181_2.png-ace941907c55cdd3433fdcea161606f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemy/Militia/0018_1.png"
-dest_files=["res://.godot/imported/0018_1.png-2edd75c11ac20dff66267500c11cf01c.ctex"]
+source_file="res://Enemy/Bane/Textures/0181_2.png"
+dest_files=["res://.godot/imported/0181_2.png-ace941907c55cdd3433fdcea161606f0.ctex"]
 
 [params]
 

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtid304f4h1q8"]
+
+[ext_resource type="PackedScene" uid="uid://b8nqwq0tyly70" path="res://Enemy/enemy_generic.tscn" id="1_q7ur8"]
+[ext_resource type="Texture2D" uid="uid://dnto6nfvufakg" path="res://Enemy/SoullessWarrior/Textures/0914_1.png" id="2_2jied"]
+
+[node name="SoullessWarrior" instance=ExtResource("1_q7ur8")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_2jied")
+
+[editable path="HurtBox"]
+[editable path="HitBox"]

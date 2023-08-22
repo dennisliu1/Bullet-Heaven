@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://oqcdufll7i07"]
+
+[ext_resource type="PackedScene" uid="uid://b8nqwq0tyly70" path="res://Enemy/enemy_generic.tscn" id="1_og0du"]
+[ext_resource type="Texture2D" uid="uid://cxdfnp8jmp1cc" path="res://Enemy/Apparition/Textures/0677_1.png" id="2_3m80f"]
+
+[node name="Apparition" instance=ExtResource("1_og0du")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_3m80f")
+
+[editable path="HurtBox"]
+[editable path="HitBox"]

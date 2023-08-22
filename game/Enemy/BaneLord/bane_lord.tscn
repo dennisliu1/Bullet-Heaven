@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ik84y4n1hxtx"]
+
+[ext_resource type="PackedScene" uid="uid://b8nqwq0tyly70" path="res://Enemy/enemy_generic.tscn" id="1_pi2jb"]
+[ext_resource type="Texture2D" uid="uid://b47gdl57g82cj" path="res://Enemy/BaneLord/Textures/0998_1.png" id="2_l3tbs"]
+
+[node name="BaneLord" instance=ExtResource("1_pi2jb")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_l3tbs")
+
+[editable path="HurtBox"]
+[editable path="HitBox"]

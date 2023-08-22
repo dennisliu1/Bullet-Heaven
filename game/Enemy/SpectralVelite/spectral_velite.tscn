@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://eg125osxsvp0"]
+
+[ext_resource type="PackedScene" uid="uid://b8nqwq0tyly70" path="res://Enemy/enemy_generic.tscn" id="1_ndm8x"]
+[ext_resource type="Texture2D" uid="uid://cy0no6jed8dnk" path="res://Enemy/SpectralVelite/Textures/0672_1.png" id="2_cj2k1"]
+
+[node name="SpectralVelite" instance=ExtResource("1_ndm8x")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_cj2k1")
+
+[editable path="HurtBox"]
+[editable path="HitBox"]

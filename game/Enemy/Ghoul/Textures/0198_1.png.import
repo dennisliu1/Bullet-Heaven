@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwin7l2m7ki0d"
-path="res://.godot/imported/0018_2.png-c62c0ebbf6e3d18ff19c83e8ceb1acd0.ctex"
+uid="uid://dn574gibq7j5o"
+path="res://.godot/imported/0198_1.png-a4882bfc76966021277fc86c9064e202.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemy/Militia/0018_2.png"
-dest_files=["res://.godot/imported/0018_2.png-c62c0ebbf6e3d18ff19c83e8ceb1acd0.ctex"]
+source_file="res://Enemy/Ghoul/Textures/0198_1.png"
+dest_files=["res://.godot/imported/0198_1.png-a4882bfc76966021277fc86c9064e202.ctex"]
 
 [params]
 

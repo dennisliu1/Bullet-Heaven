@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkp1kc5mpifcj"]
+
+[ext_resource type="PackedScene" uid="uid://b8nqwq0tyly70" path="res://Enemy/enemy_generic.tscn" id="1_iosg3"]
+[ext_resource type="Texture2D" uid="uid://dn574gibq7j5o" path="res://Enemy/Ghoul/Textures/0198_1.png" id="2_hbmo5"]
+
+[node name="Ghoul" instance=ExtResource("1_iosg3")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_hbmo5")
+
+[editable path="HurtBox"]
+[editable path="HitBox"]

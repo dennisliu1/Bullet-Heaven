@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf0vfvbrl5fwt"]
+
+[ext_resource type="PackedScene" uid="uid://b8nqwq0tyly70" path="res://Enemy/enemy_generic.tscn" id="1_ogf80"]
+[ext_resource type="Texture2D" uid="uid://brep5pboxlard" path="res://Enemy/MoundFiend/Textures/0439_1.png" id="2_xkmum"]
+
+[node name="MoundFiend" instance=ExtResource("1_ogf80")]
+hp = 300
+experience = 200
+gem_value = 200
+damage = 10
+single_frame_mode = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_xkmum")
+
+[editable path="HurtBox"]
+[editable path="HitBox"]

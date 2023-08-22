@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://crpxja8p2nbgu"]
+
+[ext_resource type="PackedScene" uid="uid://b8nqwq0tyly70" path="res://Enemy/enemy_generic.tscn" id="1_54ysp"]
+[ext_resource type="Texture2D" uid="uid://bylykv85upsm0" path="res://Enemy/SpectralPrincipe/Textures/2336_1.png" id="2_d67cq"]
+
+[node name="SpectralPrincipe" instance=ExtResource("1_54ysp")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_d67cq")
+
+[editable path="HurtBox"]
+[editable path="HitBox"]

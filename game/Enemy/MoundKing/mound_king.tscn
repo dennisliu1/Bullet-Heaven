@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqq2m2vavyaew"]
+
+[ext_resource type="PackedScene" uid="uid://b8nqwq0tyly70" path="res://Enemy/enemy_generic.tscn" id="1_pe4oq"]
+[ext_resource type="Texture2D" uid="uid://ddfqdhpf2m4l8" path="res://Enemy/MoundKing/Textures/0188_1.png" id="2_hygrp"]
+
+[node name="MoundKing" instance=ExtResource("1_pe4oq")]
+movement_speed = 30.0
+hp = 100
+experience = 10
+gem_value = 10
+damage = 3
+single_frame_mode = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_hygrp")
+
+[editable path="HurtBox"]
+[editable path="HitBox"]

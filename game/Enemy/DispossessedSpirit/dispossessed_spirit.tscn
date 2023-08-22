@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsjdot1f75vvw"]
+
+[ext_resource type="PackedScene" uid="uid://b8nqwq0tyly70" path="res://Enemy/enemy_generic.tscn" id="1_u8ydv"]
+[ext_resource type="Texture2D" uid="uid://sx6g17bm8tpi" path="res://Enemy/DispossessedSpirit/Textures/0674_1.png" id="2_tjj60"]
+
+[node name="DispossessedSpirit" instance=ExtResource("1_u8ydv")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_tjj60")
+
+[editable path="HurtBox"]
+[editable path="HitBox"]
