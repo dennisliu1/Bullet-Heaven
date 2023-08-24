@@ -15,10 +15,18 @@ script = ExtResource("1_48pql")
 [node name="InventoryContainer" parent="." instance=ExtResource("2_lmbhh")]
 layout_mode = 0
 offset_left = 8.0
-offset_top = 43.0
+offset_top = 40.0
 offset_right = 48.0
-offset_bottom = 83.0
+offset_bottom = 88.0
 columns = 10
+ItemSlot = ExtResource("2_f0tgp")
+
+[node name="SpellContainer" parent="." instance=ExtResource("2_lmbhh")]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 48.0
+offset_right = 280.0
+offset_bottom = 88.0
 ItemSlot = ExtResource("2_f0tgp")
 
 [node name="DragPreview" parent="." instance=ExtResource("4_22cu0")]

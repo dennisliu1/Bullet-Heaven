@@ -94,6 +94,10 @@ libraries = {
 cols = 9
 rows = 5
 
+[node name="SpellInventoryData" parent="." instance=ExtResource("14_8qtut")]
+cols = 10
+rows = 1
+
 [node name="HurtBox" parent="." instance=ExtResource("3_hllnf")]
 collision_mask = 2
 
@@ -293,11 +297,15 @@ visible = false
 inventory_data = NodePath("../../InventoryData")
 
 [node name="InventoryContainer" parent="CanvasLayer/InventoryPanel" index="0" node_paths=PackedStringArray("inventory_data")]
+columns = 1
 inventory_data = NodePath("../../../InventoryData")
 
-[node name="DragPreview" parent="CanvasLayer/InventoryPanel" index="1" node_paths=PackedStringArray("inventory_menu_array", "inventory_array")]
-inventory_menu_array = [NodePath("../InventoryContainer")]
-inventory_array = [NodePath("../../../InventoryData")]
+[node name="SpellContainer" parent="CanvasLayer/InventoryPanel" index="1" node_paths=PackedStringArray("inventory_data")]
+inventory_data = NodePath("../../../SpellInventoryData")
+
+[node name="DragPreview" parent="CanvasLayer/InventoryPanel" index="2" node_paths=PackedStringArray("inventory_menu_array", "inventory_array")]
+inventory_menu_array = [NodePath("../InventoryContainer"), null]
+inventory_array = [NodePath("../../../InventoryData"), NodePath("../../../SpellInventoryData")]
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="body_entered" from="EnemyDetectArea" to="." method="_on_enemy_detect_area_body_entered"]

@@ -56,8 +56,9 @@ var available_upgrade_options = [] # what is on offer
 ## Shop menu
 @onready var transition_shop_menu = $CanvasLayer/TransitionShopMenu
 ## inventory menu
-@onready var inventory_menu = $CanvasLayer/InventoryPanel
 @onready var inventory_data = $InventoryData
+@onready var spell_inventory_data = $SpellInventoryData
+@onready var inventory_menu = $CanvasLayer/InventoryPanel
 
 # enemy related
 var enemy_close = []
