@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bufkhdjbxweeb"]
+[gd_scene load_steps=23 format=3 uid="uid://bufkhdjbxweeb"]
 
 [ext_resource type="Script" path="res://Player/Wizard/player_wizard.gd" id="1_12bdb"]
 [ext_resource type="Texture2D" uid="uid://dn3e5udhpj48c" path="res://Player/Wizard/Textures/player_sprite.png" id="1_n7y1a"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://cjurt4yv1v8kb" path="res://UI/GUI/Textures/health.png" id="9_qxpcv"]
 [ext_resource type="Texture2D" uid="uid://ce6wda6notm6c" path="res://Items/Gem/Textures/Gem_blue.png" id="11_m36et"]
 [ext_resource type="PackedScene" uid="uid://cxeltrqnhfia" path="res://UI/Menus/transition_shop/transition_shop_menu.tscn" id="12_c6qs4"]
+[ext_resource type="PackedScene" uid="uid://dllwwqeh3ndvh" path="res://Utility/inventory_panel.tscn" id="13_t4hkb"]
+[ext_resource type="PackedScene" uid="uid://bwhfdhlm2ypc5" path="res://Utility/inventory_data.tscn" id="14_8qtut"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r0l2q"]
 size = Vector2(7, 12)
@@ -65,6 +67,7 @@ radius = 50.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_jwwjt"]
 
 [node name="PlayerWizard" type="CharacterBody2D" groups=["player"]]
+process_mode = 3
 motion_mode = 1
 script = ExtResource("1_12bdb")
 
@@ -86,6 +89,10 @@ one_shot = true
 libraries = {
 "": SubResource("AnimationLibrary_l183a")
 }
+
+[node name="InventoryData" parent="." instance=ExtResource("14_8qtut")]
+cols = 9
+rows = 5
 
 [node name="HurtBox" parent="." instance=ExtResource("3_hllnf")]
 collision_mask = 2
@@ -281,6 +288,17 @@ vertical_alignment = 1
 [node name="TransitionShopMenu" parent="CanvasLayer" instance=ExtResource("12_c6qs4")]
 visible = false
 
+[node name="InventoryPanel" parent="CanvasLayer" node_paths=PackedStringArray("inventory_data") instance=ExtResource("13_t4hkb")]
+visible = false
+inventory_data = NodePath("../../InventoryData")
+
+[node name="InventoryContainer" parent="CanvasLayer/InventoryPanel" index="0" node_paths=PackedStringArray("inventory_data")]
+inventory_data = NodePath("../../../InventoryData")
+
+[node name="DragPreview" parent="CanvasLayer/InventoryPanel" index="1" node_paths=PackedStringArray("inventory_menu_array", "inventory_array")]
+inventory_menu_array = [NodePath("../InventoryContainer")]
+inventory_array = [NodePath("../../../InventoryData")]
+
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="body_entered" from="EnemyDetectArea" to="." method="_on_enemy_detect_area_body_entered"]
 [connection signal="body_exited" from="EnemyDetectArea" to="." method="_on_enemy_detect_area_body_exited"]
@@ -293,3 +311,4 @@ visible = false
 
 [editable path="HurtBox"]
 [editable path="Attack/EquippedItem"]
+[editable path="CanvasLayer/InventoryPanel"]

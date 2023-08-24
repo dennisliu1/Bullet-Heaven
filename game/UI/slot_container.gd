@@ -19,7 +19,9 @@ func display_modifier_slots(cols = inventory_data.cols, rows = inventory_data.ro
 		var item_slot = ItemSlot.instantiate()
 		item_slot.inventory_data = inventory_data
 		add_child(item_slot)
-		item_slot.display_item(inventory_data.items[index])
+		if index < inventory_data.items.size():
+			item_slot.display_item(inventory_data.items[index])
+		
 	
 	# If items change, refresh the GridContainer
 	# Call only once, we might call this method multiple times

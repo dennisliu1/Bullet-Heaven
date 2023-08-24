@@ -1,16 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://btacp1wsuqe5h"]
+[gd_scene load_steps=7 format=3 uid="uid://btacp1wsuqe5h"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_32wit"]
 [ext_resource type="Texture2D" uid="uid://b3f2e5314moyj" path="res://World/textures/dirt_full_new.png" id="1_tryyk"]
 [ext_resource type="PackedScene" uid="uid://bufkhdjbxweeb" path="res://Player/Wizard/player_wizard.tscn" id="2_1iqjs"]
 [ext_resource type="PackedScene" uid="uid://d3raqsj8wo72u" path="res://Utility/enemy_spawner.tscn" id="3_oliu4"]
 [ext_resource type="PackedScene" uid="uid://du6ijgjbwxogr" path="res://Items/Gem/gem.tscn" id="6_4icf8"]
-[ext_resource type="PackedScene" uid="uid://bwvyc2fw45qpq" path="res://UI/inventory_menu.tscn" id="7_5okx2"]
-[ext_resource type="PackedScene" uid="uid://cahq3xv6kp8vs" path="res://UI/drag_preview/drag_preview.tscn" id="8_m1mmg"]
-[ext_resource type="PackedScene" uid="uid://duom5cnplrerl" path="res://UI/item_slot.tscn" id="8_wml3y"]
-[ext_resource type="PackedScene" uid="uid://bwhfdhlm2ypc5" path="res://Utility/inventory_data.tscn" id="9_r8gd6"]
-[ext_resource type="PackedScene" uid="uid://dq0y23kqohblq" path="res://UI/equipment_container.tscn" id="10_xg13i"]
-[ext_resource type="PackedScene" uid="uid://dwcyj7eevxr4a" path="res://UI/tooltip/tooltip.tscn" id="11_hpyle"]
 [ext_resource type="AudioStream" uid="uid://c77h67lfbwlgv" path="res://World/Music/battleThemeA.mp3" id="13_sqsmm"]
 
 [node name="World" type="Node2D"]
@@ -30,55 +24,6 @@ region_rect = Rect2(-4000, -4000, 4000, 4000)
 
 [node name="experience_gem" parent="Loot" instance=ExtResource("6_4icf8")]
 position = Vector2(70, 70)
-
-[node name="EquipmentInventoryData" parent="." groups=["equipment_inventory"] instance=ExtResource("9_r8gd6")]
-cols = 9
-rows = 2
-prefilled_equipment = Array[Array]([["res://Player/Equipment/equipment.json", "armor_leather"], ["res://Player/Equipment/equipment.json", "boots_leather"]])
-
-[node name="SpellCardInventoryData" parent="." groups=["spellcard_inventory"] instance=ExtResource("9_r8gd6")]
-cols = 9
-rows = 4
-prefilled_equipment = Array[Array]([["res://Player/Modifiers/modifiers.json", "lance"], ["res://Player/Modifiers/modifiers.json", "divide_fan_10"], ["res://Player/Modifiers/modifiers.json", "heavy_shot"], ["res://Player/Modifiers/modifiers.json", "tornado"], ["res://Player/Modifiers/modifiers.json", "javelin"], ["res://Player/Modifiers/modifiers.json", "arrow"], ["res://Player/Modifiers/modifiers.json", "fireball_thrower"]])
-
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="EquipmentInventoryMenu" parent="UI" node_paths=PackedStringArray("inventory_data") instance=ExtResource("7_5okx2")]
-offset_left = 5.0
-offset_top = 40.0
-offset_right = 45.0
-offset_bottom = 80.0
-inventory_data = NodePath("../../EquipmentInventoryData")
-ItemSlot = ExtResource("8_wml3y")
-
-[node name="SpellCardInventoryMenu" parent="UI" node_paths=PackedStringArray("inventory_data") instance=ExtResource("7_5okx2")]
-offset_left = 5.0
-offset_top = 100.0
-offset_right = 45.0
-offset_bottom = 140.0
-inventory_data = NodePath("../../SpellCardInventoryData")
-ItemSlot = ExtResource("8_wml3y")
-
-[node name="EquippedContainer" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="EquipmentContainer" parent="UI/EquippedContainer" instance=ExtResource("10_xg13i")]
-layout_mode = 1
-offset_left = 250.0
-offset_top = 30.0
-offset_right = 210.0
-offset_bottom = -10.0
-
-[node name="DragPreview" parent="UI" node_paths=PackedStringArray("inventory_menu_array", "inventory_array", "tooltip") instance=ExtResource("8_m1mmg")]
-inventory_menu_array = [NodePath("../EquipmentInventoryMenu"), NodePath("../SpellCardInventoryMenu")]
-inventory_array = [NodePath("../../EquipmentInventoryData"), NodePath("../../SpellCardInventoryData")]
-tooltip = NodePath("../Tooltip")
-
-[node name="Tooltip" parent="UI" instance=ExtResource("11_hpyle")]
-visible = false
 
 [node name="Hits" type="Node" parent="." groups=["hit_root"]]
 

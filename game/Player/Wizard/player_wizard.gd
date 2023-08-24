@@ -55,8 +55,9 @@ var available_upgrade_options = [] # what is on offer
 @onready var pause_button_menu = $CanvasLayer/PanelPause/ButtonMenu
 ## Shop menu
 @onready var transition_shop_menu = $CanvasLayer/TransitionShopMenu
-
-
+## inventory menu
+@onready var inventory_menu = $CanvasLayer/InventoryPanel
+@onready var inventory_data = $InventoryData
 
 # enemy related
 var enemy_close = []
@@ -72,6 +73,12 @@ func _ready():
 	_on_hurt_box_hurt(0, 0, 0)
 	
 	set_process_unhandled_input(true)
+	
+	# Add starting equipment
+	for item in StartingGameData.get_starting_equipment():
+		inventory_data.add_item(item)
+	for item in StartingGameData.get_starting_spells():
+		inventory_data.add_item(item)
 
 
 func _unhandled_input(event):
@@ -80,7 +87,11 @@ func _unhandled_input(event):
 			_reset_pause_panel()
 		else:
 			_show_pause_panel()
-		
+	if event.is_action_pressed("show_inventory_menu"):
+		if inventory_menu.visible:
+			hide_inventory_menu()
+		else:
+			show_inventory_menu()
 		
 
 func _physics_process(_delta): # 60 FPS
@@ -212,7 +223,7 @@ func _on_grab_area_area_entered(area):
 ## The Collect Area is the area on the player which picks up the item.
 func _on_collect_area_area_entered(area):
 	if area.is_in_group("loot"):
-		var gem_exp = area.collect()
+		var _gem_exp = area.collect()
 		collected_gems += area.value
 		gems_label_gems.text = str(collected_gems)
 
@@ -343,3 +354,17 @@ func hide_shop_menu():
 
 func _on_transition_shop_menu_next_button_click():
 	hide_shop_menu()
+
+# --- inventory menu ---
+
+func show_inventory_menu():
+	inventory_menu.visible = true
+	get_tree().paused = true
+
+func hide_inventory_menu():
+	inventory_menu.visible = false
+	get_tree().paused = false
+
+
+
+

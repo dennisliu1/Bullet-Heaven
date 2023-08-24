@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://dllwwqeh3ndvh"]
+
+[ext_resource type="Script" path="res://Utility/inventory_panel.gd" id="1_48pql"]
+[ext_resource type="PackedScene" uid="uid://duom5cnplrerl" path="res://UI/item_slot.tscn" id="2_f0tgp"]
+[ext_resource type="PackedScene" uid="uid://bwvyc2fw45qpq" path="res://UI/inventory_menu.tscn" id="2_lmbhh"]
+[ext_resource type="PackedScene" uid="uid://cahq3xv6kp8vs" path="res://UI/drag_preview/drag_preview.tscn" id="4_22cu0"]
+[ext_resource type="PackedScene" uid="uid://dwcyj7eevxr4a" path="res://UI/tooltip/tooltip.tscn" id="5_k7ah0"]
+
+[node name="InventoryPanel" type="Panel"]
+process_mode = 2
+offset_right = 640.0
+offset_bottom = 360.0
+script = ExtResource("1_48pql")
+
+[node name="InventoryContainer" parent="." instance=ExtResource("2_lmbhh")]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 43.0
+offset_right = 48.0
+offset_bottom = 83.0
+columns = 10
+ItemSlot = ExtResource("2_f0tgp")
+
+[node name="DragPreview" parent="." instance=ExtResource("4_22cu0")]
+
+[node name="Tooltip" parent="." instance=ExtResource("5_k7ah0")]
+layout_mode = 0
