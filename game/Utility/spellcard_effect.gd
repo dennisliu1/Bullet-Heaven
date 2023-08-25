@@ -258,13 +258,13 @@ static func evaluate_spellcard_effect(spellcard_effect: SpellCardEffect, stack: 
 				stack.append(spellcard_effect)
 				is_looping = false
 			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.PROPERTIES_PROJECTILE_MODIFIER:
-				apply_modifier_to_spellcard(spellcard_effect, top_effect)
+				combine_modifiers(spellcard_effect, top_effect)
 				stack.pop_back()
 			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.ON_FIRE_PROJECTILE_MODIFIER:
-				apply_modifier_to_spellcard(spellcard_effect, top_effect)
+				combine_modifiers(spellcard_effect, top_effect)
 				stack.pop_back()
 			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.ON_HIT_PROJECTILE_MODIFIER:
-				apply_modifier_to_spellcard(spellcard_effect, top_effect)
+				combine_modifiers(spellcard_effect, top_effect)
 				stack.pop_back()
 			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER:
 				stack.append(spellcard_effect)
@@ -278,6 +278,8 @@ static func apply_modifier_to_spellcard(spellcard_effect: SpellCardEffect, modif
 		apply_multiplied_modifier_to_spellcard_effect(spellcard_effect, modifier_card)
 	elif modifier_card.sub_type == ItemData.ITEM_SUB_TYPE.ADDITIVE_PROPERTIES_PROJECTILE_MODIFIER:
 		apply_additive_modifier_to_spellcard_effect(spellcard_effect, modifier_card)
+	elif modifier_card.sub_type == ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER:
+		apply_multiplied_modifier_to_spellcard_effect(spellcard_effect, modifier_card)
 	
 	if modifier_card.get("on_fire_effects"):
 		spellcard_effect.on_fire_effects = []

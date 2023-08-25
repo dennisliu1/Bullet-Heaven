@@ -14,6 +14,7 @@ var attack_enabled = true
 @onready var action_delay_timer: Timer = $ActionDelayTimer
 @onready var action_reload_timer: Timer = $ActionReloadTimer
 var action_count = 0
+var single_attack = false
 
 var get_start_position_callable: Callable
 var get_direction_callable: Callable
@@ -21,12 +22,14 @@ var start_position
 var direction_vector
 
 var attack_properties : SpellCardEffect # stores the Attack and Hit properties
+var hit_effect : SpellCardEffect
 
 static var EMPTY_ENTITY_ATTACK = EntityAttack.new()
 
 func setup_attack(spellcard_data : SpellCardEffect, get_start_position_arg, get_direction_arg):
 #	attack_instance = attack_obj
 	attack_properties = spellcard_data
+	hit_effect = attack_properties
 
 	var attack_obj_path = SpellCardEffect.get_hit_type(spellcard_data.hit_type)
 	hit_object = load(attack_obj_path)
@@ -47,7 +50,10 @@ func setup_attack(spellcard_data : SpellCardEffect, get_start_position_arg, get_
 func do_attack():
 	for i in range(on_fire_hit_objects.size()):
 		_spawn_hits(on_fire_effects[i], on_fire_effects[i], on_fire_hit_objects[i])
-	_spawn_hits(attack_properties, attack_properties, hit_object)
+	_spawn_hits(attack_properties, hit_effect, hit_object)
+	
+func _do_attack_internal():
+	do_attack()
 
 func spawn_bullet(spellcard_effect, target_vector, hit_obj):
 	if not hit_obj is Resource:
@@ -131,34 +137,47 @@ func get_start_position():
 
 # --- do attacks ---
 
+func setup_effect():
+	pass
+
+func set_mod_attack():
+	pass
+
 func update_effects():
-	if attack_properties.action_delay > 0:
-		action_delay_timer.wait_time = attack_properties.action_delay
-	if attack_properties.reload_delay:
-		action_reload_timer.wait_time = attack_properties.reload_delay
+	if hit_effect.action_delay > 0:
+		action_delay_timer.wait_time = hit_effect.action_delay
+	if hit_effect.reload_delay > 0:
+		action_reload_timer.wait_time = hit_effect.reload_delay
 
 func reset_attack():
 	reset_attack_sequence()
 
+func start_single_attack_sequence():
+	take_action()
+
+
 func start_attack_sequence():
 	if attack_enabled:
 		take_action()
+		
 
 func _on_action_delay_timer_timeout():
 	take_action()
 
 func take_action():
-	do_attack()
+	_do_attack_internal()
 	action_count += 1
 	
-	## Start the next attack.
-	## If we reached the end of the attacks, restart the loop
-	## TODO add burst fire modifiers to test this feature out
-	if action_count < attack_properties.rapid_repeat:
-		action_delay_timer.start()
-		action_reload_timer.stop()
+	if single_attack:
+		if action_count < hit_effect.rapid_repeat:
+			action_delay_timer.start()
+			action_reload_timer.stop()
 	else:
-		action_reload_timer.start()
+		if action_count < hit_effect.rapid_repeat:
+			action_delay_timer.start()
+			action_reload_timer.stop()
+		else:
+			action_reload_timer.start()
 
 func _on_action_reload_timer_timeout():
 	reset_attack_sequence()
@@ -186,5 +205,8 @@ func enable_attack():
 func disable_attack():
 	attack_enabled = false
 	stop_attack_sequence()
+
+
+
 
 

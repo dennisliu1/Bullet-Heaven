@@ -60,6 +60,8 @@ func sync_bulk_spellcard_effects(instance_stack: Array[SpellCardEffect]):
 					
 					# disable the other attack
 					other_entry.attack.disable_attack()
+	for effect_instance in player_container.get_children():
+		effect_instance.setup_effect()
 
 func reset_spellcard_effects():
 	effect_queue.clear()
