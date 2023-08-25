@@ -172,3 +172,12 @@ func pause_attack():
 func unpause_attack():
 	action_delay_timer.paused = false
 	action_reload_timer.paused = false
+
+func enable_attack():
+	attack_enabled = true
+
+func disable_attack():
+	attack_enabled = false
+	stop_attack_sequence()
+
+

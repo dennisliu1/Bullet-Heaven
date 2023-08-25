@@ -39,11 +39,27 @@ func sync_bulk_spellcard_effects(instance_stack: Array[SpellCardEffect]):
 			effect_dict[effect_key].delete = true
 			
 			# reset (re-enable) all attacks, will disable them
-			effect_dict[effect_key].attack.attack_enabled = true
+			effect_dict[effect_key].attack.enable_attack()
 
 	# connect multi-cast and mod_projectile_modifiers
 	## Clear multi-cast and mod_projectile_modifiers
-	
+	for i in range(effect_queue.size()):
+		var effect_key = effect_queue[i]
+		var spellcard_effect = effect_dict[effect_key].effect
+		if spellcard_effect.sub_type == ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER:
+			# Clear existing multi-cast and mod_projectile_modifier connections 
+			effect_dict[effect_key].attack.entity_attacks.clear()
+
+			# Add new connections
+			for j in range(spellcard_effect.required_effects):
+				var other_index = i+1+j
+				if other_index < effect_queue.size():
+					var other_key = effect_queue[other_index]
+					var other_entry = effect_dict[other_key]
+					effect_dict[effect_key].attack.entity_attacks.append(other_entry.attack)
+					
+					# disable the other attack
+					other_entry.attack.disable_attack()
 
 func reset_spellcard_effects():
 	effect_queue.clear()

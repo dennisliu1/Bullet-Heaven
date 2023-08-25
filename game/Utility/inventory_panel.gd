@@ -11,7 +11,7 @@ extends Panel
 func _ready():
 	spellcard_inventory_data.items_changed.connect(_on_spellcard_changed)
 
-func _on_spellcard_changed(changed_spellcards):
+func _on_spellcard_changed(_changed_spellcards):
 	# changed_spellcards = [modified-card-index]
 	refresh_spell_effects_data()
 
