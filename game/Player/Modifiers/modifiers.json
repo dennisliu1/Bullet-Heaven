@@ -18,7 +18,7 @@
 			"velocity": 100,
 			"lifetime": 20,
 			"radius": 0,
-			"knockback": 0,
+			"knockback": 1,
 			"pierce": 0,
 			"bounce": 0,
 			"hit_hp": 9999,
@@ -76,7 +76,7 @@
 			"velocity": 100,
 			"lifetime": 10,
 			"radius": 0,
-			"knockback": 0,
+			"knockback": 1,
 			"pierce": 0,
 			"bounce": 0,
 			"hit_hp": 1,
@@ -333,6 +333,7 @@
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"damage": 4,
+			"knockback": 1.2,
 			"velocity": 0.7,
 		}]
 	},

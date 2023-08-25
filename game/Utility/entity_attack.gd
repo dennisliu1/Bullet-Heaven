@@ -131,13 +131,17 @@ func get_start_position():
 
 # --- do attacks ---
 
+func update_effects():
+	if attack_properties.action_delay > 0:
+		action_delay_timer.wait_time = attack_properties.action_delay
+	if attack_properties.reload_delay:
+		action_reload_timer.wait_time = attack_properties.reload_delay
+
 func reset_attack():
 	reset_attack_sequence()
 
 func start_attack_sequence():
 	if attack_enabled:
-		action_delay_timer.wait_time = attack_properties.action_delay
-		action_reload_timer.wait_time = attack_properties.reload_delay
 		take_action()
 
 func _on_action_delay_timer_timeout():

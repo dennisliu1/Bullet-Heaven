@@ -70,6 +70,7 @@ func reset_spellcard_effects():
 
 func update_effect(key, spellcard_effect):
 	SpellCardEffect.update_effect(effect_dict[key].effect, spellcard_effect)
+	effect_dict[key].attack.update_effects()
 
 func _create_spellcard_effect(spellcard_effect):
 	if spellcard_effect.sub_type == ItemData.ITEM_SUB_TYPE.PROJECTILE:

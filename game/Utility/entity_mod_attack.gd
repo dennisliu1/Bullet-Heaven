@@ -21,32 +21,9 @@ func do_attack():
 		else:
 			_spawn_hits(attack_properties, mod_effect, mod_hit_object)
 
-#func _spawn_attacks(spawn_effect, entity_attack):
-#	if spawn_effect.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.SPREAD and spawn_effect.num_attacks > 1:
-#		var attack_angle = spawn_effect.attack_angle
-#		var direction_shifted = deg_to_rad(attack_angle) / (spawn_effect.num_attacks-1)
-#		var left_direction = get_direction().rotated(deg_to_rad(-attack_angle/2))
-#		var right_direction = get_direction().rotated(deg_to_rad(attack_angle/2))
-#
-#		for i in range(spawn_effect.num_attacks):
-#			if i % 2 == 0:
-#				entity_attack.start_position = get_start_position()
-#				entity_attack.direction_vector = get_start_position() + left_direction
-#				entity_attack.do_attack()
-#				left_direction = left_direction.rotated(direction_shifted)
-#			else:
-#				entity_attack.start_position = get_start_position()
-#				entity_attack.direction_vector = get_start_position() + right_direction
-#				entity_attack.do_attack()
-#				right_direction = right_direction.rotated(-direction_shifted)
-#		entity_attack.start_position = null
-#		entity_attack.direction_vector = null
-#	else:
-#		entity_attack.do_attack()
-
-func _spawn_multicast_attacks(spawn_effect, entity_attacks, multicast):
+func _spawn_multicast_attacks(spawn_effect, entity_attacks_arr, multicast):
 	var j = 0
-	var entity_attack = entity_attacks[j]
+	var entity_attack = entity_attacks_arr[j]
 	
 	if spawn_effect.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.SPREAD:
 		var attack_angle = spawn_effect.attack_angle
@@ -74,8 +51,8 @@ func _spawn_multicast_attacks(spawn_effect, entity_attacks, multicast):
 					right_direction = right_direction.rotated(-direction_shifted)
 			
 			if multicast:
-				j = (j + 1) % entity_attacks.size()
-				entity_attack = entity_attacks[j]
+				j = (j + 1) % entity_attacks_arr.size()
+				entity_attack = entity_attacks_arr[j]
 		entity_attack.start_position = null
 		entity_attack.direction_vector = null
 	else:

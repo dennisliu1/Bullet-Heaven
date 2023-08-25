@@ -202,17 +202,17 @@ static func evaluate_spellcard_effect(spellcard_effect: SpellCardEffect, stack: 
 			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.PROPERTIES_PROJECTILE_MODIFIER:
 				## top = stats modifier + spellcard = stats modifier
 				## combine modifiers
-				apply_modifier_to_spellcard(spellcard_effect, top_effect)
+				combine_modifiers(spellcard_effect, top_effect)
 				stack.pop_back()
 			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.ON_FIRE_PROJECTILE_MODIFIER:
 				## top = on fire effect modifier + spellcard = stats modifier
 				## combine modifiers
-				apply_modifier_to_spellcard(spellcard_effect, top_effect)
+				combine_modifiers(spellcard_effect, top_effect)
 				stack.pop_back()
 			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.ON_HIT_PROJECTILE_MODIFIER:
 				## top = on hit effect modifier + spellcard = stats modifier
 				## combine modifiers
-				apply_modifier_to_spellcard(spellcard_effect, top_effect)
+				combine_modifiers(spellcard_effect, top_effect)
 				stack.pop_back()
 			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER:
 				## top = on hit effect modifier + spellcard = mod projectile modifier
@@ -226,13 +226,13 @@ static func evaluate_spellcard_effect(spellcard_effect: SpellCardEffect, stack: 
 				stack.append(spellcard_effect)
 				is_looping = false
 			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.PROPERTIES_PROJECTILE_MODIFIER:
-				apply_modifier_to_spellcard(spellcard_effect, top_effect)
+				combine_modifiers(spellcard_effect, top_effect)
 				stack.pop_back()
 			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.ON_FIRE_PROJECTILE_MODIFIER:
-				apply_modifier_to_spellcard(spellcard_effect, top_effect)
+				combine_modifiers(spellcard_effect, top_effect)
 				stack.pop_back()
 			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.ON_HIT_PROJECTILE_MODIFIER:
-				apply_modifier_to_spellcard(spellcard_effect, top_effect)
+				combine_modifiers(spellcard_effect, top_effect)
 				stack.pop_back()
 			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER:
 				stack.append(spellcard_effect)
@@ -242,13 +242,13 @@ static func evaluate_spellcard_effect(spellcard_effect: SpellCardEffect, stack: 
 				stack.append(spellcard_effect)
 				is_looping = false
 			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.PROPERTIES_PROJECTILE_MODIFIER:
-				apply_modifier_to_spellcard(spellcard_effect, top_effect)
+				combine_modifiers(spellcard_effect, top_effect)
 				stack.pop_back()
 			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.ON_FIRE_PROJECTILE_MODIFIER:
-				apply_modifier_to_spellcard(spellcard_effect, top_effect)
+				combine_modifiers(spellcard_effect, top_effect)
 				stack.pop_back()
 			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.ON_HIT_PROJECTILE_MODIFIER:
-				apply_modifier_to_spellcard(spellcard_effect, top_effect)
+				combine_modifiers(spellcard_effect, top_effect)
 				stack.pop_back()
 			elif top_card_sub_type == ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER:
 				stack.append(spellcard_effect)
@@ -289,45 +289,63 @@ static func apply_modifier_to_spellcard(spellcard_effect: SpellCardEffect, modif
 			spellcard_effect.on_hit_effects.append(spellcard_effect_data.duplicate())
 	return spellcard_effect
 
+static func combine_modifiers(spellcard_effect: SpellCardEffect, modifier_card: SpellCardEffect):
+	if modifier_card.sub_type == ItemData.ITEM_SUB_TYPE.PROPERTIES_PROJECTILE_MODIFIER:
+		combine_multiplied_modifier_spellcard_effects(spellcard_effect, modifier_card)
+	elif modifier_card.sub_type == ItemData.ITEM_SUB_TYPE.ADDITIVE_PROPERTIES_PROJECTILE_MODIFIER:
+		apply_additive_modifier_to_spellcard_effect(spellcard_effect, modifier_card)
+	
+	if modifier_card.get("on_fire_effects"):
+		spellcard_effect.on_fire_effects = []
+		for spellcard_effect_data in modifier_card.on_fire_effects:
+			spellcard_effect.on_fire_effects.append(spellcard_effect_data.duplicate())
+	if modifier_card.get("on_hit_effects"):
+		spellcard_effect.on_hit_effects = []
+		for spellcard_effect_data in modifier_card.on_hit_effects:
+			spellcard_effect.on_hit_effects.append(spellcard_effect_data.duplicate())
+	return spellcard_effect
+
 static func apply_multiplied_modifier_to_spellcard_effect(spellcard_effect: SpellCardEffect, modifier_card: SpellCardEffect):
-	if modifier_card.get("damage"):
-		spellcard_effect.damage *= modifier_card.damage
-	if modifier_card.get("damage_shock"):
-		spellcard_effect.damage_shock *= modifier_card.damage_shock
-	if modifier_card.get("damage_fire"):
-		spellcard_effect.damage_fire *= modifier_card.damage_fire
-	if modifier_card.get("damage_ice"):
-		spellcard_effect.damage_ice *= modifier_card.damage_ice
-	if modifier_card.get("damage_poison"):
-		spellcard_effect.damage_poison *= modifier_card.damage_poison
-	if modifier_card.get("damage_soul"):
-		spellcard_effect.damage_soul *= modifier_card.damage_soul
-	if modifier_card.get("rapid_repeat"):
-		spellcard_effect.rapid_repeat *= modifier_card.rapid_repeat
-	if modifier_card.get("reload_delay"):
-		spellcard_effect.reload_delay *= modifier_card.reload_delay
-	if modifier_card.get("action_delay"):
-		spellcard_effect.action_delay *= modifier_card.action_delay
-	if modifier_card.get("num_attacks"):
-		spellcard_effect.num_attacks += modifier_card.num_attacks
-	if modifier_card.get("spread"):
-		spellcard_effect.spread *= modifier_card.spread
-	if modifier_card.get("velocity"):
-		spellcard_effect.velocity *= modifier_card.velocity
-	if modifier_card.get("lifetime"):
-		spellcard_effect.lifetime *= modifier_card.lifetime
-	if modifier_card.get("radius"):
-		spellcard_effect.radius *= modifier_card.radius
-	if modifier_card.get("knockback"):
-		spellcard_effect.knockback *= modifier_card.knockback
-	if modifier_card.get("pierce"):
-		spellcard_effect.pierce *= modifier_card.pierce
-	if modifier_card.get("bounce"):
-		spellcard_effect.bounce *= modifier_card.bounce
-	if modifier_card.get("hit_hp"):
-		spellcard_effect.hit_hp *= modifier_card.hit_hp
-	if modifier_card.get("hit_size"):
-		spellcard_effect.hit_size *= modifier_card.hit_size
+	multiply_modifier_effect("damage", spellcard_effect, modifier_card)
+	multiply_modifier_effect("damage_shock", spellcard_effect, modifier_card)
+	multiply_modifier_effect("damage_fire", spellcard_effect, modifier_card)
+	multiply_modifier_effect("damage_ice", spellcard_effect, modifier_card)
+	multiply_modifier_effect("damage_poison", spellcard_effect, modifier_card)
+	multiply_modifier_effect("damage_soul", spellcard_effect, modifier_card)
+	multiply_modifier_effect("rapid_repeat", spellcard_effect, modifier_card)
+	multiply_modifier_effect("reload_delay", spellcard_effect, modifier_card)
+	multiply_modifier_effect("action_delay", spellcard_effect, modifier_card)
+	multiply_modifier_effect("num_attacks", spellcard_effect, modifier_card)
+	multiply_modifier_effect("spread", spellcard_effect, modifier_card)
+	multiply_modifier_effect("velocity", spellcard_effect, modifier_card)
+	multiply_modifier_effect("lifetime", spellcard_effect, modifier_card)
+	multiply_modifier_effect("radius", spellcard_effect, modifier_card)
+	multiply_modifier_effect("knockback", spellcard_effect, modifier_card)
+	multiply_modifier_effect("pierce", spellcard_effect, modifier_card)
+	multiply_modifier_effect("bounce", spellcard_effect, modifier_card)
+	multiply_modifier_effect("hit_hp", spellcard_effect, modifier_card)
+	multiply_modifier_effect("hit_size", spellcard_effect, modifier_card)
+
+static func combine_multiplied_modifier_spellcard_effects(spellcard_effect: SpellCardEffect, modifier_card: SpellCardEffect):
+	multiply_or_set_modifier_effect("damage", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("damage_shock", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("damage_fire", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("damage_ice", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("damage_poison", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("damage_soul", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("rapid_repeat", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("reload_delay", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("action_delay", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("num_attacks", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("spread", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("velocity", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("lifetime", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("radius", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("knockback", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("pierce", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("bounce", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("hit_hp", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("hit_size", spellcard_effect, modifier_card)
 
 static func apply_additive_modifier_to_spellcard_effect(spellcard_effect: SpellCardEffect, modifier_card: SpellCardEffect):
 	if modifier_card.get("damage"):
@@ -369,7 +387,9 @@ static func update_effect(target_effect, instance_effect):
 	target_effect.required_effects = instance_effect.required_effects
 	target_effect.energy_drain = instance_effect.energy_drain
 	target_effect.damage = instance_effect.damage
+	target_effect.reload_delay = instance_effect.reload_delay
 	target_effect.action_delay = instance_effect.action_delay
+	target_effect.rapid_repeat = instance_effect.rapid_repeat
 	target_effect.num_attacks = instance_effect.num_attacks
 	target_effect.attack_angle = instance_effect.attack_angle
 	target_effect.spread = instance_effect.spread
@@ -386,9 +406,16 @@ static func update_effect(target_effect, instance_effect):
 	for on_hit_effect in instance_effect.on_hit_effects:
 		target_effect.on_hit_effects.append(on_hit_effect)
 
+static func multiply_or_set_modifier_effect(variable, spellcard_effect: SpellCardEffect, modifier_card: SpellCardEffect):
+	if modifier_card.get(variable):
+		if spellcard_effect.get(variable):
+			spellcard_effect[variable] *= modifier_card[variable]
+		else:
+			spellcard_effect[variable] = modifier_card[variable]
 
-
-
+static func multiply_modifier_effect(variable, spellcard_effect: SpellCardEffect, modifier_card: SpellCardEffect):
+	if modifier_card.get(variable):
+		spellcard_effect[variable] *= modifier_card[variable]
 
 
 
