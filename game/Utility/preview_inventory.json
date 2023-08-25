@@ -19,6 +19,8 @@
 	["res://Player/Modifiers/modifiers.json", "wide_angle"],
 	["res://Player/Modifiers/modifiers.json", "narrow_angle"],
 	["res://Player/Modifiers/modifiers.json", "fireball_thrower"],
+	["res://Player/Modifiers/modifiers.json", "increase_lifetime"],
+	["res://Player/Modifiers/modifiers.json", "decrease_lifetime"],
 	["res://Player/Modifiers/modifiers.json", "lance"],
 	["res://Player/Modifiers/modifiers.json", "lance"],
 	["res://Player/Modifiers/modifiers.json", "lance"],

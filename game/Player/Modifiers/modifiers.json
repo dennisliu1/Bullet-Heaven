@@ -74,7 +74,7 @@
 			"num_attacks": 1,
 			"spread": 0,
 			"velocity": 100,
-			"lifetime": 10,
+			"lifetime": 1,
 			"radius": 0,
 			"knockback": 1,
 			"pierce": 0,
@@ -373,6 +373,30 @@
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"attack_angle": 0.6,
+		}]
+	},
+	"increase_lifetime": {
+		"name": "Increase Lifetime",
+		"description": "Increase the hit's lifetime, so it stick around for longer.",
+		"icon": "lifetime.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [2,3,4],
+		"data": [{
+			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+			"lifetime": 10,
+		}]
+	},
+	"decrease_lifetime": {
+		"name": "Decrease Lifetime",
+		"description": "Decrease the hit's lifetime, so it disappears faster.",
+		"icon": "lifetime_down.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [2,3,4],
+		"data": [{
+			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+			"lifetime": 0.5,
 		}]
 	},
 	"fireball_thrower": {

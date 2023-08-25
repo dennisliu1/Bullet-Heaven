@@ -19,7 +19,7 @@ var entity_hit: EntityHit # stores the hit properties
 @export var knockback_amount = 100
 @export var attack_size = 1.0
 @export var attack_hp = 1
-@export var lifetime : int
+@export var lifetime : float
 @export var hit_behaviour_type: SpellCardEffect.HIT_SPAWN_TYPE
 @export var on_hit_spellcards : Array
 
@@ -37,7 +37,11 @@ signal remove_from_array(object)
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
-	life_time_timer.wait_time = lifetime
+	if lifetime > 0:
+		life_time_timer.wait_time = lifetime
+		life_time_timer.start()
+	
+	
 	angle = global_position.direction_to(target)
 	for spellcard in on_hit_spellcards:
 		if spellcard is SpellCardEffect:
@@ -105,7 +109,6 @@ func get_direction():
 	return angle
 
 func _tornado_behavior():
-	life_time_timer.wait_time = lifetime
 	last_movement = player.last_movement
 	
 	var move_to_less = Vector2.ZERO
