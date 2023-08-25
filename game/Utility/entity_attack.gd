@@ -109,11 +109,11 @@ func _spawn_hits(spawn_effect, spellcard_effect, bullet_obj):
 
 func _get_hit_spawn_type(spellcard):
 	if start_position != null and direction_vector != null: # overridden
-		return get_start_position() + get_direction()
+		return get_direction()
 	elif spellcard.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.RANDOM_TARGET:
 		return player.get_random_target()
 	elif spellcard.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.PLAYER_DIRECTION:
-		return get_start_position() + get_direction()
+		return get_direction()
 
 func get_direction():
 	if direction_vector:

@@ -175,9 +175,45 @@
 			}
 		]
 	},
+	"multicast_side_and_front": {
+		"name": "Side And Front Multicast",
+		"description": "Do three simultaneous attacks to the sides and the front.",
+		"icon": "t_shape.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [1,2,3,4,5,6],
+		"data": [
+			{
+				"sub_type": "MOD_PROJECTILE_MODIFIER",
+				"multicast": true,
+				"required_effects": 3,
+				"num_attacks": 3,
+				"attack_angle": 180,
+				"hit_spawn_type": "SPREAD",
+			}
+		]
+	},
+	"multicast_back_and_front": {
+		"name": "Back And Front Multicast",
+		"description": "Do two simultaneous attacks to the front and back.",
+		"icon": "i_shape.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [1,2,3,4,5,6],
+		"data": [
+			{
+				"sub_type": "MOD_PROJECTILE_MODIFIER",
+				"multicast": true,
+				"required_effects": 2,
+				"num_attacks": 2,
+				"attack_angle": 360,
+				"hit_spawn_type": "SPREAD",
+			}
+		]
+	},
 	"multicast_bifurcated": {
 		"name": "Bifurcated Multicast",
-		"description": "Do two attacks at the same time in a bifurcated pattern.",
+		"description": "Do two simultaneous attacks at the same time in a bifurcated pattern.",
 		"icon": "y_shape.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
@@ -189,6 +225,42 @@
 				"required_effects": 2,
 				"num_attacks": 2,
 				"attack_angle": 270,
+				"hit_spawn_type": "SPREAD",
+			}
+		]
+	},
+	"multicast_pentagon": {
+		"name": "Pentagon Multicast",
+		"description": "Do five simultaneous attacks in a pentagon shape.",
+		"icon": "pentagram_shape.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [1,2,3,4,5,6],
+		"data": [
+			{
+				"sub_type": "MOD_PROJECTILE_MODIFIER",
+				"multicast": true,
+				"required_effects": 5,
+				"num_attacks": 5,
+				"attack_angle": 360,
+				"hit_spawn_type": "SPREAD",
+			}
+		]
+	},
+	"multicast_hexagon": {
+		"name": "Hexagon Multicast",
+		"description": "Do six simultaneous attacks in a pentagon shape.",
+		"icon": "circle_shape.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [1,2,3,4,5,6],
+		"data": [
+			{
+				"sub_type": "MOD_PROJECTILE_MODIFIER",
+				"multicast": true,
+				"required_effects": 6,
+				"num_attacks": 6,
+				"attack_angle": 360,
 				"hit_spawn_type": "SPREAD",
 			}
 		]
