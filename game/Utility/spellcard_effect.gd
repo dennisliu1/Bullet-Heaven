@@ -35,6 +35,7 @@ enum HIT_BEHAVIOR_TYPE {STRAIGHT_LINE, WAVE_PATTERN, HOMING}
 @export var hit_behavior_type: HIT_BEHAVIOR_TYPE
 @export var attack_type: String
 @export var hit_type : String
+@export var multicast: bool
 
 @export var on_fire_effects: Array[SpellCardEffect]
 @export var on_travel_effects: Array[SpellCardEffect] # TODO

@@ -175,6 +175,24 @@
 			}
 		]
 	},
+	"multicast_bifurcated": {
+		"name": "Bifurcated Multicast",
+		"description": "Do two attacks at the same time in a bifurcated pattern.",
+		"icon": "y_shape.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [1,2,3,4,5,6],
+		"data": [
+			{
+				"sub_type": "MOD_PROJECTILE_MODIFIER",
+				"multicast": true,
+				"required_effects": 2,
+				"num_attacks": 2,
+				"attack_angle": 270,
+				"hit_spawn_type": "SPREAD",
+			}
+		]
+	},
 	"heavy_shot": {
 		"name": "Heavy Shot",
 		"description": "Greatly increases the damage done by a projectile, at the cost of its speed",

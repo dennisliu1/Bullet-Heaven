@@ -108,7 +108,9 @@ func _spawn_hits(spawn_effect, spellcard_effect, bullet_obj):
 		spawn_bullet(spellcard_effect, _get_hit_spawn_type(spawn_effect), bullet_obj)
 
 func _get_hit_spawn_type(spellcard):
-	if spellcard.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.RANDOM_TARGET:
+	if start_position != null and direction_vector != null: # overridden
+		return get_start_position() + get_direction()
+	elif spellcard.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.RANDOM_TARGET:
 		return player.get_random_target()
 	elif spellcard.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.PLAYER_DIRECTION:
 		return get_start_position() + get_direction()
@@ -134,7 +136,8 @@ func reset_attack():
 	reset_attack_sequence()
 
 func start_attack_sequence():
-	take_action()
+	if attack_enabled:
+		take_action()
 
 func _on_action_delay_timer_timeout():
 	take_action()

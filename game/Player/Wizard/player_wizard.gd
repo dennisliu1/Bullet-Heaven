@@ -27,6 +27,7 @@ var collected_gems = 0
 var ice_spear = preload("res://Player/Attacks/Ice Spear/ice_spear.tscn")
 
 # GUI
+var on_another_menu = false
 ## timer
 var time = 0
 @onready var label_time = $CanvasLayer/LabelTime
@@ -73,19 +74,17 @@ func _ready():
 	set_process_unhandled_input(true)
 	
 	# Add starting equipment
-	for item in StartingGameData.get_starting_equipment():
-		inventory_data.add_item(item)
 	for item in StartingGameData.get_starting_spells():
-		inventory_data.add_item(item)
+		spellcard_inventory.add_item(item)
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("show_pause_menu"):
+	if event.is_action_pressed("show_pause_menu") and not on_another_menu:
 		if pause_panel.visible:
 			_reset_pause_panel()
 		else:
 			_show_pause_panel()
-	if event.is_action_pressed("show_inventory_menu"):
+	if event.is_action_pressed("show_inventory_menu") and not on_another_menu:
 		if inventory_menu.visible:
 			hide_inventory_menu()
 		else:
@@ -273,6 +272,7 @@ func _show_level_up_panel():
 		option_choice.item = get_random_item()
 		level_up_options.add_child(option_choice)
 		options += 1
+	on_another_menu = true
 
 ## Reset Level Up Panel position
 func _reset_level_up_panel():
@@ -286,6 +286,7 @@ func _reset_level_up_panel():
 	
 	## clear the upgrade options array
 	available_upgrade_options.clear()
+	on_another_menu = false
 
 ## called by enemy_spawner to update the time
 func change_time(argtime = 0):
@@ -309,22 +310,26 @@ func _show_pause_panel():
 	tween.tween_property(pause_panel, "position", Vector2(220, 50), 0.1).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
 	tween.play()
 	pause_panel.visible = true
+	on_another_menu = true
 	pause_player()
 
 ## Reset Pause Panel position
 func _reset_pause_panel():
 	pause_panel.visible = false
 	pause_panel.position = Vector2(800, 20)
+	on_another_menu = false
 	unpause_player()
 
 # --- transition shop menu ---
 
 func show_shop_menu():
 	transition_shop_menu.visible = true
+	on_another_menu = true
 	pause_player()
 
 func hide_shop_menu():
 	transition_shop_menu.visible = false
+	on_another_menu = false
 	unpause_player()
 
 func _on_transition_shop_menu_next_button_click():
