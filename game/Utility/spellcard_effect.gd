@@ -16,6 +16,9 @@ enum HIT_BEHAVIOR_TYPE {STRAIGHT_LINE, WAVE_PATTERN, HOMING}
 @export var damage_poison: float
 @export var damage_soul: float
 @export var action_delay: float
+@export var rapid_repeat: float # number of attacks in a row
+
+@export var reload_delay: float
 @export var num_attacks: float # number of projectiles coming out per attack
 
 ## The angle which the hits come out as, if num_attacks is more than one.
@@ -299,6 +302,10 @@ static func apply_multiplied_modifier_to_spellcard_effect(spellcard_effect: Spel
 		spellcard_effect.damage_poison *= modifier_card.damage_poison
 	if modifier_card.get("damage_soul"):
 		spellcard_effect.damage_soul *= modifier_card.damage_soul
+	if modifier_card.get("rapid_repeat"):
+		spellcard_effect.rapid_repeat *= modifier_card.rapid_repeat
+	if modifier_card.get("reload_delay"):
+		spellcard_effect.reload_delay *= modifier_card.reload_delay
 	if modifier_card.get("action_delay"):
 		spellcard_effect.action_delay *= modifier_card.action_delay
 	if modifier_card.get("num_attacks"):

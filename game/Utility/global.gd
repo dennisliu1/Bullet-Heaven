@@ -135,6 +135,10 @@ func populate_spellcard_effect(spellcard_effect, spellcard_data_effect):
 		spellcard_effect.damage_soul = spellcard_data_effect.damage_soul
 	if spellcard_data_effect.has("action_delay"):
 		spellcard_effect.action_delay = spellcard_data_effect.action_delay
+	if spellcard_data_effect.has("reload_delay"):
+		spellcard_effect.reload_delay = spellcard_data_effect.reload_delay
+	if spellcard_data_effect.has("rapid_repeat"):
+		spellcard_effect.rapid_repeat = spellcard_data_effect.rapid_repeat
 	if spellcard_data_effect.has("num_attacks"):
 		spellcard_effect.num_attacks = spellcard_data_effect.num_attacks
 	if spellcard_data_effect.has("attack_angle"):

@@ -14,7 +14,6 @@ var attack_enabled = true
 @onready var action_delay_timer: Timer = $ActionDelayTimer
 @onready var action_reload_timer: Timer = $ActionReloadTimer
 var action_count = 0
-var action_max = 0
 
 var get_start_position_callable: Callable
 var get_direction_callable: Callable
@@ -137,6 +136,8 @@ func reset_attack():
 
 func start_attack_sequence():
 	if attack_enabled:
+		action_delay_timer.wait_time = attack_properties.action_delay
+		action_reload_timer.wait_time = attack_properties.reload_delay
 		take_action()
 
 func _on_action_delay_timer_timeout():
@@ -149,8 +150,7 @@ func take_action():
 	## Start the next attack.
 	## If we reached the end of the attacks, restart the loop
 	## TODO add burst fire modifiers to test this feature out
-	if action_count < action_max:
-		action_delay_timer.wait_time = attack_properties.action_delay
+	if action_count < attack_properties.rapid_repeat:
 		action_delay_timer.start()
 		action_reload_timer.stop()
 	else:

@@ -11,6 +11,8 @@
 			"energy_drain": 10,
 			"damage": 5,
 			"action_delay": 1,
+			"rapid_repeat": 1,
+			"reload_delay": 1,
 			"num_attacks": 1,
 			"spread": 0,
 			"velocity": 100,
@@ -39,6 +41,8 @@
 			"energy_drain": 10,
 			"damage": 10,
 			"action_delay": 1,
+			"rapid_repeat": 1,
+			"reload_delay": 1,
 			"num_attacks": 1,
 			"spread": 0,
 			"velocity": 200,
@@ -65,6 +69,8 @@
 			"energy_drain": 10,
 			"damage": 5,
 			"action_delay": 1,
+			"rapid_repeat": 1,
+			"reload_delay": 1,
 			"num_attacks": 1,
 			"spread": 0,
 			"velocity": 100,
@@ -92,7 +98,9 @@
 			"sub_type": "PROJECTILE",
 			"energy_drain": 10,
 			"damage": 5,
-			"action_delay": 0.1,
+			"action_delay": 1,
+			"rapid_repeat": 1,
+			"reload_delay": 0.1,
 			"num_attacks": 1,
 			"spread": 0,
 			"velocity": 200,
@@ -262,6 +270,40 @@
 				"num_attacks": 6,
 				"attack_angle": 360,
 				"hit_spawn_type": "SPREAD",
+			}
+		]
+	},
+	"rapid_fire_x3": {
+		"name": "Rapid Fire x3",
+		"description": "Do three (3) attacks in a row.",
+		"icon": "draw_random_x3.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [1,2,3,4,5,6],
+		"data": [
+			{
+				"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+				"multicast": true,
+				"required_effects": 1,
+				"rapid_repeat": 3,
+				"action_delay": 0.33,
+			}
+		]
+	},
+	"rapid_fire_x10": {
+		"name": "Rapid Fire x10",
+		"description": "Do ten (10) attacks in a row.",
+		"icon": "draw_random.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [1,2,3,4,5,6],
+		"data": [
+			{
+				"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+				"multicast": true,
+				"required_effects": 1,
+				"rapid_repeat": 10,
+				"action_delay": 0.1,
 			}
 		]
 	},
