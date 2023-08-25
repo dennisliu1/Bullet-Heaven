@@ -129,6 +129,10 @@
 				"num_attacks": 2,
 				"attack_angle": 90,
 				"hit_spawn_type": "SPREAD",
+			},
+			{
+				"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+				"damage": 0.5,
 			}
 		]
 	},
@@ -146,6 +150,10 @@
 				"num_attacks": 3,
 				"attack_angle": 90,
 				"hit_spawn_type": "SPREAD",
+			},
+			{
+				"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+				"damage": 0.33,
 			}
 		]
 	},
@@ -163,6 +171,10 @@
 				"num_attacks": 4,
 				"attack_angle": 135,
 				"hit_spawn_type": "SPREAD",
+			},
+			{
+				"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+				"damage": 0.25,
 			}
 		]
 	},
@@ -180,6 +192,10 @@
 				"num_attacks": 10,
 				"attack_angle": 270,
 				"hit_spawn_type": "SPREAD",
+			},
+			{
+				"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+				"damage": 0.1,
 			}
 		]
 	},
