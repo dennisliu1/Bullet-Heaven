@@ -22,7 +22,7 @@ var collected_gems = 0
 # attacks
 
 ## ice spear
-@onready var attack_container = $Attack
+@onready var effects_container = $EffectsContainer
 
 var ice_spear = preload("res://Player/Attacks/Ice Spear/ice_spear.tscn")
 
@@ -186,33 +186,10 @@ func _on_enemy_detect_area_body_exited(body):
 	if enemy_close.has(body):
 		enemy_close.erase(body)
 
-func set_equipped_item(equipment_data, index):
-	if equipment_data is EquipmentData:
-		var equipped_item = attack_container.get_child(index)
-		return equipped_item.set_equipped_item(equipment_data)
-	else:
-		return remove_equipped_item(index)
+# --- sync spell card situation
 
-func remove_equipped_item(index):
-	var equipped_item = attack_container.get_child(index)
-	return equipped_item.remove_equipped_item()
-
-# deprecated, not used
-func add_attack(attack_instance, index):
-	var equipped_item = attack_container.get_child(index)
-	equipped_item.add_child(attack_instance)
-
-func add_attack_by_spellcard_effect(spellcard_effect, index):
-	var equipped_item = attack_container.get_child(index)
-	return equipped_item.add_spellcard_effect(spellcard_effect)
-
-func remove_spellcard_effect(spellcard_effect, index):
-	var equipped_item = attack_container.get_child(index)
-	return equipped_item.remove_spellcard_effect(spellcard_effect)
-
-func sync_bulk_spellcard_effects(instance_stack, index):
-	var equipped_item = attack_container.get_child(index)
-	return equipped_item.sync_bulk_spellcard_effects(instance_stack)
+func sync_bulk_spellcard_effects(instance_stack):
+	effects_container.sync_bulk_spellcard_effects(instance_stack)
 
 # --- getting gems ---
 
@@ -365,6 +342,7 @@ func show_inventory_menu():
 func hide_inventory_menu():
 	inventory_menu.visible = false
 	get_tree().paused = false
+	effects_container.reset_attacks()
 
 
 

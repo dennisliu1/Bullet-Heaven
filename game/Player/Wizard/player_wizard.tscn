@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Player/Wizard/player_wizard.gd" id="1_12bdb"]
 [ext_resource type="Texture2D" uid="uid://dn3e5udhpj48c" path="res://Player/Wizard/Textures/player_sprite.png" id="1_n7y1a"]
 [ext_resource type="PackedScene" uid="uid://b3atgfee1ucsy" path="res://Utility/hurt_box.tscn" id="3_hllnf"]
-[ext_resource type="PackedScene" uid="uid://dlkpeoaxhwse2" path="res://Player/Equipment/equipped_item.tscn" id="4_s3xrf"]
+[ext_resource type="PackedScene" uid="uid://dtxic1swrfgao" path="res://Utility/effects_container.tscn" id="5_5ntsy"]
 [ext_resource type="Texture2D" uid="uid://drwuomwe03bd8" path="res://UI/GUI/Textures/exp_background.png" id="5_eeaod"]
 [ext_resource type="FontFile" uid="uid://b1v5rrvoxovby" path="res://Font/tenderness.otf" id="5_qsjk3"]
 [ext_resource type="Texture2D" uid="uid://12g6pipsvyr4" path="res://UI/GUI/Textures/exp_progress.png" id="6_517ui"]
@@ -105,10 +105,7 @@ collision_mask = 2
 position = Vector2(1.5, 2.25)
 shape = SubResource("RectangleShape2D_xbyym")
 
-[node name="Attack" type="Node2D" parent="."]
-
-[node name="EquippedItem" parent="Attack" node_paths=PackedStringArray("enemy_detect_area") instance=ExtResource("4_s3xrf")]
-enemy_detect_area = NodePath("../../EnemyDetectArea")
+[node name="EffectsContainer" parent="." instance=ExtResource("5_5ntsy")]
 
 [node name="EnemyDetectArea" type="Area2D" parent="."]
 collision_layer = 4
@@ -292,9 +289,10 @@ vertical_alignment = 1
 [node name="TransitionShopMenu" parent="CanvasLayer" instance=ExtResource("12_c6qs4")]
 visible = false
 
-[node name="InventoryPanel" parent="CanvasLayer" node_paths=PackedStringArray("inventory_data") instance=ExtResource("13_t4hkb")]
+[node name="InventoryPanel" parent="CanvasLayer" node_paths=PackedStringArray("inventory_data", "spellcard_inventory_data") instance=ExtResource("13_t4hkb")]
 visible = false
 inventory_data = NodePath("../../InventoryData")
+spellcard_inventory_data = NodePath("../../SpellInventoryData")
 
 [node name="InventoryContainer" parent="CanvasLayer/InventoryPanel" index="0" node_paths=PackedStringArray("inventory_data")]
 columns = 1
@@ -318,5 +316,4 @@ inventory_array = [NodePath("../../../InventoryData"), NodePath("../../../SpellI
 [connection signal="next_button_click" from="CanvasLayer/TransitionShopMenu" to="." method="_on_transition_shop_menu_next_button_click"]
 
 [editable path="HurtBox"]
-[editable path="Attack/EquippedItem"]
 [editable path="CanvasLayer/InventoryPanel"]

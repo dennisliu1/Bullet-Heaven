@@ -11,7 +11,10 @@ var attack_enabled = true
 
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 @onready var hit_root = get_tree().get_first_node_in_group("hit_root")
-
+@onready var action_delay_timer: Timer = $ActionDelayTimer
+@onready var action_reload_timer: Timer = $ActionReloadTimer
+var action_count = 0
+var action_max = 0
 
 var get_start_position_callable: Callable
 var get_direction_callable: Callable
@@ -125,7 +128,42 @@ func get_start_position():
 ## matches entity_hit
 
 
+# --- do attacks ---
 
+func reset_attack():
+	reset_attack_sequence()
+
+func start_attack_sequence():
+	take_action()
+
+func _on_action_delay_timer_timeout():
+	take_action()
+
+func take_action():
+	do_attack()
+	action_count += 1
+	
+	## Start the next attack.
+	## If we reached the end of the attacks, restart the loop
+	## TODO add burst fire modifiers to test this feature out
+	if action_count < action_max:
+		action_delay_timer.wait_time = attack_properties.action_delay
+		action_delay_timer.start()
+		action_reload_timer.stop()
+	else:
+		action_reload_timer.start()
+
+func _on_action_reload_timer_timeout():
+	reset_attack_sequence()
+
+func stop_attack_sequence():
+	action_delay_timer.stop()
+	action_reload_timer.stop()
+	action_count = 0
+
+func reset_attack_sequence():
+	stop_attack_sequence()
+	start_attack_sequence()
 
 
 

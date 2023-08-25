@@ -1,4 +1,5 @@
 extends ColorRect
+class_name ItemSlot
 
 var inventory_data : InventoryData
 

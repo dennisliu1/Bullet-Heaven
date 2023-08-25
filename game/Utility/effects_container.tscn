@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtxic1swrfgao"]
+
+[ext_resource type="Script" path="res://Utility/effects_container.gd" id="1_pj6jr"]
+
+[node name="EffectsContainer" type="Node2D"]
+script = ExtResource("1_pj6jr")
+
+[node name="PlayerContainer" type="Node" parent="."]
+
+[node name="Summons" type="Node" parent="."]

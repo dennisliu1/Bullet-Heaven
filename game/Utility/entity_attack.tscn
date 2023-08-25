@@ -4,3 +4,12 @@
 
 [node name="EntityAttack" type="Node"]
 script = ExtResource("1_yrkke")
+
+[node name="ActionDelayTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ActionReloadTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ActionDelayTimer" to="." method="_on_action_delay_timer_timeout"]
+[connection signal="timeout" from="ActionReloadTimer" to="." method="_on_action_reload_timer_timeout"]
