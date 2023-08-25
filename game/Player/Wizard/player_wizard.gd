@@ -73,6 +73,11 @@ func _ready():
 	
 	set_process_unhandled_input(true)
 	
+	# testing data
+	for item_data in Global.get_preview_items():
+		var item = Global.get_object_by_key(item_data[0], item_data[1])
+		inventory_data.add_item(item)
+	
 	# Add starting equipment
 	for item in StartingGameData.get_starting_spells():
 		spellcard_inventory.add_item(item)

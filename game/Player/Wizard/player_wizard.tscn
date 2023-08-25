@@ -93,7 +93,6 @@ libraries = {
 [node name="InventoryData" parent="." instance=ExtResource("14_8qtut")]
 cols = 9
 rows = 5
-prefilled_equipment = Array[Array]([["res://Player/Modifiers/modifiers.json", "heavy_shot"], ["res://Player/Modifiers/modifiers.json", "divide_fan_10"], ["res://Player/Modifiers/modifiers.json", "multicast_bifurcated"], ["res://Player/Modifiers/modifiers.json", "arrow"], ["res://Player/Modifiers/modifiers.json", "lance"], ["res://Player/Modifiers/modifiers.json", "divide_fan_2"], ["res://Player/Modifiers/modifiers.json", "divide_fan_3"], ["res://Player/Modifiers/modifiers.json", "divide_fan_4"], ["res://Player/Modifiers/modifiers.json", "fireball_thrower"], ["res://Player/Modifiers/modifiers.json", "multicast_side_and_front"], ["res://Player/Modifiers/modifiers.json", "multicast_pentagon"], ["res://Player/Modifiers/modifiers.json", "multicast_hexagon"], ["res://Player/Modifiers/modifiers.json", "lance"], ["res://Player/Modifiers/modifiers.json", "lance"], ["res://Player/Modifiers/modifiers.json", "lance"], ["res://Player/Modifiers/modifiers.json", "lance"], ["res://Player/Modifiers/modifiers.json", "multicast_back_and_front"], ["res://Player/Modifiers/modifiers.json", "rapid_fire_x10"]])
 
 [node name="SpellCardInventoryData" parent="." instance=ExtResource("14_8qtut")]
 cols = 10

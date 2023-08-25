@@ -337,6 +337,44 @@
 			"velocity": 0.7,
 		}]
 	},
+	"light_shot": {
+		"name": "Light Shot",
+		"description": "Lighten the attack so it less force, but higher speed",
+		"icon": "light_shot.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [2,3,4],
+		"data": [{
+			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+			"damage": 0.5,
+			"knockback": 0.7,
+			"velocity": 1.5,
+		}]
+	},
+	"wide_angle": {
+		"name": "Wide Angle",
+		"description": "Increase the angle of the attack hits, so it covers a larger area.",
+		"icon": "heavy_spread.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [2,3,4],
+		"data": [{
+			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+			"attack_angle": 1.4,
+		}]
+	},
+	"narrow_angle": {
+		"name": "Narrow Angle",
+		"description": "Tighten the angle of the attack hits, so the attacks are more focused.",
+		"icon": "spread_reduce.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [2,3,4],
+		"data": [{
+			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+			"attack_angle": 0.6,
+		}]
+	},
 	"fireball_thrower": {
 		"name": "Fireball Thrower",
 		"description": "Makes a projectile cast eight (8) fireballs in cardinal directions",

@@ -32,20 +32,18 @@ func do_attack():
 		_spawn_multicast_attacks(attack_properties, entity_attacks, true)
 	else:
 		var mod_effect = entity_attacks[0].attack_properties
-		var mod_hit_object = entity_attacks[0].hit_object
 		if mod_effect.sub_type == ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER:
 			_spawn_multicast_attacks(attack_properties, entity_attacks, false)
 		else:
 			# TODO move this out of attack, looping too much
 			_spawn_hits(attack_properties, hit_effect, hit_object)
-#			_spawn_hits(attack_properties, mod_effect, mod_hit_object)
 
 func _spawn_multicast_attacks(spawn_effect, entity_attacks_arr, multicast):
 	var j = 0
 	var entity_attack = entity_attacks_arr[j]
 	
 	if spawn_effect.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.SPREAD:
-		var attack_angle = spawn_effect.attack_angle
+		var attack_angle = max(spawn_effect.attack_angle, 360)
 		var effective_attacks = spawn_effect.num_attacks if (attack_angle == 360) else spawn_effect.num_attacks-1
 		var direction_shifted = deg_to_rad(attack_angle) / effective_attacks
 		var left_direction = get_direction().rotated(deg_to_rad(-attack_angle/2))

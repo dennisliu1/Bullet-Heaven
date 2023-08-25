@@ -208,4 +208,6 @@ func get_enemy_spawn_data() -> Array[Stage_info]:
 		result.append(stage_info)
 	return result
 
+func get_preview_items():
+	return read_from_JSON("res://Utility/preview_inventory.json")
 

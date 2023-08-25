@@ -336,6 +336,7 @@ static func apply_multiplied_modifier_to_spellcard_effect(spellcard_effect: Spel
 	multiply_modifier_effect("bounce", spellcard_effect, modifier_card)
 	multiply_modifier_effect("hit_hp", spellcard_effect, modifier_card)
 	multiply_modifier_effect("hit_size", spellcard_effect, modifier_card)
+	multiply_modifier_effect("attack_angle", spellcard_effect, modifier_card)
 
 static func combine_multiplied_modifier_spellcard_effects(spellcard_effect: SpellCardEffect, modifier_card: SpellCardEffect):
 	multiply_or_set_modifier_effect("damage", spellcard_effect, modifier_card)
@@ -357,6 +358,7 @@ static func combine_multiplied_modifier_spellcard_effects(spellcard_effect: Spel
 	multiply_or_set_modifier_effect("bounce", spellcard_effect, modifier_card)
 	multiply_or_set_modifier_effect("hit_hp", spellcard_effect, modifier_card)
 	multiply_or_set_modifier_effect("hit_size", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("attack_angle", spellcard_effect, modifier_card)
 
 static func apply_additive_modifier_to_spellcard_effect(spellcard_effect: SpellCardEffect, modifier_card: SpellCardEffect):
 	if modifier_card.get("damage"):
