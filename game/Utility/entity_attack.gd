@@ -165,6 +165,10 @@ func reset_attack_sequence():
 	stop_attack_sequence()
 	start_attack_sequence()
 
+func pause_attack():
+	action_delay_timer.paused = true
+	action_reload_timer.paused = true
 
-
-
+func unpause_attack():
+	action_delay_timer.paused = false
+	action_reload_timer.paused = false

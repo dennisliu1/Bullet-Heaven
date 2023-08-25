@@ -338,10 +338,12 @@ func _on_transition_shop_menu_next_button_click():
 func show_inventory_menu():
 	inventory_menu.visible = true
 	get_tree().paused = true
+	effects_container.pause_attacks()
 
 func hide_inventory_menu():
 	inventory_menu.visible = false
 	get_tree().paused = false
+	effects_container.unpause_attacks()
 	effects_container.reset_attacks()
 
 

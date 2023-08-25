@@ -31,19 +31,16 @@ func sync_bulk_spellcard_effects(instance_stack: Array[SpellCardEffect]):
 		effect_queue.append(spellcard_effect.key)
 	
 	# delete any effects that were removed
-	var x = 0
-	while x < effect_queue.size():
-		var effect_key = effect_queue[x]
-		if effect_key in effect_dict: # TODO strange error...
-			if effect_dict[effect_key].delete:
-				remove_spellcard_effect(effect_key)
-			else:
-				# reset the flag ahead of time, no need to do another pass
-				effect_dict[effect_key].delete = true
-				
-				# reset (re-enable) all attacks, will disable them
-				effect_dict[effect_key].attack.attack_enabled = true
-		x += 1
+	for effect_key in effect_dict.keys():
+		if effect_dict[effect_key].delete:
+			remove_spellcard_effect(effect_key)
+		else:
+			# reset the flag ahead of time, no need to do another pass
+			effect_dict[effect_key].delete = true
+			
+			# reset (re-enable) all attacks, will disable them
+			effect_dict[effect_key].attack.attack_enabled = true
+	pass
 
 	# connect multi-cast and mod_projectile_modifiers
 	## Clear multi-cast and mod_projectile_modifiers
@@ -87,7 +84,7 @@ func remove_spellcard_effect(key):
 	# remove the effect pointers
 	
 	# remove effect_node
-	spellcard_dict_data.effect.queue_free()
+	spellcard_dict_data.attack.queue_free()
 	
 	# remove the data
 	# No need to update the other index values, they use the incoming data
@@ -100,9 +97,13 @@ func reset_attacks():
 	for effect_instance in player_container.get_children():
 		effect_instance.reset_attack()
 
+func pause_attacks():
+	for effect_instance in player_container.get_children():
+		effect_instance.pause_attack()
 
-
-
+func unpause_attacks():
+	for effect_instance in player_container.get_children():
+		effect_instance.unpause_attack()
 
 
 
