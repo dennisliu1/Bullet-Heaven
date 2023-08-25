@@ -13,7 +13,8 @@ func setup_attack(spellcard_data : SpellCardEffect, get_start_position_arg, get_
 	pass
 
 func setup_effect():
-	if not attack_properties.multicast:
+	if not attack_properties.multicast and entity_attacks.size() > 0:
+		# should be size one
 		var mod_effect = entity_attacks[0].attack_properties
 		var mod_hit_object = entity_attacks[0].hit_object
 		if mod_effect.sub_type == ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER:
@@ -36,7 +37,8 @@ func do_attack():
 			_spawn_multicast_attacks(attack_properties, entity_attacks, false)
 		else:
 			# TODO move this out of attack, looping too much
-			_spawn_hits(attack_properties, mod_effect, mod_hit_object)
+			_spawn_hits(attack_properties, hit_effect, hit_object)
+#			_spawn_hits(attack_properties, mod_effect, mod_hit_object)
 
 func _spawn_multicast_attacks(spawn_effect, entity_attacks_arr, multicast):
 	var j = 0
@@ -53,18 +55,18 @@ func _spawn_multicast_attacks(spawn_effect, entity_attacks_arr, multicast):
 			if attack_angle == 360:
 				entity_attack.start_position = get_start_position()
 				entity_attack.direction_vector = get_start_position() + left_direction
-				entity_attack.start_attack_sequence()
+				entity_attack.start_single_attack_sequence()
 				left_direction = left_direction.rotated(direction_shifted)
 			else:
 				if i % 2 == 0:
 					entity_attack.start_position = get_start_position()
 					entity_attack.direction_vector = get_start_position() + left_direction
-					entity_attack.start_attack_sequence()
+					entity_attack.start_single_attack_sequence()
 					left_direction = left_direction.rotated(direction_shifted)
 				else:
 					entity_attack.start_position = get_start_position()
 					entity_attack.direction_vector = get_start_position() + right_direction
-					entity_attack.start_attack_sequence()
+					entity_attack.start_single_attack_sequence()
 					right_direction = right_direction.rotated(-direction_shifted)
 			
 			if multicast:

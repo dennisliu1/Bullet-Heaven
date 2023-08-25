@@ -20,6 +20,7 @@ func sync_bulk_spellcard_effects(instance_stack: Array[SpellCardEffect]):
 		if spellcard_effect.key in effect_dict:
 			effect_dict[spellcard_effect.key].delete = false
 			update_effect(spellcard_effect.key, spellcard_effect)
+			effect_dict[spellcard_effect.key].attack.attack_properties = effect_dict[spellcard_effect.key].effect
 		else:
 			effect_dict[spellcard_effect.key] = {
 				"delete": false,

@@ -276,10 +276,14 @@ static func evaluate_spellcard_effect(spellcard_effect: SpellCardEffect, stack: 
 static func apply_modifier_to_spellcard(spellcard_effect: SpellCardEffect, modifier_card: SpellCardEffect):
 	if modifier_card.sub_type == ItemData.ITEM_SUB_TYPE.PROPERTIES_PROJECTILE_MODIFIER:
 		apply_multiplied_modifier_to_spellcard_effect(spellcard_effect, modifier_card)
-	elif modifier_card.sub_type == ItemData.ITEM_SUB_TYPE.ADDITIVE_PROPERTIES_PROJECTILE_MODIFIER:
-		apply_additive_modifier_to_spellcard_effect(spellcard_effect, modifier_card)
 	elif modifier_card.sub_type == ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER:
 		apply_multiplied_modifier_to_spellcard_effect(spellcard_effect, modifier_card)
+	elif modifier_card.sub_type == ItemData.ITEM_SUB_TYPE.ON_FIRE_PROJECTILE_MODIFIER:
+		apply_multiplied_modifier_to_spellcard_effect(spellcard_effect, modifier_card)
+	elif modifier_card.sub_type == ItemData.ITEM_SUB_TYPE.ON_HIT_PROJECTILE_MODIFIER:
+		apply_multiplied_modifier_to_spellcard_effect(spellcard_effect, modifier_card)
+	elif modifier_card.sub_type == ItemData.ITEM_SUB_TYPE.ADDITIVE_PROPERTIES_PROJECTILE_MODIFIER:
+		apply_additive_modifier_to_spellcard_effect(spellcard_effect, modifier_card)
 	
 	if modifier_card.get("on_fire_effects"):
 		spellcard_effect.on_fire_effects = []
@@ -294,8 +298,13 @@ static func apply_modifier_to_spellcard(spellcard_effect: SpellCardEffect, modif
 static func combine_modifiers(spellcard_effect: SpellCardEffect, modifier_card: SpellCardEffect):
 	if modifier_card.sub_type == ItemData.ITEM_SUB_TYPE.PROPERTIES_PROJECTILE_MODIFIER:
 		combine_multiplied_modifier_spellcard_effects(spellcard_effect, modifier_card)
+	elif modifier_card.sub_type == ItemData.ITEM_SUB_TYPE.ON_FIRE_PROJECTILE_MODIFIER:
+		combine_multiplied_modifier_spellcard_effects(spellcard_effect, modifier_card)
+	elif modifier_card.sub_type == ItemData.ITEM_SUB_TYPE.ON_HIT_PROJECTILE_MODIFIER:
+		combine_multiplied_modifier_spellcard_effects(spellcard_effect, modifier_card)
 	elif modifier_card.sub_type == ItemData.ITEM_SUB_TYPE.ADDITIVE_PROPERTIES_PROJECTILE_MODIFIER:
 		apply_additive_modifier_to_spellcard_effect(spellcard_effect, modifier_card)
+	
 	
 	if modifier_card.get("on_fire_effects"):
 		spellcard_effect.on_fire_effects = []
