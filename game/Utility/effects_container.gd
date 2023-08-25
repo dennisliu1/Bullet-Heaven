@@ -40,7 +40,6 @@ func sync_bulk_spellcard_effects(instance_stack: Array[SpellCardEffect]):
 			
 			# reset (re-enable) all attacks, will disable them
 			effect_dict[effect_key].attack.attack_enabled = true
-	pass
 
 	# connect multi-cast and mod_projectile_modifiers
 	## Clear multi-cast and mod_projectile_modifiers
@@ -54,7 +53,7 @@ func reset_spellcard_effects():
 	pass
 
 func update_effect(key, spellcard_effect):
-	pass
+	SpellCardEffect.update_effect(effect_dict[key].effect, spellcard_effect)
 
 func _create_spellcard_effect(spellcard_effect):
 	if spellcard_effect.sub_type == ItemData.ITEM_SUB_TYPE.PROJECTILE:
@@ -84,7 +83,9 @@ func remove_spellcard_effect(key):
 	# remove the effect pointers
 	
 	# remove effect_node
-	spellcard_dict_data.attack.queue_free()
+	# sometimes the card might not have an attack
+	if spellcard_dict_data.attack:
+		spellcard_dict_data.attack.queue_free()
 	
 	# remove the data
 	# No need to update the other index values, they use the incoming data

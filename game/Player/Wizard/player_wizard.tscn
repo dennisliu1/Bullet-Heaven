@@ -94,9 +94,12 @@ libraries = {
 cols = 9
 rows = 5
 
-[node name="SpellInventoryData" parent="." instance=ExtResource("14_8qtut")]
+[node name="SpellCardInventoryData" parent="." instance=ExtResource("14_8qtut")]
 cols = 10
 rows = 1
+prefilled_equipment = Array[Array]([["res://Player/Modifiers/modifiers.json", "heavy_shot"]])
+
+[node name="EffectsContainer" parent="." instance=ExtResource("5_5ntsy")]
 
 [node name="HurtBox" parent="." instance=ExtResource("3_hllnf")]
 collision_mask = 2
@@ -104,8 +107,6 @@ collision_mask = 2
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(1.5, 2.25)
 shape = SubResource("RectangleShape2D_xbyym")
-
-[node name="EffectsContainer" parent="." instance=ExtResource("5_5ntsy")]
 
 [node name="EnemyDetectArea" type="Area2D" parent="."]
 collision_layer = 4
@@ -292,18 +293,18 @@ visible = false
 [node name="InventoryPanel" parent="CanvasLayer" node_paths=PackedStringArray("inventory_data", "spellcard_inventory_data") instance=ExtResource("13_t4hkb")]
 visible = false
 inventory_data = NodePath("../../InventoryData")
-spellcard_inventory_data = NodePath("../../SpellInventoryData")
+spellcard_inventory_data = NodePath("../../SpellCardInventoryData")
 
 [node name="InventoryContainer" parent="CanvasLayer/InventoryPanel" index="0" node_paths=PackedStringArray("inventory_data")]
 columns = 1
 inventory_data = NodePath("../../../InventoryData")
 
 [node name="SpellContainer" parent="CanvasLayer/InventoryPanel" index="1" node_paths=PackedStringArray("inventory_data")]
-inventory_data = NodePath("../../../SpellInventoryData")
+inventory_data = NodePath("../../../SpellCardInventoryData")
 
 [node name="DragPreview" parent="CanvasLayer/InventoryPanel" index="2" node_paths=PackedStringArray("inventory_menu_array", "inventory_array")]
 inventory_menu_array = [NodePath("../InventoryContainer"), null]
-inventory_array = [NodePath("../../../InventoryData"), NodePath("../../../SpellInventoryData")]
+inventory_array = [NodePath("../../../InventoryData"), NodePath("../../../SpellCardInventoryData")]
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="body_entered" from="EnemyDetectArea" to="." method="_on_enemy_detect_area_body_entered"]

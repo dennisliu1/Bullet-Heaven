@@ -57,14 +57,11 @@ var available_upgrade_options = [] # what is on offer
 @onready var transition_shop_menu = $CanvasLayer/TransitionShopMenu
 ## inventory menu
 @onready var inventory_data = $InventoryData
-@onready var spell_inventory_data = $SpellInventoryData
+@onready var spellcard_inventory = $SpellCardInventoryData
 @onready var inventory_menu = $CanvasLayer/InventoryPanel
 
 # enemy related
 var enemy_close = []
-
-@onready var equipment_inventory : InventoryData = get_tree().get_first_node_in_group("equipment_inventory")
-@onready var spellcard_inventory : InventoryData = get_tree().get_first_node_in_group("spellcard_inventory")
 
 signal player_death()
 
@@ -151,7 +148,7 @@ func _on_hurt_box_hurt(damage, _angle, _knockback):
 func death():
 	death_panel.visible = true
 	emit_signal("player_death")
-	get_tree().paused = true
+	pause_player()
 	
 	## show death menu
 	var tween = death_panel.create_tween()
@@ -167,7 +164,7 @@ func death():
 		audio_defeat.play()
 
 func _on_button_menu_click_end():
-	get_tree().paused = false
+	unpause_player()
 	var _level = get_tree().change_scene_to_file("res://UI/Menus/title_screen.tscn")
 
 # ---
@@ -245,7 +242,7 @@ func calculate_experience_cap():
 func level_up():
 	label_level.text = str("Level:", experience_level)
 	_show_level_up_panel()
-	get_tree().paused = true # pauses the game!
+	pause_player()
 
 ## TODO Fully random spells for now, do tiered options in the future
 func get_random_item():
@@ -256,9 +253,9 @@ func get_random_item():
 ## item_option connection: When user clicks on the option, it calls this method.
 func upgrade_character(upgrade):
 	## Add selected spell to spell inventory
-	spellcard_inventory.add_item(upgrade)
+	inventory_data.add_item(upgrade)
 	_reset_level_up_panel()
-	get_tree().paused = false
+	unpause_player()
 	calculate_experience(0)
 
 ## move panel into focus
@@ -312,23 +309,23 @@ func _show_pause_panel():
 	tween.tween_property(pause_panel, "position", Vector2(220, 50), 0.1).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
 	tween.play()
 	pause_panel.visible = true
-	get_tree().paused = true
+	pause_player()
 
 ## Reset Pause Panel position
 func _reset_pause_panel():
 	pause_panel.visible = false
 	pause_panel.position = Vector2(800, 20)
-	get_tree().paused = false
+	unpause_player()
 
 # --- transition shop menu ---
 
 func show_shop_menu():
 	transition_shop_menu.visible = true
-	get_tree().paused = true
+	pause_player()
 
 func hide_shop_menu():
 	transition_shop_menu.visible = false
-	get_tree().paused = false
+	unpause_player()
 
 func _on_transition_shop_menu_next_button_click():
 	hide_shop_menu()
@@ -337,15 +334,18 @@ func _on_transition_shop_menu_next_button_click():
 
 func show_inventory_menu():
 	inventory_menu.visible = true
-	get_tree().paused = true
-	effects_container.pause_attacks()
+	pause_player()
+	
 
 func hide_inventory_menu():
 	inventory_menu.visible = false
+	unpause_player()
+
+func pause_player():
+	get_tree().paused = true
+	effects_container.pause_attacks()
+
+func unpause_player():
 	get_tree().paused = false
 	effects_container.unpause_attacks()
 	effects_container.reset_attacks()
-
-
-
-

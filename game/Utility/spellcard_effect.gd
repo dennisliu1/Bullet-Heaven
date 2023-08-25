@@ -133,6 +133,13 @@ static func evaluate_spellcard_data(spellcards: Array):
 		
 		# spellcards can have multiple effects, so iterate through each one.
 		evaluate_spellcard_effects(spellcard.effects, stack)
+	# remove non-rendering effects
+	var x = 0
+	while x < stack.size():
+		if stack[x].sub_type == ItemData.ITEM_SUB_TYPE.PROJECTILE or stack[x].sub_type == ItemData.ITEM_SUB_TYPE.MOD_PROJECTILE_MODIFIER:
+			x += 1
+		else:
+			stack.remove_at(x)
 	return stack
 
 static func evaluate_spellcard_effects(spellcard_effects: Array, stack: Array[SpellCardEffect]):
@@ -350,7 +357,26 @@ static func apply_additive_modifier_to_spellcard_effect(spellcard_effect: SpellC
 	if modifier_card.get("hit_size"):
 		spellcard_effect.hit_size += modifier_card.hit_size
 
-
+static func update_effect(target_effect, instance_effect):
+	target_effect.required_effects = instance_effect.required_effects
+	target_effect.energy_drain = instance_effect.energy_drain
+	target_effect.damage = instance_effect.damage
+	target_effect.action_delay = instance_effect.action_delay
+	target_effect.num_attacks = instance_effect.num_attacks
+	target_effect.attack_angle = instance_effect.attack_angle
+	target_effect.spread = instance_effect.spread
+	target_effect.velocity = instance_effect.velocity
+	target_effect.lifetime = instance_effect.lifetime
+	target_effect.radius = instance_effect.radius
+	target_effect.knockback = instance_effect.knockback
+	target_effect.pierce = instance_effect.pierce
+	target_effect.bounce = instance_effect.bounce
+	target_effect.hit_hp = instance_effect.hit_hp
+	target_effect.hit_size = instance_effect.hit_size
+	
+	target_effect.on_hit_effects.clear()
+	for on_hit_effect in instance_effect.on_hit_effects:
+		target_effect.on_hit_effects.append(on_hit_effect)
 
 
 
