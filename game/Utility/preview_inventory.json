@@ -21,6 +21,8 @@
 	["res://Player/Modifiers/modifiers.json", "fireball_thrower"],
 	["res://Player/Modifiers/modifiers.json", "increase_lifetime"],
 	["res://Player/Modifiers/modifiers.json", "decrease_lifetime"],
+	["res://Player/Modifiers/modifiers.json", "speed_up"],
+	["res://Player/Modifiers/modifiers.json", "speed_down"],
 	["res://Player/Modifiers/modifiers.json", "lance"],
 	["res://Player/Modifiers/modifiers.json", "lance"],
 	["res://Player/Modifiers/modifiers.json", "lance"],

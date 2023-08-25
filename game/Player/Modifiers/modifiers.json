@@ -74,7 +74,7 @@
 			"num_attacks": 1,
 			"spread": 0,
 			"velocity": 100,
-			"lifetime": 1,
+			"lifetime": 5,
 			"radius": 0,
 			"knockback": 1,
 			"pierce": 0,
@@ -397,6 +397,30 @@
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"lifetime": 0.5,
+		}]
+	},
+	"speed_up": {
+		"name": "Speed Up",
+		"description": "Increase the speed the projectile flies through the air.",
+		"icon": "speed.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [2,3,4],
+		"data": [{
+			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+			"velocity": 2.5,
+		}]
+	},
+	"speed_down": {
+		"name": "Speed Down",
+		"description": "Decrease the speed the projectile flies through the air.",
+		"icon": "decelerating_shot.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [2,3,4],
+		"data": [{
+			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+			"velocity": 0.5,
 		}]
 	},
 	"fireball_thrower": {
