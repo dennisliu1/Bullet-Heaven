@@ -14,7 +14,7 @@
 			"rapid_repeat": 1,
 			"reload_delay": 1,
 			"num_attacks": 1,
-			"spread": 0,
+			"spread": 0.6,
 			"velocity": 100,
 			"lifetime": 20,
 			"radius": 0,
@@ -46,7 +46,7 @@
 			"rapid_repeat": 1,
 			"reload_delay": 1,
 			"num_attacks": 1,
-			"spread": 0,
+			"spread": 0.6,
 			"velocity": 200,
 			"lifetime": 10,
 			"radius": 0,
@@ -76,7 +76,7 @@
 			"rapid_repeat": 1,
 			"reload_delay": 1,
 			"num_attacks": 1,
-			"spread": 0,
+			"spread": 30,
 			"velocity": 100,
 			"lifetime": 5,
 			"radius": 0,
@@ -108,7 +108,7 @@
 			"rapid_repeat": 1,
 			"reload_delay": 0.1,
 			"num_attacks": 1,
-			"spread": 0,
+			"spread": 0.6,
 			"velocity": 200,
 			"lifetime": 5,
 			"radius": 0,
@@ -309,6 +309,7 @@
 				"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 				"multicast": true,
 				"required_effects": 1,
+				"spread": 3,
 				"rapid_repeat": 3,
 				"action_delay": 0.33,
 			}
@@ -325,6 +326,7 @@
 			{
 				"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 				"multicast": true,
+				"spread": 10,
 				"required_effects": 1,
 				"rapid_repeat": 10,
 				"action_delay": 0.1,
@@ -441,6 +443,31 @@
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"crit_chance": 10,
+		}]
+	},
+	"heavy_spread": {
+		"name": "Heavy Spread",
+		"description": "shoot much faster, but increase the spread",
+		"icon": "heavy_spread.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [2,3,4],
+		"data": [{
+			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+			"spread": 30,
+			"reload_delay": 0.2,
+		}]
+	},
+	"reduce_spread": {
+		"name": "Reduce Spread",
+		"description": "Reduce the spread of the attack.",
+		"icon": "spread_reduce.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [2,3,4],
+		"data": [{
+			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+			"spread": 0.5,
 		}]
 	},
 	"fireball_thrower": {

@@ -106,13 +106,14 @@ func _spawn_hits(spawn_effect, spellcard_effect, bullet_obj):
 
 		for i in range(spawn_effect.num_attacks):
 			if i % 2 == 0:
-				spawn_bullet(spellcard_effect, get_start_position() + left_direction, bullet_obj)
+				spawn_bullet(spellcard_effect, add_spread_deviation(get_start_position(), left_direction, spellcard_effect.spread), bullet_obj)
 				left_direction = left_direction.rotated(direction_shifted)
 			else:
-				spawn_bullet(spellcard_effect, get_start_position() + right_direction, bullet_obj)
+				spawn_bullet(spellcard_effect, add_spread_deviation(get_start_position(), right_direction, spellcard_effect.spread), bullet_obj)
 				right_direction = right_direction.rotated(-direction_shifted)
 	else:
-		spawn_bullet(spellcard_effect, _get_hit_spawn_type(spawn_effect), bullet_obj)
+		var target_vector = add_spread_deviation(get_start_position(), _get_hit_spawn_type(spawn_effect), spellcard_effect.spread)
+		spawn_bullet(spellcard_effect, target_vector, bullet_obj)
 
 func _get_hit_spawn_type(spellcard):
 	if start_position != null and direction_vector != null: # overridden
@@ -208,7 +209,10 @@ func disable_attack():
 	attack_enabled = false
 	stop_attack_sequence()
 
-
+func add_spread_deviation(start_position, target_vector, spread):
+	var rng_spread = deg_to_rad(randf_range(-1.0, 1.0) * spread)
+	var deviated_vector = target_vector.rotated(rng_spread)
+	return start_position + deviated_vector
 
 
 
