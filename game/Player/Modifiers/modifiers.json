@@ -76,7 +76,7 @@
 			"rapid_repeat": 1,
 			"reload_delay": 1,
 			"num_attacks": 1,
-			"spread": 30,
+			"spread": 0.6,
 			"velocity": 100,
 			"lifetime": 5,
 			"radius": 0,
