@@ -58,6 +58,9 @@ func _on_hit_once_recovery(area):
 
 func _send_hurt_signal(area : Area2D):
 	var damage = area.damage
+	if (area.get("crit_chance") and area.get("crit_damage") and randi() < area.crit_chance):
+		damage = area.damage * area.crit_damage
+
 	var angle = DEFAULT_ANGLE
 	var knockback = DEFAULT_KNOCKBACK
 

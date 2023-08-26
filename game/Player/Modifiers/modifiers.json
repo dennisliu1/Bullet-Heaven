@@ -21,6 +21,8 @@
 			"knockback": 1,
 			"pierce": 0,
 			"bounce": 0,
+			"crit_chance": 0.01,
+			"crit_damage": 1.5,
 			"hit_hp": 9999,
 			"hit_size": 1.0,
 			"hit_spawn_type": "PLAYER_DIRECTION",
@@ -51,6 +53,8 @@
 			"knockback": 100,
 			"pierce": 0,
 			"bounce": 0,
+			"crit_chance": 0.01,
+			"crit_damage": 1.5,
 			"hit_hp": 9999,
 			"hit_size": 1.0,
 			"attack_type": "javelin",
@@ -79,6 +83,8 @@
 			"knockback": 1,
 			"pierce": 0,
 			"bounce": 0,
+			"crit_chance": 0.01,
+			"crit_damage": 1.5,
 			"hit_hp": 1,
 			"hit_size": 0.5,
 			"hit_spawn_type": "RANDOM_TARGET",
@@ -109,6 +115,8 @@
 			"knockback": 50,
 			"pierce": 0,
 			"bounce": 0,
+			"crit_chance": 0.01,
+			"crit_damage": 1.5,
 			"hit_hp": 1,
 			"hit_size": 0.5,
 			"attack_type": "arrow",
@@ -421,6 +429,18 @@
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"velocity": 0.5,
+		}]
+	},
+	"critical_plus": {
+		"name": "Critical Plus",
+		"description": "Increases your chances of doing a critical hit.",
+		"icon": "critical_hit.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [2,3,4],
+		"data": [{
+			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+			"crit_chance": 10,
 		}]
 	},
 	"fireball_thrower": {

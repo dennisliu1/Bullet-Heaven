@@ -19,6 +19,8 @@ var entity_hit: EntityHit # stores the hit properties
 @export var knockback_amount = 100
 @export var attack_size = 1.0
 @export var attack_hp = 1
+@export var crit_chance: float
+@export var crit_damage: float
 @export var lifetime : float
 @export var hit_behaviour_type: SpellCardEffect.HIT_SPAWN_TYPE
 @export var on_hit_spellcards : Array

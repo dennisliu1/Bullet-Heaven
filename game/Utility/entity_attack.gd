@@ -86,6 +86,8 @@ func _load_properties_into_hit(hit_instance, spell_effect: SpellCardEffect):
 	hit_instance.knockback_amount = spell_effect.knockback
 	hit_instance.attack_hp = spell_effect.hit_hp
 	hit_instance.attack_size = spell_effect.hit_size
+	hit_instance.crit_chance = spell_effect.crit_chance
+	hit_instance.crit_damage = spell_effect.crit_damage
 #	hit_instance.pierce = spell_effect.pierce
 #	hit_instance.bounce = spell_effect.bounce
 	hit_instance.hit_behaviour_type = spell_effect.hit_behavior_type

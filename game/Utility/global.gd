@@ -165,6 +165,10 @@ func populate_spellcard_effect(spellcard_effect, spellcard_data_effect):
 		spellcard_effect.attack_type = spellcard_data_effect.attack_type
 	if spellcard_data_effect.has("hit_type"):
 		spellcard_effect.hit_type = spellcard_data_effect.hit_type
+	if spellcard_data_effect.has("crit_chance"):
+		spellcard_effect.crit_chance = spellcard_data_effect.crit_chance
+	if spellcard_data_effect.has("crit_damage"):
+		spellcard_effect.crit_damage = spellcard_data_effect.crit_damage
 	if spellcard_data_effect.has("hit_spawn_type"):
 		spellcard_effect.hit_spawn_type = SpellCardEffect.get_hit_spawn_type(spellcard_data_effect.hit_spawn_type)
 	if spellcard_data_effect.has("hit_behavior_type"):

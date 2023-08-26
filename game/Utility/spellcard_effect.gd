@@ -32,6 +32,8 @@ enum HIT_BEHAVIOR_TYPE {STRAIGHT_LINE, WAVE_PATTERN, HOMING}
 @export var knockback: float
 @export var pierce: float
 @export var bounce: float
+@export var crit_chance: float
+@export var crit_damage: float
 @export var hit_hp: int
 @export var hit_size : float
 @export var hit_spawn_type: HIT_SPAWN_TYPE
@@ -334,6 +336,8 @@ static func apply_multiplied_modifier_to_spellcard_effect(spellcard_effect: Spel
 	multiply_modifier_effect("knockback", spellcard_effect, modifier_card)
 	multiply_modifier_effect("pierce", spellcard_effect, modifier_card)
 	multiply_modifier_effect("bounce", spellcard_effect, modifier_card)
+	multiply_modifier_effect("crit_chance", spellcard_effect, modifier_card)
+	multiply_modifier_effect("crit_damage", spellcard_effect, modifier_card)
 	multiply_modifier_effect("hit_hp", spellcard_effect, modifier_card)
 	multiply_modifier_effect("hit_size", spellcard_effect, modifier_card)
 	multiply_modifier_effect("attack_angle", spellcard_effect, modifier_card)
@@ -359,6 +363,8 @@ static func combine_multiplied_modifier_spellcard_effects(spellcard_effect: Spel
 	multiply_or_set_modifier_effect("hit_hp", spellcard_effect, modifier_card)
 	multiply_or_set_modifier_effect("hit_size", spellcard_effect, modifier_card)
 	multiply_or_set_modifier_effect("attack_angle", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("crit_chance", spellcard_effect, modifier_card)
+	multiply_or_set_modifier_effect("crit_damage", spellcard_effect, modifier_card)
 
 static func apply_additive_modifier_to_spellcard_effect(spellcard_effect: SpellCardEffect, modifier_card: SpellCardEffect):
 	if modifier_card.get("damage"):
@@ -395,6 +401,10 @@ static func apply_additive_modifier_to_spellcard_effect(spellcard_effect: SpellC
 		spellcard_effect.hit_hp += modifier_card.hit_hp
 	if modifier_card.get("hit_size"):
 		spellcard_effect.hit_size += modifier_card.hit_size
+	if modifier_card.get("crit_chance"):
+		spellcard_effect.crit_chance += modifier_card.crit_chance
+	if modifier_card.get("crit_damage"):
+		spellcard_effect.crit_damage += modifier_card.crit_damage
 
 static func update_effect(target_effect, instance_effect):
 	target_effect.required_effects = instance_effect.required_effects
@@ -414,6 +424,8 @@ static func update_effect(target_effect, instance_effect):
 	target_effect.bounce = instance_effect.bounce
 	target_effect.hit_hp = instance_effect.hit_hp
 	target_effect.hit_size = instance_effect.hit_size
+	target_effect.crit_chance = instance_effect.crit_chance
+	target_effect.crit_damage = instance_effect.crit_damage
 	
 	target_effect.on_hit_effects.clear()
 	for on_hit_effect in instance_effect.on_hit_effects:

@@ -23,6 +23,7 @@
 	["res://Player/Modifiers/modifiers.json", "decrease_lifetime"],
 	["res://Player/Modifiers/modifiers.json", "speed_up"],
 	["res://Player/Modifiers/modifiers.json", "speed_down"],
+	["res://Player/Modifiers/modifiers.json", "critical_plus"],
 	["res://Player/Modifiers/modifiers.json", "lance"],
 	["res://Player/Modifiers/modifiers.json", "lance"],
 	["res://Player/Modifiers/modifiers.json", "lance"],
