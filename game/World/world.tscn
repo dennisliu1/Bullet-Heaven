@@ -18,8 +18,8 @@ region_rect = Rect2(-4000, -4000, 4000, 4000)
 
 [node name="GUI" parent="." instance=ExtResource("3_2bi1g")]
 
-[node name="PlayerWizard" parent="GUI" index="0"]
-hp = 80
+[node name="DragPreview" parent="GUI/CanvasLayer/InventoryPanel" index="2" node_paths=PackedStringArray("inventory_array")]
+inventory_array = [null, null]
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_oliu4")]
 
@@ -35,3 +35,7 @@ stream = ExtResource("13_sqsmm")
 volume_db = -15.0
 
 [editable path="GUI"]
+[editable path="GUI/PlayerWizard"]
+[editable path="GUI/PlayerWizard/HurtBox"]
+[editable path="GUI/CanvasLayer"]
+[editable path="GUI/CanvasLayer/InventoryPanel"]

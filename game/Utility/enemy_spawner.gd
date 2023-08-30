@@ -6,6 +6,7 @@ extends Node2D
 @export var time = 0
 
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
+@onready var gui: CanvasLayer = get_tree().get_first_node_in_group("gui")
 
 @onready var timer = $Timer
 @onready var enemy_container = $EnemyContainer
@@ -128,7 +129,7 @@ func end_stage():
 		# TODO remove projectiles
 		
 		# show the shop menu and pause
-		player.show_shop_menu()
+		gui.show_shop_menu()
 	pass
 
 

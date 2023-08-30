@@ -20,8 +20,9 @@ inventory_data = NodePath("../../../PlayerWizard/InventoryData")
 [node name="SpellContainer" parent="CanvasLayer/InventoryPanel" index="1" node_paths=PackedStringArray("inventory_data")]
 inventory_data = NodePath("../../../PlayerWizard/SpellCardInventoryData")
 
-[node name="DragPreview" parent="CanvasLayer/InventoryPanel" index="2" node_paths=PackedStringArray("inventory_menu_array")]
+[node name="DragPreview" parent="CanvasLayer/InventoryPanel" index="2" node_paths=PackedStringArray("inventory_menu_array", "inventory_array")]
 inventory_menu_array = [NodePath("../InventoryContainer"), NodePath("../SpellContainer")]
+inventory_array = [null, null]
 
 [editable path="PlayerWizard"]
 [editable path="PlayerWizard/HurtBox"]

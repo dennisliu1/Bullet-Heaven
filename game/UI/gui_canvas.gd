@@ -37,7 +37,7 @@ var available_upgrade_options = [] # what is on offer
 @onready var inventory_menu = $InventoryPanel
 
 func _ready():
-	set_expbar(player.current_experience, calculate_experience_cap())
+	set_expbar(player.current_experience, player.calculate_experience_cap())
 	set_health_bar(100, 100) # set the health bar to 100%, full bar
 
 func _unhandled_input(event):
@@ -62,39 +62,9 @@ func set_health_bar(hp, maxhp):
 
 # --- getting experience ---
 
-func get_experience(experience):
-	calculate_experience(experience)
-
-func calculate_experience(gem_exp):
-	var exp_required = calculate_experience_cap()
-	player.collected_experience += gem_exp
-	if player.current_experience + player.collected_experience >= exp_required: # level up
-		player.collected_experience -= exp_required - player.current_experience
-		player.experience_level += 1
-#		label_level.text = str("Level:", experience_level)
-		player.current_experience = 0
-		exp_required = calculate_experience_cap()
-		level_up()
-#		calculate_experience(0) # multi-levelup; TODO remove the recursion
-	else:
-		player.current_experience += player.collected_experience
-		player.collected_experience = 0
-	set_expbar(player.current_experience, exp_required)
-
 func set_expbar(set_value = 1, set_max_value = 100):
 	exp_bar.value = set_value
 	exp_bar.max_value = set_max_value
-
-## TODO move this into a json file to set
-func calculate_experience_cap():
-	var exp_cap = player.experience_level
-	if player.experience_level < 20:
-		exp_cap = player.experience_level * 5
-	elif player.experience_level < 40:
-		exp_cap = 95 * (player.experience_level-19) * 8
-	else:
-		exp_cap = 255 + (player.experience_level-39) * 12
-	return exp_cap
 
 func level_up():
 	label_level.text = str("Level:", player.experience_level)
@@ -106,14 +76,6 @@ func get_random_item():
 	var random_item = Global.get_spellcards_data().values().pick_random()
 	available_upgrade_options.append(random_item)
 	return random_item
-
-## item_option connection: When user clicks on the option, it calls this method.
-func upgrade_character(upgrade):
-	## Add selected spell to spell inventory
-	player.inventory_data.add_item(upgrade)
-	_reset_level_up_panel()
-	unpause_player()
-	calculate_experience(0)
 
 ## move panel into focus
 func _show_level_up_panel():
@@ -213,11 +175,9 @@ func _on_transition_shop_menu_next_button_click():
 
 func pause_player():
 	get_tree().paused = true
-#	player.effects_container.pause_attacks()
 
 func unpause_player():
 	get_tree().paused = false
-#	player.effects_container.unpause_attacks()
 
 # --- inventory menu ---
 
@@ -234,4 +194,27 @@ func hide_inventory_menu():
 	unpause_player()
 	inventory_menu.refresh_spell_effects_data()
 	player.reset_attacks()
+
+# --- death panel ---
+
+func show_death_panel():
+	death_panel.visible = true
+	pause_player()
+	
+	## show death menu
+	var tween = death_panel.create_tween()
+	tween.tween_property(death_panel, "position", Vector2(220, 50), 3.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.play()
+	
+	## choose victory or defeat message
+	if time >= 300:
+		label_result.text = "You win!"
+		audio_victory.play()
+	else:
+		label_result.text = "You lose :("
+		audio_defeat.play()
+
+
+
+
 

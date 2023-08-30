@@ -108,22 +108,8 @@ func _on_hurt_box_hurt(damage, _angle, _knockback):
 		death()
 
 func death():
-	gui.death_panel.visible = true
 	emit_signal("player_death")
-	gui.pause_player()
-	
-	## show death menu
-	var tween = gui.death_panel.create_tween()
-	tween.tween_property(gui.death_panel, "position", Vector2(220, 50), 3.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-	tween.play()
-	
-	## choose victory or defeat message
-	if gui.time >= 300:
-		gui.label_result.text = "You win!"
-		gui.audio_victory.play()
-	else:
-		gui.label_result.text = "You lose :("
-		gui.audio_defeat.play()
+	gui.show_death_panel()
 
 
 # ---
@@ -166,9 +152,43 @@ func reset_attacks():
 
 # --- getting experience ---
 
+## item_option connection: When user clicks on the option, it calls this method.
+func upgrade_character(upgrade):
+	## Add selected spell to spell inventory
+	inventory_data.add_item(upgrade)
+	gui._reset_level_up_panel()
+	gui.unpause_player()
+	calculate_experience(0)
+
 ## Used by enemy to give exp to the player
 func get_experience(experience):
-	gui.calculate_experience(experience)
+	calculate_experience(experience)
+
+func calculate_experience(gem_exp):
+	var exp_required = calculate_experience_cap()
+	collected_experience += gem_exp
+	if current_experience + collected_experience >= exp_required: # level up
+		collected_experience -= exp_required - current_experience
+		experience_level += 1
+		current_experience = 0
+		exp_required = calculate_experience_cap()
+		gui.level_up()
+	else:
+		current_experience += collected_experience
+		collected_experience = 0
+	gui.set_expbar(current_experience, exp_required)
+
+## TODO move this into a json file to set
+func calculate_experience_cap():
+	var exp_cap = experience_level
+	if experience_level < 20:
+		exp_cap = experience_level * 5
+	elif experience_level < 40:
+		exp_cap = 95 * (experience_level-19) * 8
+	else:
+		exp_cap = 255 + (experience_level-39) * 12
+	return exp_cap
+
 
 ## called by enemy_spawner to update the time
 func change_time(argtime = 0):

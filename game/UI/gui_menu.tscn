@@ -183,7 +183,9 @@ columns = 1
 inventory_menu_array = [null, null]
 inventory_array = [null, null]
 
+[connection signal="click_end" from="PanelDeath/ButtonMenu" to="." method="_on_button_menu_click_end"]
 [connection signal="click_end" from="PanelPause/ButtonReturnToGame" to="." method="_on_button_return_to_game_click_end"]
 [connection signal="click_end" from="PanelPause/ButtonMenu" to="." method="_on_button_menu_click_end"]
+[connection signal="next_button_click" from="TransitionShopMenu" to="." method="_on_transition_shop_menu_next_button_click"]
 
 [editable path="InventoryPanel"]
