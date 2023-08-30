@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 # player game variables
 var movement_speed = 80.0 # 80 pixels per second moved
@@ -8,6 +9,7 @@ var armor = 0
 var experience_level = 1
 var maxhp = 80
 @export var hp = 80
+@export var gui: CanvasLayer
 
 # tracking variables
 var current_experience = 0
@@ -26,40 +28,10 @@ var collected_gems = 0
 
 var ice_spear = preload("res://Player/Attacks/Ice Spear/ice_spear.tscn")
 
-# GUI
-var on_another_menu = false
-## timer
-var time = 0
-@onready var label_time = $CanvasLayer/LabelTime
-## gems label
-@onready var gems_container = $CanvasLayer/GemsContainer
-@onready var gems_label_gems = $CanvasLayer/GemsContainer/LabelGems
-## experience
-@onready var exp_bar = $CanvasLayer/Control/ExperienceBar
-@onready var label_level = $CanvasLayer/Control/ExperienceBar/LabelLevel
-@onready var health_bar = $CanvasLayer/HealthBar
-## level panel
-var available_upgrade_options = [] # what is on offer
-@onready var item_options = preload("res://UI/GUI/ItemOption/item_option.tscn")
-@onready var level_panel = $CanvasLayer/LevelPanel
-@onready var level_result = $CanvasLayer/LevelPanel/LabelLevelUp
-@onready var level_up_options: VBoxContainer  = $CanvasLayer/LevelPanel/LevelUpOptions
-## Death Menu
-@onready var death_panel = $CanvasLayer/PanelDeath
-@onready var label_result = $CanvasLayer/PanelDeath/LabelResult
-@onready var audio_victory = $CanvasLayer/PanelDeath/AudioVictory
-@onready var audio_defeat = $CanvasLayer/PanelDeath/AudioDefeat
-@onready var death_button_menu = $CanvasLayer/PanelDeath/ButtonMenu
-## Pause Menu
-@onready var pause_panel = $CanvasLayer/PanelPause
-@onready var pause_button_back_to_game = $CanvasLayer/PanelPause/ButtonReturnToGame
-@onready var pause_button_menu = $CanvasLayer/PanelPause/ButtonMenu
-## Shop menu
-@onready var transition_shop_menu = $CanvasLayer/TransitionShopMenu
-## inventory menu
+### inventory menu
 @onready var inventory_data = $InventoryData
 @onready var spellcard_inventory = $SpellCardInventoryData
-@onready var inventory_menu = $CanvasLayer/InventoryPanel
+#@onready var inventory_menu = $CanvasLayer/InventoryPanel
 
 # enemy related
 var enemy_close = []
@@ -67,12 +39,6 @@ var enemy_close = []
 signal player_death()
 
 func _ready():
-	set_expbar(current_experience, calculate_experience_cap())
-	# initialize health bar
-	_on_hurt_box_hurt(0, 0, 0)
-	
-	set_process_unhandled_input(true)
-	
 	# testing data
 	for item_data in Global.get_preview_items():
 		var item = Global.get_object_by_key(item_data[0], item_data[1])
@@ -81,20 +47,13 @@ func _ready():
 	# Add starting equipment
 	for item in StartingGameData.get_starting_spells():
 		spellcard_inventory.add_item(item)
+	
+	refresh_spell_effects_data()
+	reset_attacks()
 
-
-func _unhandled_input(event):
-	if event.is_action_pressed("show_pause_menu") and not on_another_menu:
-		if pause_panel.visible:
-			_reset_pause_panel()
-		else:
-			_show_pause_panel()
-	if event.is_action_pressed("show_inventory_menu") and not on_another_menu:
-		if inventory_menu.visible:
-			hide_inventory_menu()
-		else:
-			show_inventory_menu()
-		
+func refresh_spell_effects_data():
+	var instance_stack = SpellCardEffect.evaluate_spellcards(spellcard_inventory.items as Array[SpellCardData])
+	sync_bulk_spellcard_effects(instance_stack)
 
 func _physics_process(_delta): # 60 FPS
 	movement()
@@ -144,32 +103,28 @@ func _change_sprite_direction(move_direction):
 func _on_hurt_box_hurt(damage, _angle, _knockback):
 	hp -= damage
 	hp -= clamp(damage - armor, 1.0, 999)
-	health_bar.max_value = maxhp
-	health_bar.value = hp
+	gui.set_health_bar(hp, maxhp)
 	if hp <= 0:
 		death()
 
 func death():
-	death_panel.visible = true
+	gui.death_panel.visible = true
 	emit_signal("player_death")
-	pause_player()
+	gui.pause_player()
 	
 	## show death menu
-	var tween = death_panel.create_tween()
-	tween.tween_property(death_panel, "position", Vector2(220, 50), 3.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	var tween = gui.death_panel.create_tween()
+	tween.tween_property(gui.death_panel, "position", Vector2(220, 50), 3.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.play()
 	
 	## choose victory or defeat message
-	if time >= 300:
-		label_result.text = "You win!"
-		audio_victory.play()
+	if gui.time >= 300:
+		gui.label_result.text = "You win!"
+		gui.audio_victory.play()
 	else:
-		label_result.text = "You lose :("
-		audio_defeat.play()
+		gui.label_result.text = "You lose :("
+		gui.audio_defeat.play()
 
-func _on_button_menu_click_end():
-	unpause_player()
-	var _level = get_tree().change_scene_to_file("res://UI/Menus/title_screen.tscn")
 
 # ---
 
@@ -204,158 +159,17 @@ func _on_collect_area_area_entered(area):
 	if area.is_in_group("loot"):
 		var _gem_exp = area.collect()
 		collected_gems += area.value
-		gems_label_gems.text = str(collected_gems)
+		gui.gems_label_gems.text = str(collected_gems)
 
+func reset_attacks():
+	effects_container.reset_attacks()
 
 # --- getting experience ---
 
+## Used by enemy to give exp to the player
 func get_experience(experience):
-	calculate_experience(experience)
-
-func calculate_experience(gem_exp):
-	var exp_required = calculate_experience_cap()
-	collected_experience += gem_exp
-	if current_experience + collected_experience >= exp_required: # level up
-		collected_experience -= exp_required - current_experience
-		experience_level += 1
-#		label_level.text = str("Level:", experience_level)
-		current_experience = 0
-		exp_required = calculate_experience_cap()
-		level_up()
-#		calculate_experience(0) # multi-levelup; TODO remove the recursion
-	else:
-		current_experience += collected_experience
-		collected_experience = 0
-	set_expbar(current_experience, exp_required)
-
-func set_expbar(set_value = 1, set_max_value = 100):
-	exp_bar.value = set_value
-	exp_bar.max_value = set_max_value
-
-## TODO move this into a json file to set
-func calculate_experience_cap():
-	var exp_cap = experience_level
-	if experience_level < 20:
-		exp_cap = experience_level * 5
-	elif experience_level < 40:
-		exp_cap = 95 * (experience_level-19) * 8
-	else:
-		exp_cap = 255 + (experience_level-39) * 12
-	return exp_cap
-
-func level_up():
-	label_level.text = str("Level:", experience_level)
-	_show_level_up_panel()
-	pause_player()
-
-## TODO Fully random spells for now, do tiered options in the future
-func get_random_item():
-	var random_item = Global.get_spellcards_data().values().pick_random()
-	available_upgrade_options.append(random_item)
-	return random_item
-
-## item_option connection: When user clicks on the option, it calls this method.
-func upgrade_character(upgrade):
-	## Add selected spell to spell inventory
-	inventory_data.add_item(upgrade)
-	_reset_level_up_panel()
-	unpause_player()
-	calculate_experience(0)
-
-## move panel into focus
-func _show_level_up_panel():
-	var tween = level_panel.create_tween()
-	tween.tween_property(level_panel, "position", Vector2(220, 50), 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
-	tween.play()
-	level_panel.visible = true
-	
-	# add level up options
-	var options = 0
-	var options_max = 3
-	while options < options_max:
-		var option_choice = item_options.instantiate()
-		option_choice.item = get_random_item()
-		level_up_options.add_child(option_choice)
-		options += 1
-	on_another_menu = true
-
-## Reset Level Up Panel position
-func _reset_level_up_panel():
-	level_panel.visible = false
-	level_panel.position = Vector2(800, 20)
-	
-	## Remove the upgrade options
-	var option_children = level_up_options.get_children()
-	for i in option_children:
-		i.queue_free()
-	
-	## clear the upgrade options array
-	available_upgrade_options.clear()
-	on_another_menu = false
+	gui.calculate_experience(experience)
 
 ## called by enemy_spawner to update the time
 func change_time(argtime = 0):
-	time = argtime
-	var get_minutes = int(time/60.0)
-	var get_seconds = time % 60
-	if get_minutes < 10:
-		get_minutes = str(0, get_minutes)
-	if get_seconds < 10:
-		get_seconds = str(0, get_seconds)
-	label_time.text = str(get_minutes, ":", get_seconds)
-
-# --- Pause Menu ---
-
-func _on_button_return_to_game_click_end():
-	_reset_pause_panel()
-
-## move panel into focus
-func _show_pause_panel():
-	var tween = pause_panel.create_tween()
-	tween.tween_property(pause_panel, "position", Vector2(220, 50), 0.1).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
-	tween.play()
-	pause_panel.visible = true
-	on_another_menu = true
-	pause_player()
-
-## Reset Pause Panel position
-func _reset_pause_panel():
-	pause_panel.visible = false
-	pause_panel.position = Vector2(800, 20)
-	on_another_menu = false
-	unpause_player()
-
-# --- transition shop menu ---
-
-func show_shop_menu():
-	transition_shop_menu.visible = true
-	on_another_menu = true
-	pause_player()
-
-func hide_shop_menu():
-	transition_shop_menu.visible = false
-	on_another_menu = false
-	unpause_player()
-
-func _on_transition_shop_menu_next_button_click():
-	hide_shop_menu()
-
-# --- inventory menu ---
-
-func show_inventory_menu():
-	inventory_menu.visible = true
-	pause_player()
-	
-
-func hide_inventory_menu():
-	inventory_menu.visible = false
-	unpause_player()
-
-func pause_player():
-	get_tree().paused = true
-	effects_container.pause_attacks()
-
-func unpause_player():
-	get_tree().paused = false
-	effects_container.unpause_attacks()
-	effects_container.reset_attacks()
+	gui.change_time(argtime)

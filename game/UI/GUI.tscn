@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3bnbu8bfh0i7"]
+
+[ext_resource type="PackedScene" uid="uid://bufkhdjbxweeb" path="res://Player/Wizard/player_wizard.tscn" id="1_kj8n1"]
+[ext_resource type="PackedScene" uid="uid://db35c3qww2csp" path="res://UI/gui_menu.tscn" id="2_0mini"]
+
+[node name="GUI" type="Node2D"]
+
+[node name="PlayerWizard" parent="." node_paths=PackedStringArray("gui") instance=ExtResource("1_kj8n1")]
+gui = NodePath("../CanvasLayer")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("2_0mini")]
+
+[node name="InventoryPanel" parent="CanvasLayer" index="8" node_paths=PackedStringArray("inventory_data", "spellcard_inventory_data")]
+inventory_data = NodePath("../../PlayerWizard/InventoryData")
+spellcard_inventory_data = NodePath("../../PlayerWizard/SpellCardInventoryData")
+
+[node name="InventoryContainer" parent="CanvasLayer/InventoryPanel" index="0" node_paths=PackedStringArray("inventory_data")]
+inventory_data = NodePath("../../../PlayerWizard/InventoryData")
+
+[node name="SpellContainer" parent="CanvasLayer/InventoryPanel" index="1" node_paths=PackedStringArray("inventory_data")]
+inventory_data = NodePath("../../../PlayerWizard/SpellCardInventoryData")
+
+[node name="DragPreview" parent="CanvasLayer/InventoryPanel" index="2" node_paths=PackedStringArray("inventory_menu_array")]
+inventory_menu_array = [NodePath("../InventoryContainer"), NodePath("../SpellContainer")]
+
+[editable path="PlayerWizard"]
+[editable path="PlayerWizard/HurtBox"]
+[editable path="CanvasLayer"]
+[editable path="CanvasLayer/InventoryPanel"]

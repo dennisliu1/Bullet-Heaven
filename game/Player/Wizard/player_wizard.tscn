@@ -1,18 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://bufkhdjbxweeb"]
+[gd_scene load_steps=14 format=3 uid="uid://bufkhdjbxweeb"]
 
 [ext_resource type="Script" path="res://Player/Wizard/player_wizard.gd" id="1_12bdb"]
 [ext_resource type="Texture2D" uid="uid://dn3e5udhpj48c" path="res://Player/Wizard/Textures/player_sprite.png" id="1_n7y1a"]
 [ext_resource type="PackedScene" uid="uid://b3atgfee1ucsy" path="res://Utility/hurt_box.tscn" id="3_hllnf"]
 [ext_resource type="PackedScene" uid="uid://dtxic1swrfgao" path="res://Utility/effects_container.tscn" id="5_5ntsy"]
-[ext_resource type="Texture2D" uid="uid://drwuomwe03bd8" path="res://UI/GUI/Textures/exp_background.png" id="5_eeaod"]
-[ext_resource type="FontFile" uid="uid://b1v5rrvoxovby" path="res://Font/tenderness.otf" id="5_qsjk3"]
-[ext_resource type="Texture2D" uid="uid://12g6pipsvyr4" path="res://UI/GUI/Textures/exp_progress.png" id="6_517ui"]
-[ext_resource type="PackedScene" uid="uid://bmrpavygc2kex" path="res://UI/Menus/basic_button.tscn" id="8_6tsfu"]
-[ext_resource type="Texture2D" uid="uid://bmtn28mis750p" path="res://UI/GUI/Textures/healthbar.png" id="8_blo8l"]
-[ext_resource type="Texture2D" uid="uid://cjurt4yv1v8kb" path="res://UI/GUI/Textures/health.png" id="9_qxpcv"]
-[ext_resource type="Texture2D" uid="uid://ce6wda6notm6c" path="res://Items/Gem/Textures/Gem_blue.png" id="11_m36et"]
-[ext_resource type="PackedScene" uid="uid://cxeltrqnhfia" path="res://UI/Menus/transition_shop/transition_shop_menu.tscn" id="12_c6qs4"]
-[ext_resource type="PackedScene" uid="uid://dllwwqeh3ndvh" path="res://Utility/inventory_panel.tscn" id="13_t4hkb"]
 [ext_resource type="PackedScene" uid="uid://bwhfdhlm2ypc5" path="res://Utility/inventory_data.tscn" id="14_8qtut"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r0l2q"]
@@ -67,7 +58,6 @@ radius = 50.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_jwwjt"]
 
 [node name="PlayerWizard" type="CharacterBody2D" groups=["player"]]
-process_mode = 3
 motion_mode = 1
 script = ExtResource("1_12bdb")
 
@@ -131,189 +121,10 @@ shape = SubResource("CircleShape2D_jwwjt")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 640.0
-offset_bottom = 360.0
-
-[node name="ExperienceBar" type="TextureProgressBar" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_right = 640.0
-offset_bottom = 40.0
-texture_under = ExtResource("5_eeaod")
-texture_progress = ExtResource("6_517ui")
-
-[node name="LabelLevel" type="Label" parent="CanvasLayer/Control/ExperienceBar"]
-layout_mode = 0
-offset_left = 540.0
-offset_right = 640.0
-offset_bottom = 20.0
-theme_override_fonts/font = ExtResource("5_qsjk3")
-theme_override_font_sizes/font_size = 16
-text = "Level: 1"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="LevelPanel" type="Panel" parent="CanvasLayer"]
-process_mode = 2
-visible = false
-offset_left = 800.0
-offset_top = 50.0
-offset_right = 1000.0
-offset_bottom = 300.0
-
-[node name="LabelLevelUp" type="Label" parent="CanvasLayer/LevelPanel"]
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 50.0
-theme_override_fonts/font = ExtResource("5_qsjk3")
-text = "Level Up !"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LevelUpOptions" type="VBoxContainer" parent="CanvasLayer/LevelPanel"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 50.0
-offset_right = 190.0
-offset_bottom = 100.0
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/LevelPanel"]
-
-[node name="PanelDeath" type="Panel" parent="CanvasLayer"]
-process_mode = 2
-visible = false
-offset_left = 800.0
-offset_top = 50.0
-offset_right = 1000.0
-offset_bottom = 300.0
-
-[node name="LabelResult" type="Label" parent="CanvasLayer/PanelDeath"]
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 50.0
-theme_override_fonts/font = ExtResource("5_qsjk3")
-text = "Level Up !"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AudioVictory" type="AudioStreamPlayer" parent="CanvasLayer/PanelDeath"]
-
-[node name="AudioDefeat" type="AudioStreamPlayer" parent="CanvasLayer/PanelDeath"]
-
-[node name="ButtonMenu" parent="CanvasLayer/PanelDeath" instance=ExtResource("8_6tsfu")]
-layout_mode = 0
-offset_left = 60.0
-offset_top = 200.0
-offset_right = 140.0
-offset_bottom = 230.0
-text = "Menu"
-
-[node name="PanelPause" type="Panel" parent="CanvasLayer"]
-process_mode = 2
-visible = false
-offset_left = 800.0
-offset_top = 50.0
-offset_right = 1000.0
-offset_bottom = 300.0
-
-[node name="LabelPauseMenu" type="Label" parent="CanvasLayer/PanelPause"]
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 50.0
-theme_override_fonts/font = ExtResource("5_qsjk3")
-text = "Menu"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ButtonReturnToGame" parent="CanvasLayer/PanelPause" instance=ExtResource("8_6tsfu")]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 152.0
-offset_right = 163.0
-offset_bottom = 182.0
-text = "Return to game"
-
-[node name="ButtonMenu" parent="CanvasLayer/PanelPause" instance=ExtResource("8_6tsfu")]
-layout_mode = 0
-offset_left = 60.0
-offset_top = 200.0
-offset_right = 140.0
-offset_bottom = 230.0
-text = "Menu"
-
-[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer"]
-self_modulate = Color(1, 1, 1, 0.392157)
-offset_left = 304.0
-offset_top = 200.0
-offset_right = 336.0
-offset_bottom = 208.0
-texture_over = ExtResource("8_blo8l")
-texture_progress = ExtResource("9_qxpcv")
-
-[node name="LabelTime" type="Label" parent="CanvasLayer"]
-custom_minimum_size = Vector2(80, 24)
-offset_left = 280.0
-offset_top = 20.0
-offset_right = 360.0
-offset_bottom = 46.0
-theme_override_fonts/font = ExtResource("5_qsjk3")
-text = "00:00"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="GemsContainer" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_top = 21.0
-offset_right = 60.0
-offset_bottom = 49.0
-
-[node name="TextureRect" type="Sprite2D" parent="CanvasLayer/GemsContainer"]
-position = Vector2(9, 9)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("11_m36et")
-
-[node name="LabelGems" type="Label" parent="CanvasLayer/GemsContainer"]
-custom_minimum_size = Vector2(40, 20)
-layout_mode = 0
-offset_left = 20.0
-offset_right = 60.0
-offset_bottom = 20.0
-theme_override_fonts/font = ExtResource("5_qsjk3")
-theme_override_font_sizes/font_size = 16
-text = "0"
-vertical_alignment = 1
-
-[node name="TransitionShopMenu" parent="CanvasLayer" instance=ExtResource("12_c6qs4")]
-visible = false
-
-[node name="InventoryPanel" parent="CanvasLayer" node_paths=PackedStringArray("inventory_data", "spellcard_inventory_data") instance=ExtResource("13_t4hkb")]
-visible = false
-inventory_data = NodePath("../../InventoryData")
-spellcard_inventory_data = NodePath("../../SpellCardInventoryData")
-
-[node name="InventoryContainer" parent="CanvasLayer/InventoryPanel" index="0" node_paths=PackedStringArray("inventory_data")]
-columns = 1
-inventory_data = NodePath("../../../InventoryData")
-
-[node name="SpellContainer" parent="CanvasLayer/InventoryPanel" index="1" node_paths=PackedStringArray("inventory_data")]
-inventory_data = NodePath("../../../SpellCardInventoryData")
-
-[node name="DragPreview" parent="CanvasLayer/InventoryPanel" index="2" node_paths=PackedStringArray("inventory_menu_array", "inventory_array")]
-inventory_menu_array = [NodePath("../InventoryContainer"), null]
-inventory_array = [NodePath("../../../InventoryData"), NodePath("../../../SpellCardInventoryData")]
-
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="body_entered" from="EnemyDetectArea" to="." method="_on_enemy_detect_area_body_entered"]
 [connection signal="body_exited" from="EnemyDetectArea" to="." method="_on_enemy_detect_area_body_exited"]
 [connection signal="area_entered" from="GrabArea" to="." method="_on_grab_area_area_entered"]
 [connection signal="area_entered" from="CollectArea" to="." method="_on_collect_area_area_entered"]
-[connection signal="click_end" from="CanvasLayer/PanelDeath/ButtonMenu" to="." method="_on_button_menu_click_end"]
-[connection signal="click_end" from="CanvasLayer/PanelPause/ButtonReturnToGame" to="." method="_on_button_return_to_game_click_end"]
-[connection signal="click_end" from="CanvasLayer/PanelPause/ButtonMenu" to="." method="_on_button_menu_click_end"]
-[connection signal="next_button_click" from="CanvasLayer/TransitionShopMenu" to="." method="_on_transition_shop_menu_next_button_click"]
 
 [editable path="HurtBox"]
-[editable path="CanvasLayer/InventoryPanel"]

@@ -209,10 +209,10 @@ func disable_attack():
 	attack_enabled = false
 	stop_attack_sequence()
 
-func add_spread_deviation(start_position, target_vector, spread):
+func add_spread_deviation(start_pos, target_vector, spread):
 	var rng_spread = deg_to_rad(randf_range(-1.0, 1.0) * spread)
 	var deviated_vector = target_vector.rotated(rng_spread)
-	return start_position + deviated_vector
+	return start_pos + deviated_vector
 
 
 

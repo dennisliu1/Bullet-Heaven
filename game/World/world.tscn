@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_32wit"]
 [ext_resource type="Texture2D" uid="uid://b3f2e5314moyj" path="res://World/textures/dirt_full_new.png" id="1_tryyk"]
-[ext_resource type="PackedScene" uid="uid://bufkhdjbxweeb" path="res://Player/Wizard/player_wizard.tscn" id="2_1iqjs"]
+[ext_resource type="PackedScene" uid="uid://d3bnbu8bfh0i7" path="res://UI/GUI.tscn" id="3_2bi1g"]
 [ext_resource type="PackedScene" uid="uid://d3raqsj8wo72u" path="res://Utility/enemy_spawner.tscn" id="3_oliu4"]
 [ext_resource type="PackedScene" uid="uid://du6ijgjbwxogr" path="res://Items/Gem/gem.tscn" id="6_4icf8"]
 [ext_resource type="AudioStream" uid="uid://c77h67lfbwlgv" path="res://World/Music/battleThemeA.mp3" id="13_sqsmm"]
@@ -16,7 +16,10 @@ texture = ExtResource("1_tryyk")
 region_enabled = true
 region_rect = Rect2(-4000, -4000, 4000, 4000)
 
-[node name="PlayerWizard" parent="." instance=ExtResource("2_1iqjs")]
+[node name="GUI" parent="." instance=ExtResource("3_2bi1g")]
+
+[node name="PlayerWizard" parent="GUI" index="0"]
+hp = 80
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_oliu4")]
 
@@ -30,3 +33,5 @@ position = Vector2(70, 70)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_sqsmm")
 volume_db = -15.0
+
+[editable path="GUI"]
