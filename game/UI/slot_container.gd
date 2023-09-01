@@ -41,4 +41,3 @@ func clear_children():
 		child.queue_free()
 	if inventory_data.items_changed.is_connected(_on_Inventory_items_changed):
 		inventory_data.items_changed.disconnect(_on_Inventory_items_changed)
-
