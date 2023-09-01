@@ -18,6 +18,7 @@ static var EMPTY_ITEM_DATA = ItemData.new()
 @export var sub_type: ITEM_SUB_TYPE
 @export var key : String
 @export var dict_key: String
+@export var price: int
 
 static func get_type(s : String) -> ITEM_TYPE:
 	if s == "EQUIPMENT":

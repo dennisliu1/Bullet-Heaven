@@ -31,8 +31,13 @@ var available_upgrade_options = [] # what is on offer
 @onready var pause_panel = $PanelPause
 @onready var pause_button_back_to_game = $PanelPause/ButtonReturnToGame
 @onready var pause_button_menu = $PanelPause/ButtonMenu
+
 ## Shop menu
+@onready var shop_buy_item = preload("res://UI/Menus/transition_shop/shop_buy_item.tscn")
 @onready var transition_shop_menu = $TransitionShopMenu
+var shop_options = []
+
+
 ## inventory menu
 @onready var inventory_menu = $InventoryPanel
 
@@ -122,11 +127,6 @@ func change_time(argtime = 0):
 	label_time.text = str(get_minutes, ":", get_seconds)
 
 
-
-
-
-
-
 # --- pause menu ---
 
 func _on_button_return_to_game_click_end():
@@ -158,6 +158,11 @@ func _reset_pause_panel():
 
 func show_shop_menu():
 	transition_shop_menu.visible = true
+	refresh_gem_label()
+	
+	# add shops options
+	add_items()
+	
 	on_another_menu = true
 	opened_menu = "shop_menu"
 	pause_player()
@@ -170,6 +175,54 @@ func hide_shop_menu():
 
 func _on_transition_shop_menu_next_button_click():
 	hide_shop_menu()
+
+func buy_item(index, item, price):
+	if player.buy_item(item, price):
+		shop_options[index].bought = true
+		refresh_gem_label()
+	pass
+
+func lock_item(index, item):
+	shop_options[index].lock = true
+	pass
+
+func unlock_item(index, item):
+	shop_options[index].lock = false
+	pass
+
+func reroll():
+	var i = 0
+	while i < shop_options.size():
+		if shop_options[i].lock:
+			i += 1
+		else:
+			transition_shop_menu.remove_buy_option(shop_options[i].node)
+			shop_options.remove_at(i)
+	add_items()
+	pass
+
+func add_items(options_max = 8):
+	var options = shop_options.size()
+	while shop_options.size() < options_max:
+		var shop_buy_item_option = shop_buy_item.instantiate()
+		var item = get_random_item()
+		shop_options.append({
+			"item": item,
+			"lock": false,
+			"bought": false,
+			"node": shop_buy_item_option,
+		})
+		transition_shop_menu.add_buy_option(shop_buy_item_option)
+		shop_buy_item_option.set_item(options, item, item.price)
+		shop_buy_item_option.connect_item(self, "buy_item", "lock_item", "unlock_item")
+		
+		options += 1
+
+func _on_transition_shop_menu_reroll_items():
+	reroll()
+
+func refresh_gem_label():
+	transition_shop_menu.get_gems_container_label().text = str(player.collected_gems)
 
 # --- pause ---
 
@@ -213,6 +266,9 @@ func show_death_panel():
 	else:
 		label_result.text = "You lose :("
 		audio_defeat.play()
+
+
+
 
 
 

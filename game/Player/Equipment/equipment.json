@@ -5,6 +5,7 @@
 		"icon": "armor_01a.png",
 		"path": "res://Player/Equipment/Armor/Textures/",
 		"type": "EQUIPMENT",
+		"price": 10,
 		"data": {
 			"sub_type": "CLOTHING",
 			"energy": 100,
@@ -24,6 +25,7 @@
 		"icon": "boots_01a.png",
 		"path": "res://Player/Equipment/Armor/Textures/",
 		"type": "EQUIPMENT",
+		"price": 10,
 		"data": {
 			"sub_type": "BOOTS",
 			"energy": 100,
@@ -43,6 +45,7 @@
 		"icon": "gloves_01a.png",
 		"path": "res://Player/Equipment/Armor/Textures/",
 		"type": "EQUIPMENT",
+		"price": 10,
 		"data": {
 			"sub_type": "GLOVES",
 			"energy": 100,
@@ -62,6 +65,7 @@
 		"icon": "hat_01a.png",
 		"path": "res://Player/Equipment/Armor/Textures/",
 		"type": "EQUIPMENT",
+		"price": 10,
 		"data": {
 			"sub_type": "HAT",
 			"energy": 100,
@@ -81,6 +85,7 @@
 		"icon": "helmet_01a.png",
 		"path": "res://Player/Equipment/Armor/Textures/",
 		"type": "EQUIPMENT",
+		"price": 10,
 		"data": {
 			"sub_type": "HAT",
 			"energy": 100,
@@ -100,6 +105,7 @@
 		"icon": "necklace_01a.png",
 		"path": "res://Player/Equipment/Armor/Textures/",
 		"type": "EQUIPMENT",
+		"price": 10,
 		"data": {
 			"sub_type": "MISC",
 			"energy": 100,

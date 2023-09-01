@@ -6,6 +6,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [0],
+		"price": 10,
 		"data": [{
 			"sub_type": "PROJECTILE",
 			"energy_drain": 10,
@@ -38,6 +39,7 @@
 		"path": "res://Player/Modifiers/Textures/noita perks/",
 		"type": "SPELLCARD",
 		"tier": [0],
+		"price": 10,
 		"data": [{
 			"sub_type": "SUMMON",
 			"energy_drain": 10,
@@ -68,6 +70,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [0],
+		"price": 10,
 		"data": [{
 			"sub_type": "PROJECTILE",
 			"energy_drain": 10,
@@ -100,6 +103,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [0],
+		"price": 10,
 		"data": [{
 			"sub_type": "PROJECTILE",
 			"energy_drain": 10,
@@ -130,6 +134,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [3,5,6],
+		"price": 10,
 		"data": [
 			{
 				"sub_type": "MOD_PROJECTILE_MODIFIER",
@@ -151,6 +156,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [4,5,6],
+		"price": 10,
 		"data": [
 			{
 				"sub_type": "MOD_PROJECTILE_MODIFIER",
@@ -172,6 +178,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [5,6],
+		"price": 10,
 		"data": [
 			{
 				"sub_type": "MOD_PROJECTILE_MODIFIER",
@@ -193,6 +200,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [6],
+		"price": 10,
 		"data": [
 			{
 				"sub_type": "MOD_PROJECTILE_MODIFIER",
@@ -214,6 +222,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [1,2,3,4,5,6],
+		"price": 10,
 		"data": [
 			{
 				"sub_type": "MOD_PROJECTILE_MODIFIER",
@@ -232,6 +241,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [1,2,3,4,5,6],
+		"price": 10,
 		"data": [
 			{
 				"sub_type": "MOD_PROJECTILE_MODIFIER",
@@ -250,6 +260,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [1,2,3,4,5,6],
+		"price": 10,
 		"data": [
 			{
 				"sub_type": "MOD_PROJECTILE_MODIFIER",
@@ -268,6 +279,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [1,2,3,4,5,6],
+		"price": 10,
 		"data": [
 			{
 				"sub_type": "MOD_PROJECTILE_MODIFIER",
@@ -286,6 +298,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [1,2,3,4,5,6],
+		"price": 10,
 		"data": [
 			{
 				"sub_type": "MOD_PROJECTILE_MODIFIER",
@@ -304,6 +317,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [1,2,3,4,5,6],
+		"price": 10,
 		"data": [
 			{
 				"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
@@ -322,6 +336,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [1,2,3,4,5,6],
+		"price": 10,
 		"data": [
 			{
 				"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
@@ -340,6 +355,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [2,3,4],
+		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"damage": 4,
@@ -354,6 +370,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [2,3,4],
+		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"damage": 0.5,
@@ -368,6 +385,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [2,3,4],
+		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"attack_angle": 1.4,
@@ -380,6 +398,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [2,3,4],
+		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"attack_angle": 0.6,
@@ -392,6 +411,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [2,3,4],
+		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"lifetime": 10,
@@ -404,6 +424,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [2,3,4],
+		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"lifetime": 0.5,
@@ -416,6 +437,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [2,3,4],
+		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"velocity": 2.5,
@@ -428,6 +450,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [2,3,4],
+		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"velocity": 0.5,
@@ -440,6 +463,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [2,3,4],
+		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"crit_chance": 10,
@@ -452,6 +476,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [2,3,4],
+		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"spread": 30,
@@ -465,6 +490,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [2,3,4],
+		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"spread": 0.5,
@@ -477,6 +503,7 @@
 		"path": "res://Player/Modifiers/Textures/noita spells/",
 		"type": "SPELLCARD",
 		"tier": [1,2,4,5],
+		"price": 10,
 		"data": [{
 			"sub_type": "ON_HIT_PROJECTILE_MODIFIER",
 			"on_hit_effects": [

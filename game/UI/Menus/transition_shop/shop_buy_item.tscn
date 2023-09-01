@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://dj3kdm2sp15es"]
+
+[ext_resource type="PackedScene" uid="uid://duom5cnplrerl" path="res://UI/item_slot.tscn" id="1_jdf78"]
+[ext_resource type="Script" path="res://UI/Menus/transition_shop/shop_buy_item.gd" id="1_ud5ib"]
+[ext_resource type="PackedScene" uid="uid://bmrpavygc2kex" path="res://UI/Menus/basic_button.tscn" id="2_70ia8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jt7jx"]
+bg_color = Color(0.270222, 0.270222, 0.270222, 1)
+
+[sub_resource type="Theme" id="Theme_hch1b"]
+Button/styles/normal = SubResource("StyleBoxFlat_jt7jx")
+
+[node name="shop_buy_item" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -582.0
+offset_bottom = -292.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.537255, 0.537255, 0.537255, 1)
+script = ExtResource("1_ud5ib")
+
+[node name="ItemSlot" parent="." instance=ExtResource("1_jdf78")]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 4.0
+offset_right = 36.0
+offset_bottom = 22.0
+
+[node name="BuyButton" parent="." instance=ExtResource("2_70ia8")]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 29.0
+offset_right = 88.0
+offset_bottom = 59.0
+scale = Vector2(0.5, 0.5)
+text = "Buy"
+
+[node name="LockButton" parent="." instance=ExtResource("2_70ia8")]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 88.0
+offset_bottom = 78.0
+scale = Vector2(0.5, 0.5)
+theme = SubResource("Theme_hch1b")
+text = "Lock"
+
+[connection signal="click_end" from="BuyButton" to="." method="_on_buy_button_click_end"]
+[connection signal="click_end" from="LockButton" to="." method="_on_lock_button_click_end"]

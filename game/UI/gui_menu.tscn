@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bmrpavygc2kex" path="res://UI/Menus/basic_button.tscn" id="5_nrk06"]
 [ext_resource type="Texture2D" uid="uid://bmtn28mis750p" path="res://UI/GUI/Textures/healthbar.png" id="6_sok5r"]
 [ext_resource type="Texture2D" uid="uid://cjurt4yv1v8kb" path="res://UI/GUI/Textures/health.png" id="7_lbm0m"]
-[ext_resource type="Texture2D" uid="uid://ce6wda6notm6c" path="res://Items/Gem/Textures/Gem_blue.png" id="8_hiuxi"]
+[ext_resource type="PackedScene" uid="uid://b21bdkkl60usy" path="res://UI/gems_container.tscn" id="8_bddtw"]
 [ext_resource type="PackedScene" uid="uid://cxeltrqnhfia" path="res://UI/Menus/transition_shop/transition_shop_menu.tscn" id="9_vare5"]
 [ext_resource type="PackedScene" uid="uid://dllwwqeh3ndvh" path="res://Utility/inventory_panel.tscn" id="10_f30n7"]
 
@@ -147,28 +147,7 @@ text = "00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GemsContainer" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_top = 21.0
-offset_right = 60.0
-offset_bottom = 49.0
-
-[node name="TextureRect" type="Sprite2D" parent="GemsContainer"]
-position = Vector2(9, 9)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("8_hiuxi")
-
-[node name="LabelGems" type="Label" parent="GemsContainer"]
-custom_minimum_size = Vector2(40, 20)
-layout_mode = 0
-offset_left = 20.0
-offset_right = 60.0
-offset_bottom = 20.0
-theme_override_fonts/font = ExtResource("4_qrmbf")
-theme_override_font_sizes/font_size = 16
-text = "0"
-vertical_alignment = 1
+[node name="GemsContainer" parent="." instance=ExtResource("8_bddtw")]
 
 [node name="TransitionShopMenu" parent="." instance=ExtResource("9_vare5")]
 visible = false
@@ -187,5 +166,6 @@ inventory_array = [null, null]
 [connection signal="click_end" from="PanelPause/ButtonReturnToGame" to="." method="_on_button_return_to_game_click_end"]
 [connection signal="click_end" from="PanelPause/ButtonMenu" to="." method="_on_button_menu_click_end"]
 [connection signal="next_button_click" from="TransitionShopMenu" to="." method="_on_transition_shop_menu_next_button_click"]
+[connection signal="reroll_items" from="TransitionShopMenu" to="." method="_on_transition_shop_menu_reroll_items"]
 
 [editable path="InventoryPanel"]

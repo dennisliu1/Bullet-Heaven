@@ -82,6 +82,7 @@ func insert_json_data(data_path, key, json_data):
 	data_array[data_path][key].type = ItemData.get_type(json_data.type)
 	# need to move this out?
 	data_array[data_path][key].dict_key = key
+	data_array[data_path][key].price = json_data.price
 
 func populate_equipment_data(target_data, json_spellcard):
 	target_data.num_slots = json_spellcard.data.slots # not sure about this...

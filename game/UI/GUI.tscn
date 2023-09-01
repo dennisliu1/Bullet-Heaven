@@ -5,26 +5,35 @@
 
 [node name="GUI" type="Node2D"]
 
-[node name="PlayerWizard" parent="." node_paths=PackedStringArray("gui") instance=ExtResource("1_kj8n1")]
-gui = NodePath("../CanvasLayer")
+[node name="PlayerWizard" parent="." instance=ExtResource("1_kj8n1")]
 
-[node name="CanvasLayer" parent="." instance=ExtResource("2_0mini")]
+[node name="GuiMenu" parent="." instance=ExtResource("2_0mini")]
 
-[node name="InventoryPanel" parent="CanvasLayer" index="8" node_paths=PackedStringArray("inventory_data", "spellcard_inventory_data")]
-inventory_data = NodePath("../../PlayerWizard/InventoryData")
-spellcard_inventory_data = NodePath("../../PlayerWizard/SpellCardInventoryData")
-
-[node name="InventoryContainer" parent="CanvasLayer/InventoryPanel" index="0" node_paths=PackedStringArray("inventory_data")]
+[node name="InventoryContainer" parent="GuiMenu/TransitionShopMenu" index="4" node_paths=PackedStringArray("inventory_data")]
 inventory_data = NodePath("../../../PlayerWizard/InventoryData")
 
-[node name="SpellContainer" parent="CanvasLayer/InventoryPanel" index="1" node_paths=PackedStringArray("inventory_data")]
+[node name="SpellContainer" parent="GuiMenu/TransitionShopMenu" index="5" node_paths=PackedStringArray("inventory_data")]
 inventory_data = NodePath("../../../PlayerWizard/SpellCardInventoryData")
 
-[node name="DragPreview" parent="CanvasLayer/InventoryPanel" index="2" node_paths=PackedStringArray("inventory_menu_array", "inventory_array")]
+[node name="DragPreview" parent="GuiMenu/TransitionShopMenu" index="6" node_paths=PackedStringArray("inventory_menu_array", "tooltip")]
 inventory_menu_array = [NodePath("../InventoryContainer"), NodePath("../SpellContainer")]
-inventory_array = [null, null]
+tooltip = NodePath("../Tooltip")
+
+[node name="InventoryPanel" parent="GuiMenu" index="8" node_paths=PackedStringArray("spellcard_inventory_data")]
+spellcard_inventory_data = NodePath("../../PlayerWizard/SpellCardInventoryData")
+
+[node name="InventoryContainer" parent="GuiMenu/InventoryPanel" index="0" node_paths=PackedStringArray("inventory_data")]
+inventory_data = NodePath("../../../PlayerWizard/InventoryData")
+
+[node name="SpellContainer" parent="GuiMenu/InventoryPanel" index="1" node_paths=PackedStringArray("inventory_data")]
+inventory_data = NodePath("../../../PlayerWizard/SpellCardInventoryData")
+
+[node name="DragPreview" parent="GuiMenu/InventoryPanel" index="2" node_paths=PackedStringArray("inventory_menu_array", "tooltip")]
+inventory_menu_array = [NodePath("../InventoryContainer"), NodePath("../SpellContainer")]
+tooltip = NodePath("../Tooltip")
 
 [editable path="PlayerWizard"]
 [editable path="PlayerWizard/HurtBox"]
-[editable path="CanvasLayer"]
-[editable path="CanvasLayer/InventoryPanel"]
+[editable path="GuiMenu"]
+[editable path="GuiMenu/TransitionShopMenu"]
+[editable path="GuiMenu/InventoryPanel"]

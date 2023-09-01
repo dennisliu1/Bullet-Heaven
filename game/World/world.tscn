@@ -18,15 +18,13 @@ region_rect = Rect2(-4000, -4000, 4000, 4000)
 
 [node name="GUI" parent="." instance=ExtResource("3_2bi1g")]
 
-[node name="DragPreview" parent="GUI/CanvasLayer/InventoryPanel" index="2" node_paths=PackedStringArray("inventory_array")]
-inventory_array = [null, null]
-
 [node name="EnemySpawner" parent="." instance=ExtResource("3_oliu4")]
 
 [node name="Loot" type="Node" parent="." groups=["loot_root"]]
 
 [node name="experience_gem" parent="Loot" instance=ExtResource("6_4icf8")]
 position = Vector2(70, 70)
+value = 1000
 
 [node name="Hits" type="Node" parent="." groups=["hit_root"]]
 
@@ -38,4 +36,5 @@ volume_db = -15.0
 [editable path="GUI/PlayerWizard"]
 [editable path="GUI/PlayerWizard/HurtBox"]
 [editable path="GUI/CanvasLayer"]
+[editable path="GUI/CanvasLayer/TransitionShopMenu"]
 [editable path="GUI/CanvasLayer/InventoryPanel"]

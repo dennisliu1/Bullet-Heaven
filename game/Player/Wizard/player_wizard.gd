@@ -9,7 +9,7 @@ var armor = 0
 var experience_level = 1
 var maxhp = 80
 @export var hp = 80
-@export var gui: CanvasLayer
+@onready var gui:CanvasLayer = get_tree().get_first_node_in_group("gui")
 
 # tracking variables
 var current_experience = 0
@@ -193,3 +193,14 @@ func calculate_experience_cap():
 ## called by enemy_spawner to update the time
 func change_time(argtime = 0):
 	gui.change_time(argtime)
+
+func buy_item(item, price):
+	if price <= collected_gems:
+		collected_gems -= price
+		inventory_data.add_item(item)
+		return true
+	else:
+		return false
+
+
+

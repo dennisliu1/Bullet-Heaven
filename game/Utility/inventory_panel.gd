@@ -1,6 +1,5 @@
 extends Panel
 
-@export var inventory_data : InventoryData
 @onready var inventory_container = $InventoryContainer
 @export var spellcard_inventory_data : InventoryData
 @onready var spell_container = $SpellContainer
