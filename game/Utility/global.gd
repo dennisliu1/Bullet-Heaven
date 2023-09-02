@@ -172,8 +172,10 @@ func populate_spellcard_effect(spellcard_effect, spellcard_data_effect):
 		spellcard_effect.crit_damage = spellcard_data_effect.crit_damage
 	if spellcard_data_effect.has("hit_spawn_type"):
 		spellcard_effect.hit_spawn_type = SpellCardEffect.get_hit_spawn_type(spellcard_data_effect.hit_spawn_type)
-	if spellcard_data_effect.has("hit_behavior_type"):
-		spellcard_effect.hit_behavior_type = SpellCardEffect.get_hit_behavior_type(spellcard_data_effect.hit_behavior_type)
+	if spellcard_data_effect.has("hit_movement_type"):
+		spellcard_effect.hit_movement_type = SpellCardEffect.get_hit_movement_type(spellcard_data_effect.hit_movement_type)
+	if spellcard_data_effect.has("hit_behaviour_type"):
+		spellcard_effect.hit_behaviour_type = SpellCardEffect.get_hit_behaviour_type(spellcard_data_effect.hit_behaviour_type)
 	if spellcard_data_effect.has("multicast"):
 		spellcard_effect.multicast = spellcard_data_effect.multicast
 	if spellcard_data_effect.has("on_fire_effects"):

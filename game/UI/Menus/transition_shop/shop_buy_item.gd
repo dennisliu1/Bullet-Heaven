@@ -19,10 +19,10 @@ func _ready():
 	lock_normal_style.bg_color = Color(0.01176470611244, 0.4745098054409, 0.48627451062202)
 	lock_hover_style.bg_color = Color(0.01942980661988, 0.63553732633591, 0.65090048313141)
 
-func set_item(index, item, price):
-	self.index = index
-	self.item = item
-	self.price = price
+func set_item(i, item_arg, price_arg):
+	self.index = i
+	self.item = item_arg
+	self.price = price_arg
 	item_slot.display_item(self.item)
 
 func connect_item(node, buy_item_function_name, lock_item_function_name, unlock_item_function_name):

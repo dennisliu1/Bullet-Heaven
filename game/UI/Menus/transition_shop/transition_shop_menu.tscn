@@ -68,6 +68,7 @@ ItemSlot = ExtResource("4_fmmgw")
 [node name="DragPreview" parent="." instance=ExtResource("5_qi873")]
 
 [node name="Tooltip" parent="." instance=ExtResource("6_v50cc")]
+visible = false
 layout_mode = 0
 
 [node name="RerollButton" parent="." instance=ExtResource("2_pjt6v")]

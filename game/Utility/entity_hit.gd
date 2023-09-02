@@ -22,7 +22,8 @@ var entity_hit: EntityHit # stores the hit properties
 @export var crit_chance: float
 @export var crit_damage: float
 @export var lifetime : float
-@export var hit_behaviour_type: SpellCardEffect.HIT_SPAWN_TYPE
+@export var hit_movement_type: SpellCardEffect.HIT_MOVEMENT_TYPE
+@export var hit_behaviour_type: SpellCardEffect.HIT_BEHAVIOUR_TYPE
 @export var on_hit_spellcards : Array
 
 
@@ -50,20 +51,8 @@ func _ready():
 			_add_attack(spellcard)
 			pass
 	
-	if hit_behaviour_type == SpellCardEffect.HIT_BEHAVIOR_TYPE.STRAIGHT_LINE:
-		# the ice spear is current 45 degrees, so we compensate by adding 135 degrees
-		# this way, the ice spear is equal to Vector(1, 0)
-		# and faces right
-		rotation = angle.angle() + deg_to_rad(135)
-	
-		# a small animation where the ice spear starts off small and grows into
-		# its full size.
-		# Tween interpolates between two states, shifting from oen to the other.
-		var tween = create_tween()
-		tween.tween_property(self, "scale", Vector2(1,1) * attack_size, 1).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-		tween.play()
-	elif hit_behaviour_type == SpellCardEffect.HIT_BEHAVIOR_TYPE.WAVE_PATTERN:
-		_tornado_behavior()
+	_set_movement_type()
+	_behaviour_type_setup()
 
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -110,7 +99,30 @@ func get_start_position():
 func get_direction():
 	return angle
 
-func _tornado_behavior():
+
+
+# --- movement types ---
+
+func _set_movement_type():
+	if hit_movement_type == SpellCardEffect.HIT_MOVEMENT_TYPE.STRAIGHT_LINE:
+		_straight_line_movement()
+	elif hit_movement_type == SpellCardEffect.HIT_MOVEMENT_TYPE.WAVE_PATTERN:
+		_tornado_movement()
+
+func _straight_line_movement():
+	# the ice spear is current 45 degrees, so we compensate by adding 135 degrees
+	# this way, the ice spear is equal to Vector(1, 0)
+	# and faces right
+	rotation = angle.angle() + deg_to_rad(135)
+
+	# a small animation where the ice spear starts off small and grows into
+	# its full size.
+	# Tween interpolates between two states, shifting from oen to the other.
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector2(1,1) * attack_size, 1).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.play()
+
+func _tornado_movement():
 	last_movement = player.last_movement
 	
 	var move_to_less = Vector2.ZERO
@@ -157,6 +169,20 @@ func _tornado_behavior():
 		tween.tween_property(self, "angle", angle_more, 2)
 	tween.play()
 
+# --- hit_behaviour_type settings ---
 
+func _behaviour_type_setup():
+	if hit_behaviour_type == SpellCardEffect.HIT_BEHAVIOUR_TYPE.NONE:
+		pass
+	elif hit_behaviour_type == SpellCardEffect.HIT_BEHAVIOUR_TYPE.HOMING:
+		_homing_behaviour_setup()
 
+func _homing_behaviour_setup():
+	pass
+
+func _behaviour_type_process():
+	if hit_behaviour_type == SpellCardEffect.HIT_BEHAVIOUR_TYPE.NONE:
+		pass
+	elif hit_behaviour_type == SpellCardEffect.HIT_BEHAVIOUR_TYPE.HOMING:
+		pass
 

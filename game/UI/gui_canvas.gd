@@ -182,11 +182,11 @@ func buy_item(index, item, price):
 		refresh_gem_label()
 	pass
 
-func lock_item(index, item):
+func lock_item(index, _item):
 	shop_options[index].lock = true
 	pass
 
-func unlock_item(index, item):
+func unlock_item(index, _item):
 	shop_options[index].lock = false
 	pass
 

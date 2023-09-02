@@ -2,7 +2,8 @@ extends ItemData
 class_name SpellCardEffect
 
 enum HIT_SPAWN_TYPE {RANDOM_TARGET, PLAYER_DIRECTION, SPREAD}
-enum HIT_BEHAVIOR_TYPE {STRAIGHT_LINE, WAVE_PATTERN, HOMING}
+enum HIT_MOVEMENT_TYPE {STRAIGHT_LINE, WAVE_PATTERN}
+enum HIT_BEHAVIOUR_TYPE {NONE, HOMING}
 #enum SUMMON_BEHAVIOR_TYPE {FOLLOW_PLAYER, SPIN_AROUND}
 
 # if the effect is a mod_projectile_modifier,
@@ -37,7 +38,8 @@ enum HIT_BEHAVIOR_TYPE {STRAIGHT_LINE, WAVE_PATTERN, HOMING}
 @export var hit_hp: int
 @export var hit_size : float
 @export var hit_spawn_type: HIT_SPAWN_TYPE
-@export var hit_behavior_type: HIT_BEHAVIOR_TYPE
+@export var hit_movement_type: HIT_MOVEMENT_TYPE
+@export var hit_behaviour_type: HIT_BEHAVIOUR_TYPE
 @export var attack_type: String
 @export var hit_type : String
 @export var multicast: bool
@@ -106,15 +108,21 @@ static func get_hit_spawn_type(hit_spawn_type_name):
 	else:
 		return HIT_SPAWN_TYPE.RANDOM_TARGET
 
-static func get_hit_behavior_type(hit_spawn_behavior_type):
-	if hit_spawn_behavior_type == "STRAIGHT_LINE":
-		return HIT_BEHAVIOR_TYPE.STRAIGHT_LINE
-	elif hit_spawn_behavior_type == "WAVE_PATTERN":
-		return HIT_BEHAVIOR_TYPE.WAVE_PATTERN
-	elif hit_spawn_behavior_type == "HOMING":
-		return HIT_BEHAVIOR_TYPE.HOMING
+static func get_hit_movement_type(hit_spawn_movement_type):
+	if hit_spawn_movement_type == "STRAIGHT_LINE":
+		return HIT_MOVEMENT_TYPE.STRAIGHT_LINE
+	elif hit_spawn_movement_type == "WAVE_PATTERN":
+		return HIT_MOVEMENT_TYPE.WAVE_PATTERN
 	else:
-		return HIT_BEHAVIOR_TYPE.STRAIGHT_LINE
+		return HIT_MOVEMENT_TYPE.STRAIGHT_LINE
+
+static func get_hit_behaviour_type(hit_spawn_behaviour_type):
+	if hit_spawn_behaviour_type == "NONE":
+		return HIT_BEHAVIOUR_TYPE.NONE
+	elif hit_spawn_behaviour_type == "HOMING":
+		return HIT_BEHAVIOUR_TYPE.HOMING
+	else:
+		return HIT_BEHAVIOUR_TYPE.NONE
 
 static func evaluate_spellcards(spellcards: Array):
 	var evaluated_spellcard_effects = evaluate_spellcard_data(spellcards)

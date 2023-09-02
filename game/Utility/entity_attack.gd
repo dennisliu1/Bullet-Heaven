@@ -90,7 +90,8 @@ func _load_properties_into_hit(hit_instance, spell_effect: SpellCardEffect):
 	hit_instance.crit_damage = spell_effect.crit_damage
 #	hit_instance.pierce = spell_effect.pierce
 #	hit_instance.bounce = spell_effect.bounce
-	hit_instance.hit_behaviour_type = spell_effect.hit_behavior_type
+	hit_instance.hit_movement_type = spell_effect.hit_movement_type
+	hit_instance.hit_behaviour_type = spell_effect.hit_behaviour_type
 
 	for spellcard in spell_effect.on_hit_effects:
 		hit_instance.on_hit_spellcards.append(spellcard)

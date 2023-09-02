@@ -18,8 +18,8 @@ func remove_buy_option(el):
 func _on_next_button_click_end():
 	emit_signal("next_button_click")
 
-func set_item_visible(index, is_visible):
-	get_item(index).visible = is_visible
+func set_item_visible(index, vsibility):
+	get_item(index).visible = vsibility
 
 func get_item(index):
 	return buy_grid_container.get_child(index)
