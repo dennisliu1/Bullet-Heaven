@@ -12,11 +12,12 @@ size = Vector2(9.19239, 33.9411)
 script = ExtResource("1_xovk1")
 
 [node name="Sprite2D" parent="." index="0"]
+rotation = 2.35619
 texture = ExtResource("1_3nvmr")
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(0.75, -0.749999)
-rotation = -0.785398
+position = Vector2(0, 1)
+rotation = 1.5708
 shape = SubResource("RectangleShape2D_fxopp")
 
 [node name="LifeTimeTimer" parent="." index="2"]

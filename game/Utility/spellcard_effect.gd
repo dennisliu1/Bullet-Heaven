@@ -1,8 +1,9 @@
 extends ItemData
 class_name SpellCardEffect
 
-enum HIT_SPAWN_TYPE {RANDOM_TARGET, PLAYER_DIRECTION, SPREAD}
-enum HIT_MOVEMENT_TYPE {STRAIGHT_LINE, WAVE_PATTERN}
+enum HIT_SPAWN_TYPE {NONE, SPREAD}
+enum HIT_FACING_TYPE {NONE, RANDOM_TARGET, PLAYER_DIRECTION}
+enum HIT_MOVEMENT_TYPE {NONE, STRAIGHT_LINE, PING_PONG_PATH}
 enum HIT_BEHAVIOUR_TYPE {NONE, HOMING}
 #enum SUMMON_BEHAVIOR_TYPE {FOLLOW_PLAYER, SPIN_AROUND}
 
@@ -38,6 +39,7 @@ enum HIT_BEHAVIOUR_TYPE {NONE, HOMING}
 @export var hit_hp: int
 @export var hit_size : float
 @export var hit_spawn_type: HIT_SPAWN_TYPE
+@export var hit_facing_type: HIT_FACING_TYPE
 @export var hit_movement_type: HIT_MOVEMENT_TYPE
 @export var hit_behaviour_type: HIT_BEHAVIOUR_TYPE
 @export var attack_type: String
@@ -99,20 +101,26 @@ static func get_hit_type(hit_name):
 		return null
 
 static func get_hit_spawn_type(hit_spawn_type_name):
-	if hit_spawn_type_name == "RANDOM_TARGET":
-		return HIT_SPAWN_TYPE.RANDOM_TARGET
-	elif hit_spawn_type_name == "PLAYER_DIRECTION":
-		return HIT_SPAWN_TYPE.PLAYER_DIRECTION
+	if hit_spawn_type_name == "NONE":
+		return HIT_SPAWN_TYPE.NONE
 	elif hit_spawn_type_name == "SPREAD":
 		return HIT_SPAWN_TYPE.SPREAD
 	else:
-		return HIT_SPAWN_TYPE.RANDOM_TARGET
+		return HIT_SPAWN_TYPE.NONE
+
+static func get_hit_facing_type(hit_facing_type_name):
+	if hit_facing_type_name == "RANDOM_TARGET":
+		return HIT_FACING_TYPE.RANDOM_TARGET
+	elif hit_facing_type_name == "PLAYER_DIRECTION":
+		return HIT_FACING_TYPE.PLAYER_DIRECTION
+	else:
+		return HIT_FACING_TYPE.RANDOM_TARGET
 
 static func get_hit_movement_type(hit_spawn_movement_type):
 	if hit_spawn_movement_type == "STRAIGHT_LINE":
 		return HIT_MOVEMENT_TYPE.STRAIGHT_LINE
-	elif hit_spawn_movement_type == "WAVE_PATTERN":
-		return HIT_MOVEMENT_TYPE.WAVE_PATTERN
+	elif hit_spawn_movement_type == "PING_PONG_PATH":
+		return HIT_MOVEMENT_TYPE.PING_PONG_PATH
 	else:
 		return HIT_MOVEMENT_TYPE.STRAIGHT_LINE
 
@@ -295,6 +303,15 @@ static func apply_modifier_to_spellcard(spellcard_effect: SpellCardEffect, modif
 	elif modifier_card.sub_type == ItemData.ITEM_SUB_TYPE.ADDITIVE_PROPERTIES_PROJECTILE_MODIFIER:
 		apply_additive_modifier_to_spellcard_effect(spellcard_effect, modifier_card)
 	
+	if modifier_card.get("hit_spawn_type"):
+		spellcard_effect.hit_spawn_type = modifier_card.hit_spawn_type
+	if modifier_card.get("hit_facing_type"):
+		spellcard_effect.hit_facing_type = modifier_card.hit_facing_type
+	if modifier_card.get("hit_movement_type"):
+		spellcard_effect.hit_movement_type = modifier_card.hit_movement_type
+	if modifier_card.get("hit_behaviour_type"):
+		spellcard_effect.hit_behaviour_type = modifier_card.hit_behaviour_type
+	
 	if modifier_card.get("on_fire_effects"):
 		spellcard_effect.on_fire_effects = []
 		for spellcard_effect_data in modifier_card.on_fire_effects:
@@ -315,6 +332,14 @@ static func combine_modifiers(spellcard_effect: SpellCardEffect, modifier_card: 
 	elif modifier_card.sub_type == ItemData.ITEM_SUB_TYPE.ADDITIVE_PROPERTIES_PROJECTILE_MODIFIER:
 		apply_additive_modifier_to_spellcard_effect(spellcard_effect, modifier_card)
 	
+	if modifier_card.get("hit_spawn_type"):
+		spellcard_effect.hit_spawn_type = modifier_card.hit_spawn_type
+	if modifier_card.get("hit_facing_type"):
+		spellcard_effect.hit_facing_type = modifier_card.hit_facing_type
+	if modifier_card.get("hit_movement_type"):
+		spellcard_effect.hit_movement_type = modifier_card.hit_movement_type
+	if modifier_card.get("hit_behaviour_type"):
+		spellcard_effect.hit_behaviour_type = modifier_card.hit_behaviour_type
 	
 	if modifier_card.get("on_fire_effects"):
 		spellcard_effect.on_fire_effects = []
@@ -434,6 +459,8 @@ static func update_effect(target_effect, instance_effect):
 	target_effect.hit_size = instance_effect.hit_size
 	target_effect.crit_chance = instance_effect.crit_chance
 	target_effect.crit_damage = instance_effect.crit_damage
+	target_effect.hit_movement_type = instance_effect.hit_movement_type
+	target_effect.hit_behaviour_type = instance_effect.hit_behaviour_type
 	
 	target_effect.on_hit_effects.clear()
 	for on_hit_effect in instance_effect.on_hit_effects:

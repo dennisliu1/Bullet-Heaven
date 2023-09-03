@@ -28,8 +28,9 @@ var entity_hit: EntityHit # stores the hit properties
 
 
 ## Hit internal properties
-var target = Vector2.ZERO
-var angle = Vector2.ZERO
+var target = Vector2.ZERO # target angle
+var starting_pos = Vector2.ZERO # Starting position
+var angle = Vector2.ZERO # final angle to shoot at
 
 ## Tornado behavior
 var last_movement = Vector2.ZERO
@@ -44,15 +45,16 @@ func _ready():
 		life_time_timer.wait_time = lifetime
 		life_time_timer.start()
 	
+	## Set the angle
+	angle = global_position.direction_to(starting_pos)
+	_set_movement_type()
+	_behaviour_type_setup()
 	
-	angle = global_position.direction_to(target)
 	for spellcard in on_hit_spellcards:
 		if spellcard is SpellCardEffect:
 			_add_attack(spellcard)
 			pass
-	
-	_set_movement_type()
-	_behaviour_type_setup()
+
 
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -104,16 +106,19 @@ func get_direction():
 # --- movement types ---
 
 func _set_movement_type():
+	# Set the movement type
 	if hit_movement_type == SpellCardEffect.HIT_MOVEMENT_TYPE.STRAIGHT_LINE:
 		_straight_line_movement()
-	elif hit_movement_type == SpellCardEffect.HIT_MOVEMENT_TYPE.WAVE_PATTERN:
+	elif hit_movement_type == SpellCardEffect.HIT_MOVEMENT_TYPE.PING_PONG_PATH:
 		_tornado_movement()
 
 func _straight_line_movement():
 	# the ice spear is current 45 degrees, so we compensate by adding 135 degrees
 	# this way, the ice spear is equal to Vector(1, 0)
 	# and faces right
-	rotation = angle.angle() + deg_to_rad(135)
+	angle = target.normalized()
+	rotation = angle.angle()
+#	rotation = angle.angle() + deg_to_rad(135)
 
 	# a small animation where the ice spear starts off small and grows into
 	# its full size.
@@ -123,21 +128,20 @@ func _straight_line_movement():
 	tween.play()
 
 func _tornado_movement():
-	last_movement = player.last_movement
+	# Normalize the vector so we get the direction
+	last_movement = target.normalized()
 	
 	var move_to_less = Vector2.ZERO
 	var move_to_more = Vector2.ZERO
-	match last_movement:
-		Vector2.UP, Vector2.DOWN:
-			move_to_less = global_position + Vector2(randf_range(-1,-0.25), last_movement.y) * 500
-			move_to_more = global_position + Vector2(randf_range(0.25, 1), last_movement.y) * 500
-		Vector2.RIGHT, Vector2.LEFT:
-			move_to_less = global_position + Vector2(last_movement.x, randf_range(-1,-0.25)) * 500
-			move_to_more = global_position + Vector2(last_movement.x, randf_range(0.25, 1)) * 500
-		Vector2(1,1), Vector2(1,-1), Vector2(-1, 1), Vector2(-1,-1):
-			move_to_less = global_position + Vector2(last_movement.x, last_movement.y * randf_range(0, 0.75)) * 500
-			move_to_more = global_position + Vector2(last_movement.x * randf_range(0, 0.75), last_movement.y) * 500
-	
+	## Get the less and more vectors, which are the min and max of the wave movement
+	var ideal_move_to_less = Vector2(-last_movement.y, last_movement.x)
+	var ideal_move_to_more = Vector2(last_movement.y, -last_movement.x)
+	## We add last_movement, since that is the original vector we move the wave towards
+	## So ideal_move_to_* is the oscillation, and the last_movement is the original vector.
+	## the combined vector is the movement of the projectile.
+	move_to_less = global_position + (last_movement + ideal_move_to_less) * 500
+	move_to_more = global_position + (last_movement + ideal_move_to_more) * 500
+
 	angle_less = global_position.direction_to(move_to_less)
 	angle_more = global_position.direction_to(move_to_more)
 	

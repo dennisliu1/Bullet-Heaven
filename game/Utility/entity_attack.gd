@@ -55,7 +55,7 @@ func do_attack():
 func _do_attack_internal():
 	do_attack()
 
-func spawn_bullet(spellcard_effect, target_vector, hit_obj):
+func spawn_bullet(spellcard_effect, start_pos, target_vector, hit_obj):
 	if not hit_obj is Resource:
 		return
 	
@@ -63,7 +63,8 @@ func spawn_bullet(spellcard_effect, target_vector, hit_obj):
 	
 	# TODO replace these player references
 	# set hit instance properties
-	hit_instance.position = get_start_position()
+	hit_instance.position = get_start_position() # set where the hit spawns from
+	hit_instance.starting_pos = get_start_position()
 	hit_instance.target = target_vector
 	
 	# Set Hit combat properties
@@ -107,21 +108,23 @@ func _spawn_hits(spawn_effect, spellcard_effect, bullet_obj):
 
 		for i in range(spawn_effect.num_attacks):
 			if i % 2 == 0:
-				spawn_bullet(spellcard_effect, add_spread_deviation(get_start_position(), left_direction, spellcard_effect.spread), bullet_obj)
+				spawn_bullet(spellcard_effect, get_start_position(), add_spread_deviation(left_direction, spellcard_effect.spread), bullet_obj)
 				left_direction = left_direction.rotated(direction_shifted)
 			else:
-				spawn_bullet(spellcard_effect, add_spread_deviation(get_start_position(), right_direction, spellcard_effect.spread), bullet_obj)
+				spawn_bullet(spellcard_effect, get_start_position(), add_spread_deviation(right_direction, spellcard_effect.spread), bullet_obj)
 				right_direction = right_direction.rotated(-direction_shifted)
 	else:
-		var target_vector = add_spread_deviation(get_start_position(), _get_hit_spawn_type(spawn_effect), spellcard_effect.spread)
-		spawn_bullet(spellcard_effect, target_vector, bullet_obj)
+		var target_vector = add_spread_deviation(_get_hit_facing_type(spawn_effect), spellcard_effect.spread)
+		spawn_bullet(spellcard_effect, get_start_position(), target_vector, bullet_obj)
 
-func _get_hit_spawn_type(spellcard):
+func _get_hit_facing_type(spellcard):
 	if start_position != null and direction_vector != null: # overridden
 		return get_direction()
-	elif spellcard.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.RANDOM_TARGET:
+	elif spellcard.hit_facing_type == SpellCardEffect.HIT_FACING_TYPE.RANDOM_TARGET:
 		return player.get_random_target()
-	elif spellcard.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.PLAYER_DIRECTION:
+	elif spellcard.hit_facing_type == SpellCardEffect.HIT_FACING_TYPE.PLAYER_DIRECTION:
+		return get_direction()
+	else:
 		return get_direction()
 
 func get_direction():
@@ -210,10 +213,10 @@ func disable_attack():
 	attack_enabled = false
 	stop_attack_sequence()
 
-func add_spread_deviation(start_pos, target_vector, spread):
+func add_spread_deviation(target_vector, spread):
 	var rng_spread = deg_to_rad(randf_range(-1.0, 1.0) * spread)
 	var deviated_vector = target_vector.rotated(rng_spread)
-	return start_pos + deviated_vector
+	return deviated_vector
 
 
 

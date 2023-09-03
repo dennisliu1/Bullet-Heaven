@@ -15,7 +15,7 @@
 			"rapid_repeat": 1,
 			"reload_delay": 1,
 			"num_attacks": 1,
-			"spread": 0.6,
+			"spread": 0,
 			"velocity": 100,
 			"lifetime": 20,
 			"radius": 0,
@@ -26,8 +26,10 @@
 			"crit_damage": 1.5,
 			"hit_hp": 9999,
 			"hit_size": 1.0,
-			"hit_spawn_type": "PLAYER_DIRECTION",
-			"hit_behavior_type": "WAVE_PATTERN",
+			"hit_spawn_type": "NONE",
+			"hit_facing_type": "PLAYER_DIRECTION",
+			"hit_movement_type": "PING_PONG_PATH",
+			"hit_behaviour_type": "NONE",
 			"attack_type": "tornado",
 			"hit_type": "tornado"
 		}]
@@ -90,8 +92,10 @@
 			"crit_damage": 1.5,
 			"hit_hp": 1,
 			"hit_size": 0.5,
-			"hit_spawn_type": "RANDOM_TARGET",
-			"hit_behavior_type": "STRAIGHT_LINE",
+			"hit_spawn_type": "NONE",
+			"hit_facing_type": "RANDOM_TARGET",
+			"hit_movement_type": "STRAIGHT_LINE",
+			"hit_behaviour_type": "NONE",
 			"attack_type": "ice_spear",
 			"hit_type": "ice_spear"
 		}]
@@ -123,6 +127,10 @@
 			"crit_damage": 1.5,
 			"hit_hp": 1,
 			"hit_size": 0.5,
+			"hit_spawn_type": "NONE",
+			"hit_facing_type": "PLAYER_DIRECTION",
+			"hit_movement_type": "STRAIGHT_LINE",
+			"hit_behaviour_type": "NONE",
 			"attack_type": "arrow",
 			"hit_type": "arrow"
 		}]
@@ -524,11 +532,65 @@
 					"hit_hp": 1,
 					"hit_size": 1.0,
 					"hit_spawn_type": "SPREAD",
-					"hit_behavior_type": "STRAIGHT_LINE",
+					"hit_facing_type": "RANDOM_TARGET",
+					"hit_movement_type": "STRAIGHT_LINE",
+					"hit_behaviour_type": "NONE",
 					"attack_type": "arrow",
 					"hit_type": "arrow"
 				}
 			]
+		}]
+	},
+	"movement_straight_line": {
+		"name": "Straight Line Movement",
+		"description": "Forces the attack to shoot in a straight line.",
+		"icon": "horizontal_arc.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [2,3,4],
+		"price": 10,
+		"data": [{
+			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+			"hit_movement_type": "STRAIGHT_LINE",
+		}]
+	},
+	"movement_ping_pong_path": {
+		"name": "Ping Pong Path",
+		"description": "makes the projectile fly back and forth.",
+		"icon": "pingpong_path.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [2,3,4],
+		"price": 10,
+		"data": [{
+			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+			"hit_movement_type": "PING_PONG_PATH",
+		}]
+	},
+	"facing_random_target": {
+		"name": "Target Random",
+		"description": "Makes the projectile start facing towards a random target.",
+		"icon": "larpa_chaos.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [2,3,4],
+		"price": 10,
+		"data": [{
+			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+			"hit_facing_type": "RANDOM_TARGET",
+		}]
+	},
+	"facing_player_direction": {
+		"name": "Target Facing Direction",
+		"description": "Makes the projectile face the direction the character is moving towards.",
+		"icon": "hover_boost.png",
+		"path": "res://Player/Modifiers/Textures/noita perks/",
+		"type": "SPELLCARD",
+		"tier": [2,3,4],
+		"price": 10,
+		"data": [{
+			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+			"hit_facing_type": "PLAYER_DIRECTION",
 		}]
 	}
 }

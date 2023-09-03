@@ -10,12 +10,12 @@ size = Vector2(12, 40)
 [node name="EntityHit" instance=ExtResource("1_4jook")]
 
 [node name="Sprite2D" parent="." index="0"]
+rotation = 2.35619
 texture = ExtResource("2_0ly1i")
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(-1, -1)
-rotation = -0.785398
-scale = Vector2(1, 1)
+position = Vector2(1, 0)
+rotation = 1.5708
 shape = SubResource("RectangleShape2D_reigg")
 
 [node name="AudioStreamPlayer" parent="." index="3"]
