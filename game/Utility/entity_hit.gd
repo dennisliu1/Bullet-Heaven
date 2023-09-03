@@ -46,8 +46,7 @@ var tornado_tween: Tween = null
 var tornado_aimed_more = true
 var tornado_eval_time = 1.0/30.0
 var tornado_flip_time = 2
-
-var timer = 0.0
+var timer = 0.0 # Timer for the tornado
 
 signal remove_from_array(object)
 

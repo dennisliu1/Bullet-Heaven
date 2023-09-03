@@ -124,6 +124,9 @@ func _spawn_hits(spawn_effect, spellcard_effect, bullet_obj):
 func get_target(spellcard):
 	if spellcard.hit_facing_type == SpellCardEffect.HIT_FACING_TYPE.RANDOM_TARGET:
 		return player.get_random_target()
+	elif spellcard.hit_behaviour_type != SpellCardEffect.HIT_BEHAVIOUR_TYPE.NONE:
+		# If we set the behaviour to something, we most likely need a target.
+		return player.get_random_target()
 	else:
 		return null
 
