@@ -24,6 +24,8 @@ var direction_vector
 var attack_properties : SpellCardEffect # stores the Attack and Hit properties
 var hit_effect : SpellCardEffect
 
+var target: Node # Target for homing towards or aiming towards
+
 static var EMPTY_ENTITY_ATTACK = EntityAttack.new()
 
 func setup_attack(spellcard_data : SpellCardEffect, get_start_position_arg, get_direction_arg):
@@ -55,7 +57,7 @@ func do_attack():
 func _do_attack_internal():
 	do_attack()
 
-func spawn_bullet(spellcard_effect, start_pos, target_vector, hit_obj):
+func spawn_bullet(spellcard_effect, start_pos, facing_vector, hit_obj):
 	if not hit_obj is Resource:
 		return
 	
@@ -63,9 +65,10 @@ func spawn_bullet(spellcard_effect, start_pos, target_vector, hit_obj):
 	
 	# TODO replace these player references
 	# set hit instance properties
-	hit_instance.position = get_start_position() # set where the hit spawns from
-	hit_instance.starting_pos = get_start_position()
-	hit_instance.target = target_vector
+	hit_instance.position = start_pos # set where the hit spawns from
+	hit_instance.starting_pos = start_pos
+	hit_instance.facing_vector = facing_vector
+	hit_instance.target = target
 	
 	# Set Hit combat properties
 	_load_properties_into_hit(hit_instance, spellcard_effect)
@@ -100,6 +103,7 @@ func _load_properties_into_hit(hit_instance, spell_effect: SpellCardEffect):
 	return hit_instance
 
 func _spawn_hits(spawn_effect, spellcard_effect, bullet_obj):
+	target = get_target(spawn_effect)
 	if spawn_effect.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.SPREAD and spawn_effect.num_attacks > 1:
 		var attack_angle = spawn_effect.attack_angle
 		var direction_shifted = deg_to_rad(attack_angle) / (spawn_effect.num_attacks-1)
@@ -117,11 +121,17 @@ func _spawn_hits(spawn_effect, spellcard_effect, bullet_obj):
 		var target_vector = add_spread_deviation(_get_hit_facing_type(spawn_effect), spellcard_effect.spread)
 		spawn_bullet(spellcard_effect, get_start_position(), target_vector, bullet_obj)
 
+func get_target(spellcard):
+	if spellcard.hit_facing_type == SpellCardEffect.HIT_FACING_TYPE.RANDOM_TARGET:
+		return player.get_random_target()
+	else:
+		return null
+
 func _get_hit_facing_type(spellcard):
 	if start_position != null and direction_vector != null: # overridden
 		return get_direction()
 	elif spellcard.hit_facing_type == SpellCardEffect.HIT_FACING_TYPE.RANDOM_TARGET:
-		return player.get_random_target()
+		return get_target_direction()
 	elif spellcard.hit_facing_type == SpellCardEffect.HIT_FACING_TYPE.PLAYER_DIRECTION:
 		return get_direction()
 	else:
@@ -138,6 +148,12 @@ func get_start_position():
 		return start_position
 	else:
 		return get_start_position_callable.call()
+
+func get_target_direction():
+	if target:
+		return target.global_position
+	else:
+		return Vector2.UP # TODO shoot at the last target vector
 
 ## matches entity_hit
 

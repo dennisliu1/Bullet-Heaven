@@ -116,9 +116,9 @@ func death():
 
 func get_random_target():
 	if enemy_close.size() > 0:
-		return enemy_close.pick_random().global_position
+		return enemy_close.pick_random()
 	else:
-		return Vector2.UP # TODO shoot at the last target vector
+		return null
 
 func _on_enemy_detect_area_body_entered(body):
 	if not enemy_close.has(body):

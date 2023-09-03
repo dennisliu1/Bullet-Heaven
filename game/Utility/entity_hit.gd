@@ -28,9 +28,10 @@ var entity_hit: EntityHit # stores the hit properties
 
 
 ## Hit internal properties
-var target = Vector2.ZERO # target angle
+var facing_vector = Vector2.ZERO # angle the projectile is aiming towards
 var starting_pos = Vector2.ZERO # Starting position
 var angle = Vector2.ZERO # final angle to shoot at
+var target: Node = null # Target for aiming/homing towards
 
 ## Tornado behavior
 var last_movement = Vector2.ZERO
@@ -116,7 +117,7 @@ func _straight_line_movement():
 	# the ice spear is current 45 degrees, so we compensate by adding 135 degrees
 	# this way, the ice spear is equal to Vector(1, 0)
 	# and faces right
-	angle = target.normalized()
+	angle = facing_vector.normalized()
 	rotation = angle.angle()
 #	rotation = angle.angle() + deg_to_rad(135)
 
@@ -129,7 +130,7 @@ func _straight_line_movement():
 
 func _tornado_movement():
 	# Normalize the vector so we get the direction
-	last_movement = target.normalized()
+	last_movement = facing_vector.normalized()
 	
 	var move_to_less = Vector2.ZERO
 	var move_to_more = Vector2.ZERO
