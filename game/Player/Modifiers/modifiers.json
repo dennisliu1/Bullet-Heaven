@@ -592,5 +592,18 @@
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"hit_facing_type": "PLAYER_DIRECTION",
 		}]
+	},
+	"homing_behavior": {
+		"name": "Homing",
+		"description": "Makes the projectile move towards a designated target.",
+		"icon": "homing.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [2,3,4],
+		"price": 10,
+		"data": [{
+			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+			"hit_behaviour_type": "HOMING",
+		}]
 	}
 }

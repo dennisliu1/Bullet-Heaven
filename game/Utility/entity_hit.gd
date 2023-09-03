@@ -33,10 +33,21 @@ var starting_pos = Vector2.ZERO # Starting position
 var angle = Vector2.ZERO # final angle to shoot at
 var target: Node = null # Target for aiming/homing towards
 
-## Tornado behavior
+## homing behaviour
+var velocity = Vector2.ZERO
+var acceleration = Vector2.ZERO
+var steer_force = 50.0
+
+## Tornado behaviour
 var last_movement = Vector2.ZERO
 var angle_less = Vector2.ZERO
 var angle_more = Vector2.ZERO
+var tornado_tween: Tween = null
+var tornado_aimed_more = true
+var tornado_eval_time = 1.0/30.0
+var tornado_flip_time = 2
+
+var timer = 0.0
 
 signal remove_from_array(object)
 
@@ -59,8 +70,8 @@ func _ready():
 
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	position += angle * speed * delta
+func _physics_process(delta):
+	_behaviour_type_process(delta)
 
 ## Called by HurtBox, when it hits an enemy.
 ## When the ice spear hits the enemy, remove this projectile.
@@ -109,11 +120,11 @@ func get_direction():
 func _set_movement_type():
 	# Set the movement type
 	if hit_movement_type == SpellCardEffect.HIT_MOVEMENT_TYPE.STRAIGHT_LINE:
-		_straight_line_movement()
+		_straight_line_movement_setup()
 	elif hit_movement_type == SpellCardEffect.HIT_MOVEMENT_TYPE.PING_PONG_PATH:
-		_tornado_movement()
+		_tornado_movement_setup()
 
-func _straight_line_movement():
+func _straight_line_movement_setup():
 	# the ice spear is current 45 degrees, so we compensate by adding 135 degrees
 	# this way, the ice spear is equal to Vector(1, 0)
 	# and faces right
@@ -128,7 +139,7 @@ func _straight_line_movement():
 	tween.tween_property(self, "scale", Vector2(1,1) * attack_size, 1).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.play()
 
-func _tornado_movement():
+func _tornado_movement_setup():
 	# Normalize the vector so we get the direction
 	last_movement = facing_vector.normalized()
 	
@@ -140,39 +151,84 @@ func _tornado_movement():
 	## We add last_movement, since that is the original vector we move the wave towards
 	## So ideal_move_to_* is the oscillation, and the last_movement is the original vector.
 	## the combined vector is the movement of the projectile.
+	## The 500 is to set the long distance min & max targets to aim towards.
 	move_to_less = global_position + (last_movement + ideal_move_to_less) * 500
 	move_to_more = global_position + (last_movement + ideal_move_to_more) * 500
 
 	angle_less = global_position.direction_to(move_to_less)
 	angle_more = global_position.direction_to(move_to_more)
 	
+	## The tornado starts off small, and grows to its full size.
+	## also, it starts off slow and accelerates over time to its full speed.
 	var initial_tween = create_tween().set_parallel(true)
 	initial_tween.tween_property(self, "scale", Vector2(1, 1) * attack_size, 3).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-	
 	var final_speed = speed
 	speed = speed/5
 	initial_tween.tween_property(self, "speed", final_speed, 6).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	initial_tween.play()
 	
-	var tween = create_tween()
+	tornado_tween = create_tween()
 	var set_angle = randi_range(0, 1)
+	tornado_aimed_more = (set_angle == 0)
+	
+	
 	if set_angle == 1:
 		angle = angle_less
-		tween.tween_property(self, "angle", angle_more, 2)
-		tween.tween_property(self, "angle", angle_less, 2)
-		tween.tween_property(self, "angle", angle_more, 2)
-		tween.tween_property(self, "angle", angle_less, 2)
-		tween.tween_property(self, "angle", angle_more, 2)
-		tween.tween_property(self, "angle", angle_less, 2)
+		tornado_tween.tween_property(self, "angle", angle_more, 2)
+		tornado_tween.tween_property(self, "angle", angle_less, 2)
+		tornado_tween.tween_property(self, "angle", angle_more, 2)
+		tornado_tween.tween_property(self, "angle", angle_less, 2)
+		tornado_tween.tween_property(self, "angle", angle_more, 2)
+		tornado_tween.tween_property(self, "angle", angle_less, 2)
 	else:
 		angle = angle_more
-		tween.tween_property(self, "angle", angle_less, 2)
-		tween.tween_property(self, "angle", angle_more, 2)
-		tween.tween_property(self, "angle", angle_less, 2)
-		tween.tween_property(self, "angle", angle_more, 2)
-		tween.tween_property(self, "angle", angle_less, 2)
-		tween.tween_property(self, "angle", angle_more, 2)
-	tween.play()
+		tornado_tween.tween_property(self, "angle", angle_less, 2)
+		tornado_tween.tween_property(self, "angle", angle_more, 2)
+		tornado_tween.tween_property(self, "angle", angle_less, 2)
+		tornado_tween.tween_property(self, "angle", angle_more, 2)
+		tornado_tween.tween_property(self, "angle", angle_less, 2)
+		tornado_tween.tween_property(self, "angle", angle_more, 2)
+	tornado_tween.play()
+	
+	
+
+## Unused
+#func tornado_movement(delta):
+#	timer += delta
+#	while timer >= tornado_flip_time:
+#		# Normalize the vector so we get the direction
+#		last_movement = facing_vector.normalized()
+#
+#		var move_to_less = Vector2.ZERO
+#		var move_to_more = Vector2.ZERO
+#		## Get the less and more vectors, which are the min and max of the wave movement
+#		var ideal_move_to_less = Vector2(-last_movement.y, last_movement.x)
+#		var ideal_move_to_more = Vector2(last_movement.y, -last_movement.x)
+#		## We add last_movement, since that is the original vector we move the wave towards
+#		## So ideal_move_to_* is the oscillation, and the last_movement is the original vector.
+#		## the combined vector is the movement of the projectile.
+#		## The 500 is to set the long distance min & max targets to aim towards.
+#		move_to_less = global_position + (last_movement + ideal_move_to_less) * 500
+#		move_to_more = global_position + (last_movement + ideal_move_to_more) * 500
+#
+#		angle_less = global_position.direction_to(move_to_less)
+#		angle_more = global_position.direction_to(move_to_more)
+#
+#		## Reset the tween
+#		if tornado_tween:
+#			tornado_tween.kill()
+#		tornado_tween = create_tween()
+#
+#		## Play the tween
+#		if tornado_aimed_more:
+#			tornado_tween.tween_property(self, "angle", angle_more, tornado_flip_time)
+#		else:
+#			tornado_tween.tween_property(self, "angle", angle_less, tornado_flip_time)
+#		tornado_tween.play()
+#
+#		tornado_aimed_more = !tornado_aimed_more
+#		timer -= 2
+#	pass
 
 # --- hit_behaviour_type settings ---
 
@@ -183,11 +239,33 @@ func _behaviour_type_setup():
 		_homing_behaviour_setup()
 
 func _homing_behaviour_setup():
-	pass
+	angle = facing_vector.normalized()
+	rotation = angle.angle()
+	position = starting_pos
+	velocity = transform.x * speed
 
-func _behaviour_type_process():
+func _behaviour_type_process(delta):
 	if hit_behaviour_type == SpellCardEffect.HIT_BEHAVIOUR_TYPE.NONE:
-		pass
+		position += angle * speed * delta
 	elif hit_behaviour_type == SpellCardEffect.HIT_BEHAVIOUR_TYPE.HOMING:
-		pass
+		_homing_process(delta)
+	else:
+		position += angle * speed * delta
+
+func _homing_process(delta):
+	acceleration += seek()
+	velocity += acceleration * delta
+	velocity = velocity.limit_length(speed)
+	rotation = velocity.angle()
+	position += velocity * delta
+
+func seek():
+	var steer = Vector2.ZERO
+	if is_instance_valid(target) and target is Node:
+		var desired = (target.position - position).normalized() * speed
+		steer = (desired - velocity).normalized() * steer_force
+	return steer
+
+# --- 
+
 

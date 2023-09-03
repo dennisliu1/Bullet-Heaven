@@ -30,6 +30,7 @@
 	["res://Player/Modifiers/modifiers.json", "movement_ping_pong_path"],
 	["res://Player/Modifiers/modifiers.json", "facing_random_target"],
 	["res://Player/Modifiers/modifiers.json", "facing_player_direction"],
+	["res://Player/Modifiers/modifiers.json", "homing_behavior"],
 	["res://Player/Modifiers/modifiers.json", "lance"],
 	["res://Player/Modifiers/modifiers.json", "lance"],
 	["res://Player/Modifiers/modifiers.json", "lance"],
