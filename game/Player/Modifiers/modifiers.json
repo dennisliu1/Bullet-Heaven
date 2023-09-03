@@ -149,11 +149,11 @@
 				"required_effects": 1,
 				"num_attacks": 2,
 				"attack_angle": 90,
-				"hit_spawn_type": "SPREAD",
+				"hit_spawn_type": "SPREAD"
 			},
 			{
 				"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
-				"damage": 0.5,
+				"damage": 0.5
 			}
 		]
 	},
@@ -171,11 +171,11 @@
 				"required_effects": 1,
 				"num_attacks": 3,
 				"attack_angle": 90,
-				"hit_spawn_type": "SPREAD",
+				"hit_spawn_type": "SPREAD"
 			},
 			{
 				"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
-				"damage": 0.33,
+				"damage": 0.33
 			}
 		]
 	},
@@ -193,11 +193,11 @@
 				"required_effects": 1,
 				"num_attacks": 4,
 				"attack_angle": 135,
-				"hit_spawn_type": "SPREAD",
+				"hit_spawn_type": "SPREAD"
 			},
 			{
 				"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
-				"damage": 0.25,
+				"damage": 0.25
 			}
 		]
 	},
@@ -215,11 +215,11 @@
 				"required_effects": 1,
 				"num_attacks": 10,
 				"attack_angle": 270,
-				"hit_spawn_type": "SPREAD",
+				"hit_spawn_type": "SPREAD"
 			},
 			{
 				"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
-				"damage": 0.1,
+				"damage": 0.1
 			}
 		]
 	},
@@ -238,7 +238,7 @@
 				"required_effects": 3,
 				"num_attacks": 3,
 				"attack_angle": 180,
-				"hit_spawn_type": "SPREAD",
+				"hit_spawn_type": "SPREAD"
 			}
 		]
 	},
@@ -257,7 +257,7 @@
 				"required_effects": 2,
 				"num_attacks": 2,
 				"attack_angle": 360,
-				"hit_spawn_type": "SPREAD",
+				"hit_spawn_type": "SPREAD"
 			}
 		]
 	},
@@ -276,7 +276,7 @@
 				"required_effects": 2,
 				"num_attacks": 2,
 				"attack_angle": 270,
-				"hit_spawn_type": "SPREAD",
+				"hit_spawn_type": "SPREAD"
 			}
 		]
 	},
@@ -295,7 +295,7 @@
 				"required_effects": 5,
 				"num_attacks": 5,
 				"attack_angle": 360,
-				"hit_spawn_type": "SPREAD",
+				"hit_spawn_type": "SPREAD"
 			}
 		]
 	},
@@ -314,7 +314,7 @@
 				"required_effects": 6,
 				"num_attacks": 6,
 				"attack_angle": 360,
-				"hit_spawn_type": "SPREAD",
+				"hit_spawn_type": "SPREAD"
 			}
 		]
 	},
@@ -333,7 +333,7 @@
 				"required_effects": 1,
 				"spread": 3,
 				"rapid_repeat": 3,
-				"action_delay": 0.33,
+				"action_delay": 0.33
 			}
 		]
 	},
@@ -352,7 +352,7 @@
 				"spread": 10,
 				"required_effects": 1,
 				"rapid_repeat": 10,
-				"action_delay": 0.1,
+				"action_delay": 0.1
 			}
 		]
 	},
@@ -368,7 +368,7 @@
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"damage": 4,
 			"knockback": 1.2,
-			"velocity": 0.7,
+			"velocity": 0.7
 		}]
 	},
 	"light_shot": {
@@ -383,7 +383,7 @@
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"damage": 0.5,
 			"knockback": 0.7,
-			"velocity": 1.5,
+			"velocity": 1.5
 		}]
 	},
 	"wide_angle": {
@@ -396,7 +396,7 @@
 		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
-			"attack_angle": 1.4,
+			"attack_angle": 1.4
 		}]
 	},
 	"narrow_angle": {
@@ -409,7 +409,7 @@
 		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
-			"attack_angle": 0.6,
+			"attack_angle": 0.6
 		}]
 	},
 	"increase_lifetime": {
@@ -422,7 +422,7 @@
 		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
-			"lifetime": 10,
+			"lifetime": 10
 		}]
 	},
 	"decrease_lifetime": {
@@ -435,7 +435,7 @@
 		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
-			"lifetime": 0.5,
+			"lifetime": 0.5
 		}]
 	},
 	"speed_up": {
@@ -448,7 +448,7 @@
 		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
-			"velocity": 2.5,
+			"velocity": 2.5
 		}]
 	},
 	"speed_down": {
@@ -461,7 +461,7 @@
 		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
-			"velocity": 0.5,
+			"velocity": 0.5
 		}]
 	},
 	"critical_plus": {
@@ -474,7 +474,7 @@
 		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
-			"crit_chance": 10,
+			"crit_chance": 10
 		}]
 	},
 	"heavy_spread": {
@@ -488,7 +488,7 @@
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"spread": 30,
-			"reload_delay": 0.2,
+			"reload_delay": 0.2
 		}]
 	},
 	"reduce_spread": {
@@ -501,7 +501,7 @@
 		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
-			"spread": 0.5,
+			"spread": 0.5
 		}]
 	},
 	"fireball_thrower": {
@@ -551,7 +551,7 @@
 		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
-			"hit_movement_type": "STRAIGHT_LINE",
+			"hit_movement_type": "STRAIGHT_LINE"
 		}]
 	},
 	"movement_ping_pong_path": {
@@ -564,7 +564,7 @@
 		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
-			"hit_movement_type": "PING_PONG_PATH",
+			"hit_movement_type": "PING_PONG_PATH"
 		}]
 	},
 	"facing_random_target": {
@@ -577,7 +577,7 @@
 		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
-			"hit_facing_type": "RANDOM_TARGET",
+			"hit_facing_type": "RANDOM_TARGET"
 		}]
 	},
 	"facing_player_direction": {
@@ -590,7 +590,7 @@
 		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
-			"hit_facing_type": "PLAYER_DIRECTION",
+			"hit_facing_type": "PLAYER_DIRECTION"
 		}]
 	},
 	"homing_behavior": {
@@ -603,7 +603,20 @@
 		"price": 10,
 		"data": [{
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
-			"hit_behaviour_type": "HOMING",
+			"hit_behaviour_type": "HOMING"
+		}]
+	},
+	"accelerative_homing_behavior": {
+		"name": "Homing",
+		"description": "Projectile starts off slow, and accelerates towards a target.",
+		"icon": "homing_accelerating.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [2,3,4],
+		"price": 10,
+		"data": [{
+			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+			"hit_behaviour_type": "ACCELERATING_HOMING"
 		}]
 	}
 }

@@ -265,6 +265,8 @@ func seek():
 		steer = (desired - velocity).normalized() * steer_force
 	return steer
 
+
+
 # --- 
 
 
