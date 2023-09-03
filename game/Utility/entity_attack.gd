@@ -24,9 +24,9 @@ var direction_vector
 var attack_properties : SpellCardEffect # stores the Attack and Hit properties
 var hit_effect : SpellCardEffect
 
-var target: Node # Target for homing towards or aiming towards
-
 static var EMPTY_ENTITY_ATTACK = EntityAttack.new()
+
+var counter = 0
 
 func setup_attack(spellcard_data : SpellCardEffect, get_start_position_arg, get_direction_arg):
 #	attack_instance = attack_obj
@@ -57,7 +57,7 @@ func do_attack():
 func _do_attack_internal():
 	do_attack()
 
-func spawn_bullet(spellcard_effect, start_pos, facing_vector, hit_obj):
+func spawn_bullet(spellcard_effect, start_pos, facing_vector, hit_obj, target):
 	if not hit_obj is Resource:
 		return
 	
@@ -68,14 +68,15 @@ func spawn_bullet(spellcard_effect, start_pos, facing_vector, hit_obj):
 	hit_instance.position = start_pos # set where the hit spawns from
 	hit_instance.starting_pos = start_pos
 	hit_instance.facing_vector = facing_vector
-	hit_instance.target = target
-	
+	hit_instance.debug_name = "%s_%s" % [spellcard_effect.name, str(counter)]
+	counter += 1
 	# Set Hit combat properties
 	_load_properties_into_hit(hit_instance, spellcard_effect)
+	hit_instance.set_target(target)
 
 	# add the hit instance as a child, put into world
-	hit_root.call_deferred("add_child", hit_instance)
-#	hit_root.add_child()
+#	hit_root.call_deferred("add_child", hit_instance, true)
+	hit_root.add_child(hit_instance)
 
 func _load_properties_into_hit(hit_instance, spell_effect: SpellCardEffect):
 	hit_instance.attack_properties = spell_effect
@@ -103,7 +104,7 @@ func _load_properties_into_hit(hit_instance, spell_effect: SpellCardEffect):
 	return hit_instance
 
 func _spawn_hits(spawn_effect, spellcard_effect, bullet_obj):
-	target = get_target(spawn_effect)
+	var target = get_target(spawn_effect)
 	if spawn_effect.hit_spawn_type == SpellCardEffect.HIT_SPAWN_TYPE.SPREAD and spawn_effect.num_attacks > 1:
 		var attack_angle = spawn_effect.attack_angle
 		var direction_shifted = deg_to_rad(attack_angle) / (spawn_effect.num_attacks-1)
@@ -112,14 +113,14 @@ func _spawn_hits(spawn_effect, spellcard_effect, bullet_obj):
 
 		for i in range(spawn_effect.num_attacks):
 			if i % 2 == 0:
-				spawn_bullet(spellcard_effect, get_start_position(), add_spread_deviation(left_direction, spellcard_effect.spread), bullet_obj)
+				spawn_bullet(spellcard_effect, get_start_position(), add_spread_deviation(left_direction, spellcard_effect.spread), bullet_obj, target)
 				left_direction = left_direction.rotated(direction_shifted)
 			else:
-				spawn_bullet(spellcard_effect, get_start_position(), add_spread_deviation(right_direction, spellcard_effect.spread), bullet_obj)
+				spawn_bullet(spellcard_effect, get_start_position(), add_spread_deviation(right_direction, spellcard_effect.spread), bullet_obj, target)
 				right_direction = right_direction.rotated(-direction_shifted)
 	else:
-		var target_vector = add_spread_deviation(_get_hit_facing_type(spawn_effect), spellcard_effect.spread)
-		spawn_bullet(spellcard_effect, get_start_position(), target_vector, bullet_obj)
+		var target_vector = add_spread_deviation(_get_hit_facing_type(spawn_effect, target), spellcard_effect.spread)
+		spawn_bullet(spellcard_effect, get_start_position(), target_vector, bullet_obj, target)
 
 func get_target(spellcard):
 	if spellcard.hit_facing_type == SpellCardEffect.HIT_FACING_TYPE.RANDOM_TARGET:
@@ -130,11 +131,11 @@ func get_target(spellcard):
 	else:
 		return null
 
-func _get_hit_facing_type(spellcard):
+func _get_hit_facing_type(spellcard, target):
 	if start_position != null and direction_vector != null: # overridden
 		return get_direction()
 	elif spellcard.hit_facing_type == SpellCardEffect.HIT_FACING_TYPE.RANDOM_TARGET:
-		return get_target_direction()
+		return get_target_direction(target)
 	elif spellcard.hit_facing_type == SpellCardEffect.HIT_FACING_TYPE.PLAYER_DIRECTION:
 		return get_direction()
 	else:
@@ -152,7 +153,7 @@ func get_start_position():
 	else:
 		return get_start_position_callable.call()
 
-func get_target_direction():
+func get_target_direction(target):
 	if target:
 		return target.global_position
 	else:

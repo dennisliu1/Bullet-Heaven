@@ -129,6 +129,8 @@ static func get_hit_behaviour_type(hit_spawn_behaviour_type):
 		return HIT_BEHAVIOUR_TYPE.NONE
 	elif hit_spawn_behaviour_type == "HOMING":
 		return HIT_BEHAVIOUR_TYPE.HOMING
+	elif hit_spawn_behaviour_type == "ACCELERATING_HOMING":
+		return HIT_BEHAVIOUR_TYPE.ACCELERATING_HOMING
 	else:
 		return HIT_BEHAVIOUR_TYPE.NONE
 

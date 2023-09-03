@@ -606,8 +606,8 @@
 			"hit_behaviour_type": "HOMING"
 		}]
 	},
-	"accelerative_homing_behavior": {
-		"name": "Homing",
+	"accelerating_homing_behavior": {
+		"name": "Accelerating Homing",
 		"description": "Projectile starts off slow, and accelerates towards a target.",
 		"icon": "homing_accelerating.png",
 		"path": "res://Player/Modifiers/Textures/noita spells/",

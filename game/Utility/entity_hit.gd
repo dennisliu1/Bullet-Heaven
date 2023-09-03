@@ -9,7 +9,7 @@ var on_hit_attack_sequence: Array
 @export var enemy_detect_area : Area2D
 
 var entity_hit: EntityHit # stores the hit properties
-
+@export var debug_name: String
 
 # Hit properties
 # TODO use attack_properties instead?
@@ -66,7 +66,12 @@ func _ready():
 			_add_attack(spellcard)
 			pass
 
-
+func set_target(target_obj):
+	self.target = target_obj
+	if target != null:
+		print("%s - %s" % [debug_name, self.target.name])
+	else:
+		print("%s - %s" % [debug_name, "null"])
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -236,6 +241,9 @@ func _behaviour_type_setup():
 		pass
 	elif hit_behaviour_type == SpellCardEffect.HIT_BEHAVIOUR_TYPE.HOMING:
 		_homing_behaviour_setup()
+	elif hit_behaviour_type == SpellCardEffect.HIT_BEHAVIOUR_TYPE.ACCELERATING_HOMING:
+		_homing_behaviour_setup()
+#		velocity = Vector2.ZERO
 
 func _homing_behaviour_setup():
 	angle = facing_vector.normalized()
@@ -245,27 +253,41 @@ func _homing_behaviour_setup():
 
 func _behaviour_type_process(delta):
 	if hit_behaviour_type == SpellCardEffect.HIT_BEHAVIOUR_TYPE.NONE:
-		position += angle * speed * delta
+		_straight_line_behaviour(delta)
 	elif hit_behaviour_type == SpellCardEffect.HIT_BEHAVIOUR_TYPE.HOMING:
 		_homing_process(delta)
+	elif hit_behaviour_type == SpellCardEffect.HIT_BEHAVIOUR_TYPE.ACCELERATING_HOMING:
+		_accelerating_homing_process(delta)
 	else:
-		position += angle * speed * delta
+		# Default goes in a straight line
+		_straight_line_behaviour(delta)
 
-func _homing_process(delta):
+func _straight_line_behaviour(delta):
+	position += angle * speed * delta
+
+func _homing_process(delta, limit_speed=true):
 	acceleration += seek()
 	velocity += acceleration * delta
-	velocity = velocity.limit_length(speed)
+	if limit_speed:
+		velocity = velocity.limit_length(speed)
 	rotation = velocity.angle()
 	position += velocity * delta
 
 func seek():
 	var steer = Vector2.ZERO
 	if is_instance_valid(target) and target is Node:
-		var desired = (target.position - position).normalized() * speed
+		var desired = (target.global_position - global_position).normalized() * speed
 		steer = (desired - velocity).normalized() * steer_force
+	else:
+		pass # should never happen
 	return steer
 
-
+func _accelerating_homing_process(delta):
+	if target != null:
+		var angle_to_target = global_position.direction_to(target.global_position)
+		angle += angle_to_target
+	rotation = angle.angle()
+	position += angle * speed * delta * delta
 
 # --- 
 
