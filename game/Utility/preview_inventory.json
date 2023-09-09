@@ -32,6 +32,7 @@
 	["res://Player/Modifiers/modifiers.json", "facing_player_direction"],
 	["res://Player/Modifiers/modifiers.json", "homing_behavior"],
 	["res://Player/Modifiers/modifiers.json", "accelerating_homing_behavior"],
+	["res://Player/Modifiers/modifiers.json", "decelerating_homing_behavior"],
 	["res://Player/Modifiers/modifiers.json", "lance"],
 	["res://Player/Modifiers/modifiers.json", "lance"],
 	["res://Player/Modifiers/modifiers.json", "lance"],

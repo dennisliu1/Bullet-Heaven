@@ -618,5 +618,18 @@
 			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
 			"hit_behaviour_type": "ACCELERATING_HOMING"
 		}]
+	},
+	"decelerating_homing_behavior": {
+		"name": "Decelerating Homing",
+		"description": "Projectile starts off at full speed, and decelerates towards a target.",
+		"icon": "decelerating_shot.png",
+		"path": "res://Player/Modifiers/Textures/noita spells/",
+		"type": "SPELLCARD",
+		"tier": [2,3,4],
+		"price": 10,
+		"data": [{
+			"sub_type": "PROPERTIES_PROJECTILE_MODIFIER",
+			"hit_behaviour_type": "DECELERATING_HOMING"
+		}]
 	}
 }

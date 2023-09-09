@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Player/Wizard/player_wizard.gd" id="1_12bdb"]
 [ext_resource type="Texture2D" uid="uid://dn3e5udhpj48c" path="res://Player/Wizard/Textures/player_sprite.png" id="1_n7y1a"]
-[ext_resource type="PackedScene" uid="uid://b3atgfee1ucsy" path="res://Utility/hurt_box.tscn" id="3_hllnf"]
-[ext_resource type="PackedScene" uid="uid://dtxic1swrfgao" path="res://Utility/effects_container.tscn" id="5_5ntsy"]
-[ext_resource type="PackedScene" uid="uid://bwhfdhlm2ypc5" path="res://Utility/inventory_data.tscn" id="14_8qtut"]
+[ext_resource type="PackedScene" uid="uid://bwhfdhlm2ypc5" path="res://Utility/inventory_data.tscn" id="3_7j7uv"]
+[ext_resource type="PackedScene" uid="uid://dtxic1swrfgao" path="res://Utility/effects_container.tscn" id="4_o50nt"]
+[ext_resource type="PackedScene" uid="uid://b3atgfee1ucsy" path="res://Utility/hurt_box.tscn" id="5_ybiy3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r0l2q"]
 size = Vector2(7, 12)
@@ -80,17 +80,17 @@ libraries = {
 "": SubResource("AnimationLibrary_l183a")
 }
 
-[node name="InventoryData" parent="." instance=ExtResource("14_8qtut")]
+[node name="InventoryData" parent="." instance=ExtResource("3_7j7uv")]
 cols = 9
 rows = 5
 
-[node name="SpellCardInventoryData" parent="." instance=ExtResource("14_8qtut")]
+[node name="SpellCardInventoryData" parent="." instance=ExtResource("3_7j7uv")]
 cols = 10
 rows = 1
 
-[node name="EffectsContainer" parent="." instance=ExtResource("5_5ntsy")]
+[node name="EffectsContainer" parent="." instance=ExtResource("4_o50nt")]
 
-[node name="HurtBox" parent="." instance=ExtResource("3_hllnf")]
+[node name="HurtBox" parent="." instance=ExtResource("5_ybiy3")]
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]

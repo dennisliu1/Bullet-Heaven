@@ -76,6 +76,7 @@ func set_target(target_obj):
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	_behaviour_type_process(delta)
+	_do_behaviour_process(delta)
 
 ## Called by HurtBox, when it hits an enemy.
 ## When the ice spear hits the enemy, remove this projectile.
@@ -194,10 +195,14 @@ func _tornado_movement_setup():
 		tornado_tween.tween_property(self, "angle", angle_more, 2)
 	tornado_tween.play()
 	
-	
+func _do_behaviour_process(delta):
+	if hit_movement_type == SpellCardEffect.HIT_MOVEMENT_TYPE.STRAIGHT_LINE:
+		pass
+	elif hit_movement_type == SpellCardEffect.HIT_MOVEMENT_TYPE.PING_PONG_PATH:
+		_tornado_movement(delta)
 
 ## Unused
-#func tornado_movement(delta):
+func _tornado_movement(delta):
 #	timer += delta
 #	while timer >= tornado_flip_time:
 #		# Normalize the vector so we get the direction
@@ -232,7 +237,7 @@ func _tornado_movement_setup():
 #
 #		tornado_aimed_more = !tornado_aimed_more
 #		timer -= 2
-#	pass
+	pass
 
 # --- hit_behaviour_type settings ---
 
@@ -244,6 +249,8 @@ func _behaviour_type_setup():
 	elif hit_behaviour_type == SpellCardEffect.HIT_BEHAVIOUR_TYPE.ACCELERATING_HOMING:
 		_homing_behaviour_setup()
 #		velocity = Vector2.ZERO
+	elif hit_behaviour_type == SpellCardEffect.HIT_BEHAVIOUR_TYPE.DECELERATING_HOMING:
+		_homing_behaviour_setup()
 
 func _homing_behaviour_setup():
 	angle = facing_vector.normalized()
@@ -258,6 +265,8 @@ func _behaviour_type_process(delta):
 		_homing_process(delta)
 	elif hit_behaviour_type == SpellCardEffect.HIT_BEHAVIOUR_TYPE.ACCELERATING_HOMING:
 		_accelerating_homing_process(delta)
+	elif hit_behaviour_type == SpellCardEffect.HIT_BEHAVIOUR_TYPE.DECELERATING_HOMING:
+		_decelerating_homing_process(delta)
 	else:
 		# Default goes in a straight line
 		_straight_line_behaviour(delta)
@@ -288,6 +297,14 @@ func _accelerating_homing_process(delta):
 		angle += angle_to_target
 	rotation = angle.angle()
 	position += angle * speed * delta * delta
+
+func _decelerating_homing_process(delta):
+#	acceleration += seek()
+	velocity -= velocity * delta
+	if velocity.length() < 0:
+		velocity = Vector2.ZERO
+	rotation = velocity.angle()
+	position += velocity * delta
 
 # --- 
 
