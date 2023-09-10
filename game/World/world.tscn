@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://btacp1wsuqe5h"]
+[gd_scene load_steps=6 format=3 uid="uid://btacp1wsuqe5h"]
 
-[ext_resource type="Script" path="res://World/world.gd" id="1_32wit"]
 [ext_resource type="Texture2D" uid="uid://b3f2e5314moyj" path="res://World/textures/dirt_full_new.png" id="1_tryyk"]
 [ext_resource type="PackedScene" uid="uid://d3bnbu8bfh0i7" path="res://UI/GUI.tscn" id="3_2bi1g"]
 [ext_resource type="PackedScene" uid="uid://d3raqsj8wo72u" path="res://Utility/enemy_spawner.tscn" id="3_oliu4"]
@@ -8,7 +7,6 @@
 [ext_resource type="AudioStream" uid="uid://c77h67lfbwlgv" path="res://World/Music/battleThemeA.mp3" id="13_sqsmm"]
 
 [node name="World" type="Node2D"]
-script = ExtResource("1_32wit")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_repeat = 2

@@ -29,21 +29,30 @@ var available_upgrade_options = [] # what is on offer
 @onready var death_button_menu = $PanelDeath/ButtonMenu
 ## Pause Menu
 @onready var pause_panel = $PanelPause
-@onready var pause_button_back_to_game = $PanelPause/ButtonReturnToGame
-@onready var pause_button_menu = $PanelPause/ButtonMenu
+@onready var pause_button_back_to_game = $PanelPause/VBoxContainer/ButtonReturnToGame
+@onready var pause_options_button = $PanelPause/VBoxContainer/OptionsButton
+@onready var pause_button_menu = $PanelPause/VBoxContainer/ButtonMenu
 
 ## Shop menu
 @onready var shop_buy_item = preload("res://UI/Menus/transition_shop/shop_buy_item.tscn")
 @onready var transition_shop_menu = $TransitionShopMenu
 var shop_options = []
 
+## Options menu
+@onready var options_menu = $OptionsMenu
+
 
 ## inventory menu
 @onready var inventory_menu = $InventoryPanel
 
 func _ready():
+	init_settings_menu()
 	set_expbar(player.current_experience, player.calculate_experience_cap())
 	set_health_bar(100, 100) # set the health bar to 100%, full bar
+
+func init_settings_menu():
+	var settings = PersistentData.load_settings()
+	options_menu.set_settings(settings)
 
 func _unhandled_input(event):
 	
@@ -153,6 +162,9 @@ func _reset_pause_panel():
 	on_another_menu = false
 	opened_menu = null
 	unpause_player()
+
+func _on_options_button_click_end():
+	options_menu.visible = true
 
 # --- transition shop menu ---
 
@@ -266,6 +278,9 @@ func show_death_panel():
 	else:
 		label_result.text = "You lose :("
 		audio_defeat.play()
+
+
+
 
 
 
