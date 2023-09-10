@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://dffislyldr7rd"]
+
+[ext_resource type="Script" path="res://UI/Menus/options_menu/options_menu.gd" id="1_a3h0d"]
+[ext_resource type="PackedScene" uid="uid://dfa6ixmmvvxvv" path="res://UI/Menus/options_menu/video_settings_menu.tscn" id="1_dijg8"]
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a3h0d")
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -40.0
+offset_right = 53.0
+offset_bottom = -9.0
+grow_vertical = 0
+text = "Back"
+
+[node name="ApplyButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -39.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Apply"
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 634.0
+offset_bottom = 313.0
+
+[node name="Video" parent="TabContainer" instance=ExtResource("1_dijg8")]
+layout_mode = 2
+
+[node name="Audio" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="ApplyButton" to="." method="_on_apply_button_pressed"]

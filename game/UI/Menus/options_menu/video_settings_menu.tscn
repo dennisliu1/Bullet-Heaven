@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfa6ixmmvvxvv"]
+
+[ext_resource type="PackedScene" uid="uid://dckrowl1vu3pu" path="res://UI/Menus/options_menu/ui_resolution_selector.tscn" id="1_ct7wr"]
+[ext_resource type="Script" path="res://UI/Menus/options_menu/video_settings_menu.gd" id="1_nxjtx"]
+[ext_resource type="PackedScene" uid="uid://3yabmjcv2dpy" path="res://UI/Menus/options_menu/ui_setting_checkbox.tscn" id="2_jja7l"]
+
+[node name="VideoSettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nxjtx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 297.0
+offset_bottom = 145.0
+
+[node name="UIResolutionSelector" parent="VBoxContainer" instance=ExtResource("1_ct7wr")]
+layout_mode = 2
+
+[node name="FullScreenCheckbox" parent="VBoxContainer" instance=ExtResource("2_jja7l")]
+layout_mode = 2
+title = "Full Screen"
+
+[node name="VSyncCheckbox" parent="VBoxContainer" instance=ExtResource("2_jja7l")]
+layout_mode = 2
+title = "VSync"
+
+[connection signal="resolution_changed" from="VBoxContainer/UIResolutionSelector" to="." method="_on_ui_resolution_selector_resolution_changed"]
+[connection signal="toggled" from="VBoxContainer/FullScreenCheckbox" to="." method="_on_full_screen_checkbox_toggled"]
+[connection signal="toggled" from="VBoxContainer/VSyncCheckbox" to="." method="_on_v_sync_checkbox_toggled"]

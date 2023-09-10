@@ -299,7 +299,6 @@ func _accelerating_homing_process(delta):
 	position += angle * speed * delta * delta
 
 func _decelerating_homing_process(delta):
-#	acceleration += seek()
 	velocity -= velocity * delta
 	if velocity.length() < 0:
 		velocity = Vector2.ZERO
