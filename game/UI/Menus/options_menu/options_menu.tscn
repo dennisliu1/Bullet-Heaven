@@ -12,6 +12,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a3h0d")
 
+[node name="BackgroundRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.333333, 0.333333, 0.333333, 1)
+
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 2

@@ -17,9 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://Utility/global.gd"
+Global="*res://Utility/Globals/global.gd"
 Inventory="*res://UI/inventory.gd"
-StartingGameData="*res://Utility/starting_game_data.gd"
+StartingGameData="*res://Utility/Globals/starting_game_data.gd"
+PersistentData="*res://Utility/Globals/persistent_data.gd"
 
 [display]
 

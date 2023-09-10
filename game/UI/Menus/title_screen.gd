@@ -1,6 +1,7 @@
 extends Control
 
 #var level = "res://World/world.tscn"
+@onready var options_menu = $OptionsMenu
 
 func _on_button_play_click_end():
 	var level = "res://UI/Menus/stage_select_menu.tscn"
@@ -9,3 +10,7 @@ func _on_button_play_click_end():
 
 func _on_button_exit_click_end():
 	get_tree().quit()
+
+func _on_options_button_click_end():
+	options_menu.visible = true
+
