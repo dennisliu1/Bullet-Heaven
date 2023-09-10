@@ -2,6 +2,7 @@ extends HBoxContainer
 
 @export var title = ""
 @onready var label = $Label
+@onready var checkbox:CheckBox = $CheckBox
 
 signal toggled(is_button_pressed)
 
@@ -15,3 +16,6 @@ func set_title(value: String):
 	title = value
 	await self.is_node_ready()
 	label.text = title
+
+func set_toggle(toggle):
+	checkbox.button_pressed = toggle
