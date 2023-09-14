@@ -1,0 +1,46 @@
+{
+	"kobold_weak": {
+		"name": "Kobold",
+		"hp": 10,
+		"damage": 1,
+		"movement_speed": 20,
+		"knockback_recovery": 3.5,
+		"experience": 1,
+		"gem_value": 1,
+		"size": 1.0,
+		"scene": "res://Enemy/KoboldWeak/kobold_weak.tscn"
+	},
+	"kobold_strong": {
+		"name": "Strong Kobold",
+		"hp": 20,
+		"damage": 2,
+		"movement_speed": 28,
+		"knockback_recovery": 3.5,
+		"experience": 1,
+		"gem_value": 1,
+		"size": 1.0,
+		"scene": "res://Enemy/KoboldStrong/kobold_strong.tscn"
+	},
+	"cyclops": {
+		"name": "Cyclops",
+		"hp": 100,
+		"damage": 5,
+		"movement_speed": 16,
+		"knockback_recovery": 5,
+		"experience": 5,
+		"gem_value": 5,
+		"size": 2.0,
+		"scene": "res://Enemy/Cyclops/cyclops.tscn"
+	},
+	"juggernaut": {
+		"name": "Cyclops",
+		"hp": 500,
+		"damage": 10,
+		"movement_speed": 28,
+		"knockback_recovery": 3.5,
+		"experience": 10,
+		"gem_value": 1,
+		"size": 3.0,
+		"scene": "res://Enemy/Juggernaut/juggernaut.tscn"
+	}
+}

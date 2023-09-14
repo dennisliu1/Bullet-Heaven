@@ -207,8 +207,8 @@ func get_enemy_spawn_data() -> Array[Stage_info]:
 				spawn_info.time_start = spawn_info_json.time_start
 			if spawn_info_json.has("time_end"):
 				spawn_info.time_end = spawn_info_json.time_end
-			if spawn_info_json.has("enemy_scene"):
-				spawn_info.enemy = load(spawn_info_json.enemy_scene)
+			if spawn_info_json.has("enemy_unit"):
+				spawn_info.enemy = spawn_info_json.enemy_unit
 			if spawn_info_json.has("enemy_num"):
 				spawn_info.enemy_num = spawn_info_json.enemy_num
 			if spawn_info_json.has("enemy_spawn_delay"):
@@ -219,4 +219,22 @@ func get_enemy_spawn_data() -> Array[Stage_info]:
 
 func get_preview_items():
 	return read_from_JSON("res://Utility/preview_inventory.json")
+
+func get_enemy_data():
+	var result : Dictionary = {}
+	var enemy_data_json = read_from_JSON("res://Utility/enemy_data.json")
+	for key in enemy_data_json.keys():
+		var enemy_json = enemy_data_json[key]
+		var enemy_data = Enemy_data.new()
+		enemy_data.enemy_name = enemy_json.name
+		enemy_data.hp = enemy_json.hp
+		enemy_data.damage = enemy_json.damage
+		enemy_data.knockback_recovery = enemy_json.knockback_recovery
+		enemy_data.experience = enemy_json.experience
+		enemy_data.gem_value = enemy_json.gem_value
+		enemy_data.size = enemy_json.size
+		enemy_data.scene = load(enemy_json.scene)
+		result[key] = enemy_data
+	return result
+
 

@@ -8,24 +8,24 @@
 			{
 				"time_start": 0,
 				"time_end": 30,
-				"enemy_scene": "res://Enemy/Militia/militia.tscn",
+				"enemy_unit": "militia",
 				"enemy_num": 1,
-				"enemy_spawn_delay": 1,
+				"enemy_spawn_delay": 1
 			},
 			{
 				"time_start": 0,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldWeak/kobold_weak.tscn",
+				"enemy_unit": "kobold_weak",
 				"enemy_num": 1,
-				"enemy_spawn_delay": 1,
+				"enemy_spawn_delay": 1
 			},
 			{
 				"time_start": 30,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldWeak/kobold_weak.tscn",
+				"enemy_unit": "kobold_weak",
 				"enemy_num": 2,
-				"enemy_spawn_delay": 0,
-			},
+				"enemy_spawn_delay": 0
+			}
 		]
 	},
 	{
@@ -37,17 +37,17 @@
 			{
 				"time_start": 0,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldStrong/kobold_strong.tscn",
+				"enemy_unit": "kobold_strong",
 				"enemy_num": 2,
-				"enemy_spawn_delay": 1,
+				"enemy_spawn_delay": 1
 			},
 			{
 				"time_start": 30,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldWeak/kobold_weak.tscn",
+				"enemy_unit": "kobold_weak",
 				"enemy_num": 4,
-				"enemy_spawn_delay": 0,
-			},
+				"enemy_spawn_delay": 0
+			}
 		]
 	},
 	{
@@ -59,18 +59,18 @@
 			{
 				"time_start": 0,
 				"time_end": 0,
-				"enemy_scene": "res://Enemy/MoundKing/mound_king.tscn",
+				"enemy_unit": "res://Enemy/MoundKing/mound_king.tscn",
 				"enemy_num": 1,
 				"enemy_spawn_delay": 0,
-				"end_condition": true,
+				"end_condition": true
 			},
 			{
 				"time_start": 0,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldStrong/kobold_strong.tscn",
+				"enemy_unit": "kobold_strong",
 				"enemy_num": 8,
-				"enemy_spawn_delay": 1,
-			},
+				"enemy_spawn_delay": 1
+			}
 		]
 	},
 	{
@@ -82,24 +82,24 @@
 			{
 				"time_start": 0,
 				"time_end": 30,
-				"enemy_scene": "res://Enemy/Militia/militia.tscn",
+				"enemy_unit": "militia",
 				"enemy_num": 1,
-				"enemy_spawn_delay": 1,
+				"enemy_spawn_delay": 1
 			},
 			{
 				"time_start": 0,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldWeak/kobold_weak.tscn",
+				"enemy_unit": "kobold_weak",
 				"enemy_num": 1,
-				"enemy_spawn_delay": 1,
+				"enemy_spawn_delay": 1
 			},
 			{
 				"time_start": 30,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldWeak/kobold_weak.tscn",
+				"enemy_unit": "kobold_weak",
 				"enemy_num": 2,
-				"enemy_spawn_delay": 0,
-			},
+				"enemy_spawn_delay": 0
+			}
 		]
 	},
 	{
@@ -111,17 +111,17 @@
 			{
 				"time_start": 0,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldStrong/kobold_strong.tscn",
+				"enemy_unit": "kobold_strong",
 				"enemy_num": 2,
-				"enemy_spawn_delay": 1,
+				"enemy_spawn_delay": 1
 			},
 			{
 				"time_start": 30,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldWeak/kobold_weak.tscn",
+				"enemy_unit": "kobold_weak",
 				"enemy_num": 4,
-				"enemy_spawn_delay": 0,
-			},
+				"enemy_spawn_delay": 0
+			}
 		]
 	},
 	{
@@ -133,18 +133,18 @@
 			{
 				"time_start": 0,
 				"time_end": 0,
-				"enemy_scene": "res://Enemy/MoundKing/mound_king.tscn",
+				"enemy_unit": "res://Enemy/MoundKing/mound_king.tscn",
 				"enemy_num": 1,
 				"enemy_spawn_delay": 0,
-				"end_condition": true,
+				"end_condition": true
 			},
 			{
 				"time_start": 0,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldStrong/kobold_strong.tscn",
+				"enemy_unit": "kobold_strong",
 				"enemy_num": 8,
-				"enemy_spawn_delay": 1,
-			},
+				"enemy_spawn_delay": 1
+			}
 		]
 	},
 	{
@@ -156,24 +156,24 @@
 			{
 				"time_start": 0,
 				"time_end": 30,
-				"enemy_scene": "res://Enemy/Militia/militia.tscn",
+				"enemy_unit": "militia",
 				"enemy_num": 1,
-				"enemy_spawn_delay": 1,
+				"enemy_spawn_delay": 1
 			},
 			{
 				"time_start": 0,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldWeak/kobold_weak.tscn",
+				"enemy_unit": "kobold_weak",
 				"enemy_num": 1,
-				"enemy_spawn_delay": 1,
+				"enemy_spawn_delay": 1
 			},
 			{
 				"time_start": 30,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldWeak/kobold_weak.tscn",
+				"enemy_unit": "kobold_weak",
 				"enemy_num": 2,
-				"enemy_spawn_delay": 0,
-			},
+				"enemy_spawn_delay": 0
+			}
 		]
 	},
 	{
@@ -185,17 +185,17 @@
 			{
 				"time_start": 0,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldStrong/kobold_strong.tscn",
+				"enemy_unit": "kobold_strong",
 				"enemy_num": 2,
-				"enemy_spawn_delay": 1,
+				"enemy_spawn_delay": 1
 			},
 			{
 				"time_start": 30,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldWeak/kobold_weak.tscn",
+				"enemy_unit": "kobold_weak",
 				"enemy_num": 4,
-				"enemy_spawn_delay": 0,
-			},
+				"enemy_spawn_delay": 0
+			}
 		]
 	},
 	{
@@ -207,18 +207,18 @@
 			{
 				"time_start": 0,
 				"time_end": 0,
-				"enemy_scene": "res://Enemy/MoundKing/mound_king.tscn",
+				"enemy_unit": "res://Enemy/MoundKing/mound_king.tscn",
 				"enemy_num": 1,
 				"enemy_spawn_delay": 0,
-				"end_condition": true,
+				"end_condition": true
 			},
 			{
 				"time_start": 0,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldStrong/kobold_strong.tscn",
+				"enemy_unit": "kobold_strong",
 				"enemy_num": 8,
-				"enemy_spawn_delay": 1,
-			},
+				"enemy_spawn_delay": 1
+			}
 		]
 	},
 	{
@@ -230,24 +230,24 @@
 			{
 				"time_start": 0,
 				"time_end": 30,
-				"enemy_scene": "res://Enemy/Militia/militia.tscn",
+				"enemy_unit": "militia",
 				"enemy_num": 1,
-				"enemy_spawn_delay": 1,
+				"enemy_spawn_delay": 1
 			},
 			{
 				"time_start": 0,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldWeak/kobold_weak.tscn",
+				"enemy_unit": "kobold_weak",
 				"enemy_num": 1,
-				"enemy_spawn_delay": 1,
+				"enemy_spawn_delay": 1
 			},
 			{
 				"time_start": 30,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldWeak/kobold_weak.tscn",
+				"enemy_unit": "kobold_weak",
 				"enemy_num": 2,
-				"enemy_spawn_delay": 0,
-			},
+				"enemy_spawn_delay": 0
+			}
 		]
 	},
 	{
@@ -259,17 +259,17 @@
 			{
 				"time_start": 0,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldStrong/kobold_strong.tscn",
+				"enemy_unit": "kobold_strong",
 				"enemy_num": 2,
-				"enemy_spawn_delay": 1,
+				"enemy_spawn_delay": 1
 			},
 			{
 				"time_start": 30,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldWeak/kobold_weak.tscn",
+				"enemy_unit": "kobold_weak",
 				"enemy_num": 4,
-				"enemy_spawn_delay": 0,
-			},
+				"enemy_spawn_delay": 0
+			}
 		]
 	},
 	{
@@ -281,18 +281,18 @@
 			{
 				"time_start": 0,
 				"time_end": 0,
-				"enemy_scene": "res://Enemy/MoundKing/mound_king.tscn",
+				"enemy_unit": "res://Enemy/MoundKing/mound_king.tscn",
 				"enemy_num": 1,
 				"enemy_spawn_delay": 0,
-				"end_condition": true,
+				"end_condition": true
 			},
 			{
 				"time_start": 0,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldStrong/kobold_strong.tscn",
+				"enemy_unit": "kobold_strong",
 				"enemy_num": 8,
-				"enemy_spawn_delay": 1,
-			},
+				"enemy_spawn_delay": 1
+			}
 		]
 	},
 	{
@@ -304,24 +304,24 @@
 			{
 				"time_start": 0,
 				"time_end": 30,
-				"enemy_scene": "res://Enemy/Militia/militia.tscn",
+				"enemy_unit": "militia",
 				"enemy_num": 1,
-				"enemy_spawn_delay": 1,
+				"enemy_spawn_delay": 1
 			},
 			{
 				"time_start": 0,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldWeak/kobold_weak.tscn",
+				"enemy_unit": "kobold_weak",
 				"enemy_num": 1,
-				"enemy_spawn_delay": 1,
+				"enemy_spawn_delay": 1
 			},
 			{
 				"time_start": 30,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldWeak/kobold_weak.tscn",
+				"enemy_unit": "kobold_weak",
 				"enemy_num": 2,
-				"enemy_spawn_delay": 0,
-			},
+				"enemy_spawn_delay": 0
+			}
 		]
 	},
 	{
@@ -333,17 +333,17 @@
 			{
 				"time_start": 0,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldStrong/kobold_strong.tscn",
+				"enemy_unit": "kobold_strong",
 				"enemy_num": 2,
-				"enemy_spawn_delay": 1,
+				"enemy_spawn_delay": 1
 			},
 			{
 				"time_start": 30,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldWeak/kobold_weak.tscn",
+				"enemy_unit": "kobold_weak",
 				"enemy_num": 4,
-				"enemy_spawn_delay": 0,
-			},
+				"enemy_spawn_delay": 0
+			}
 		]
 	},
 	{
@@ -355,18 +355,18 @@
 			{
 				"time_start": 0,
 				"time_end": 0,
-				"enemy_scene": "res://Enemy/MoundKing/mound_king.tscn",
+				"enemy_unit": "res://Enemy/MoundKing/mound_king.tscn",
 				"enemy_num": 1,
 				"enemy_spawn_delay": 0,
-				"end_condition": true,
+				"end_condition": true
 			},
 			{
 				"time_start": 0,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldStrong/kobold_strong.tscn",
+				"enemy_unit": "kobold_strong",
 				"enemy_num": 8,
-				"enemy_spawn_delay": 1,
-			},
+				"enemy_spawn_delay": 1
+			}
 		]
 	},
 	{
@@ -378,24 +378,24 @@
 			{
 				"time_start": 0,
 				"time_end": 30,
-				"enemy_scene": "res://Enemy/Militia/militia.tscn",
+				"enemy_unit": "militia",
 				"enemy_num": 1,
-				"enemy_spawn_delay": 1,
+				"enemy_spawn_delay": 1
 			},
 			{
 				"time_start": 0,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldWeak/kobold_weak.tscn",
+				"enemy_unit": "kobold_weak",
 				"enemy_num": 1,
-				"enemy_spawn_delay": 1,
+				"enemy_spawn_delay": 1
 			},
 			{
 				"time_start": 30,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldWeak/kobold_weak.tscn",
+				"enemy_unit": "kobold_weak",
 				"enemy_num": 2,
-				"enemy_spawn_delay": 0,
-			},
+				"enemy_spawn_delay": 0
+			}
 		]
 	},
 	{
@@ -407,17 +407,17 @@
 			{
 				"time_start": 0,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldStrong/kobold_strong.tscn",
+				"enemy_unit": "kobold_strong",
 				"enemy_num": 2,
-				"enemy_spawn_delay": 1,
+				"enemy_spawn_delay": 1
 			},
 			{
 				"time_start": 30,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldWeak/kobold_weak.tscn",
+				"enemy_unit": "kobold_weak",
 				"enemy_num": 4,
-				"enemy_spawn_delay": 0,
-			},
+				"enemy_spawn_delay": 0
+			}
 		]
 	},
 	{
@@ -429,18 +429,18 @@
 			{
 				"time_start": 0,
 				"time_end": 0,
-				"enemy_scene": "res://Enemy/MoundKing/mound_king.tscn",
+				"enemy_unit": "res://Enemy/MoundKing/mound_king.tscn",
 				"enemy_num": 1,
 				"enemy_spawn_delay": 0,
-				"end_condition": true,
+				"end_condition": true
 			},
 			{
 				"time_start": 0,
 				"time_end": 60,
-				"enemy_scene": "res://Enemy/KoboldStrong/kobold_strong.tscn",
+				"enemy_unit": "kobold_strong",
 				"enemy_num": 8,
-				"enemy_spawn_delay": 1,
-			},
+				"enemy_spawn_delay": 1
+			}
 		]
-	},
+	}
 ]

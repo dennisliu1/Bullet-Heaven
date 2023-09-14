@@ -14,6 +14,8 @@ extends Node2D
 const SPAWN_WINDOW_BORDER_AREA_MIN = 1.1
 const SPAWN_WINDOW_BORDER_AREA_MAX = 1.4
 
+var enemy_data: Dictionary
+
 signal changetime(time)
 
 # Called when the node enters the scene tree for the first time.
@@ -22,6 +24,7 @@ func _ready():
 	connect("changetime", Callable(player, "change_time"))
 	
 	# load data from json instead
+	enemy_data = Global.get_enemy_data()
 	var loaded_data : Array[Stage_info] = Global.get_enemy_spawn_data()
 	stages.clear()
 	stages.append_array(loaded_data)
@@ -62,9 +65,11 @@ func _spawn_enemies(enemy_spawn):
 
 ## Spawn a single enemy
 func _spawn_enemy(new_enemy):
-	var enemy_instance = new_enemy.instantiate()
-	enemy_instance.global_position = get_random_position()
-	enemy_container.add_child(enemy_instance)
+	if new_enemy in enemy_data:
+		var enemy_instance = enemy_data[new_enemy].scene.instantiate()
+		# TODO copy enemy data over to enemy_instance
+		enemy_instance.global_position = get_random_position()
+		enemy_container.add_child(enemy_instance)
 
 ## Get a random position just outside the game viewport, so the enemy spawns
 ## outside the viewable area.
