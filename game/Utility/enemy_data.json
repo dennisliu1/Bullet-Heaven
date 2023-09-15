@@ -33,7 +33,7 @@
 		"scene": "res://Enemy/Cyclops/cyclops.tscn"
 	},
 	"juggernaut": {
-		"name": "Cyclops",
+		"name": "Juggernaut",
 		"hp": 500,
 		"damage": 10,
 		"movement_speed": 28,
@@ -42,5 +42,214 @@
 		"gem_value": 1,
 		"size": 3.0,
 		"scene": "res://Enemy/Juggernaut/juggernaut.tscn"
+	},
+	"militia": {
+		"name": "Militia",
+		"hp": 1,
+		"damage": 5,
+		"movement_speed": 140,
+		"knockback_recovery": 1,
+		"experience": 1,
+		"gem_value": 1,
+		"size": 1.0,
+		"scene": "res://Enemy/Militia/militia.tscn"
+	},
+	"soulless": {
+		"name": "Soulless",
+		"hp": 5,
+		"damage": 5,
+		"movement_speed": 140,
+		"knockback_recovery": 1,
+		"experience": 1,
+		"gem_value": 1,
+		"size": 1.0,
+		"scene": "res://Enemy/Soulless/soulless.tscn"
+	},
+	"soulless_warrior": {
+		"name": "Soulless Warrior",
+		"hp": 270,
+		"damage": 10,
+		"movement_speed": 140,
+		"knockback_recovery": 1,
+		"experience": 2.5,
+		"gem_value": 1,
+		"size": 1.0,
+		"scene": "res://Enemy/SoullessWarrior/soulless_warrior.tscn"
+	},
+	"bane": {
+		"name": "Bane",
+		"hp": 1000,
+		"damage": 10,
+		"movement_speed": 140,
+		"knockback_recovery": 1,
+		"experience": 30,
+		"gem_value": 1,
+		"size": 1.0,
+		"scene": "res://Enemy/Bane/bane.tscn"
+	},
+	"bane_lord": {
+		"name": "Bane Lord",
+		"hp": 1500,
+		"damage": 10,
+		"movement_speed": 140,
+		"knockback_recovery": 3.5,
+		"experience": 30,
+		"gem_value": 1,
+		"size": 1.0,
+		"scene": "res://Enemy/BaneLord/bane_lord.tscn"
+	},
+	"ghoul": {
+		"name": "Ghoul",
+		"hp": 10,
+		"damage": 10,
+		"movement_speed": 100,
+		"knockback_recovery": 0.8,
+		"experience": 1,
+		"gem_value": 1,
+		"size": 1.0,
+		"scene": "res://Enemy/Ghoul/ghoul.tscn"
+	},
+	"longdead": {
+		"name": "Longdead",
+		"hp": 15,
+		"damage": 10,
+		"movement_speed": 100,
+		"knockback_recovery": 1,
+		"experience": 2,
+		"gem_value": 1,
+		"size": 1.0,
+		"scene": "res://Enemy/Longdead/longdead.tscn"
+	},
+	"ghost": {
+		"name": "Ghost",
+		"hp": 10,
+		"damage": 5,
+		"movement_speed": 200,
+		"knockback_recovery": 0,
+		"experience": 1.5,
+		"gem_value": 1,
+		"size": 1.0,
+		"scene": "res://Enemy/Ghost/ghost.tscn"
+	},
+	"longdead_principe": {
+		"name": "Longdead Principe",
+		"hp": 70,
+		"damage": 10,
+		"movement_speed": 100,
+		"knockback_recovery": 0.3,
+		"experience": 2.5,
+		"gem_value": 1,
+		"size": 1.0,
+		"scene": "res://Enemy/LongdeadPrincipe/longdead_principe.tscn"
+	},
+	"longdead_legionnaire": {
+		"name": "Longdead Legionnaire",
+		"hp": 150,
+		"damage": 10,
+		"movement_speed": 100,
+		"knockback_recovery": 0.3,
+		"experience": 2.5,
+		"gem_value": 1,
+		"size": 1.0,
+		"scene": "res://Enemy/LongdeadLegionnaire/longdead_legionnaire.tscn"
+	},
+	"wight": {
+		"name": "Wight",
+		"hp": 180,
+		"damage": 15,
+		"movement_speed": 130,
+		"knockback_recovery": 0.8,
+		"experience": 2,
+		"gem_value": 1,
+		"size": 1.0,
+		"scene": "res://Enemy/Wight/wight.tscn"
+	},
+	"lictor": {
+		"name": "Lictor",
+		"hp": 500,
+		"damage": 10,
+		"movement_speed": 80,
+		"knockback_recovery": 0,
+		"experience": 3,
+		"gem_value": 1,
+		"size": 1.0,
+		"scene": "res://Enemy/Lictor/lictor.tscn"
+	},
+	"mound_fiend": {
+		"name": "Mound Fiend",
+		"hp": 500,
+		"damage": 20,
+		"movement_speed": 80,
+		"knockback_recovery": 0,
+		"experience": 3,
+		"gem_value": 1,
+		"size": 1.0,
+		"scene": "res://Enemy/MoundFiend/mound_fiend.tscn"
+	},
+	"dispossessed_spirit": {
+		"name": "Dispossessed Spirit",
+		"hp": 660,
+		"damage": 1,
+		"movement_speed": 20,
+		"knockback_recovery": 1,
+		"experience": 2,
+		"gem_value": 1,
+		"size": 1.0,
+		"scene": "res://Enemy/DispossessedSpirit/dispossessed_spirit.tscn"
+	},
+	"apparition": {
+		"name": "Apparition",
+		"hp": 500,
+		"damage": 20,
+		"movement_speed": 80,
+		"knockback_recovery": 0,
+		"experience": 3,
+		"gem_value": 1,
+		"size": 1.0,
+		"scene": "res://Enemy/Apparition/apparition.tscn"
+	},
+	"ashen_angel": {
+		"name": "Ashen Angel",
+		"hp": 3750,
+		"damage": 30,
+		"movement_speed": 160,
+		"knockback_recovery": 0,
+		"experience": 50,
+		"gem_value": 1,
+		"size": 1.0,
+		"scene": "res://Enemy/AshenAngel/ashen_angel.tscn"
+	},
+	"eater_of_the_dead": {
+		"name": "Eater of the Dead",
+		"hp": 3750,
+		"damage": 20,
+		"movement_speed": 160,
+		"knockback_recovery": 0,
+		"experience": 50,
+		"gem_value": 1,
+		"size": 1.0,
+		"scene": "res://Enemy/EaterOfTheDead/eater_of_the_dead.tscn"
+	},
+	"wraith_lord": {
+		"name": "Wraith Lord",
+		"hp": 3000,
+		"damage": 20,
+		"movement_speed": 130,
+		"knockback_recovery": 0.1,
+		"experience": 2,
+		"gem_value": 1,
+		"size": 1.0,
+		"scene": "res://Enemy/WraithLord/wraith_lord.tscn"
+	},
+	"tartarian_cyclops": {
+		"name": "Tartarian Cyclops",
+		"hp": 30000,
+		"damage": 50,
+		"movement_speed": 180,
+		"knockback_recovery": 0,
+		"experience": 500,
+		"gem_value": 500,
+		"size": 1.0,
+		"scene": "res://Enemy/TartarianCyclops/tartarian_cyclops.tscn"
 	}
 }
