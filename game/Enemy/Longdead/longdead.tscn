@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://02pljbnmrc26" path="res://Enemy/Longdead/Textures/0191_1.png" id="2_aqwfa"]
 
 [node name="Longdead" instance=ExtResource("1_qaeus")]
+single_frame_mode = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_aqwfa")

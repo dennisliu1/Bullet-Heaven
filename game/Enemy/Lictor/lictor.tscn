@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bssw6wx00crxk" path="res://Enemy/Lictor/Textures/0259_1.png" id="2_mvl21"]
 
 [node name="Lictor" instance=ExtResource("1_qq1tg")]
+single_frame_mode = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_mvl21")

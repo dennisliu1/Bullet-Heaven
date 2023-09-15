@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bbysaxhc5l34f" path="res://Enemy/WraithLord/Textures/0181_1.png" id="2_7ygnw"]
 
 [node name="WraithLord" instance=ExtResource("1_hue1l")]
+single_frame_mode = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_7ygnw")

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b47gdl57g82cj" path="res://Enemy/BaneLord/Textures/0998_1.png" id="2_l3tbs"]
 
 [node name="BaneLord" instance=ExtResource("1_pi2jb")]
+single_frame_mode = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_l3tbs")

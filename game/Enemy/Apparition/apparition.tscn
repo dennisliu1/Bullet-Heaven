@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cxdfnp8jmp1cc" path="res://Enemy/Apparition/Textures/0677_1.png" id="2_3m80f"]
 
 [node name="Apparition" instance=ExtResource("1_og0du")]
+single_frame_mode = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_3m80f")

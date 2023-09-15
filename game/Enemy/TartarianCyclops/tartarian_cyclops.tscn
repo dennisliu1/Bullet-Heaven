@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b8tpuhffl8kyn" path="res://Enemy/TartarianCyclops/Textures/0771_1.png" id="2_x06wn"]
 
 [node name="TartarianCyclops" instance=ExtResource("1_26qmy")]
+single_frame_mode = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_x06wn")

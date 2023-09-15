@@ -196,6 +196,7 @@
 	{
 		"name": "stage 2-5",
 		"music": "res://World/Music/Noisy Rain -case 003-.ogg",
+		"music_state": "CONTINUE",
 		"time_start": 540,
 		"time_duration": 60,
 		"spawns": [

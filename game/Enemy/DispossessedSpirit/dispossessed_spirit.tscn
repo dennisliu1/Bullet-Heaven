@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://sx6g17bm8tpi" path="res://Enemy/DispossessedSpirit/Textures/0674_1.png" id="2_tjj60"]
 
 [node name="DispossessedSpirit" instance=ExtResource("1_u8ydv")]
+single_frame_mode = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_tjj60")

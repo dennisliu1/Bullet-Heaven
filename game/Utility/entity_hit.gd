@@ -68,10 +68,10 @@ func _ready():
 
 func set_target(target_obj):
 	self.target = target_obj
-	if target != null:
-		print("%s - %s" % [debug_name, self.target.name])
-	else:
-		print("%s - %s" % [debug_name, "null"])
+#	if target != null:
+#		print("%s - %s" % [debug_name, self.target.name])
+#	else:
+#		print("%s - %s" % [debug_name, "null"])
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

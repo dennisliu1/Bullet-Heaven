@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://v5fy1brinao4" path="res://Enemy/HarvesterOfSorrows/Textures/0491_1.png" id="2_17227"]
 
 [node name="HarvesterOfSorrows" instance=ExtResource("1_e3xdd")]
+single_frame_mode = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_17227")

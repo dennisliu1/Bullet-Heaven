@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ceovyxloh6ick" path="res://Enemy/EaterOfTheDead/Textures/0997_1.png" id="2_fxp1q"]
 
 [node name="EaterOfTheDead" instance=ExtResource("1_5qoqp")]
+single_frame_mode = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_fxp1q")

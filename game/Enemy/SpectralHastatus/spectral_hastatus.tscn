@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://lbkwft84w4oh" path="res://Enemy/SpectralHastatus/Textures/0673_1.png" id="2_hgtq7"]
 
 [node name="SpectralHastatus" instance=ExtResource("1_nuwir")]
+single_frame_mode = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_hgtq7")

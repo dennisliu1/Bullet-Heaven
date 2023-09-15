@@ -180,13 +180,14 @@ func calculate_experience(gem_exp):
 
 ## TODO move this into a json file to set
 func calculate_experience_cap():
-	var exp_cap = experience_level
+	var exp_cap = 0
+	## Taken from Vampire Survivors
 	if experience_level < 20:
-		exp_cap = experience_level * 5
+		exp_cap = 5 + experience_level * 10
 	elif experience_level < 40:
-		exp_cap = 95 * (experience_level-19) * 8
+		exp_cap = 195 + 600 + (experience_level-20) * 13
 	else:
-		exp_cap = 255 + (experience_level-39) * 12
+		exp_cap = 1055 + 2400 + (experience_level-39) * 16
 	return exp_cap
 
 

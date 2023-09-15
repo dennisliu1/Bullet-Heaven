@@ -197,7 +197,7 @@ func get_enemy_spawn_data() -> Array[Stage_info]:
 		var stage_json = enemy_spawn_json[i]
 		var stage_info = Stage_info.new()
 		stage_info.name = stage_json.name
-		stage_info.time_length = stage_json.time
+		stage_info.time_length = stage_json.time_duration
 		stage_info.music = load(stage_json.music)
 		stage_info.music_state = Stage_info.get_music_state(stage_json.music_state)
 		

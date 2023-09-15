@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cy0no6jed8dnk" path="res://Enemy/SpectralVelite/Textures/0672_1.png" id="2_cj2k1"]
 
 [node name="SpectralVelite" instance=ExtResource("1_ndm8x")]
+single_frame_mode = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_cj2k1")

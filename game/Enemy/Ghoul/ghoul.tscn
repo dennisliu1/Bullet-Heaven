@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dn574gibq7j5o" path="res://Enemy/Ghoul/Textures/0198_1.png" id="2_hbmo5"]
 
 [node name="Ghoul" instance=ExtResource("1_iosg3")]
+single_frame_mode = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_hbmo5")

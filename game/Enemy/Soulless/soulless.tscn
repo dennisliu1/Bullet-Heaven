@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dwsjtvhtq3o77" path="res://Enemy/Soulless/Textures/0197_1.png" id="2_r1xr2"]
 
 [node name="Soulless" instance=ExtResource("1_lsq4e")]
+single_frame_mode = true
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_r1xr2")
