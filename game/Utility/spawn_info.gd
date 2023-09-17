@@ -13,7 +13,8 @@ var spawn_delay_counter = 0
 var enemy_count = 0
 
 func enemy_died():
-	enemy_count -= 1
+	if enemy_count > 0:
+		enemy_count -= 1
 
 
 

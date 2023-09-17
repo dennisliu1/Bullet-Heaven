@@ -37,7 +37,7 @@ func _on_timer_timeout():
 	var enemy_spawns = stages[current_stage_index].spawns
 	for enemy_spawn in enemy_spawns:
 		while enemy_spawn.enemy_count < enemy_spawn.enemy_min:
-			_spawn_enemies(enemy_spawn)
+			_spawn_enemy(enemy_spawn)
 		if enemy_spawn.time_start <= time and time <= enemy_spawn.time_end and _delay_spawn(enemy_spawn):
 			_spawn_enemies(enemy_spawn)
 
