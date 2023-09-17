@@ -5,6 +5,7 @@ class_name Stage_info
 enum MUSIC_STATE {CONTINUE, END}
 
 @export var stage_name: String
+@export var time_start: int
 @export var time_length: int
 @export var music: Resource
 @export var music_state: MUSIC_STATE

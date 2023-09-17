@@ -36,6 +36,8 @@ func _on_timer_timeout():
 
 	var enemy_spawns = stages[current_stage_index].spawns
 	for enemy_spawn in enemy_spawns:
+		while enemy_spawn.enemy_count < enemy_spawn.enemy_min:
+			_spawn_enemies(enemy_spawn)
 		if enemy_spawn.time_start <= time and time <= enemy_spawn.time_end and _delay_spawn(enemy_spawn):
 			_spawn_enemies(enemy_spawn)
 
@@ -60,16 +62,19 @@ func _delay_spawn(enemy_spawn):
 func _spawn_enemies(enemy_spawn):
 	var counter = 0
 	while counter < enemy_spawn.enemy_num:
-		_spawn_enemy(enemy_spawn.enemy)
+		_spawn_enemy(enemy_spawn)
 		counter += 1
 
 ## Spawn a single enemy
-func _spawn_enemy(new_enemy):
+func _spawn_enemy(enemy_spawn):
+	var new_enemy = enemy_spawn.enemy
 	if new_enemy in enemy_data:
 		var enemy_instance = enemy_data[new_enemy].scene.instantiate()
 		enemy_instance.apply_data(enemy_data[new_enemy])
 		enemy_instance.global_position = get_random_position()
+		enemy_instance.connect("enemy_died", Callable(enemy_spawn, "enemy_died"))
 		enemy_container.add_child(enemy_instance)
+		enemy_spawn.enemy_count += 1
 
 ## Get a random position just outside the game viewport, so the enemy spawns
 ## outside the viewable area.

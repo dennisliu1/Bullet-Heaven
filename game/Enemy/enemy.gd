@@ -28,6 +28,7 @@ var gem = preload("res://Items/Gem/gem.tscn")
 
 
 signal remove_from_array(object)
+signal enemy_died()
 
 var knockback = Vector2.ZERO
 
@@ -76,6 +77,7 @@ func death(killed_by_player=true):
 		player.get_experience(experience)
 		_drop_experience_gem()
 	emit_signal("remove_from_array", self)
+	emit_signal("enemy_died")
 	_add_death_animation()
 	queue_free() # destroy enemy
 
