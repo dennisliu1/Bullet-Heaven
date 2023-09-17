@@ -67,7 +67,7 @@ func _spawn_enemies(enemy_spawn):
 func _spawn_enemy(new_enemy):
 	if new_enemy in enemy_data:
 		var enemy_instance = enemy_data[new_enemy].scene.instantiate()
-		# TODO copy enemy data over to enemy_instance
+		enemy_instance.apply_data(enemy_data[new_enemy])
 		enemy_instance.global_position = get_random_position()
 		enemy_container.add_child(enemy_instance)
 

@@ -229,6 +229,7 @@ func get_enemy_data():
 		enemy_data.enemy_name = enemy_json.name
 		enemy_data.hp = enemy_json.hp
 		enemy_data.damage = enemy_json.damage
+		enemy_data.movement_speed = enemy_json.movement_speed
 		enemy_data.knockback_recovery = enemy_json.knockback_recovery
 		enemy_data.experience = enemy_json.experience
 		enemy_data.gem_value = enemy_json.gem_value

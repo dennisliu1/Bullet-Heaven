@@ -38,7 +38,8 @@ func _ready():
 		animation_player.play("walk")
 	hit_box.damage = damage
 
-func _physics_process(_delta):
+## we don't use delta because move_and_slide() already uses it
+func _process(_delta):
 	# gradually reduces the knockback to zero, based on recovery
 	knockback = knockback.move_toward(Vector2.ZERO, knockback_recovery_time)
 
@@ -101,16 +102,14 @@ func _single_frame_movement():
 		sprite_walk_flip = true
 	single_frame_count = (single_frame_count + 1) % 2
 
-
-
-
-
-
-
-
-
-
-
-
 func _on_single_frame_move_timer_timeout():
 	_single_frame_movement()
+
+func apply_data(enemy_data: Enemy_data):
+	hp = enemy_data.hp
+	damage = enemy_data.damage
+	movement_speed = enemy_data.movement_speed
+	knockback_recovery_time = enemy_data.knockback_recovery
+	experience = enemy_data.experience
+	gem_value = enemy_data.gem_value
+	apply_scale(Vector2(enemy_data.size, enemy_data.size))
